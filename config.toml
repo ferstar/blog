@@ -1,0 +1,14 @@
+baseURL = "https://blog.ferstar.org/"
+languageCode = "en-us"
+title = "STAY REAL"
+theme = "slim"
+
+[params]
+  Subtitle = "人生苦短，快用Python"
+  GithubID = "ferstar"
+  # AnalyticsID = "Your Google Analytics tracking code"
+  DisqusShortname = "ferstar"
+  Summary = false # takes true or false
+  Content = false  # takes true or false
+  # if both are set to true, summary is shown.
+  FooterMsg = "Copyright ferstar 2017. Powered by Hugo."
