@@ -1,9 +1,9 @@
-+++
+---
 date = "2016-07-04T18:17:00+08:00"
 title = "Use multiple CPU Cores with your Linux commands"
 tags = ['OTHERS']
 
-+++
+---
 
 via <http://www.rankfocus.com/use-cpu-cores-linux-commands/>
 

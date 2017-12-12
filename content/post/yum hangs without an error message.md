@@ -1,9 +1,9 @@
-+++
+---
 date = "2017-07-06T11:33:00+08:00"
 title = "yum命令卡住无响应的解决办法"
 tags = ['LINUX', 'YUM', 'CENTOS']
 
-+++
+---
 
 一台CentOS服务器的yum无端卡住，Ctrl + C也干不掉，Google了一番找到这个解决方法很管用，记录一下
 

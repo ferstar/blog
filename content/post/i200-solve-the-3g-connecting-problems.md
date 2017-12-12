@@ -1,9 +1,9 @@
-+++
+---
 date = "2013-10-06T14:54:07+08:00"
 title = "I200/I535等洋垃圾上不了网或者信号不稳的解决方法"
 tags = ['手机']
 
-+++
+---
 
 源链接：[http://android.tgbus.com/Android/yizhi/201306/472570.shtml](http://android.tgbus.com/Android/yizhi/201306/472570.shtml) 完全可以适用于I200，或者三星所有**[galaxy](http://www.baidu.com/s?wd=galaxy&amp;f=12&amp;rsp=0&amp;oq=glaxy&amp;ie=utf-8) **系列洋垃圾手机，一般是V版定制机拿到国内后能通话但不能3G或者网络时断时续的问题，以下是原文，最好照做：<!--more-->
 

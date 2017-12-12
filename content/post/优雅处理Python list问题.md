@@ -1,9 +1,9 @@
-+++
+---
 date = "2017-07-19T10:29:00+08:00"
 title = "优雅处理Python list问题"
 tags = ['PYTHON']
 
-+++
+---
 
 贴一个在[segmentfault](https://segmentfault.com/q/1010000010242056/a-1020000010249040)的回答, 问题是这样的:
 

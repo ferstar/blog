@@ -1,9 +1,9 @@
-+++
+---
 date = "2015-08-31T23:07:56+08:00"
 title = "C#中修改&保存Properties.Settings里的值"
 tags = ['C#']
 
-+++
+---
 打算在`Properties.Settings`中存一个不太短也不太长的string, 一直存不了, 程序退出, 就回到默认值, 着实蛋疼, google之发现算是一个低级错误, 其实就漏了一句: `Properties.Settings.Default.Save();` set完毕后save()一下就ok了
 
 

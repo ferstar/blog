@@ -1,9 +1,9 @@
-+++
+---
 date = "2017-05-22T14:08:00+08:00"
 title = "farbox搬家记"
 tags = ['WINDOWS', 'LINUX', 'FARBOX', 'BITCRON']
 
-+++
+---
 
 前几天收到farbox的邮件，说由于dropbox api的停摆，farbox造了个bitcron的东东来替代，去官博看了下跟farbox感觉并无太大差别，依旧延续了我喜欢的小清新风格，所以照着博客说明迁移了下。
 ## 迁移到 Bitcron 吧

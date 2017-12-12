@@ -1,9 +1,9 @@
-+++
+---
 date = "2016-06-20T13:18:00+08:00"
 title = "Adding Applications to Compute Nodes"
 tags = ['OTHERS']
 
-+++
+---
 
 两种方法
 ## 1. 将要共享的二进制应用程序放在NFS存储, 指定全局搜索PATH即可

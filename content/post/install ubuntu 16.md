@@ -1,9 +1,9 @@
-+++
+---
 date = "2016-06-15T14:52:00+08:00"
 title = "install ubuntu 16.04 on 3850x6 server"
 tags = ['OTHERS']
 
-+++
+---
 
 这破机子开机自检一大堆, 得等好久, 完了按F12选择DVD驱动器启动
 

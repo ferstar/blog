@@ -1,9 +1,9 @@
-+++
+---
 date = "2017-05-27T09:06:00+08:00"
 title = "使用conda安装qiime"
 tags = ['OTHERS']
 
-+++
+---
 
 跟着官网安装说明做即可,注意装好conda后最好更换一下conda和pip源，不然网速会让你抓狂的
 via <http://qiime.org/install/install.html>

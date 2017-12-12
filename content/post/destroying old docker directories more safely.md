@@ -1,9 +1,9 @@
-+++
+---
 date = "2017-07-06T11:51:00+08:00"
 title = "destroying old docker directories more safely"
 tags = ['DOCKER', 'LINUX', 'CENTOS']
 
-+++
+---
 
 清理docker lib目录时遇到如下的错误
 ```shell

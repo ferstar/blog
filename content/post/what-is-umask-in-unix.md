@@ -1,9 +1,9 @@
-+++
+---
 date = "2015-12-02T20:02:03+08:00"
 title = "unix 中 umask 是什么？(转)"
 tags = ['OTHERS']
 
-+++
+---
 
 转自:[http://blog.csdn.net](http://blog.csdn.net/xxd851116/article/details/9722127) 
 

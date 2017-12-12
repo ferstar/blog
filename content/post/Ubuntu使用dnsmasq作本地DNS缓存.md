@@ -1,9 +1,9 @@
-+++
+---
 date = "2015-09-17T23:48:00+08:00"
 title = "Ubuntu使用dnsmasq作本地DNS缓存"
 tags = ['OTHERS']
 
-+++
+---
 
 http://mydf.github.io/blog/ubuntu-dnsmasq/
 ```

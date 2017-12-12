@@ -1,9 +1,9 @@
-+++
+---
 date = "2015-08-31T22:51:20+08:00"
 title = "源//ROS on RaspBerry Pi2"
 tags = ['OTHERS']
 
-+++
+---
 首先按照下面的连接在树莓派上安装ubuntu
 [1. Raspberry Pi 2 (with Ubuntu 14.04.2 2015-04-06)][1]
 [2. Ubuntu ARM install of ROS Indigo][2]

@@ -1,9 +1,9 @@
-+++
+---
 date = "2017-07-24T17:41:00+08:00"
 title = "python中使用eval和ast.literal_eval的区别"
 tags = ['PYTHON']
 
-+++
+---
 
 > 转自: [python中使用eval() 和 ast.literal_eval()的区别](http://blog.csdn.net/yisuowushinian/article/details/45644299)
 

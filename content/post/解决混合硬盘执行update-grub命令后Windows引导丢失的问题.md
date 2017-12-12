@@ -1,9 +1,9 @@
-+++
+---
 date = "2017-06-27T09:54:00+08:00"
 title = "解决混合硬盘执行update-grub命令后Windows引导丢失的问题"
 tags = ['OTHERS']
 
-+++
+---
 
 > 公司配的台式机是Dell xps8900，32G的SSD+2T的HDD，默认启用了intel的快速存储技术。前几日在HDD末端抠了个分区安装了Linux Mint 18，早上升级新内核执行`update-grub`命令后发现Windows10引导丢失。查看磁盘信息发现有两个莫名其妙的RAID array条目，估计就是磁盘中还残留有Intel RSTe RAID信息导致Windows分区被隐藏起来了。OK，发现原因就开始解决问题。
 

@@ -1,9 +1,9 @@
-+++
+---
 date = "2015-08-12T19:15:43+08:00"
 title = "备份内存卡分区到img"
 tags = ['OTHERS']
 
-+++
+---
 
     # 将sdb分区拷贝到硬盘
     sudo dd if=/dev/sdb of=ros_ready.img bs=4M

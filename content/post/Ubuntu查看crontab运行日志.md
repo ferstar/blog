@@ -1,9 +1,9 @@
-+++
+---
 date = "2015-09-18T09:12:00+08:00"
 title = "Ubuntu查看crontab运行日志"
 tags = ['OTHERS']
 
-+++
+---
 
 修改rsyslog
 `sudo vim /etc/rsyslog.d/50-default.conf`

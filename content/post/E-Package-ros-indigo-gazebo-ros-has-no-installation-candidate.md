@@ -1,9 +1,9 @@
-+++
+---
 date = "2015-08-12T10:58:00+08:00"
 title = "Package ros-indigo-gazebo-ros has no installation candidate"
 tags = ['ROS', 'LINUX']
 
-+++
+---
 
 x，又找不见这个包。。。
 

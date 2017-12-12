@@ -1,9 +1,9 @@
-+++
+---
 date = "2015-08-12T14:41:00+08:00"
 title = "Killed (program cc1plus)"
 tags = ['OTHERS']
 
-+++
+---
 
 兴高采烈编译`kobuki_bumper2pc_nodelet`中，突然蹦出这么个错，同时终端变的略卡，下意识的敲了下`free -h`，囧，原来是内存用尽了～
 

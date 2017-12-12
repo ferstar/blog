@@ -1,9 +1,9 @@
-+++
+---
 date = "2017-07-13T13:02:00+08:00"
 title = "pandas to mongodb"
 tags = ['PYTHON']
 
-+++
+---
 
 最近项目需要, 把所有历史资料(Excel格式)汇总分析, 于是祭出pandas神器, 上万份Excel表格轻松搞定.
 

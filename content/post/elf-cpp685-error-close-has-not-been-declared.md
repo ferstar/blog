@@ -1,9 +1,9 @@
-+++
+---
 date = "2013-11-06T11:32:49+08:00"
 title = "close has not been declared"
 tags = ['LINUX', 'OPENWRT']
 
-+++
+---
 
 [http://www.openwrt.org.cn/bbs/forum.php?mod=viewthread&amp;tid=12675](http://www.openwrt.org.cn/bbs/forum.php?mod=viewthread&amp;tid=12675)
 

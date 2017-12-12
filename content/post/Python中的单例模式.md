@@ -1,9 +1,9 @@
-+++
+---
 date = "2017-07-24T17:56:00+08:00"
 title = "Python中的单例模式"
 tags = ['PYTHON']
 
-+++
+---
 
 > 转自: [Python 中的单例模式](http://funhacks.net/2017/01/17/singleton/)
 

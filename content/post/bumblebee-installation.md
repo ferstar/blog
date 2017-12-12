@@ -1,9 +1,9 @@
-+++
+---
 date = "2013-10-19T20:03:25+08:00"
 title = "Bumblebee双显卡切换安装完成后的惊喜"
 tags = ['LINUX']
 
-+++
+---
 
 我大华硕Fn亮度控制终于正常了，至此ubuntu13.04下所有HotKey功能均能正常使用，以下是官方wiki安装说明：[https://wiki.ubuntu.com/Bumblebee#Installation](https://wiki.ubuntu.com/Bumblebee#Installation "官方wiki页面")
 

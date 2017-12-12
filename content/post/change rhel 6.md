@@ -1,9 +1,9 @@
-+++
+---
 date = "2016-07-01T11:28:00+08:00"
 title = "change rhel 6.5 yum to centos"
 tags = ['OTHERS']
 
-+++
+---
 
 ```
 # 卸载yum

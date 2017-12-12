@@ -1,9 +1,9 @@
-+++
+---
 date = "2016-10-17T16:48:00+08:00"
 title = "Google Search Tips & Tricks"
 tags = ['OTHERS']
 
-+++
+---
 
 谷歌搜索的一些特殊技巧: 
 from <http://www.cte.hawaii.edu/Googly/aGoogleaday_TipsAndTricks.pdf>

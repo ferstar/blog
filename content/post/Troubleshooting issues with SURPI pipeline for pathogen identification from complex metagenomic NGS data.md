@@ -1,9 +1,9 @@
-+++
+---
 date = "2016-07-01T16:56:00+08:00"
 title = "Troubleshooting issues with SURPI pipeline for pathogen identification from"
 tags = ['OTHERS']
 
-+++
+---
 
 from <https://www.biostars.org/p/118719/>
 SURPI is a pipeline to find out the pathogens from clinical metagenomics samples. It is tested only on Ubuntu and it assumes many things about your installation. I recently installed in on CentOS. These are few key points you need to take care before running the pipeline.

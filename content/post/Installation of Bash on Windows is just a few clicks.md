@@ -1,9 +1,9 @@
-+++
+---
 date = "2016-08-19T10:11:00+08:00"
 title = "Installation of Bash on Windows is just a few clicks"
 tags = ['OTHERS']
 
-+++
+---
 
 N久之前就用过一次Windows10的bash, 不过效果惨不忍睹, bug百出, 遂放弃. 然而最近手痒, 想看看这货有啥进展.
 这是安装教程

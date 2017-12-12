@@ -1,9 +1,9 @@
-+++
+---
 date = "2015-08-20T15:52:00+08:00"
 title = "Static IP Setup On Arch Linux ARM"
 tags = ['OTHERS']
 
-+++
+---
 
 [http://archlinuxarm.org/forum/viewtopic.php?f=58&amp;t=8045](http://archlinuxarm.org/forum/viewtopic.php?f=58&amp;t=8045)
 

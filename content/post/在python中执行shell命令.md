@@ -1,9 +1,9 @@
-+++
+---
 date = "2016-08-02T11:59:00+08:00"
 title = "在python中执行shell命令"
 tags = ['OTHERS']
 
-+++
+---
 
 via <https://github.com/amoffat/sh>
 就这么个东东

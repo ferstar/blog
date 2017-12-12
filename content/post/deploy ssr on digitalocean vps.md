@@ -1,9 +1,9 @@
-+++
+---
 date = "2017-07-19T16:22:00+08:00"
 title = "deploy ssr on digitalocean vps"
 tags = ['VPS', 'SSR', 'UBUNTU']
 
-+++
+---
 
 感觉买的`ss`账号越来越慢,  刚好本月到期, 就干脆撸个DO账号自己搭, 就选那个`5$`的配置, 挺划算的.
 

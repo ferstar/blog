@@ -1,9 +1,9 @@
-+++
+---
 date = "2016-06-18T03:38:00+08:00"
 title = "VPN on rocks cluster"
 tags = ['OTHERS']
 
-+++
+---
 
 ## 安装相关软件包
 ```

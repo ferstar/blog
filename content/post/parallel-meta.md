@@ -1,9 +1,9 @@
-+++
+---
 date = "2016-07-14T11:16:00+08:00"
 title = "parallel-meta"
 tags = ['OTHERS']
 
-+++
+---
 
 vi <http://www.computationalbioenergy.org/parallel-meta.html>
 需要R依赖, 然而Base源里面没有,只能从别处安装

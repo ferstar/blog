@@ -1,9 +1,9 @@
-+++
+---
 date = "2015-09-18T09:29:00+08:00"
 title = "python处理二进制数据"
 tags = ['OTHERS']
 
-+++
+---
 
 <http://pymotw.com/2/struct/index.html>
 3.x的修正版
