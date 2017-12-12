@@ -2,7 +2,7 @@
 title: "Static IP Setup On Arch Linux ARM"
 date: "2015-08-20T15:52:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

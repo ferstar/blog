@@ -2,7 +2,7 @@
 title: "淘宝NPM镜像"
 date: "2015-09-04T16:47:32+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 这是一个完整 npmjs.org 镜像，你可以用此代替官方版本

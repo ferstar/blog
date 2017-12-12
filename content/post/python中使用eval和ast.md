@@ -2,7 +2,7 @@
 title: "python中使用eval和ast.literal_eval的区别"
 date: "2017-07-24T17:41:00+08:00"
 tags: ['PYTHON']
-comments: 
+comments: true
 ---
 
 

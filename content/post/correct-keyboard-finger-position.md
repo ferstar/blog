@@ -2,7 +2,7 @@
 title: "键盘标准指法基准键位练习"
 date: "2016-01-31T19:56:42+08:00"
 tags: ['键盘']
-comments: 
+comments: true
 ---
 
 

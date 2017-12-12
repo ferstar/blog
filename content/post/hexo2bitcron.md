@@ -2,7 +2,7 @@
 title: "HEXO文章迁移到Bitcron"
 date: "2017-07-03T18:32:00+08:00"
 tags: ['HEXO', 'BITCRON', 'LINUX', 'WINDOWS', 'PYTHON']
-comments: 
+comments: true
 ---
 
 

@@ -2,7 +2,7 @@
 title: "批量转换bam到fastq"
 date: "2016-07-14T19:47:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

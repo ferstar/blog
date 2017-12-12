@@ -2,7 +2,7 @@
 title: "*** [tools/m4/compile] Error 2 solved"
 date: "2013-11-06T11:15:34+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

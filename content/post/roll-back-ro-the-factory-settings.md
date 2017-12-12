@@ -2,7 +2,7 @@
 title: "一切回归系统默认设置"
 date: "2013-11-04T12:53:31+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

@@ -2,7 +2,7 @@
 title: "百度在线翻译demo for Python3"
 date: "2017-01-01T13:56:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

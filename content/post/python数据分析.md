@@ -2,7 +2,7 @@
 title: "python数据分析"
 date: "2015-09-24T22:30:28+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 直接放码：

@@ -2,7 +2,7 @@
 title: "qsub scripts"
 date: "2016-07-15T09:30:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

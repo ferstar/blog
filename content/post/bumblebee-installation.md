@@ -2,7 +2,7 @@
 title: "Bumblebee双显卡切换安装完成后的惊喜"
 date: "2013-10-19T20:03:25+08:00"
 tags: ['LINUX']
-comments: 
+comments: true
 ---
 
 

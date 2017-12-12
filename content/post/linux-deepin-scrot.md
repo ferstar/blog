@@ -2,7 +2,7 @@
 title: "深度截图工具是个好东西"
 date: "2013-10-19T17:45:18+08:00"
 tags: ['LINUX', 'SHELL']
-comments: 
+comments: true
 ---
 
 

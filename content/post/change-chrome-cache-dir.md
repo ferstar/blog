@@ -2,7 +2,7 @@
 title: "linux下更改chrome浏览器cache路径"
 date: "2013-12-08T18:27:04+08:00"
 tags: ['LINUX']
-comments: 
+comments: true
 ---
 
 

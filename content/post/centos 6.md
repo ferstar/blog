@@ -2,7 +2,7 @@
 title: "centos 6.x 升级python版本"
 date: "2016-06-07T10:23:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

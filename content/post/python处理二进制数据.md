@@ -2,7 +2,7 @@
 title: "python处理二进制数据"
 date: "2015-09-18T09:29:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

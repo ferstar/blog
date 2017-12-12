@@ -2,7 +2,7 @@
 title: "build abyss on rocks cluster6"
 date: "2016-06-18T03:13:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

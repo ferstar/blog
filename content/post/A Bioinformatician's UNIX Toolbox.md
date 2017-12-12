@@ -2,7 +2,7 @@
 title: "一个生物信息工作者的UNIX工具箱"
 date: "2016-09-05T10:28:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

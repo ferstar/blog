@@ -2,7 +2,7 @@
 title: "源//ROS on RaspBerry Pi2"
 date: "2015-08-31T22:51:20+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 首先按照下面的连接在树莓派上安装ubuntu

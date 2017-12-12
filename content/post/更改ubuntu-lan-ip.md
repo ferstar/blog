@@ -2,7 +2,7 @@
 title: "ubuntu14.04设置静态ip"
 date: "2015-09-15T09:48:00+08:00"
 tags: ['UBUNTU']
-comments: 
+comments: true
 ---
 
 

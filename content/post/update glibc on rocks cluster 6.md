@@ -2,7 +2,7 @@
 title: "update glibc on rocks cluster 6.2"
 date: "2016-06-16T02:49:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

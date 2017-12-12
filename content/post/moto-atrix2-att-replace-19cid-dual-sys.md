@@ -2,7 +2,7 @@
 title: "MOTO Atrix2 ATT替换19区cid刷国行&魔趣双系统简单记录"
 date: "2014-03-26T09:50:00+08:00"
 tags: ['手机']
-comments: 
+comments: true
 ---
 
 

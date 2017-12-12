@@ -2,7 +2,7 @@
 title: "grep和find命令常用方式"
 date: "2015-11-16T23:04:43+08:00"
 tags: ['LINUX', 'SHELL']
-comments: 
+comments: true
 ---
 
 find和grep的使用权限是**所有用户**

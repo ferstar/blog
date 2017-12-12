@@ -2,7 +2,7 @@
 title: "使用docker构建hexo环境"
 date: "2015-09-04T19:08:47+08:00"
 tags: ['DOCKER', 'HEXO', 'LINUX']
-comments: 
+comments: true
 ---
 
 # 前言  

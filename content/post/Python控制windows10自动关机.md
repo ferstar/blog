@@ -2,7 +2,7 @@
 title: "Python控制windows10自动关机"
 date: "2016-09-01T08:51:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

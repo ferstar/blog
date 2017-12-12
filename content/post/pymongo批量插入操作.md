@@ -2,7 +2,7 @@
 title: "pymongo批量插入操作"
 date: "2017-07-17T15:07:00+08:00"
 tags: ['PYTHON', 'MONGODB', 'BIO']
-comments: 
+comments: true
 ---
 
 

@@ -2,7 +2,7 @@
 title: "更改rocks cluster自带wordpress管理密码"
 date: "2016-09-28T08:51:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

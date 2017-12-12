@@ -2,7 +2,7 @@
 title: "I200/I535等洋垃圾上不了网或者信号不稳的解决方法"
 date: "2013-10-06T14:54:07+08:00"
 tags: ['手机']
-comments: 
+comments: true
 ---
 
 

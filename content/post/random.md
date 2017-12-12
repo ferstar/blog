@@ -2,7 +2,7 @@
 title: "random.org的随机数调用api"
 date: "2017-07-27T17:41:00+08:00"
 tags: ['PYTHON', 'RANDOM']
-comments: 
+comments: true
 ---
 
 

@@ -2,7 +2,7 @@
 title: "搭建kms服务器"
 date: "2017-07-19T16:07:00+08:00"
 tags: ['KMS', 'WINDOWS', 'OFFICE', 'UBUNTU']
-comments: 
+comments: true
 ---
 
 

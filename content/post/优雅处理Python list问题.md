@@ -2,7 +2,7 @@
 title: "优雅处理Python list问题"
 date: "2017-07-19T10:29:00+08:00"
 tags: ['PYTHON']
-comments: 
+comments: true
 ---
 
 

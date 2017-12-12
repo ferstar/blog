@@ -2,7 +2,7 @@
 title: "在hg255d中加入定时计划任务"
 date: "2013-10-19T17:58:51+08:00"
 tags: ['OPENWRT', 'LINUX']
-comments: 
+comments: true
 ---
 
 

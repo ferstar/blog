@@ -2,7 +2,7 @@
 title: "RFID数据分析"
 date: "2015-09-22T20:54:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

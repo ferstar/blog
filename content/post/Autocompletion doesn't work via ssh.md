@@ -2,7 +2,7 @@
 title: "Autocompletion doesnt work via ssh"
 date: "2015-09-17T23:13:00+08:00"
 tags: ['LINUX']
-comments: 
+comments: true
 ---
 
 

@@ -2,7 +2,7 @@
 title: "mongoengine 基本使用"
 date: "2017-07-24T16:16:00+08:00"
 tags: ['PYTHON', 'MONGOENGINE']
-comments: 
+comments: true
 ---
 
 

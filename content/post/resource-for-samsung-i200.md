@@ -2,7 +2,7 @@
 title: "三星i200电信屌丝机的一些资源"
 date: "2013-08-30T20:54:24+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

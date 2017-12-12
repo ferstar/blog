@@ -2,7 +2,7 @@
 title: "mongodb对类型为list的字段值进行统计"
 date: "2017-07-18T09:27:00+08:00"
 tags: ['MONGODB', 'PYTHON']
-comments: 
+comments: true
 ---
 
 

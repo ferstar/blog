@@ -2,7 +2,7 @@
 title: "yum命令卡住无响应的解决办法"
 date: "2017-07-06T11:33:00+08:00"
 tags: ['LINUX', 'YUM', 'CENTOS']
-comments: 
+comments: true
 ---
 
 

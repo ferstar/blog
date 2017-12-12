@@ -2,7 +2,7 @@
 title: "python3基础语法回顾"
 date: "2015-09-18T10:17:00+08:00"
 tags: ['PYTHON']
-comments: 
+comments: true
 ---
 
 

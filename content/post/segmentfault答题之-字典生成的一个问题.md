@@ -2,7 +2,7 @@
 title: "segmentfault答题之-字典生成的一个问题"
 date: "2016-08-19T10:00:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

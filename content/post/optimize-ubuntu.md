@@ -2,7 +2,7 @@
 title: "ubuntu 14.04 x64系统调优"
 date: "2015-09-10T11:37:25+08:00"
 tags: ['LINUX', 'SHELL']
-comments: 
+comments: true
 ---
 
 

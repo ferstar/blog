@@ -2,7 +2,7 @@
 title: "备份内存卡分区到img"
 date: "2015-08-12T19:15:43+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

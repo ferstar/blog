@@ -2,7 +2,7 @@
 title: "Downloading Data On Demand By Using SRA-tool from NCBI DataBase"
 date: "2017-06-09T14:25:00+08:00"
 tags: ['BIO', 'LINUX']
-comments: 
+comments: true
 ---
 
 

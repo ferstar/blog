@@ -2,7 +2,7 @@
 title: "在python中执行shell命令"
 date: "2016-08-02T11:59:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

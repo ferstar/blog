@@ -2,7 +2,7 @@
 title: "Win10 总有一个好像命令行窗口的弹窗一闪而过，怎么找到到底是什么问题？"
 date: "2017-06-09T13:08:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

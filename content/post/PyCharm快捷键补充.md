@@ -2,7 +2,7 @@
 title: "PyCharm快捷键补充"
 date: "2015-09-17T23:24:00+08:00"
 tags: ['PYTHON']
-comments: 
+comments: true
 ---
 
 

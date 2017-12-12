@@ -2,7 +2,7 @@
 title: "parallel-meta"
 date: "2016-07-14T11:16:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

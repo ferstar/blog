@@ -2,7 +2,7 @@
 title: "install boost on centos6"
 date: "2016-06-17T01:16:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

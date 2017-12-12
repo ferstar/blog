@@ -2,7 +2,7 @@
 title: "利用vsftp搭建ftp服务器(匿名可上传)"
 date: "2015-12-02T19:22:44+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 ## 配置文件

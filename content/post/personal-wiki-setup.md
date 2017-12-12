@@ -2,7 +2,7 @@
 title: "Simiki-个人 wiki 搭建记录"
 date: "2016-01-24T21:50:20+08:00"
 tags: ['LINUX', 'SHELL', 'WIKI']
-comments: 
+comments: true
 ---
 
 

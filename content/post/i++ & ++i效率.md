@@ -2,7 +2,7 @@
 title: "i++ & ++i效率"
 date: "2015-09-27T21:48:00+08:00"
 tags: ['PYTHON']
-comments: 
+comments: true
 ---
 
 

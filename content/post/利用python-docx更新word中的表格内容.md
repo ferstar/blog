@@ -2,7 +2,7 @@
 title: "利用python-docx更新word中的表格内容"
 date: "2016-12-06T17:02:00+08:00"
 tags: ['PYTHON', 'WORD']
-comments: 
+comments: true
 ---
 
 

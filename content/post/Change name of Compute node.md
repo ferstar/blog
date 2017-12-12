@@ -2,7 +2,7 @@
 title: "Change name of Compute node"
 date: "2016-06-17T05:26:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

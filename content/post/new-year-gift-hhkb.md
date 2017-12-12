@@ -2,7 +2,7 @@
 title: "败入 HHKB 一把"
 date: "2016-01-30T21:13:15+08:00"
 tags: ['键盘']
-comments: 
+comments: true
 ---
 
 

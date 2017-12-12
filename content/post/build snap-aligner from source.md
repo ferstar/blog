@@ -2,7 +2,7 @@
 title: "build snap-aligner from source"
 date: "2016-06-16T05:27:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

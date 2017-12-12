@@ -2,7 +2,7 @@
 title: "openwrt中把wan转为lan的设置"
 date: "2013-10-26T13:38:18+08:00"
 tags: ['OPENWRT', 'LINUX']
-comments: 
+comments: true
 ---
 
 

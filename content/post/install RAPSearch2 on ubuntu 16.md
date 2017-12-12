@@ -2,7 +2,7 @@
 title: "install RAPSearch2 on ubuntu 16.04"
 date: "2016-06-15T19:23:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

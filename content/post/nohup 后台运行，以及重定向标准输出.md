@@ -2,7 +2,7 @@
 title: "nohup 后台运行，以及重定向标准输出和标准错误输出"
 date: "2015-09-17T23:16:00+08:00"
 tags: ['SHELL', 'LINUX']
-comments: 
+comments: true
 ---
 
 

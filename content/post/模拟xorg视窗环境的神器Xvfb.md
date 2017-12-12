@@ -2,7 +2,7 @@
 title: "模拟xorg视窗环境的神器Xvfb"
 date: "2016-07-27T09:27:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

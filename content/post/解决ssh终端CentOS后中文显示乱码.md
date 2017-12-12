@@ -2,7 +2,7 @@
 title: "解决ssh终端CentOS后中文显示乱码"
 date: "2016-06-17T03:30:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

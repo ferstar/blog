@@ -2,7 +2,7 @@
 title: "Use multiple CPU Cores with your Linux commands"
 date: "2016-07-04T18:17:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

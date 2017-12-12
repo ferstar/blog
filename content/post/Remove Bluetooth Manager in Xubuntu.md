@@ -2,7 +2,7 @@
 title: "Remove Bluetooth Manager in Xubuntu"
 date: "2015-09-15T22:52:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

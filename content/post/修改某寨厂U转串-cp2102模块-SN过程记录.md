@@ -2,7 +2,7 @@
 title: "修改某寨厂U转串(cp2102模块)SN过程记录"
 date: "2015-08-31T23:10:59+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 ## 背景

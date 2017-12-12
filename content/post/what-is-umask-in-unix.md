@@ -2,7 +2,7 @@
 title: "unix 中 umask 是什么？(转)"
 date: "2015-12-02T20:02:03+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

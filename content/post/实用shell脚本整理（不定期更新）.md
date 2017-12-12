@@ -2,7 +2,7 @@
 title: "实用shell脚本整理（不定期更新）"
 date: "2015-08-31T23:13:00+08:00"
 tags: ['SHELL', 'LINUX']
-comments: 
+comments: true
 ---
 
 

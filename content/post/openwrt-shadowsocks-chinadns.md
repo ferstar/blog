@@ -2,7 +2,7 @@
 title: "利用手头设备搞定ss翻墙~"
 date: "2014-12-22T21:59:04+08:00"
 tags: ['OPENWRT', 'LINUX']
-comments: 
+comments: true
 ---
 
 

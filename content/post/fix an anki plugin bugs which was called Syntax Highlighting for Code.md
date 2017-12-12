@@ -2,7 +2,7 @@
 title: "fix an anki plugin bugs which was called Syntax Highlighting for Code"
 date: "2017-07-26T18:03:00+08:00"
 tags: ['ANKI', 'PYTHON']
-comments: 
+comments: true
 ---
 
 

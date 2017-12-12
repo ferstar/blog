@@ -2,7 +2,7 @@
 title: "farbox搬家记"
 date: "2017-05-22T14:08:00+08:00"
 tags: ['WINDOWS', 'LINUX', 'FARBOX', 'BITCRON']
-comments: 
+comments: true
 ---
 
 

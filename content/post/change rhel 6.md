@@ -2,7 +2,7 @@
 title: "change rhel 6.5 yum to centos"
 date: "2016-07-01T11:28:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

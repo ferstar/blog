@@ -2,7 +2,7 @@
 title: "pandas to mongodb"
 date: "2017-07-13T13:02:00+08:00"
 tags: ['PYTHON']
-comments: 
+comments: true
 ---
 
 

@@ -2,7 +2,7 @@
 title: "解决混合硬盘执行update-grub命令后Windows引导丢失的问题"
 date: "2017-06-27T09:54:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

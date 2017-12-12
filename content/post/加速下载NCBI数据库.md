@@ -2,7 +2,7 @@
 title: "加速下载NCBI数据库"
 date: "2016-06-18T10:50:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

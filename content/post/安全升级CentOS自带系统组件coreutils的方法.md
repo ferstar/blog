@@ -2,7 +2,7 @@
 title: "安全升级CentOS自带系统组件coreutils的方法"
 date: "2016-09-04T15:28:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

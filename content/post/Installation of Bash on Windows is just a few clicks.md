@@ -2,7 +2,7 @@
 title: "Installation of Bash on Windows is just a few clicks"
 date: "2016-08-19T10:11:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

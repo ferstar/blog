@@ -2,7 +2,7 @@
 title: "destroying old docker directories more safely"
 date: "2017-07-06T11:51:00+08:00"
 tags: ['DOCKER', 'LINUX', 'CENTOS']
-comments: 
+comments: true
 ---
 
 

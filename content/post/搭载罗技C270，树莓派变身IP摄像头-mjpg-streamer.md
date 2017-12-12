@@ -2,7 +2,7 @@
 title: "搭载罗技C270，树莓派变身IP摄像头(mjpg-streamer)"
 date: "2015-08-15T22:00:21+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

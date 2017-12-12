@@ -2,7 +2,7 @@
 title: "pymongo 基本使用"
 date: "2017-07-24T16:11:00+08:00"
 tags: ['PYTHON', 'PYMONGO']
-comments: 
+comments: true
 ---
 
 

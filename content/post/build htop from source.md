@@ -2,7 +2,7 @@
 title: "build htop from source"
 date: "2016-06-16T03:58:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

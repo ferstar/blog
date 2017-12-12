@@ -2,7 +2,7 @@
 title: "How to upgrade coreutils to latest version without breaking anything.(from"
 date: "2016-07-01T11:29:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

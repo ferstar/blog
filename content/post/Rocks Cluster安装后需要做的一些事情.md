@@ -2,7 +2,7 @@
 title: "Rocks Cluster安装后需要做的一些事情"
 date: "2016-06-17T04:51:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

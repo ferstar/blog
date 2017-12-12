@@ -2,7 +2,7 @@
 title: "利器"
 date: "2016-01-21T22:55:00+08:00"
 tags: ['利器', 'LINUX', '电脑', '手机']
-comments: 
+comments: true
 ---
 
 

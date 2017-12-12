@@ -2,7 +2,7 @@
 title: "路由器简单设置教程"
 date: "2013-09-30T22:24:31+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

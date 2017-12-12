@@ -2,7 +2,7 @@
 title: "Hacking Kankun Smart Wifi Plug"
 date: "2017-06-20T11:13:00+08:00"
 tags: ['LINUX', 'OPENWRT', 'SHELL']
-comments: 
+comments: true
 ---
 
 

@@ -2,7 +2,7 @@
 title: "Ubuntu-BackupYourSystem/TAR"
 date: "2013-11-02T15:49:59+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

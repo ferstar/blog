@@ -2,7 +2,7 @@
 title: "对任意深度任意形式的list嵌套求平均"
 date: "2016-09-07T14:30:00+08:00"
 tags: ['PYTHON']
-comments: 
+comments: true
 ---
 
 

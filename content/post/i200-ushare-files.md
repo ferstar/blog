@@ -2,7 +2,7 @@
 title: "用手机播放电脑硬盘的片片"
 date: "2013-10-21T20:24:30+08:00"
 tags: ['手机']
-comments: 
+comments: true
 ---
 
 

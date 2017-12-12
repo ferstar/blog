@@ -2,7 +2,7 @@
 title: "Python 3.x控制台输入密码的方法总结"
 date: "2016-12-28T09:34:00+08:00"
 tags: ['PYTHON', 'WINDOWS']
-comments: 
+comments: true
 ---
 
 

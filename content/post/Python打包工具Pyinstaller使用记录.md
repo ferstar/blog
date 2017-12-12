@@ -2,7 +2,7 @@
 title: "Python打包工具Pyinstaller使用记录"
 date: "2016-12-21T16:23:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

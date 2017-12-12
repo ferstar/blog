@@ -2,7 +2,7 @@
 title: "编译Openwrt jq"
 date: "2017-06-20T12:42:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

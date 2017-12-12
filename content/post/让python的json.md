@@ -2,7 +2,7 @@
 title: "让python的json.dumps输出中文"
 date: "2015-09-18T09:54:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

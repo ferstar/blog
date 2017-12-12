@@ -2,7 +2,7 @@
 title: "python统计并绘制频率分布直方图"
 date: "2017-07-27T15:30:00+08:00"
 tags: ['PYTHON']
-comments: 
+comments: true
 ---
 
 

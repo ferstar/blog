@@ -2,7 +2,7 @@
 title: "在Markdown中优雅的插入图片"
 date: "2017-08-24T17:32:00+08:00"
 tags: ['PYTHON', 'MARKDOWN']
-comments: 
+comments: true
 ---
 
 

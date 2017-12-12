@@ -2,7 +2,7 @@
 title: "rocks cluster6.2修改DNS"
 date: "2016-06-17T04:46:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

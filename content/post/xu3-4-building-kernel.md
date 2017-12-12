@@ -2,7 +2,7 @@
 title: "Odroidxu3/4_building_kernel"
 date: "2015-12-17T11:55:14+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 ## Introduction

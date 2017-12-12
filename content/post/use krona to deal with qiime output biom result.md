@@ -2,7 +2,7 @@
 title: "利用krona可视化处理QIIME结果"
 date: "2017-06-30T14:29:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

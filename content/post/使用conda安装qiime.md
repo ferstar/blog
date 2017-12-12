@@ -2,7 +2,7 @@
 title: "使用conda安装qiime"
 date: "2017-05-27T09:06:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

@@ -2,7 +2,7 @@
 title: "Killed (program cc1plus)"
 date: "2015-08-12T14:41:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

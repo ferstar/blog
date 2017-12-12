@@ -2,7 +2,7 @@
 title: "开启android中telnetd远程登录服务"
 date: "2014-02-09T10:14:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

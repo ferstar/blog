@@ -2,7 +2,7 @@
 title: "使用hexo来写博客"
 date: "2015-09-09T10:25:22+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 [官方说明](https://hexo.io/zh-cn/docs/)

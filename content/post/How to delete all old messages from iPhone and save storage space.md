@@ -2,7 +2,7 @@
 title: "批量删除iOS短信记录"
 date: "2016-10-24T16:47:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

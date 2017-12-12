@@ -2,7 +2,7 @@
 title: "install mothur on centos 6.6"
 date: "2016-07-19T17:03:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

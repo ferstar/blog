@@ -2,7 +2,7 @@
 title: "好看的Xshell配色方案(转)"
 date: "2016-07-25T13:43:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

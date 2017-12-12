@@ -2,7 +2,7 @@
 title: "memtester"
 date: "2016-07-07T10:02:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

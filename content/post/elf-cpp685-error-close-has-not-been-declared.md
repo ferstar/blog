@@ -2,7 +2,7 @@
 title: "close has not been declared"
 date: "2013-11-06T11:32:49+08:00"
 tags: ['LINUX', 'OPENWRT']
-comments: 
+comments: true
 ---
 
 

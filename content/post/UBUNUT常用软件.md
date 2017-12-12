@@ -2,7 +2,7 @@
 title: "UBUNUT常用软件"
 date: "2015-09-17T23:45:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

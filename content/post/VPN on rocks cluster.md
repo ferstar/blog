@@ -2,7 +2,7 @@
 title: "VPN on rocks cluster"
 date: "2016-06-18T03:38:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

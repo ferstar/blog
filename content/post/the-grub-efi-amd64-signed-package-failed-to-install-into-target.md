@@ -2,7 +2,7 @@
 title: "uefi 方式安装 Biolinux 时遇到的一个坑"
 date: "2016-05-26T10:35:27+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

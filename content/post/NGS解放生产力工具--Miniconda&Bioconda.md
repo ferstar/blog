@@ -2,7 +2,7 @@
 title: "NGS解放生产力工具--Miniconda&Bioconda"
 date: "2016-08-31T09:37:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

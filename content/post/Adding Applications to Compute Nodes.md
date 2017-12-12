@@ -2,7 +2,7 @@
 title: "Adding Applications to Compute Nodes"
 date: "2016-06-20T13:18:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

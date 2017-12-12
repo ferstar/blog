@@ -2,7 +2,7 @@
 title: "grub引导修复"
 date: "2016-08-31T10:24:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

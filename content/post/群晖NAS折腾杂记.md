@@ -2,7 +2,7 @@
 title: "群晖NAS折腾杂记"
 date: "2016-08-04T14:49:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

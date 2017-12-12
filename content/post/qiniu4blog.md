@@ -2,7 +2,7 @@
 title: "使用七牛云存储创建自己的图床,用于写博客"
 date: "2015-11-16T23:16:33+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

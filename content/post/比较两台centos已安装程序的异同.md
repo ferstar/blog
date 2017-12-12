@@ -2,7 +2,7 @@
 title: "比较两台centos已安装程序的异同"
 date: "2016-08-03T15:56:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

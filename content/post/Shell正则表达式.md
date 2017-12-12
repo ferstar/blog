@@ -2,7 +2,7 @@
 title: "Shell正则表达式"
 date: "2017-06-13T10:27:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

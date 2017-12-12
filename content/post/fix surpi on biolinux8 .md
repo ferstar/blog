@@ -2,7 +2,7 @@
 title: "fix surpi on biolinux8"
 date: "2016-06-13T15:50:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

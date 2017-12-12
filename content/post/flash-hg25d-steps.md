@@ -2,7 +2,7 @@
 title: "梳理下hg255d完美刷op的步骤"
 date: "2013-10-31T20:33:46+08:00"
 tags: ['LINUX', 'OPENWRT']
-comments: 
+comments: true
 ---
 
 

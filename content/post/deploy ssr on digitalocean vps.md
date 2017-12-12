@@ -2,7 +2,7 @@
 title: "deploy ssr on digitalocean vps"
 date: "2017-07-19T16:22:00+08:00"
 tags: ['VPS', 'SSR', 'UBUNTU']
-comments: 
+comments: true
 ---
 
 

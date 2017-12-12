@@ -2,7 +2,7 @@
 title: "Troubleshooting issues with SURPI pipeline for pathogen identification from"
 date: "2016-07-01T16:56:00+08:00"
 tags: ['OTHERS']
-comments: 
+comments: true
 ---
 
 

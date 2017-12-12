@@ -2,7 +2,7 @@
 title: "Package is missing dependencies for libraries"
 date: "2013-12-08T18:22:50+08:00"
 tags: ['LINUX']
-comments: 
+comments: true
 ---
 
 
