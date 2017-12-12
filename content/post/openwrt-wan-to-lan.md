@@ -1,8 +1,10 @@
 ---
-date = "2013-10-26T13:38:18+08:00"
-title = "openwrt中把wan转为lan的设置"
-tags = ['OPENWRT', 'LINUX']
+title: "openwrt中把wan转为lan的设置"
+date: "2013-10-26T13:38:18+08:00"
+tags: ['OPENWRT', 'LINUX']
+comments: 
 ---
+
 
 买路由中奖，无线信号渣到爆胎，无奈只好拿来当交换机使了，为了不浪费wan口，需要把他搞成lan口。下面三个链接：
 

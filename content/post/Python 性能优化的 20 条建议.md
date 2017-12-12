@@ -1,8 +1,10 @@
 ---
-date = "2016-06-18T22:40:00+08:00"
-title = "Python 性能优化的 20 条建议"
-tags = ['OTHERS']
+title: "Python 性能优化的 20 条建议"
+date: "2016-06-18T22:40:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 1. 优化算法时间复杂度
 

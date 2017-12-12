@@ -1,8 +1,10 @@
 ---
-date = "2017-07-24T16:11:00+08:00"
-title = "pymongo 基本使用"
-tags = ['PYTHON', 'PYMONGO']
+title: "pymongo 基本使用"
+date: "2017-07-24T16:11:00+08:00"
+tags: ['PYTHON', 'PYMONGO']
+comments: 
 ---
+
 
 > 转自[pymongo 基本使用](http://funhacks.net/2016/03/26/pymongo%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/)
 

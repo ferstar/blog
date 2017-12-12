@@ -1,8 +1,10 @@
 ---
-date = "2015-09-18T09:22:00+08:00"
-title = "unix系统能ping通ip但无法ping域名的解决方法"
-tags = ['OTHERS']
+title: "unix系统能ping通ip但无法ping域名的解决方法"
+date: "2015-09-18T09:22:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 >from [http://www.cnblogs.com/laipDIDI/articles/2213787.html](http://www.cnblogs.com/laipdidi/articles/2213787.html)
 ```shell

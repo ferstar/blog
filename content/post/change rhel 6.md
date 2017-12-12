@@ -1,8 +1,10 @@
 ---
-date = "2016-07-01T11:28:00+08:00"
-title = "change rhel 6.5 yum to centos"
-tags = ['OTHERS']
+title: "change rhel 6.5 yum to centos"
+date: "2016-07-01T11:28:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 ```
 # 卸载yum

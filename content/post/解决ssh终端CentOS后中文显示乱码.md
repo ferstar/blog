@@ -1,8 +1,10 @@
 ---
-date = "2016-06-17T03:30:00+08:00"
-title = "解决ssh终端CentOS后中文显示乱码"
-tags = ['OTHERS']
+title: "解决ssh终端CentOS后中文显示乱码"
+date: "2016-06-17T03:30:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 先装中文语言支持
 `yum -y groupinstall chinese-support`

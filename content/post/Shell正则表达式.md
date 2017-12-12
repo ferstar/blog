@@ -1,8 +1,10 @@
 ---
-date = "2017-06-13T10:27:00+08:00"
-title = "Shell正则表达式"
-tags = ['OTHERS']
+title: "Shell正则表达式"
+date: "2017-06-13T10:27:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 > 转自: <http://man.linuxde.net/docs/shell_regex.html>
 

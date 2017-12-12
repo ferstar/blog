@@ -1,8 +1,10 @@
 ---
-date = "2016-07-27T09:27:00+08:00"
-title = "模拟xorg视窗环境的神器Xvfb"
-tags = ['OTHERS']
+title: "模拟xorg视窗环境的神器Xvfb"
+date: "2016-07-27T09:27:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 via <http://www.puritys.me/docs-blog/article-262-%E5%AE%89%E8%A3%9D-XVFB-%E5%81%9A-Selenium-%E6%B8%AC%E8%A9%A6.html>
 常在终端走, 差点忘了有的程序是要X视窗环境才能跑的, 所以这就是这个玩意的价值所在, 安装很简单, centos下

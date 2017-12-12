@@ -1,8 +1,10 @@
 ---
-date = "2016-06-17T01:16:00+08:00"
-title = "install boost on centos6"
-tags = ['OTHERS']
+title: "install boost on centos6"
+date: "2016-06-17T01:16:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 替换阿里云镜像
 http://mirrors.aliyun.com/help/centos

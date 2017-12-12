@@ -1,8 +1,10 @@
 ---
-date = "2017-07-24T17:48:00+08:00"
-title = "使用XPath解析HTML文档"
-tags = ['XPATH', 'PYTHON', 'HTML']
+title: "使用XPath解析HTML文档"
+date: "2017-07-24T17:48:00+08:00"
+tags: ['XPATH', 'PYTHON', 'HTML']
+comments: 
 ---
+
 
 > 转自: [使用 XPath 解析 HTML 文档](http://funhacks.net/2016/05/08/%E4%BD%BF%E7%94%A8XPath%E8%A7%A3%E6%9E%90HTML%E6%96%87%E6%A1%A3/)
 

@@ -1,8 +1,10 @@
 ---
-date = "2016-08-12T09:08:00+08:00"
-title = "Shell变量的定义、删除变量、只读变量、变量类型"
-tags = ['OTHERS']
+title: "Shell变量的定义、删除变量、只读变量、变量类型"
+date: "2016-08-12T09:08:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 via <http://c.biancheng.net/cpp/view/6999.html>
 

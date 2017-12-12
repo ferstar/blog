@@ -1,8 +1,10 @@
 ---
-date = "2013-11-02T15:49:59+08:00"
-title = "Ubuntu-BackupYourSystem/TAR"
-tags = ['OTHERS']
+title: "Ubuntu-BackupYourSystem/TAR"
+date: "2013-11-02T15:49:59+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 # [https://help.ubuntu.com/community/BackupYourSystem/TAR](https://help.ubuntu.com/community/BackupYourSystem/TAR "source site")
 

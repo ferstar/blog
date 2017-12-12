@@ -1,8 +1,10 @@
 ---
-date = "2013-11-06T11:15:34+08:00"
-title = "*** [tools/m4/compile] Error 2 solved"
-tags = ['OTHERS']
+title: "*** [tools/m4/compile] Error 2 solved"
+date: "2013-11-06T11:15:34+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 [http://www.openwrt.org.cn/bbs/forum.php?mod=viewthread&amp;tid=13909&amp;page=1#pid102019](http://www.openwrt.org.cn/bbs/forum.php?mod=viewthread&amp;tid=13909&amp;page=1#pid102019)
 

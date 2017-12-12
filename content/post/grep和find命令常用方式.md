@@ -1,8 +1,10 @@
 ---
-date = "2015-11-16T23:04:43+08:00"
-title = "grep和find命令常用方式"
-tags = ['LINUX', 'SHELL']
+title: "grep和find命令常用方式"
+date: "2015-11-16T23:04:43+08:00"
+tags: ['LINUX', 'SHELL']
+comments: 
 ---
+
 find和grep的使用权限是**所有用户**
 
 ## find命令的作用是在目录中根据文件名搜索文件

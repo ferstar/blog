@@ -1,8 +1,10 @@
 ---
-date = "2015-09-15T09:48:00+08:00"
-title = "ubuntu14.04设置静态ip"
-tags = ['UBUNTU']
+title: "ubuntu14.04设置静态ip"
+date: "2015-09-15T09:48:00+08:00"
+tags: ['UBUNTU']
+comments: 
 ---
+
 
 ## Desktop with NetworkManager installed
 1. 鼠标流 

@@ -1,8 +1,10 @@
 ---
-date = "2017-01-01T13:56:00+08:00"
-title = "百度在线翻译demo for Python3"
-tags = ['OTHERS']
+title: "百度在线翻译demo for Python3"
+date: "2017-01-01T13:56:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 百度提供的demo是Python2，在Python3上各种报错，于是小改了下，凑合能用
 via <http://api.fanyi.baidu.com/api/trans/product/apidoc>

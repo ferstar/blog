@@ -1,8 +1,10 @@
 ---
-date = "2016-08-31T09:37:00+08:00"
-title = "NGS解放生产力工具--Miniconda&Bioconda"
-tags = ['OTHERS']
+title: "NGS解放生产力工具--Miniconda&Bioconda"
+date: "2016-08-31T09:37:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 状态不甚了了的情行下多逛`github`似乎更容易转角遇到"神器"--Miniconda
 

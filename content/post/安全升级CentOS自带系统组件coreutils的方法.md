@@ -1,8 +1,10 @@
 ---
-date = "2016-09-04T15:28:00+08:00"
-title = "安全升级CentOS自带系统组件coreutils的方法"
-tags = ['OTHERS']
+title: "安全升级CentOS自带系统组件coreutils的方法"
+date: "2016-09-04T15:28:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 集群系统版本比较低, CentOS 6.6, 自带的一些比如`sort`命令, 不支持`parallel`参数, 所以需要小升级一下
 ```

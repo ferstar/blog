@@ -1,8 +1,10 @@
 ---
-date = "2015-08-31T23:19:47+08:00"
-title = "How to get the process ID to kill a nohup process?"
-tags = ['LINUX']
+title: "How to get the process ID to kill a nohup process?"
+date: "2015-08-31T23:19:47+08:00"
+tags: ['LINUX']
+comments: 
 ---
+
 When using `nohup`, it will give you the `PID` at the command prompt. If your plan is to manually manage the process, you can save that `PID` and use it later to kill the process if needed, via `kill PID` or `kill -9 PID` (if you need to force kill). Alternatively, you can find the PID later on by `ps -ef output | grep "command name"` and locate the PID from there. Note that nohup does not appear in the ps output.
 
 If you used a script, you could do something like:

@@ -1,9 +1,10 @@
 ---
-date = "2017-05-27T09:06:00+08:00"
-title = "使用conda安装qiime"
-tags = ['OTHERS']
-
+title: "使用conda安装qiime"
+date: "2017-05-27T09:06:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 跟着官网安装说明做即可,注意装好conda后最好更换一下conda和pip源，不然网速会让你抓狂的
 via <http://qiime.org/install/install.html>
@@ -69,6 +70,7 @@ assign_taxonomy_id_to_taxonomy_fp:	/home/ferstar/anaconda3/envs/qiime/lib/python
 
 QIIME base install test results
 ===============================
+.........
 ----------------------------------------------------------------------
 Ran 9 tests in 0.022s
 

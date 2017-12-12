@@ -1,8 +1,10 @@
 ---
-date = "2016-12-20T16:36:00+08:00"
-title = "用 openpyxl 处理 xlsx 文件"
-tags = ['OTHERS']
+title: "用 openpyxl 处理 xlsx 文件"
+date: "2016-12-20T16:36:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 `openpyxl` 是一个用来处理 excel 文件的 python 代码库, 安装什么略过不提, 只说一个简单操作的例子
 

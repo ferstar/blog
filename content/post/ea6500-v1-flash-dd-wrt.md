@@ -1,8 +1,10 @@
 ---
-date = "2014-12-19T19:44:09+08:00"
-title = "syslink EA6500 v1刷dd-wrt需要注意的问题"
-tags = ['LINUX', 'OPENWRT']
+title: "syslink EA6500 v1刷dd-wrt需要注意的问题"
+date: "2014-12-19T19:44:09+08:00"
+tags: ['LINUX', 'OPENWRT']
+comments: 
 ---
+
 
 1.恢复出厂设置，或者捅菊花
 2.升级官方最新固件

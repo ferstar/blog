@@ -1,8 +1,10 @@
 ---
-date = "2017-07-18T09:27:00+08:00"
-title = "mongodb对类型为list的字段值进行统计"
-tags = ['MONGODB', 'PYTHON']
+title: "mongodb对类型为list的字段值进行统计"
+date: "2017-07-18T09:27:00+08:00"
+tags: ['MONGODB', 'PYTHON']
+comments: 
 ---
+
 
 mongodb中有一个字段为list类型, 经常有个需求就是要对list内的元素进行计数统计, 所以记录下此种问题的解决方法(如果是用pymongo来测试, 务必要用双引号把操作符包起来如: "$set")
 

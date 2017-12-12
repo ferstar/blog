@@ -1,8 +1,10 @@
 ---
-date = "2016-07-14T19:47:00+08:00"
-title = "批量转换bam到fastq"
-tags = ['OTHERS']
+title: "批量转换bam到fastq"
+date: "2016-07-14T19:47:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 额, 果然不能闭门造车啊, 摊上事先找轮子, 实在找不到再造也不迟
 现成的轮子在此

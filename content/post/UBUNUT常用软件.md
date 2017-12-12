@@ -1,8 +1,10 @@
 ---
-date = "2015-09-17T23:45:00+08:00"
-title = "UBUNUT常用软件"
-tags = ['OTHERS']
+title: "UBUNUT常用软件"
+date: "2015-09-17T23:45:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 ## Office：wps
 ## 浏览器：chromium-browser

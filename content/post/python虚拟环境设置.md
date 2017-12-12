@@ -1,8 +1,10 @@
 ---
-date = "2016-06-07T11:42:00+08:00"
-title = "python虚拟环境设置virtualenvwrapper"
-tags = ['OTHERS']
+title: "python虚拟环境设置virtualenvwrapper"
+date: "2016-06-07T11:42:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 神器级应用
 文档在这里

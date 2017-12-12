@@ -1,8 +1,10 @@
 ---
-date = "2015-09-18T09:54:00+08:00"
-title = "让python的json.dumps输出中文"
-tags = ['OTHERS']
+title: "让python的json.dumps输出中文"
+date: "2015-09-18T09:54:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 python的json.dumps方法默认会输出成这种格式
 `"\u535a\u5ba2\u56ed"`

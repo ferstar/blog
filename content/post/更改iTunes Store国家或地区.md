@@ -1,8 +1,10 @@
 ---
-date = "2016-10-19T12:42:00+08:00"
-title = "更改iTunes Store国家或地区"
-tags = ['OTHERS']
+title: "更改iTunes Store国家或地区"
+date: "2016-10-19T12:42:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 不小心点击了一个美区商店的app链接, 结果发现手机商店被跳转到美区转不回来
 

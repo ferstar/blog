@@ -1,8 +1,10 @@
 ---
-date = "2016-12-20T17:01:00+08:00"
-title = "用Python将Excel转换为PDF"
-tags = ['PYTHON', 'PDF', 'EXCEL']
+title: "用Python将Excel转换为PDF"
+date: "2016-12-20T17:01:00+08:00"
+tags: ['PYTHON', 'PDF', 'EXCEL']
+comments: 
 ---
+
 
 有一堆Excel需要转成PDF, 所以启动 copy from stackoverflow 大法
 

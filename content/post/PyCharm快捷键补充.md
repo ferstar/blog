@@ -1,8 +1,10 @@
 ---
-date = "2015-09-17T23:24:00+08:00"
-title = "PyCharm快捷键补充"
-tags = ['PYTHON']
+title: "PyCharm快捷键补充"
+date: "2015-09-17T23:24:00+08:00"
+tags: ['PYTHON']
+comments: 
 ---
+
 
 替换：**Ctrl+R**
 删除当前行 CTRY Y

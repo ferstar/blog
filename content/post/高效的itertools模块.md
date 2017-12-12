@@ -1,8 +1,10 @@
 ---
-date = "2017-07-24T17:52:00+08:00"
-title = "高效的itertools模块"
-tags = ['PYTHON']
+title: "高效的itertools模块"
+date: "2017-07-24T17:52:00+08:00"
+tags: ['PYTHON']
+comments: 
 ---
+
 
 > 转自: [高效的itertools模块](http://funhacks.net/2017/02/13/itertools/)
 

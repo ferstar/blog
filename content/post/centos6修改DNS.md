@@ -1,8 +1,10 @@
 ---
-date = "2016-06-17T04:46:00+08:00"
-title = "rocks cluster6.2修改DNS"
-tags = ['OTHERS']
+title: "rocks cluster6.2修改DNS"
+date: "2016-06-17T04:46:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 - OS Rocks Cluster 6.2
 - /etc/resolv.conf

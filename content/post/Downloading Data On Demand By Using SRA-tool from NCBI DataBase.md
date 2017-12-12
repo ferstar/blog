@@ -1,9 +1,10 @@
 ---
-date = "2017-06-09T14:25:00+08:00"
-title = "Downloading Data On Demand By Using SRA-tool from NCBI DataBase"
-tags = ['BIO', 'LINUX']
-
+title: "Downloading Data On Demand By Using SRA-tool from NCBI DataBase"
+date: "2017-06-09T14:25:00+08:00"
+tags: ['BIO', 'LINUX']
+comments: 
 ---
+
 
 vi <https://github.com/ncbi/sra-tools/wiki/Download-On-Demand>
 
@@ -113,6 +114,7 @@ Notice that the fastq is slightly _smaller_ than the original SRA file. This is 
 Let's look again at the cache contents:  
 
 ```
+$ cache-mgr --report
 -----------------------------------
 1 cached file(s)
 0 complete file(s)

@@ -1,8 +1,10 @@
 ---
-date = "2015-12-02T19:22:44+08:00"
-title = "利用vsftp搭建ftp服务器(匿名可上传)"
-tags = ['OTHERS']
+title: "利用vsftp搭建ftp服务器(匿名可上传)"
+date: "2015-12-02T19:22:44+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 ## 配置文件
 `cat /etc/vsftpd/vsftpd.conf | grep -v ^#`
 ```shell

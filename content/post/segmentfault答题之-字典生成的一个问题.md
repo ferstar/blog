@@ -1,8 +1,10 @@
 ---
-date = "2016-08-19T10:00:00+08:00"
-title = "segmentfault答题之-字典生成的一个问题"
-tags = ['OTHERS']
+title: "segmentfault答题之-字典生成的一个问题"
+date: "2016-08-19T10:00:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 via <https://segmentfault.com/q/1010000006624056/a-1020000006628560>
 

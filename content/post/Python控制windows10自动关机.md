@@ -1,8 +1,10 @@
 ---
-date = "2016-09-01T08:51:00+08:00"
-title = "Python控制windows10自动关机"
-tags = ['OTHERS']
+title: "Python控制windows10自动关机"
+date: "2016-09-01T08:51:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 看到`segmentfault`的这个问题, 就花了点时间解决了下, 感叹`python`的轮子真多, 真好用
 via <https://segmentfault.com/q/1010000006782616>

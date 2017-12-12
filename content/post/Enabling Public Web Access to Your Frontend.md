@@ -1,8 +1,10 @@
 ---
-date = "2016-07-08T11:31:00+08:00"
-title = "Enabling Public Web Access to Your Frontend"
-tags = ['OTHERS']
+title: "Enabling Public Web Access to Your Frontend"
+date: "2016-07-08T11:31:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 via <http://central6.rocksclusters.org/roll-documentation/base/6.2/enable-www.html>
 

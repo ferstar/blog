@@ -1,8 +1,10 @@
 ---
-date = "2016-08-31T10:24:00+08:00"
-title = "grub引导修复"
-tags = ['OTHERS']
+title: "grub引导修复"
+date: "2016-08-31T10:24:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 > 很久很久前写的一个折腾记录, 现在启动都差不多是`GPT+UEFI`的模式了, 以下纯做纪念
 

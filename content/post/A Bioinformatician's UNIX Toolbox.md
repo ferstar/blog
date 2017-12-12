@@ -1,8 +1,10 @@
 ---
-date = "2016-09-05T10:28:00+08:00"
-title = "一个生物信息工作者的UNIX工具箱"
-tags = ['OTHERS']
+title: "一个生物信息工作者的UNIX工具箱"
+date: "2016-09-05T10:28:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 译自 <http://lh3lh3.users.sourceforge.net/biounix.shtml>
 

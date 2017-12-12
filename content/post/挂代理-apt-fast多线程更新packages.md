@@ -1,8 +1,10 @@
 ---
-date = "2015-08-31T23:06:06+08:00"
-title = "挂代理&apt-fast多线程更新packages"
-tags = ['OTHERS']
+title: "挂代理&apt-fast多线程更新packages"
+date: "2015-08-31T23:06:06+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 因为更新并不是频繁操作，所以只需要临时(**只在当前终端生效**)在终端指定下proxy
 ```
 sudo -i

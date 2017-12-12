@@ -1,8 +1,10 @@
 ---
-date = "2017-07-17T15:07:00+08:00"
-title = "pymongo批量插入操作"
-tags = ['PYTHON', 'MONGODB', 'BIO']
+title: "pymongo批量插入操作"
+date: "2017-07-17T15:07:00+08:00"
+tags: ['PYTHON', 'MONGODB', 'BIO']
+comments: 
 ---
+
 
 向数据库新增大量数据是经常性的需求, pymongo 支持 [insert_many](http://api.mongodb.com/python/current/api/pymongo/collection.html#pymongo.collection.Collection.insert_many). 然而主键是我们自定义的, 并非默认"_id", 这样批量插入, 并且实现更新记录的目的就有点困难.
 

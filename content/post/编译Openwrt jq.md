@@ -1,8 +1,10 @@
 ---
-date = "2017-06-20T12:42:00+08:00"
-title = "编译Openwrt jq"
-tags = ['OTHERS']
+title: "编译Openwrt jq"
+date: "2017-06-20T12:42:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 上文中提到我要在`kk-sp3`上解析json发现自己拿shell正则来人肉挫实在不雅，于是搜了一番轮子，嗯，找到这个神器[jq](https://stedolan.github.io/jq/) 简直相见恨晚
 

@@ -1,8 +1,10 @@
 ---
-date = "2015-09-10T11:26:52+08:00"
-title = "SwapFAQ"
-tags = ['OTHERS']
+title: "SwapFAQ"
+date: "2015-09-10T11:26:52+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 关于swap的介绍，挺详细，值得一看：
 [https://help.ubuntu.com/community/SwapFaq](https://help.ubuntu.com/community/SwapFaq)
 

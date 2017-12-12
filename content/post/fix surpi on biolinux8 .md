@@ -1,8 +1,10 @@
 ---
-date = "2016-06-13T15:50:00+08:00"
-title = "fix surpi on biolinux8"
-tags = ['OTHERS']
+title: "fix surpi on biolinux8"
+date: "2016-06-13T15:50:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 原有的部署脚本年久失修, 所以花了点时间修复下:
 - pipeline: 

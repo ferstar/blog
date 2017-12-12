@@ -1,8 +1,10 @@
 ---
-date = "2016-05-26T10:35:27+08:00"
-title = "uefi 方式安装 Biolinux 时遇到的一个坑"
-tags = ['OTHERS']
+title: "uefi 方式安装 Biolinux 时遇到的一个坑"
+date: "2016-05-26T10:35:27+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 作为混迹 Linux 颇久的老司机一枚, 安装系统这种事情本不该是啥问题, 然而快安装完的时候出了个吐血的错误提示: 
 

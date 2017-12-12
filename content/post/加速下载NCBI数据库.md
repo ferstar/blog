@@ -1,8 +1,10 @@
 ---
-date = "2016-06-18T10:50:00+08:00"
-title = "加速下载NCBI数据库"
-tags = ['OTHERS']
+title: "加速下载NCBI数据库"
+date: "2016-06-18T10:50:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 直接放烂码
 利用了两个工具 ascp 和 axel

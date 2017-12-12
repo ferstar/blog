@@ -1,9 +1,10 @@
 ---
-date = "2017-08-25T13:13:00+08:00"
-title = "啃一啃SICP"
-tags = ['SICP', 'LISP', 'SCHEME', 'SUBLIME']
-comments = true
+title: "啃一啃SICP"
+date: "2017-08-25T13:13:00+08:00"
+tags: ['SICP', 'LISP', 'SCHEME', 'SUBLIME']
+comments: 
 ---
+
 
 ## 中文or原版?
 

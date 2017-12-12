@@ -1,8 +1,10 @@
 ---
-date = "2016-06-17T04:51:00+08:00"
-title = "Rocks Cluster安装后需要做的一些事情"
-tags = ['OTHERS']
+title: "Rocks Cluster安装后需要做的一些事情"
+date: "2016-06-17T04:51:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 ## 改iptables让计算节点可以通过控制节点访问公网
 

@@ -1,8 +1,10 @@
 ---
-date = "2017-08-24T17:32:00+08:00"
-title = "在Markdown中优雅的插入图片"
-tags = ['PYTHON', 'MARKDOWN']
+title: "在Markdown中优雅的插入图片"
+date: "2017-08-24T17:32:00+08:00"
+tags: ['PYTHON', 'MARKDOWN']
+comments: 
 ---
+
 
 基本上御用md编辑器就是Typora了, 表格编辑简直不要太赞, 图片插入也是极其的方便. 那么如何优雅的在MD中插入图片呢?
 

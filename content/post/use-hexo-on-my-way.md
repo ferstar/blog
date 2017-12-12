@@ -1,8 +1,10 @@
 ---
-date = "2015-09-09T10:25:22+08:00"
-title = "使用hexo来写博客"
-tags = ['OTHERS']
+title: "使用hexo来写博客"
+date: "2015-09-09T10:25:22+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 [官方说明](https://hexo.io/zh-cn/docs/)
 
 # 我的安装过程

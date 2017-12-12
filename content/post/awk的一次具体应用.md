@@ -1,8 +1,10 @@
 ---
-date = "2016-07-13T17:31:00+08:00"
-title = "awk的一次具体应用"
-tags = ['OTHERS']
+title: "awk的一次具体应用"
+date: "2016-07-13T17:31:00+08:00"
+tags: ['OTHERS']
+comments: 
 ---
+
 
 ## 源文件
 ### 1. classification.txt
