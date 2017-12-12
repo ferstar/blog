@@ -2,7 +2,6 @@
 date = "2015-08-31T23:20:43+08:00"
 title = "build rtl8192 usb wireless drivers for nvidia jetson tk1 lt4-21-1 and permanently disable the power management"
 tags = ['LINUX']
-
 ---
 - download the kernel sources from [developer.download.nvidia.com][1]
 - decompressed the files into /usr/src, the directory should like this /usr/src/kernel.

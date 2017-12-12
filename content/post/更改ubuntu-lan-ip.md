@@ -2,7 +2,6 @@
 date = "2015-09-15T09:48:00+08:00"
 title = "ubuntu14.04设置静态ip"
 tags = ['UBUNTU']
-
 ---
 
 ## Desktop with NetworkManager installed

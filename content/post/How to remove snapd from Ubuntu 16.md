@@ -2,7 +2,6 @@
 date = "2016-07-06T11:02:00+08:00"
 title = "How to remove snapd from Ubuntu 16.04 (Xenial Xerus)"
 tags = ['OTHERS']
-
 ---
 
 via <https://www.howtoinstall.co/en/ubuntu/xenial/snapd?action=remove>

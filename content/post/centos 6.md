@@ -2,7 +2,6 @@
 date = "2016-06-07T10:23:00+08:00"
 title = "centos 6.x 升级python版本"
 tags = ['OTHERS']
-
 ---
 
 > centos 6.x自带python版本是2.6.6, 实在太老, 需要稍微更新一下

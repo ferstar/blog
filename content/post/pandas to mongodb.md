@@ -247,7 +247,6 @@ summary(files):
 summary(samples):
         update:         0
         insert:         0
-        total:          7272
 ------------------------------
 data importing complete!
 cost: 1.26s

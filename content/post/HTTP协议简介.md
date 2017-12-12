@@ -2,7 +2,6 @@
 date = "2017-07-24T17:54:00+08:00"
 title = "HTTP协议简介"
 tags = ['HTTP']
-
 ---
 
 > 转自: [HTTP 协议简介](http://funhacks.net/2017/03/01/http/)

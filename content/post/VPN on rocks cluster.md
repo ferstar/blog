@@ -37,7 +37,6 @@ Total download size: 402 k
 Downloading Packages:
 (1/3): ppp-2.4.5-10.el6.x86_64.rpm                     | 328 kB     00:00     
 (2/3): pptp-1.7.2-8.1.el6.x86_64.rpm                   |  62 kB     00:00     
-(3/3): pptp-setup-1.7.2-8.1.el6.x86_64.rpm             |  12 kB     00:00     
 ------------------------------------------------------------------------------
 Total                                         328 kB/s | 402 kB     00:01     
 Running rpm_check_debug

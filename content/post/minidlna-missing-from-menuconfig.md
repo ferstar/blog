@@ -2,7 +2,6 @@
 date = "2014-02-17T20:48:41+08:00"
 title = "minidlna Missing From Menuconfig"
 tags = ['OPENWRT', 'LINUX']
-
 ---
 
 To summarize the fix for no minidlna selection:

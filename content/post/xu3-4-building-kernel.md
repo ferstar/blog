@@ -2,7 +2,6 @@
 date = "2015-12-17T11:55:14+08:00"
 title = "Odroidxu3/4_building_kernel"
 tags = ['OTHERS']
-
 ---
 ## Introduction
 This page introduce how you can download and compile the Linux system kernel for ODROID-XU3/XU4. Generic Linux system needs gcc version 4.6 to build the Kernel.

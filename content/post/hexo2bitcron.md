@@ -2,7 +2,6 @@
 date = "2017-07-03T18:32:00+08:00"
 title = "HEXO文章迁移到Bitcron"
 tags = ['HEXO', 'BITCRON', 'LINUX', 'WINDOWS', 'PYTHON']
-
 ---
 
 前半年都没怎么搭理HEXO博客，升级主题以后居然升挂了，刚好收到Farbox迁移到Bitcron的邮件通知，就打算直接把HEXO写的一些东东迁移过来，文章维护一份放在Dropbox里面就可以。

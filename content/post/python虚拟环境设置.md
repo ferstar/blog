@@ -2,7 +2,6 @@
 date = "2016-06-07T11:42:00+08:00"
 title = "python虚拟环境设置virtualenvwrapper"
 tags = ['OTHERS']
-
 ---
 
 神器级应用

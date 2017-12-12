@@ -14,7 +14,6 @@ eval函数在python中做数据类型的转换还是很有用的。它的作用�
 eval在做计算前并不知道需要转化的内容是不是合法的（安全的）python数据类型。只是在调用函数的时候去计算。如果被计算的内容不是合法的python类型就会抛出异常。
 
 ast.literal则会判断需要计算的内容计算后是不是合法的python类型，如果是则进行运算，否则就不进行运算。
-
 ------------------------------引用自stackoverflow--------------------------------
 
 `datamap = eval(raw_input('Provide some data here: ')` means that you actually evaluate the code before you deem it to be unsafe or not. It evaluates the code as soon as the function is called. See also [the dangers of `eval`](http://nedbatchelder.com/blog/201206/eval_really_is_dangerous.html).

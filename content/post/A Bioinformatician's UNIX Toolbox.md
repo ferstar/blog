@@ -2,7 +2,6 @@
 date = "2016-09-05T10:28:00+08:00"
 title = "一个生物信息工作者的UNIX工具箱"
 tags = ['OTHERS']
-
 ---
 
 译自 <http://lh3lh3.users.sourceforge.net/biounix.shtml>

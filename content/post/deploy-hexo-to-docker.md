@@ -2,7 +2,6 @@
 date = "2015-09-04T19:08:47+08:00"
 title = "使用docker构建hexo环境"
 tags = ['DOCKER', 'HEXO', 'LINUX']
-
 ---
 # 前言  
 最近花了点时间重整博客，由于受不了wordpress的日益臃肿，决定迁移到时下很火的[hexo](https://hexo.io/)，hexo基于node.js，所以首先需要搭建node环境，折腾起来略麻烦，实在不想在公司机器和自己的笔电上来回装，于是打算寻个一劳永逸的方法，偶然想到[docker](https://www.docker.com/) ，所以就有了下面的尝试……

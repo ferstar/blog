@@ -2,7 +2,6 @@
 date = "2016-06-17T05:26:00+08:00"
 title = "Change name of Compute node"
 tags = ['OTHERS']
-
 ---
 
 look at the following commands:

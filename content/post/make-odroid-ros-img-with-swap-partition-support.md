@@ -2,7 +2,6 @@
 date = "2015-12-17T13:58:38+08:00"
 title = "Odroid ROS镜像封装记录"
 tags = ['ODROID', 'ROS', 'LINUX']
-
 ---
 棒子的这板子比树莓派2犀利了那么一点, 具体型号是`odroid-XU4`
 

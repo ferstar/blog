@@ -2,7 +2,6 @@
 date = "2015-09-18T09:54:00+08:00"
 title = "让python的json.dumps输出中文"
 tags = ['OTHERS']
-
 ---
 
 python的json.dumps方法默认会输出成这种格式

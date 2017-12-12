@@ -2,7 +2,6 @@
 date = "2016-07-15T09:30:00+08:00"
 title = "qsub scripts"
 tags = ['OTHERS']
-
 ---
 
 via <https://github.com/kundajelab/training_camp/wiki/1.2:-Shell-scripts-and-job-submission>

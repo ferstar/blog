@@ -113,7 +113,6 @@ Notice that the fastq is slightly _smaller_ than the original SRA file. This is 
 Let's look again at the cache contents:  
 
 ```
-$ cache-mgr --report
 -----------------------------------
 1 cached file(s)
 0 complete file(s)

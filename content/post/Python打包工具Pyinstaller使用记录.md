@@ -2,7 +2,6 @@
 date = "2016-12-21T16:23:00+08:00"
 title = "Python打包工具Pyinstaller使用记录"
 tags = ['OTHERS']
-
 ---
 
 有时候要把写的一些脚本分发给实验组的同学使用, 所以就需要将其打包成exe可执行文件，这个时候 Pyinstaller 就可以派上用场了(py2exe已死, 勿念)

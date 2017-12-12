@@ -2,7 +2,6 @@
 date = "2016-07-19T17:03:00+08:00"
 title = "install mothur on centos 6.6"
 tags = ['OTHERS']
-
 ---
 
 > 以下皆为历史, 开始拥抱`conda`

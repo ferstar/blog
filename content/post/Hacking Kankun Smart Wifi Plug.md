@@ -2,7 +2,6 @@
 date = "2017-06-20T11:13:00+08:00"
 title = "Hacking Kankun Smart Wifi Plug"
 tags = ['LINUX', 'OPENWRT', 'SHELL']
-
 ---
 
 闲鱼买了两kk-sp3插座，准备搭配`shairport-sync`把吃灰的有线音箱用起来

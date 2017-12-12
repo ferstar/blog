@@ -69,7 +69,6 @@ assign_taxonomy_id_to_taxonomy_fp:	/home/ferstar/anaconda3/envs/qiime/lib/python
 
 QIIME base install test results
 ===============================
-.........
 ----------------------------------------------------------------------
 Ran 9 tests in 0.022s
 

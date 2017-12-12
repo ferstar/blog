@@ -2,7 +2,6 @@
 date = "2017-07-24T16:40:00+08:00"
 title = "Python 如何将字符串转为字典"
 tags = ['PYTHON', 'JSON']
-
 ---
 
 > 转自: [Python 如何将字符串转为字典](http://funhacks.net/2016/04/24/python_%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E4%B8%BA%E5%AD%97%E5%85%B8/)

@@ -2,7 +2,6 @@
 date = "2016-07-27T09:27:00+08:00"
 title = "模拟xorg视窗环境的神器Xvfb"
 tags = ['OTHERS']
-
 ---
 
 via <http://www.puritys.me/docs-blog/article-262-%E5%AE%89%E8%A3%9D-XVFB-%E5%81%9A-Selenium-%E6%B8%AC%E8%A9%A6.html>

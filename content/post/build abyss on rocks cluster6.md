@@ -2,7 +2,6 @@
 date = "2016-06-18T03:13:00+08:00"
 title = "build abyss on rocks cluster6"
 tags = ['OTHERS']
-
 ---
 
 比较麻烦的是集群需要用到ABYSS-P, 如果不指定--with-mpi参数的话, 这玩意是不会生成的.

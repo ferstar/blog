@@ -2,7 +2,6 @@
 date = "2016-06-16T02:49:00+08:00"
 title = "update glibc on rocks cluster 6.2"
 tags = ['OTHERS']
-
 ---
 
 运行snap-aligner提示需要glibc 2.14, 然而集群系统自带版本是2.12, 所以需要升级, 考虑到系统稳定性, 决定找个别的地方编译升级之

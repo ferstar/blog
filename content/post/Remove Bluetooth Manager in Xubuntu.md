@@ -2,7 +2,6 @@
 date = "2015-09-15T22:52:00+08:00"
 title = "Remove Bluetooth Manager in Xubuntu"
 tags = ['OTHERS']
-
 ---
 
 [How to Remove Bluetooth Manager in Xubuntu](http://askubuntu.com/questions/305856/how-to-remove-bluetooth-manager-in-xubuntu)

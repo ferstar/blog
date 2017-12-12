@@ -2,7 +2,6 @@
 date = "2016-07-01T16:56:00+08:00"
 title = "Troubleshooting issues with SURPI pipeline for pathogen identification from"
 tags = ['OTHERS']
-
 ---
 
 from <https://www.biostars.org/p/118719/>

@@ -2,7 +2,6 @@
 date = "2015-09-17T23:16:00+08:00"
 title = "nohup 后台运行，以及重定向标准输出和标准错误输出"
 tags = ['SHELL', 'LINUX']
-
 ---
 
 nohup 加 &大家都知道是后台运行并把stdout输出到文件nohup.out中。其实&是后台运行的命令。

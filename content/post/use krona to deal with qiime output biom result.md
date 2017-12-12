@@ -2,7 +2,6 @@
 date = "2017-06-30T14:29:00+08:00"
 title = "利用krona可视化处理QIIME结果"
 tags = ['OTHERS']
-
 ---
 
 >  这个需求的起因就是因为 QIIME 自带 `plot_taxa_summary.py` 脚本生成的图表太难看, 所以就着手处理了一下

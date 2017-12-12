@@ -2,7 +2,6 @@
 date = "2014-12-22T21:59:04+08:00"
 title = "利用手头设备搞定ss翻墙~"
 tags = ['OPENWRT', 'LINUX']
-
 ---
 
 设备1:Buffalo WZR-HP-G300NH2 现运行固件:<a title="关于">DD-WRT v24-sp2 (03/29/14) giga</a>

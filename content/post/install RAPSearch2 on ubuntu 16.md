@@ -2,7 +2,6 @@
 date = "2016-06-15T19:23:00+08:00"
 title = "install RAPSearch2 on ubuntu 16.04"
 tags = ['OTHERS']
-
 ---
 
 要被3850x6这个破机子折腾疯了, biolinux8也就是ubuntu14.04装在上面不停的crash, 查log也没什么头绪, 基本就是什么hardware not ready 之类无营养的提示, boss说装个高版本的试试, 于是果断上16.04, 安装过程很美好, 完美识别了显卡驱动, 换句人话说就是可以自适应分辨率了, 好激动,![](~/19-41-19.jpg) 

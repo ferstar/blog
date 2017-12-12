@@ -2,7 +2,6 @@
 date = "2015-08-12T09:17:00+08:00"
 title = "[SOLVED]Could not find a package configuration file provided by &quot;***&quot; with any   of the following names"
 tags = ['OTHERS']
-
 ---
 
 [进行到Workspaces](http://wiki.ros.org/turtlebot/Tutorials/indigo/Turtlebot%20Installation)

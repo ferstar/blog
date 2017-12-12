@@ -2,7 +2,6 @@
 date = "2014-02-09T10:14:00+08:00"
 title = "开启android中telnetd远程登录服务"
 tags = ['OTHERS']
-
 ---
 
 通过数据线及adb命令登录手机android系统很不方便，若PC机及手机均有wifi功能，可使PC通过wifi远程登录android,会带来很多方便。

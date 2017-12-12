@@ -2,7 +2,6 @@
 date = "2017-07-19T16:07:00+08:00"
 title = "搭建kms服务器"
 tags = ['KMS', 'WINDOWS', 'OFFICE', 'UBUNTU']
-
 ---
 
 在digitalocean开了个vps, 于是就想着搭建这么一个东西, 方便激活

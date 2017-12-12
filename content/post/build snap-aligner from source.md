@@ -2,7 +2,6 @@
 date = "2016-06-16T05:27:00+08:00"
 title = "build snap-aligner from source"
 tags = ['OTHERS']
-
 ---
 
 运行网上现成的binary程序总是 报这么个错:

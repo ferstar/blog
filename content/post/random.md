@@ -2,7 +2,6 @@
 date = "2017-07-27T17:41:00+08:00"
 title = "random.org的随机数调用api"
 tags = ['PYTHON', 'RANDOM']
-
 ---
 
 via: https://api.random.org/json-rpc/1/basic

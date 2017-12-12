@@ -16,7 +16,6 @@ yum clean all
 ```
 
 我用这几条命令就OK了，不管用的话继续往下看
-
 ---
 
 If that did not work, you can set a debug level, error level and timeout for yum in `/etc/yum.conf`:

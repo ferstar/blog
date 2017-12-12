@@ -2,7 +2,6 @@
 date = "2016-09-07T14:30:00+08:00"
 title = "对任意深度任意形式的list嵌套求平均"
 tags = ['PYTHON']
-
 ---
 
 [水木论坛](http://www.newsmth.net/nForum/#!article/Python/134174)看到的这个问题, 觉得有意思, 就写了下

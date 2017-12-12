@@ -2,7 +2,6 @@
 date = "2015-11-16T23:04:43+08:00"
 title = "grep和find命令常用方式"
 tags = ['LINUX', 'SHELL']
-
 ---
 find和grep的使用权限是**所有用户**
 

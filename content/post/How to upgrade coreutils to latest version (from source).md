@@ -2,7 +2,6 @@
 date = "2016-07-01T11:29:00+08:00"
 title = "How to upgrade coreutils to latest version without breaking anything.(from"
 tags = ['OTHERS']
-
 ---
 
 很蛋疼的问题, 联想x6的机器太挑系统, 今天换了个rhel6.5似乎略稳定, 在更换了centos的源以后, 发现自带的yum软件包还是太老, sort命令还是不支持parallel选项, 没办法只有build from source这条路走了, 以下是过程
