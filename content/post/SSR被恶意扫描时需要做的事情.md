@@ -35,7 +35,7 @@ comments: true
 
 3. 查询恶意IP归属地并计数排序
 
-   之前写过[查询最近暴力破解服务器密码的IP归属地](https://ferstar.org/post/root/cha-xun-zui-jin-bao-li-po-jie-fu-wu-qi-mi-ma-de-ipgui-shu-di)的脚本，所以直接拿过来用，跑一跑
+   之前写过[查询最近暴力破解服务器密码的IP归属地](https://blog.ferstar.org/post/%E6%9F%A5%E8%AF%A2%E6%9C%80%E8%BF%91%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%86%E7%A0%81%E7%9A%84ip%E5%BD%92%E5%B1%9E%E5%9C%B0/)的脚本，所以直接拿过来用，跑一跑
 
    | ip             | count | country | isp  | area | region | city |
    | -------------- | ----- | ------- | ---- | ---- | ------ | ---- |
