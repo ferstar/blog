@@ -4,7 +4,7 @@ title = "STAY REAL"
 theme = "slim"
 
 [params]
-  Subtitle = "人生苦短，快用Python"
+  Subtitle = "May the truth be without barrier"
   GithubID = "ferstar"
   # AnalyticsID = "Your Google Analytics tracking code"
   DisqusShortname = "ferstar"
