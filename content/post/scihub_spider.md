@@ -15,6 +15,16 @@ comments: true
 
 全程只需打开软件，复制要下载文章的PMID/PMCID/Manuscript ID/DOI等任一ID，程序可以自动从复制内容中解析出ID信息进行检索，找到文章即下载到桌面。
 
+网盘分享地址(最好不要转存，因为会不定期更新)：
+
+> 链接:https://pan.baidu.com/s/1boAEC4f 
+>
+> 密码:dz4y
+
+觉得好用可以请我喝点饮料，谢谢
+
+![未命名_meitu_0](http://7xivdp.com1.z0.glb.clouddn.com/png/2017/12/3d1e449bc01bae28f85b1675bd769b7a.png/xyz)
+
 程序运行信息如下：
 
 ```shell
@@ -31,7 +41,7 @@ comments: true
 usage: copy a DOI or any content that contains a valid DOI and bubble a cup of tea
 btw:   PMID/PMCID/Manuscript ID also supported but not recommended
        Please note that not all papers can be downloaded successfully
-blog:  https://blog.ferstar.org
+blog:  https://blog.ferstar.org/post/scihub_spider
 
 I need to check if scihub is available locally
 it may take a few seconds, please wait
