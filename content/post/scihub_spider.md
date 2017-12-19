@@ -9,9 +9,13 @@ comments: true
 
 工具原理很简单，主要利用了爬虫技术。
 
-PMID/PMCID/Manuscript ID/DOI ID转换是通过爬取`NCBI`主站获得。
+程序首先会以验证`http.headers`的方式，去探测`Sci-Hub`可用站点在本地网络的连通性。
 
-拿到DOI号后即开始检索文献真实下载地址，优先从[libgen.io](http://libgen.io)爬取，爬取失败再去`sci-hub`目前可用的镜像站点爬取。
+然后开始检测用户剪贴板内容，如发现纯数字的PMID或者合法的DOI（通常以10.开头）就会自动去检索。
+
+PMID/PMCID/Manuscript ID/DOI ID转换是通过爬取`NCBI`主站获得。也就是说如果在`NCBI`上找不到对应DOI的文章是不会下载的，这种情况就需要你自己想办法找到文章的DOI号，再尝试让程序检索下载。
+
+拿到DOI号后即开始检索文献真实下载地址，优先从[libgen.io](http://libgen.io)爬取，爬取失败再去`sci-hub`目前可用的镜像站点爬取。所以其实这里是从两个源头去下载，libgen服务比较稳定，`Sci-Hub`相对不太稳。
 
 爬取成功则将文章保存在用户桌面。
 
@@ -25,9 +29,9 @@ PMID/PMCID/Manuscript ID/DOI ID转换是通过爬取`NCBI`主站获得。
 
 PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制ID或者先复制ID再打开软件。
 
-> 请注意，并不是所有的文章都可以下载！！！
+> **请注意，并不是所有的文章都可以下载的到！！！**
 >
-> Please note that not all papers can be downloaded successfully!!!
+> **Please note that not all papers can be downloaded successfully!!!**
 
 ## 下载地址
 
