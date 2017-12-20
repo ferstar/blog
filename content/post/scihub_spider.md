@@ -33,7 +33,7 @@ PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制I
 >
 > **Please note that not all papers can be downloaded successfully!!!**
 >
-> **考虑到可能引起的资源滥用，暂不考虑开源**
+> **考虑到可能引起的资源滥用，暂不开源**
 
 ## 下载地址
 
