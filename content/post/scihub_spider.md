@@ -32,6 +32,8 @@ PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制I
 > **请注意，并不是所有的文章都可以下载的到！！！**
 >
 > **Please note that not all papers can be downloaded successfully!!!**
+>
+> **考虑到可能引起的资源滥用，暂不考虑开源**
 
 ## 下载地址
 
@@ -43,6 +45,8 @@ PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制I
 
 ## 求捐赠
 
+PayPal: https://www.paypal.me/ferstar
+
 觉得好用可以请我喝点饮料，谢谢
 
 ![未命名_meitu_0](http://7xivdp.com1.z0.glb.clouddn.com/png/2017/12/3d1e449bc01bae28f85b1675bd769b7a.png/xyz)
@@ -50,6 +54,10 @@ PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制I
 ## 更新信息
 
 ```shell
+2017/12/20 1.6.2:
+1. 隐去scihub可用网站信息
+2. 修复macOS模块引用的一个小bug
+
 2017/12/20 1.6.1:
 1. 增加macOS支持
 
@@ -101,12 +109,12 @@ PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制I
             (__)\       )\/\-
                 ||----w |
                 ||     ||
-                written by ferstar with love
+		written by ferstar with love
 
-usage: copy a DOI or any content that contains a valid DOI and bubble a cup of tea
-btw:   PMID/PMCID/Manuscript ID also supported but not recommended
+USAGE: copy a DOI or any content that contains a valid DOI and wait
+BTW:   PMID/PMCID/Manuscript ID also supported but not recommended
        Please note that not all papers can be downloaded successfully
-blog:  https://blog.ferstar.org/post/scihub_spider
+BLOG:  https://blog.ferstar.org/post/scihub_spider
 
 I need to check if scihub is available locally
 it may take a few seconds, please wait
@@ -114,52 +122,27 @@ it may take a few seconds, please wait
 fetching available sci-hub mirrors
 sci-hub mirror list updated
 
-check site status "https://sci-hub.sci-hub.tw"...ok
-check site status "https://www.sci-hub.cn"...ok
-check site status "https://sci-hub.sci-hub.tv"...ok
-check site status "https://sci-hub.ws"...ok
-check site status "https://sci-hub.sci-hub.mn"...ok
-check site status "https://sci-hub.hk"...ok
-check site status "https://sci-hub.is"...ok
-check site status "https://sci-hub.tw"...ok
-check site status "https://sci-hub.tv"...ok
-check site status "https://sci-hub.la"...ok
-check site status "https://sci-hub.name"...ok
-check site status "https://sci-hub.sci-hub.hk"...ok
-check site status "https://sci-hub.mn"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://sci-hub***"...ok
+check site status "https://www.sci***"...ok
 
-DOI detected:10.1111/1744-9987.12606,fetching...
-try to fetch on "libgen.io"
+ID detected: 29245169, need convert to DOI...
+DOI converted: 10.1055/s-0043-122232, fetching...
+try to fetch on "libgen.***"
 paper found, will download
-[Role of Plasmapheres...] download completed 233.66 KB / 233.66 KB
-paper has been saved on you Desktop
-
-press enter key to continue or click the close button to exit
-
-ID detected:29229651,need convert to DOI...
-DOI converted:10.1126/science.aao4134,fetching...
-try to fetch on "libgen.io"
-paper not found on "libgen.io"
-try to fetch on "https://sci-hub.sci-hub.hk"
-paper not found on "https://sci-hub.sci-hub.hk"
-sorry, paper not found
-
-DOI detected:10.1126/science.aao4134,fetching...
-try to fetch on "libgen.io"
-paper not found on "libgen.io"
-try to fetch on "https://sci-hub.hk"
-paper found, will download
-[10.1126@science.aao4...] download completed 1150.47 KB / 1150.47 KB
-paper has been saved on you Desktop
-
-press enter key to continue or click the close button to exit
-
-ID detected:29229651,need convert to DOI...
-DOI converted:10.1126/science.aao4134,fetching...
-try to fetch on "libgen.io"
-paper found, will download
-[In situ measurements...] download completed 1150.47 KB / 1150.47 KB
-paper has been saved on you Desktop
+paper title: [Fehler und Schwchen ...] found
+[Fehler und Schwchen ...] download completed 220.59 KB / 220.59 KB
+[Fehler und Schwchen ...] has been saved on you Desktop
 
 press enter key to continue or click the close button to exit
 ```
