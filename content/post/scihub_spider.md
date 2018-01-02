@@ -1,7 +1,7 @@
 ---
 title: "Sci-Hub Spider"
 date: 2017-12-18T15:22:02+08:00
-tags: ['PYTHON']
+tags: ['PYTHON', 'SCI']
 comments: true
 ---
 
@@ -152,3 +152,5 @@ press enter key to continue or click the close button to exit
 ## 反馈
 
 如果出现运行闪退的情况，请在本博客留言，注明引起闪退的DOI号及操作系统信息。
+
+或者直接加我微信沟通。
