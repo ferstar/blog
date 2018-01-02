@@ -1,5 +1,5 @@
 ---
-title: "Deploy Frp on Openwrt"
+title: "Deploy frp on Openwrt"
 date: 2018-01-02T17:47:52+08:00
 tags: ['LINUX', 'OPENWRT', 'FRP']
 comments: true
@@ -21,7 +21,7 @@ comments: true
    exit 0
    ```
 
-在家里的路由器和邻居路由器各部署一个，互为灾备。回单位后测试表现良好。
+在家里的路由器和邻居路由器各部署一个，互为灾备(之前做了无线中继及互访配置，只要有一个在线，就可以控制另外一个)。回单位后测试表现良好。
 
 frps自建了http监控，可以方便地查看路由在线状态。
 
