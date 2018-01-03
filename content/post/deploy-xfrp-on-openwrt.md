@@ -28,3 +28,12 @@ export STAGING_DIR
 5. 在SDK根目录运行`make package/libevent21/install V=s`
 6. 不出意外的话`ipk`会在`bin/ramips/packages/base`目录下
 7. 将所需的`ipk`上传到路由器安装即可
+
+PS:安装ipk需要加点东西
+```shell
+# vi /etc/opkg.conf
+arch all 100
+arch ralink 200
+arch ramips 300
+arch ramips_24kec 400
+```
