@@ -54,8 +54,14 @@ PayPal: https://www.paypal.me/ferstar
 ![未命名_meitu_0](http://7xivdp.com1.z0.glb.clouddn.com/png/2017/12/3d1e449bc01bae28f85b1675bd769b7a.png/xyz)
 
 ## 更新信息
+请注意由于SciHub网站更新,所以旧版本(1.6.2以前)都无法正常解析到文献下载地址,请更新新版
 
 ```shell
+2017/12/20 1.6.3:
+1. 适配SciHub网站更新
+2. 增加了一个SciHub可用性检测站点
+3. 增加微信赞赏码(更新不易,请多多支持)
+
 2017/12/20 1.6.2:
 1. 隐去scihub可用网站信息
 2. 修复macOS模块引用的一个小bug
