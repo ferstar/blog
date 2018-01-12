@@ -85,7 +85,7 @@ PMID/PMCID/Manuscript ID/DOI ID转换是通过爬取`NCBI`主站获得。也就�
 
 爬取成功则将文章保存在用户桌面。
 
-免安装版使用[PyInstaller](http://www.pyinstaller.org/)制作，只支持Windows7以上系统。
+~~免安装版使用[PyInstaller](http://www.pyinstaller.org/)制作，只支持Windows7以上系统。~~(不再提供免安装版)
 
 安装版使用[cx_Freeze](https://anthony-tuininga.github.io/cx_Freeze/)（打包）[Inno Setup - JRSoftware](http://www.jrsoftware.org/isinfo.php)（安装）制作，支持Windows XP系统，因为少了解压过程，不会产生系统垃圾，同时打开速度比安装版要快很多，推荐使用。
 
