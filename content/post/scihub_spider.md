@@ -43,7 +43,7 @@ PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制I
 
 [SciHub-Spider-update-1.6.4](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.4.exe)
 
-~~链接:https://pan.baidu.com/s/1boAEC4f ~~
+~~链接:https://pan.baidu.com/s/1boAEC4f~~
 
 ~~密码:dz4y~~
 
