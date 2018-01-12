@@ -129,18 +129,21 @@ PayPal: https://www.paypal.me/ferstar
             (__)\       )\/\-
                 ||----w |
                 ||     ||
-		written by ferstar with love
+                written by ferstar with love
 
 USAGE: copy a DOI or any content that contains a valid DOI and wait
 BTW:   PMID/PMCID/Manuscript ID also supported but not recommended
        Please note that not all papers can be downloaded successfully
 BLOG:  https://blog.ferstar.org/post/scihub_spider
 
+Check the new version of SciHub Spider
+Already the latest version, no need to update
+
+Fetching available sci-hub mirrors
+Sci-Hub mirror list updated
+
 I need to check if scihub is available locally
-it may take a few seconds, please wait
-
-fetching available sci-hub mirrors
-sci-hub mirror list updated
+It may take a few seconds, please wait
 
 check site status "https://sci-hub***"...ok
 check site status "https://sci-hub***"...ok
@@ -149,22 +152,16 @@ check site status "https://sci-hub***"...ok
 check site status "https://sci-hub***"...ok
 check site status "https://sci-hub***"...ok
 check site status "https://sci-hub***"...ok
-check site status "https://sci-hub***"...ok
-check site status "https://sci-hub***"...ok
-check site status "https://sci-hub***"...ok
-check site status "https://sci-hub***"...ok
-check site status "https://sci-hub***"...ok
-check site status "https://www.sci***"...ok
 
 ID detected: 29245169, need convert to DOI...
 DOI converted: 10.1055/s-0043-122232, fetching...
 try to fetch on "libgen.***"
-paper found, will download
-paper title: [Fehler und Schwchen ...] found
+Paper found, will download
+Paper title: [Fehler und Schwchen ...] found
 [Fehler und Schwchen ...] download completed 220.59 KB / 220.59 KB
 [Fehler und Schwchen ...] has been saved on you Desktop
 
-press enter key to continue or click the close button to exit
+Press enter key to continue or click the close button to exit
 ```
 
 ## 反馈
