@@ -5,58 +5,10 @@ tags: ['PYTHON', 'SCI']
 comments: true
 ---
 
-众所周知，因为版权问题，科研神器`SciHub`近来并不稳定，频繁更换域名。为了方便单位科研同学，上周用Python写了SCI文献下载器，并在朋友圈发布，反响颇佳。周末又重新理了一遍逻辑，现在论文下载能力应该是得到了进一步增强。
-
-工具原理很简单，主要利用了爬虫技术（老司机可以直接自己撸一个也没啥问题，纯体力活）。
-
-程序首先会检测更新，发现新版本则自动下载到桌面，需要手动安装。
-
-接着爬取目前可用的`Sci-Hub`站点。
-
-然后会以验证`http.headers`的方式（一般网站的headers大小仅仅几百个字节，所以并不会对服务器造成什么压力）去探测`Sci-Hub`可用站点在本地网络的连通性，保留本地确定可连的站点。
-
-然后就开始检测用户剪贴板内容，如发现纯数字的PMID或者合法的DOI（通常以10.开头）就会自动去检索。
-
-PMID/PMCID/Manuscript ID/DOI ID转换是通过爬取`NCBI`主站获得。也就是说如果在`NCBI`上找不到对应DOI的文章是不会下载的，这种情况就需要你自己想办法找到文章的DOI号，再尝试让程序检索下载。
-
-拿到DOI号后即开始检索文献真实下载地址，优先从[libgen.io](http://libgen.io)爬取，爬取失败再去`sci-hub`目前可用的镜像站点爬取。所以其实这里是从两个源头去下载，libgen服务比较稳定，`Sci-Hub`相对不太稳。
-
-爬取成功则将文章保存在用户桌面。
-
-免安装版使用[PyInstaller](http://www.pyinstaller.org/)制作，只支持Windows7以上系统。
-
-安装版使用[cx_Freeze](https://anthony-tuininga.github.io/cx_Freeze/)（打包）[Inno Setup - JRSoftware](http://www.jrsoftware.org/isinfo.php)（安装）制作，支持Windows XP系统，因为少了解压过程，不会产生系统垃圾，同时打开速度比安装版要快很多，推荐使用。
-
-## 使用方法
-
-只需打开软件，复制要下载文章的PMID/PMCID/Manuscript ID/DOI等任一ID，程序可以自动从复制内容中解析出ID信息进行检索，找到文章即下载到桌面。
-
-PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制ID或者先复制ID再打开软件。
-
-> **请注意，并不是所有的文章都可以下载的到！！！**
->
-> **Please note that not all papers can be downloaded successfully!!!**
->
-> **考虑到可能引起的资源滥用，暂不开源**
-
-## 下载地址(百度网盘已作废)
-
-[SciHub-Spider-update-1.6.4](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.4.exe?v=1234)
-
-~~链接:https://pan.baidu.com/s/1boAEC4f~~
-
-~~密码:dz4y~~
-
-## 求捐赠
-
-PayPal: https://www.paypal.me/ferstar
-
-觉得好用可以请我喝点饮料，谢谢
-
-![未命名_meitu_0](http://7xivdp.com1.z0.glb.clouddn.com/png/2017/12/3d1e449bc01bae28f85b1675bd769b7a.png/xyz)
-
+想了下还是把更新信息放在最前面吧，顺便fuck一下百度！
 ## 更新信息
 请注意由于SciHub网站更新,所以旧版本(1.6.2以前)都无法正常解析到文献下载地址,请更新新版
+下载地址: [SciHub-Spider-update-1.6.4](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.4.exe?v=1234)
 
 ```shell
 2018/01/12 1.6.4:
@@ -111,6 +63,58 @@ PayPal: https://www.paypal.me/ferstar
 2. 修复bug
 
 ```
+
+---
+众所周知，因为版权问题，科研神器`SciHub`近来并不稳定，频繁更换域名。为了方便单位科研同学，上周用Python写了SCI文献下载器，并在朋友圈发布，反响颇佳。周末又重新理了一遍逻辑，现在论文下载能力应该是得到了进一步增强。
+
+工具原理很简单，主要利用了爬虫技术（老司机可以直接自己撸一个也没啥问题，纯体力活）。
+
+程序首先会检测更新，发现新版本则自动下载到桌面，需要手动安装。
+
+接着爬取目前可用的`Sci-Hub`站点。
+
+然后会以验证`http.headers`的方式（一般网站的headers大小仅仅几百个字节，所以并不会对服务器造成什么压力）去探测`Sci-Hub`可用站点在本地网络的连通性，保留本地确定可连的站点。
+
+然后就开始检测用户剪贴板内容，如发现纯数字的PMID或者合法的DOI（通常以10.开头）就会自动去检索。
+
+PMID/PMCID/Manuscript ID/DOI ID转换是通过爬取`NCBI`主站获得。也就是说如果在`NCBI`上找不到对应DOI的文章是不会下载的，这种情况就需要你自己想办法找到文章的DOI号，再尝试让程序检索下载。
+
+拿到DOI号后即开始检索文献真实下载地址，优先从[libgen.io](http://libgen.io)爬取，爬取失败再去`sci-hub`目前可用的镜像站点爬取。所以其实这里是从两个源头去下载，libgen服务比较稳定，`Sci-Hub`相对不太稳。
+
+爬取成功则将文章保存在用户桌面。
+
+免安装版使用[PyInstaller](http://www.pyinstaller.org/)制作，只支持Windows7以上系统。
+
+安装版使用[cx_Freeze](https://anthony-tuininga.github.io/cx_Freeze/)（打包）[Inno Setup - JRSoftware](http://www.jrsoftware.org/isinfo.php)（安装）制作，支持Windows XP系统，因为少了解压过程，不会产生系统垃圾，同时打开速度比安装版要快很多，推荐使用。
+
+## 使用方法
+
+只需打开软件，复制要下载文章的PMID/PMCID/Manuscript ID/DOI等任一ID，程序可以自动从复制内容中解析出ID信息进行检索，找到文章即下载到桌面。
+
+PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制ID或者先复制ID再打开软件。
+
+> **请注意，并不是所有的文章都可以下载的到！！！**
+>
+> **Please note that not all papers can be downloaded successfully!!!**
+>
+> **考虑到可能引起的资源滥用，暂不开源**
+
+## 下载地址(百度网盘已作废)
+
+[SciHub-Spider-update-1.6.4](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.4.exe?v=1234)
+
+~~链接:https://pan.baidu.com/s/1boAEC4f~~
+
+~~密码:dz4y~~
+
+## 求捐赠
+
+PayPal: https://www.paypal.me/ferstar
+
+觉得好用可以请我喝点饮料，谢谢
+
+![未命名_meitu_0](http://7xivdp.com1.z0.glb.clouddn.com/png/2017/12/3d1e449bc01bae28f85b1675bd769b7a.png/xyz)
+
 
 ## 程序运行信息：
 
