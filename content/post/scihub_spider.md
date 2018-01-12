@@ -41,7 +41,7 @@ PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制I
 
 ## 下载地址(百度网盘已作废)
 
-[SciHub-Spider-update-1.6.4](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.4.exe)
+[SciHub-Spider-update-1.6.4](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.4.exe?v=9527)
 
 ~~链接:https://pan.baidu.com/s/1boAEC4f~~
 
