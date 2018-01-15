@@ -8,9 +8,15 @@ comments: true
 想了下还是把更新信息放在最前面吧，顺便fuck一下百度！
 ## 更新信息
 请注意由于SciHub网站更新,所以旧版本(1.6.2以前)都无法正常解析到文献下载地址,请更新新版
-下载地址: [SciHub-Spider-update-1.6.4](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.4.exe?v=1234)
+下载地址: [SciHub-Spider-update-1.6.5](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.5.exe)
 
 ```shell
+2018/01/15 1.6.5:
+1. 修复CDN缓存导致更新检测失败的问题
+2. 修复scihub网址列表为空时的报错问题
+3. 安装包增加英文引导语言,避免有些区域语言配置有问题的系统报错
+4. 验证打赏码md5值
+
 2018/01/12 1.6.4:
 1. 原网盘分享莫名被禁,故增加程序自动更新功能,弃用百度(使用七牛云存储服务)
 2. 如果觉得微信赞赏码烦人,可以去程序根目录把wechat.jpg图片删除即可
