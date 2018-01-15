@@ -8,6 +8,7 @@ comments: true
 想了下还是把更新信息放在最前面吧，顺便fuck一下百度！
 ## 更新信息
 > 请注意由于SciHub网站更新,所以旧版本(1.6.2以前)都无法正常解析到文献下载地址,请更新新版
+> 由于使用自费服务提供软件更新，所以希望觉得好用的同学打赏一二，以cover服务器流量费用，谢谢！
 
 下载地址: 
 
@@ -122,9 +123,9 @@ PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制I
 
 ## 求捐赠
 
-PayPal: https://www.paypal.me/ferstar
+~~PayPal: https://www.paypal.me/ferstar~~
 
-觉得好用可以请我喝点饮料，谢谢
+由于使用自费服务提供软件更新，所以希望觉得好用的同学打赏一二，以cover服务器流量费用，谢谢！
 
 ![未命名_meitu_0](http://7xivdp.com1.z0.glb.clouddn.com/png/2017/12/3d1e449bc01bae28f85b1675bd769b7a.png/xyz)
 
@@ -177,6 +178,4 @@ Press enter key to continue or click the close button to exit
 
 ## 反馈
 
-如果出现运行闪退的情况，请在本博客留言，注明引起闪退的DOI号及操作系统信息。
-
-或者直接加我微信沟通。
+欢迎加我微信反馈问题!
