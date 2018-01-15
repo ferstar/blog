@@ -8,7 +8,9 @@ comments: true
 想了下还是把更新信息放在最前面吧，顺便fuck一下百度！
 ## 更新信息
 请注意由于SciHub网站更新,所以旧版本(1.6.2以前)都无法正常解析到文献下载地址,请更新新版
-下载地址: [SciHub-Spider-update-1.6.5](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.5.exe)
+下载地址: 
+1. Windows: [SciHub-Spider-update-1.6.5](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.5.exe)
+2. macOS: [SciHub-Spider-update-1.6.5](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.5.zip)
 
 ```shell
 2018/01/15 1.6.5:
