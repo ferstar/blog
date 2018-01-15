@@ -1,7 +1,7 @@
 ---
 title: "Sci-Hub Spider"
 date: 2017-12-18T15:22:02+08:00
-tags: ['PYTHON', 'SCI']
+tags: ['PYTHON', 'SCIHUB']
 comments: true
 ---
 
