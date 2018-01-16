@@ -15,7 +15,7 @@ comments: true
 
 1. Windows: [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.6.exe)
 
-2. macOS: [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.6.zip)
+2. macOS(解压直接运行就可以): [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.6.zip)
 
 ```shell
 2018/01/16 1.6.6:
