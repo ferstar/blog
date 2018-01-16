@@ -129,7 +129,7 @@ PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制I
 
 ## 求捐赠
 
-~~PayPal: https://www.paypal.me/ferstar~~
+PayPal: https://www.paypal.me/ferstar
 
 由于使用自费服务提供软件更新，所以希望觉得好用的同学打赏一二，以cover服务器流量费用，谢谢！
 
