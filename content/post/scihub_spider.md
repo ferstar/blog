@@ -13,11 +13,16 @@ comments: true
 
 下载地址: 
 
-1. Windows: [SciHub-Spider-update-1.6.5](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.5.exe)
+1. Windows: [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.6.exe)
 
 2. macOS: [SciHub-Spider-update-1.6.5](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.5.zip)
 
 ```shell
+2018/01/16 1.6.6:
+1. 修复scihub抽风引起的闪退问题
+2. macOS版本继续发布
+3. 增加应用签名,Windows10安装不再报应用未知的警告了
+
 2018/01/15 1.6.5:
 1. 修复CDN缓存导致更新检测失败的问题
 2. 修复scihub网址列表为空时的报错问题
