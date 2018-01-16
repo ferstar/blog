@@ -15,7 +15,7 @@ comments: true
 
 1. Windows: [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.6.exe)
 
-2. macOS: [SciHub-Spider-update-1.6.5](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.5.zip)
+2. macOS: [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.6.zip)
 
 ```shell
 2018/01/16 1.6.6:
@@ -43,9 +43,6 @@ comments: true
 2017/12/20 1.6.2:
 1. 隐去scihub可用网站信息
 2. 修复macOS模块引用的一个小bug
-
-2017/12/20 1.6.1:
-1. 增加macOS支持
 
 2017/12/19 1.6.1:
 1. 修复文章标题包含特殊字符时程序闪退的问题
