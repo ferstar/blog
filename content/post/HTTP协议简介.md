@@ -210,6 +210,8 @@ HTTP/1.1 200 OK
 
 状态码是一个三位的数字，常见的状态码有以下几类：
 
+> 关于状态码七牛云的文档写的很棒：[HTTP状态码大全](https://developer.qiniu.com/fusion/kb/1425/the-http-status-code-books)
+
 - 1XX 消息 – 请求已被服务接收，继续处理
 - 2XX 成功 – 请求已成功被服务器接收、理解、并接受
   - 200 OK
