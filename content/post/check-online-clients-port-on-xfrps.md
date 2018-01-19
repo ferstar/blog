@@ -73,14 +73,14 @@ if __name__ == '__main__':
 
 ```shell
 # 客户端在线,返回端口号
-curl http://api.tianbot.com:5000/api/port/tcp/getport/2076932757AC
+curl http://host:5000/api/port/tcp/getport/2076932757AC
 {
   "code": 0, 
   "msg": "", 
   "port": 62058
 }
 # 不在线返回0
-curl http://api.tianbot.com:5000/api/port/tcp/getport/2076932757A
+curl http://host:5000/api/port/tcp/getport/2076932757A
 {
   "code": 1, 
   "msg": "can not get port by its runid", 
