@@ -13,7 +13,7 @@ comments: true
 2. 确定上网OK后，客户端向xfrps的api发起请求查看返回的端口号
 3. 根据返回端口号来判断是否重启xfrpc强制重连xfrps服务
 
-但实际发现xfrps自带的api有个bug，即使是客户端断开连接，依然返回原来的端口号，这就比较扯，于是给原项目提了个Issues：[设备断开后调用api依然可以获取remote port](https://github.com/KunTengRom/xfrps/issues/4)但并未收到回复，于是只能自己简单撸个api来完成检测端口的任务。
+但实际发现xfrps自带的api有个bug，即使是客户端断开连接，依然返回原来的端口号，这就比较扯，于是给原项目提了个Issues：[设备断开后调用api依然可以获取remote port](https://github.com/KunTengRom/xfrps/issues/4)，在得到原项目解决方案之前，只能自己简单撸个api来完成检测端口的任务曲线救国。
 
 Python Flask甩起来：
 
