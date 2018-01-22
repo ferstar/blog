@@ -61,7 +61,7 @@ download("http://localhost:8000/test.rar", "test")
 
 ```
 
-终端输出：
+终端输出（懒得上动图了）：
 
 ```shell
 C:\Users\fer_s\Anaconda3\envs\py36\python.exe D:/backup/scihub_spider/xxx.py
