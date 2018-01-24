@@ -134,7 +134,7 @@ PayPal: https://www.paypal.me/ferstar
 
 由于使用自费服务提供软件更新，所以希望觉得好用的同学打赏一二，以cover服务器流量费用，谢谢！
 
-![未命名_meitu_0](http://7xivdp.com1.z0.glb.clouddn.com/png/2017/12/3d1e449bc01bae28f85b1675bd769b7a.png/xyz)
+![未命名_meitu_0](http://7xivdp.com1.z0.glb.clouddn.com/png/2017/12/3d1e449bc01bae28f85b1675bd769b7a.png)
 
 
 ## 程序运行信息：
