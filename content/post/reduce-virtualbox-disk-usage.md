@@ -11,15 +11,15 @@ Virtualbox运行一段时间后，虚拟硬盘会变的越来越大，但是虚�
 
 ## 方法
 
-1. 虚拟机系统进行碎片整理操作。
+- 虚拟机系统进行碎片整理操作。
 
    ![虚拟机磁盘实际占用](http://7xivdp.com1.z0.glb.clouddn.com/png/2018/1/664e171e2bc1fa0a1eed90b41e1d7296.png/xyz)
 
-2. 使用`sdelete`将零写入虚拟机内的空白空间。
+- 使用`sdelete`将零写入虚拟机内的空白空间。
 
    ![清零](http://7xivdp.com1.z0.glb.clouddn.com/png/2018/1/733c94e308fca306fffa17eb6ca5c7b0.png/xyz)
 
-3. 在主机操作系统使用`VBoxManage`命令压缩`vdi`格式的虚拟磁盘文件。
+- 在主机操作系统使用`VBoxManage`命令压缩`vdi`格式的虚拟磁盘文件。
 
    ```powershell
    # VBoxManage.exe及虚拟磁盘文件路径需要自行查找确认
@@ -27,7 +27,7 @@ Virtualbox运行一段时间后，虚拟硬盘会变的越来越大，但是虚�
    0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
    ```
 
-4. 大功告成，检查一下成果，缩了近一半，well done！
+- 大功告成，检查一下成果，缩了近一半，well done！
 
    ![整理后](http://7xivdp.com1.z0.glb.clouddn.com/png/2018/1/6ea2db3d177e33321c927bb4b339b8bd.png/xyz)
 
