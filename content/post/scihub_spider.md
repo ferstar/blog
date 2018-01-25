@@ -1,6 +1,6 @@
 ---
 title: "Sci-Hub Spider"
-date: 2017-12-18T15:22:02+08:00
+date: 2017-12-12T15:22:02+08:00
 tags: ['PYTHON', 'SCIHUB']
 comments: true
 ---
@@ -83,6 +83,8 @@ comments: true
 1. 初版，单文件，仅支持Windows10 x64位系统
 2. 修复bug
 
+2017/11/11:
+1. 简单脚本, 仅在朋友圈传播
 ```
 
 ---
