@@ -35,6 +35,8 @@ http://downloads.openwrt.org/chaos_calmer/15.05/ramips/mt7620/openwrt-15.05-rami
 
 根据跃点设置，流量优先级3>2>1，USB网卡优先级最高。
 
+> 如果需要多线均衡负载，则可以考虑安装`mwan3`进行设置，我这里没有需求，所以略去不谈。
+
 ## 参考
 
 [Guide to ZTE MF 823 USB dongles with OpenWrt and Gargoyle Routers](https://www.tbdproductions.com.au/telstra4gzte823/)
