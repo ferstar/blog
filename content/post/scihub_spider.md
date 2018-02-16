@@ -5,7 +5,9 @@ tags: ['PYTHON', 'SCIHUB']
 comments: true
 ---
 
-想了下还是把更新信息放在最前面吧，顺便fuck一下百度！
+好消息是，狗年来了，新年快乐！！！坏消息是，SciHub镜像站点只剩下四个，且用且珍惜。
+
+~~想了下还是把更新信息放在最前面吧，顺便fuck一下百度！~~
 ## 更新信息
 > 一般只有遇到闪退bug或者scihub主站更新需要重新适配我才会更新软件，不会太频繁，一切以维护可用性为先，大家放心。
 
@@ -17,11 +19,16 @@ comments: true
 
 下载地址: 
 
-1. Windows: [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.6.exe)
+1. Windows: [SciHub-Spider-update-1.6.7](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.7.exe)
 
 2. macOS(解压直接运行就可以): [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.6.zip)
 
 ```shell
+2018/02/16 1.6.7:
+1. 去掉一个被ban掉的scihub镜像检测网站
+2. 二维码求红包变为了福利链接，偷偷的别声张哈
+3. 修复下载目标内容为空时程序闪退的问题
+
 2018/01/16 1.6.6:
 1. 修复scihub抽风引起的闪退问题
 2. macOS版本继续发布
