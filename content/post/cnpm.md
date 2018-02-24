@@ -5,6 +5,8 @@ tags: ['LINUX', 'NODEJS']
 comments: true
 ---
 
+> 转载自: http://riny.net/2014/cnpm/
+
 `npm`全称`Node Package Manager`，是node.js的模块依赖管理工具。由于`npm`的源在国外，所以国内用户使用起来各种不方便。下面整理出了一部分国内优秀的`npm`镜像资源，国内用户可以选择使用。
 
 ## 国内优秀npm镜像
