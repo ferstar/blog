@@ -1,5 +1,5 @@
 ---
-title: "How to Install Node.JS 8 LTS on CentOS 7, Debian 8, and Ubuntu 16"
+title: "Install Node.JS 8 LTS on CentOS 7, Debian 8 and Ubuntu 16"
 date: 2018-02-24T15:06:46+08:00
 tags: ['LINUX', 'NODEJS']
 comments: true
