@@ -5,7 +5,13 @@ tags: ['PYTHON', 'SCIHUB']
 comments: true
 ---
 
-好消息是，狗年来了，新年快乐！！！坏消息是，SciHub镜像站点只剩下四个，且用且珍惜。
+元宵节把SciHub Spider搬到了个人订阅号上，从此无视终端随心查看文档
+
+微信推文链接：<https://mp.weixin.qq.com/s/RulEtKY2L0iChQEq5ZSmJQ>
+
+---
+
+~~好消息是，狗年来了，新年快乐！！！坏消息是，SciHub镜像站点只剩下四个，且用且珍惜。~~
 
 ~~想了下还是把更新信息放在最前面吧，顺便fuck一下百度！~~
 ## 更新信息
