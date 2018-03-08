@@ -13,7 +13,9 @@ via: https://github.com/shadowsocks/shadowsocks-libev/issues/113
 Here is my solution
 
 > make sure your vps has right ipv6 access
+>
 > OS: Ubuntu 16.04.3 LTS (GNU/Linux 4.12.2-041202-generic x86_64)
+>
 > ss version: shadowsocks-libev 3.1.3
 
 - vi /etc/default/shadowsocks-libev
