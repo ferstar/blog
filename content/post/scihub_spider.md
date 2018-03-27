@@ -30,6 +30,15 @@ comments: true
 2. macOS(解压直接运行就可以): [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.6.zip)
 
 ```shell
+2018/03/27 1.6.8:
+1. 删掉几个不稳定的镜像节点
+2. 修复偶尔下载失败造成的闪退问题
+3. 移除不必要的静态资源
+
+2018/03/02 SciHub Spider WeChat Bot:
+1. 微信版闪亮登场,不再需要安装任何东西，关注即可
+https://mp.weixin.qq.com/s/RulEtKY2L0iChQEq5ZSmJQ#opennewwindow
+
 2018/02/16 1.6.7:
 1. 去掉一个被ban掉的scihub镜像检测网站
 2. 二维码求红包变为了福利链接，偷偷的别声张哈
