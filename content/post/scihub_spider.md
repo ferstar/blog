@@ -25,7 +25,7 @@ comments: true
 
 下载地址: 
 
-1. Windows: [SciHub-Spider-update-1.6.7](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.7.exe)
+1. Windows: [SciHub-Spider-update-latest](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-latest.exe)
 
 2. macOS(解压直接运行就可以): [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.6.zip)
 
