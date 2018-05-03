@@ -30,6 +30,9 @@ comments: true
 2. macOS(解压直接运行就可以): [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.6.zip)
 
 ```shell
+2018/05/03 1.6.9:
+1. 更新正则匹配规则以适配scihub网站更新
+
 2018/03/27 1.6.8:
 1. 删掉几个不稳定的镜像节点
 2. 修复偶尔下载失败造成的闪退问题
