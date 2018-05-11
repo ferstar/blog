@@ -1,12 +1,106 @@
 ---
-title: "ubuntu 14.04 x64系统调优"
+title: "Ubuntu 16.04 系统调优"
 date: "2015-09-10T11:37:25+08:00"
-tags: ['LINUX', 'SHELL']
+tags: ['LINUX', 'SHELL', 'UBUNTU']
 comments: true
 ---
 
+## 删除旧内核
+
+一个偷懒的脚本解决战斗
+
+```shell
+#!/bin/sh
+#
+#    purge-old-kernels - remove old kernel packages
+#    Copyright (C) 2012 Dustin Kirkland <kirkland@ubuntu.com>
+#
+#    Authors: Dustin Kirkland <kirkland@ubuntu.com>
+#             Kees Cook <kees@ubuntu.com>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, version 3 of the License.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ 
+# Ensure we're running as root
+if [ "$(id -u)" != 0 ]; then
+    echo "ERROR: This script must run as root.  Hint..." 1>&2
+    echo "  sudo $0 $@" 1>&2
+    exit 1
+fi
+ 
+# NOTE: This script will ALWAYS keep the currently running kernel
+# NOTE: Default is to keep 2 more, user overrides with --keep N
+KEEP=2
+# NOTE: Any unrecognized option will be passed straight through to apt
+APT_OPTS=
+while [ ! -z "$1" ]; do
+    case "$1" in
+        --keep)
+            # User specified the number of kernels to keep
+            KEEP="$2"
+            shift 2
+        ;;
+        *)
+            APT_OPTS="$APT_OPTS $1"
+            shift 1
+        ;;
+    esac
+done
+ 
+# Build our list of kernel packages to purge
+CANDIDATES=$(ls -tr /boot/vmlinuz-* | head -n -${KEEP} | grep -v "$(uname -r)$" | cut -d- -f2- | awk '{print "linux-image-" $0 " linux-headers-" $0}' )
+for c in $CANDIDATES; do
+    dpkg-query -s "$c" >/dev/null 2>&1 && PURGE="$PURGE $c"
+done
+ 
+if [ -z "$PURGE" ]; then
+    echo "No kernels are eligible for removal"
+    exit 0
+fi
+ 
+apt $APT_OPTS remove --purge $PURGE
+
+```
+
+## 替换 Firefox 为国内版
+
+火狐自 Quantum 之后的版本在 Linux 上的体验都很棒，火狐通行证的同步也很方便，不过 Ubuntu 自带的火狐是国际版本，个人感觉不如国内版的同步速度快，所以就研究了下替换国内版的操作。 
+
+### 1. 下载国内版火狐
+
+ via: [Firefox-latest-x86_64.tar.bz2](https://download-ssl.firefox.com.cn/releases/firefox/59.0/zh-CN/Firefox-latest-x86_64.tar.bz2) 
+
+### 2. 重命名系统自带
+
+ `sudo mv /usr/lib/firefox /usr/lib/firefox.bak` 
+
+### 3. 解压下载的文件放到/usr/lib/firefox
+
+ `sudo cp firefox /usr/lib/` 
+
+### 4. 复制原 Firefox 启动脚本
+
+ `sudo cp /usr/lib/firefox.bak/firefox.sh /usr/lib/firefox` 
+
+### 5. 复制原 dictionaries 软链接[可不做]
+
+ `sudo cp /usr/lib/firefox.bak/dictionaries /usr/lib/firefox` 
+
+### 6. 删除原默认配置文件
+
+ `rm -rf ~/.mozilla` 
 
 ## 安装一些版权受限的软件
+
 ```
 sudo apt-get install ubuntu-restricted-extras
 ```
@@ -15,8 +109,8 @@ sudo apt-get install ubuntu-restricted-extras
 [http://ohmyz.sh/][1]
 `sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
 
-## 右键添加`打开终端`的选项
-`sudo apt-get install nautilus-open-terminal`
+## ~~右键添加`打开终端`的选项~~
+~~`sudo apt-get install nautilus-open-terminal`~~
 > 似乎15.04开始这个package自带了～
 
 ## 某些应用`indicator`图标无法正常显示问题
@@ -117,6 +211,8 @@ sudo apt-get -f install
 默认的NPM太慢，可以转投淘宝镜像
 
 ## 优秀的markdown编辑器
+现在转用这个了：https://typora.io
+
 [remarkableapp.github.io][9]
 
 ## git可视化比较工具
@@ -132,8 +228,8 @@ sudo apt-get -f install
 [1]: http://ohmyz.sh/
 [2]: https://github.com/LiuLang/bcloud
 [3]: http://blog.wiz.cn/downloads-mac-linux.html
-[4]: http://www.ubuntukylin.com/application/show.php?lang=cn&amp;id=279
-[5]: http://www.ubuntukylin.com/application/show.php?lang=cn&amp;id=278
+[4]: http://www.ubuntukylin.com/application/show.php?lang=cn&amp;amp;id=279
+[5]: http://www.ubuntukylin.com/application/show.php?lang=cn&amp;amp;id=278
 [6]: http://pinyin.sogou.com/linux/?r=pinyin
 [7]: https://launchpad.net/~mc3man/+archive/ubuntu/trusty-media
 [8]: https://nodejs.org/en/
