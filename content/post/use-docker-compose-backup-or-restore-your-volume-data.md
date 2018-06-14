@@ -5,13 +5,13 @@ tags: ['DOCKER']
 comments: true
 ---
 
-先说说实际情况，最近做的项目跑在 AWS 的 EC2 上面，林林总总依赖好几个服务；实际开发却是用的 Windows10，还好有 Docker 这神器。
+先说说实际情况，最近做的项目跑在 AWS 的 EC2 上面，林林总总依赖好几个服务；实际开发却是用的 Windows10（没办法，一堆非Windows不可的软件要用），还好有 Docker 这神器。
 
 有个 PostgreSQL 的容器资料开始是挂在名叫 pgdata 的一个 volume 上面，为方便本机调试我修改了 docker-compose.yml 的部分内容，实际的 volume 变成了 scsweb_pgdata
 
 这就面临一个问题，原来 pgdata 的数据怎么迁移到新的 scsweb_pgdata 上来？
 
-可以参考我这里的例子去迁移 pg 数据库，但感觉太麻烦，觉得应该有更简单的方式。
+可以参考我这里的例子去[迁移 pg 数据库](https://github.com/ferstar/dockerizing-django)，但感觉太麻烦，觉得应该有更简单的方式。
 
 自然求助万能的 Google 希望能够有 volume clone 的神奇命令搞定，然而目前 docker volume 支持的指令只有 
 
