@@ -1,7 +1,7 @@
 ---
 title: "Could Not Refresh Skeletons for Remote Interpreter"
 date: 2018-06-15T09:50:15+08:00
-tags: ['DOCKER'，'WINDOWS']
+tags: ['DOCKER', 'WINDOWS']
 comments: true
 ---
 
