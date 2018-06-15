@@ -102,7 +102,9 @@ exec: "docker-credential-wincred": executable file not found in %PATH%, out: ``
 7. 静态文件整理 - `docker-compose run --no-deps --rm web python manage.py collectstatic` 
 8. Build && Run~ have fun!
 
-没图貌似不行，找时间配图吧。*生产环境配置只需要指明使用 production.yml 即 `docker-compose -f production.yml xxx`*
+没图貌似不行，配图见我的专栏文章 <https://zhuanlan.zhihu.com/p/38133078>
+
+*生产环境配置只需要指明使用 production.yml 即 `docker-compose -f production.yml xxx`*
 
 PS：项目中还用到了 RabbitMQ 管理队列服务，大概贴下 docker-compose.yml 内容（示例代码中没有涉及到）
 
