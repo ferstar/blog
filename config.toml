@@ -11,4 +11,4 @@ theme = "slim"
   Summary = false # takes true or false
   Content = false  # takes true or false
   # if both are set to true, summary is shown.
-  FooterMsg = "Copyright @ferstar 2018, powered by Hugo."
+  FooterMsg = 'Copyright @ferstar 2018<br />Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.'
