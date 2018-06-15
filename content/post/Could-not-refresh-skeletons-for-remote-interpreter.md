@@ -34,6 +34,7 @@ via -> https://stackoverflow.com/a/49864937
 不过他说的可能环境变量配置有变动我这里并没有，所以就试试把所有 Container 干掉，结果果然有效。
 
 ```shell
+# 当然，只干掉有问题的 scsweb_pycharm_helpers_1 这个 container 就 OK，我懒得多查一步，直接全干掉
 docker rm -f $(docker ps -a -q)
 ```
 
