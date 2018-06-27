@@ -18,8 +18,15 @@ comments: false
 3. 怀疑 Windows 打印服务队列出问题，清空重置之，搞定。
 
    ```powershell
+   @echo off
+   echo Stopping print spooler.
+   echo.
    net stop spooler
-   del c:\windows\system32\spool\printers\* /q
+   echo deleting temp files.
+   echo.
+   del %windir%\system32\spool\printers\*.* /q
+   echo Starting print spooler.
+   echo.
    net start spooler
    ```
 
