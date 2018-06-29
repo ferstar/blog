@@ -1,5 +1,5 @@
 ---
-title: "Bootstrap Tooltips"
+title: "Add Bootstrap Tooltips in django-tables2"
 date: 2018-06-29T10:06:55+08:00
 tags: ['DJANGO', 'PYTHON', 'BOOTSTRAP']
 comments: true
