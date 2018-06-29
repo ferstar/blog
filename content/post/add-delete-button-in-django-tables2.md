@@ -7,9 +7,7 @@ comments: true
 
 这是用 [django-tables2](https://django-tables2.readthedocs.io/en/latest/) 的另一个坑：如何给每行条目添加删除功能？
 
-还是直接上解决方案：
-
-在`tables.py`加一列，用来放删除按钮，本来是打算直接给`href`加个`DELETE`的`method`，然而发现`HTML5`并不支持这样做，没办法只好捏造一个`form`表单来做这事情了。
+还是直接上解决方案：在`tables.py`加一列，用来放删除按钮，本来是打算直接给`href`加个`DELETE`的`method`，然而发现`HTML5`并不支持这样做，没办法只好捏造一个`form`表单来做这事情了。
 
 ```python
 # samples/tables.py
@@ -21,9 +19,11 @@ from .models import Sample
 class SampleTable(tables.Table):    
     # 塞一个form进去，POST方法，加一个隐藏输入，命名为_method，通过这货的值来冒充DELETE方法
     # 实际上还是一个POST请求，不过干的是DELETE的事情
-    delete = tables.TemplateColumn('<form action="/samples/{{record.id}}/" method="post">{% csrf_token %}<input type="hidden" name="_method" value="delete"><button data-toggle="tooltip" title="Please note that deletion cannot be undone" type="submit" class="btn btn-danger btn-xs">delete</button></form>', 
-                                   orderable=False,
-                                   verbose_name='')
+    delete = tables.TemplateColumn(
+        '<form action="/samples/{{record.id}}/" method="post">{% csrf_token %}<input type="hidden" name="_method" value="delete"><button data-toggle="tooltip" title="Please note that deletion cannot be undone" type="submit" class="btn btn-danger btn-xs">delete</button></form>',
+        orderable=False,
+        verbose_name=''
+    )
 
     class Meta:
         model = Sample
