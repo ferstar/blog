@@ -5,6 +5,9 @@ tags: ['LINUX', 'IPTABLES']
 comments: true
 ---
 
+直接装一个`fail2ban`搞定，不用整下面这些虚的了。
+
+---
 
  两月前买了个DO5刀的VPS，建了个SSR方便自己爬墙，早上发现连接有点问题，就登录看了下，系统负载正常，不过SSR log显示有不明IP在恶意扫描SSR端口，所以需要着手block掉这些垃圾IP
 
