@@ -9,11 +9,9 @@ comments: true
 
 Android 上的 Tasker 绝对称得上是 Android 系统的神器之一， 可以完成很复杂多样的自定义任务。这里介绍一下利用他完成某 APP 自动签到的过程。
 
-*折腾背景：N线城市苦逼传统行业IT团队，二老板许诺弹性工作，但总公司实行严格打卡制度（模拟定位插件已废）。为拿回正当权益，故有此曲线救国的一番折腾记录*
-
 ### 思路
 
-保证手机正常联网，放在签到 APP 规定的签到范围内，通过USB调试做以下步骤：
+保证手机正常联网，通过USB调试做以下步骤：
 
 1. 解锁屏幕进入桌面
 2. 打开签到 APP
@@ -23,7 +21,7 @@ Android 上的 Tasker 绝对称得上是 Android 系统的神器之一， 可以
 
 ### 准备
 
-1. 能够安装 Magisk 的二奶安卓手机一部
+1. 能够安装 Magisk 的安卓手机一部
 2. 安装 Magisk 模块：ADB & Fastboot for Android NDK，Busybox for Android NDK
 3. 安装 APP：终端模拟器，RE文件管理器，Tasker，Secure Settings
 4. 装有 adb tools 及 Git for Windows 的 PC 一台(用来计算模拟点击坐标)
