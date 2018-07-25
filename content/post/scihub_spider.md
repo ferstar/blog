@@ -152,7 +152,7 @@ PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制I
 
 ## 下载地址(百度网盘已作废)
 
-[SciHub-Spider-update-1.6.4](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.4.exe?v=1234)
+~~[SciHub-Spider-update-1.6.4](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-1.6.4.exe?v=1234)~~
 
 ~~链接:https://pan.baidu.com/s/1boAEC4f~~
 
@@ -160,7 +160,7 @@ PS：打开软件和复制ID无先后顺序，你可以先打开软件再复制I
 
 ## 求捐赠
 
-PayPal: https://www.paypal.me/ferstar
+~~PayPal: https://www.paypal.me/ferstar~~
 
 由于使用自费服务提供软件更新，所以希望觉得好用的同学打赏一二，以cover服务器流量费用，谢谢！
 
