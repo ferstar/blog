@@ -27,9 +27,12 @@ comments: true
 
 1. Windows: [SciHub-Spider-update-latest](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-latest.exe)
 
-2. macOS(解压直接运行就可以): [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.6.zip)
+~~2. macOS(解压直接运行就可以): [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.6.zip)~~
 
 ```shell
+2018/07/25 1.7.0:
+1. 修复网页重定向导致无法正常检索的问题
+
 2018/05/03 1.6.9:
 1. 更新正则匹配规则以适配scihub网站更新
 
