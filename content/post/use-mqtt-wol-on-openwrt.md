@@ -18,6 +18,7 @@ comments: true
 
 过程中用到的软件/组件：
 
+0. [MQTT Dash](https://play.google.com/store/apps/details?id=net.routix.mqttdash) - 手机端发送消息给MQTT server
 1. [WeRoBot](http://werobot.readthedocs.io/zh_CN/latest/) - 一个微信公众号开发框架
 2. [天工-物联网平台-物联网云-百度云](https://iot.baidu.com) - 这里被用作MQTT Server
 3. [etherwake](https://wiki.openwrt.org/doc/uci/etherwake) - 网络唤醒软件
