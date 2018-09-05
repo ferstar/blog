@@ -25,11 +25,17 @@ comments: true
 
 下载地址: 
 
-1. Windows: [SciHub-Spider-update-latest](http://p2f3k7a9w.bkt.clouddn.com/exe/SciHub-Spider-update-latest.exe)
+1. Windows: [SciHub-Spider-update-latest](https://pan.baidu.com/s/1mmVZ13eMFWrhpDPYP2SN3w)
 
 ~~2. macOS(解压直接运行就可以): [SciHub-Spider-update-1.6.6](http://p2f3k7a9w.bkt.clouddn.com/mac/SciHub-Spider-update-1.6.6.zip)~~
 
 ```shell
+2018/08/27 1.7.1:
+1. 更新正则匹配规则以适配scihub网站更新
+2. 七牛云测试域名到期，更换MQTT服务来检测更新
+3. 正则匹配规则支持热更新
+4. 公众号增加邮件发送文献镜像下载地址功能
+
 2018/07/25 1.7.0:
 1. 修复网页重定向导致无法正常检索的问题
 
