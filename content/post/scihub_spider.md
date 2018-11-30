@@ -11,9 +11,6 @@ comments: true
 
 ---
 
-~~好消息是，狗年来了，新年快乐！！！坏消息是，SciHub镜像站点只剩下四个，且用且珍惜。~~
-
-~~想了下还是把更新信息放在最前面吧，顺便fuck一下百度！~~
 ## 更新信息
 > 一般只有遇到闪退bug或者scihub主站更新需要重新适配我才会更新软件，不会太频繁，一切以维护可用性为先，大家放心。
 
@@ -24,6 +21,8 @@ comments: true
 > 软件只要检测到更新就会自动下载更新包到桌面，大家只需双击安装即可（macOS用户解压直接可运行），不安装更新软件将无法继续使用。
 
 下载地址: 
+
+> 又用回百度云了, 囧
 
 1. Windows: [SciHub-Spider-update-latest](https://pan.baidu.com/s/1mmVZ13eMFWrhpDPYP2SN3w)
 
