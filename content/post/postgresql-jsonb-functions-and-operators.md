@@ -27,7 +27,7 @@ https://www.postgresql.org/docs/9.5/functions-json.html
 
 ```sql
 SELECT *
-FROM hkex_file
+FROM hello
 WHERE (result -> 'warrants' ->> 'index') :: INT > 0
 ```
 
