@@ -57,7 +57,7 @@ comments: true
 
 10. Netgear R6300 V2
   > 网件自家的固件向来垃圾，但这货换刷 Merlin 固件以后立马变身高富帅，无线信号强悍稳定，还有离线下载、时光机等功能加成，号称千元内最超值路由器。
-  > ![梅林固件 web 配置界面一览](http://7xivdp.com1.z0.glb.clouddn.com/png/2016/1/7e0c7446d5939e02a19843170727cdc7.png/xyz  "梅林固件 web 配置界面一览")
+  > ![梅林固件 web 配置界面一览](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2016/1/7e0c7446d5939e02a19843170727cdc7.png  "梅林固件 web 配置界面一览")
 
 11. 折叠床
    > 办公室午休必备，值得拥有！

@@ -27,6 +27,6 @@ for parent, dirnames, filenames in os.walk(rootdir):
 
 ```
 
-效果图![我是图](http://7xivdp.com1.z0.glb.clouddn.com/blog/image/2015-09-04%2023%3A03%3A58.png/xyz) 
+效果图![我是图](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/blog/image/2015-09-04%2023%3A03%3A58.png) 
 
 代码审核时可能会用到:-)

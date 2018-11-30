@@ -9,11 +9,11 @@ comments: true
 
 所以就想到用 IFTTT 结合 Telegram 来搞一搞这个签到反馈，实现的效果是这样的：
 
-![签到完成](http://7xivdp.com1.z0.glb.clouddn.com/jpg/2018/7/4f0fbde53b682d2ac8b039096d178a4d.jpg)
+![签到完成](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/jpg/2018/7/4f0fbde53b682d2ac8b039096d178a4d.jpg)
 
 需要在 IFTTT 中开一个 applets
 
-![ifttt_sign](http://7xivdp.com1.z0.glb.clouddn.com/jpg/2018/7/b185adb9739049077f0b23f613974a04.jpg)
+![ifttt_sign](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/jpg/2018/7/b185adb9739049077f0b23f613974a04.jpg)
 
 脚本加点新内容：
 

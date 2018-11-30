@@ -25,7 +25,7 @@ comments: true
 
 
   [1]: http://blog.163.com/lby147612@126/blog/static/170410452201382510318725
-  [2]: http://7xivdp.com1.z0.glb.clouddn.com/2015/08/454542992.zip
-  [3]: http://7xivdp.com1.z0.glb.clouddn.com/2015/08/343120409.zip
-  [4]: http://7xivdp.com1.z0.glb.clouddn.com/2015/08/3855334421.jpg_xyz
-  [5]: http://7xivdp.com1.z0.glb.clouddn.com/2015/08/4259131112.png_xyz
+  [2]: https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/2015/08/454542992.zip
+  [3]: https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/2015/08/343120409.zip
+  [4]: https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/2015/08/3855334421.jpg_xyz
+  [5]: https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/2015/08/4259131112.png_xyz

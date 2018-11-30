@@ -126,10 +126,10 @@ pc@host:~$ make odroidxu3_defconfig
 pc@host:~$ make menuconfig 
 ```
 for my case, the official kernel can not recognise my **Logitech, Inc. F710 Wireless Gamepad**, so I have to change it by myself:
-![内核定义](http://7xivdp.com1.z0.glb.clouddn.com/png/2015/12/310876d095ef89355a35de54838acad9.png)
+![内核定义](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2015/12/310876d095ef89355a35de54838acad9.png)
 
 I alse changed the kernel default resolution to fit my 7' touchscreen:
-![分辨率修改](http://7xivdp.com1.z0.glb.clouddn.com/png/2015/12/3ad91156dcea84a78dab3f5643ea2832.png)
+![分辨率修改](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2015/12/3ad91156dcea84a78dab3f5643ea2832.png)
 
 ### Build Kernel and Modules
 ```

@@ -80,7 +80,7 @@ services:
 
 所谓`CI`在这里就是利用GitHub的Webhooks服务，每次接受推送`push`（貌似还可以指定别的事件类型）事件时，给VPS站点发一个`POST`通知，然后VPS收到通知后会自动执行拉取GitHub指定分支内容，然后Hugo自动生成静态页面，最后重启Caddy服务，整个过程如丝顺滑~
 
-![微信截图_20171226164109](http://7xivdp.com1.z0.glb.clouddn.com/png/2017/12/405b246b70f9de2c4bd98c93afaaa007.png/xyz)
+![微信截图_20171226164109](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2017/12/405b246b70f9de2c4bd98c93afaaa007.png)
 
 ## 转换旧文章
 

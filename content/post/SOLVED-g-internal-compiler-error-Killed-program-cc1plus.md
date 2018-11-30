@@ -17,7 +17,7 @@ comments: true
 
 再敲`free -h`确认下是否开启，结果如图
 
-![2015-08-12 14:39:22屏幕截图.png](http://7xivdp.com1.z0.glb.clouddn.com/2015/08/1834023921.png_xyz)
+![2015-08-12 14:39:22屏幕截图.png](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/2015/08/1834023921.png_xyz)
 
 已经用超一半swap，还好编译通过，好险～
 

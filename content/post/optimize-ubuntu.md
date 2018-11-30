@@ -223,7 +223,7 @@ sudo apt-get -f install
 [软件主页](https://www.getsync.com/) 
 [扫盲](https://program-think.blogspot.com/2015/01/BitTorrent-Sync.html) 
 需要注意的几个设置选项如图
-![DeepinScrot-5830.png](http://7xivdp.com1.z0.glb.clouddn.com/png/2015/11/410402d76bcd052e7393eb449cdcbea6.png)
+![DeepinScrot-5830.png](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2015/11/410402d76bcd052e7393eb449cdcbea6.png)
 
 [1]: http://ohmyz.sh/
 [2]: https://github.com/LiuLang/bcloud

@@ -26,4 +26,4 @@ comments: true
 2. 使用任意截图工具将截图保存到指定监控目录
 
 3. 剪贴板即可生成图片地址
-![DeepinScrot-2442.png](http://7xivdp.com1.z0.glb.clouddn.com/png/2015/11/8b265710971e64014657a9788f0b99dc.png)
+![DeepinScrot-2442.png](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2015/11/8b265710971e64014657a9788f0b99dc.png)

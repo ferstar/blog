@@ -106,4 +106,4 @@ via: <https://github.com/ferstar/qiniu4blog>
 
 运行效果:
 
-![test](http://7xivdp.com1.z0.glb.clouddn.com/gif/2017/8/63b52237c9d43f5fc544a430b2b46846.gif)
+![test](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/gif/2017/8/63b52237c9d43f5fc544a430b2b46846.gif)

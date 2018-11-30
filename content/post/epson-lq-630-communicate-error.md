@@ -7,7 +7,7 @@ comments: false
 
 早上去财务报销，出纳小妹针式打印机罢工，报了这么个错
 
-![printer-error](http://7xivdp.com1.z0.glb.clouddn.com/png/2018/6/10241202527c1740882410421210ac11.png)
+![printer-error](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2018/6/10241202527c1740882410421210ac11.png)
 
 于是顺手解决了下。
 

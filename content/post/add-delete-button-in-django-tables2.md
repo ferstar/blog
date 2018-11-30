@@ -73,5 +73,5 @@ def detail(request, sample_id):
 
 效果如图：
 
-![add-delete-button](http://7xivdp.com1.z0.glb.clouddn.com/jpg/2018/6/45e42b6a890cafda88510a096f8cf526.jpg)
+![add-delete-button](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/jpg/2018/6/45e42b6a890cafda88510a096f8cf526.jpg)
 

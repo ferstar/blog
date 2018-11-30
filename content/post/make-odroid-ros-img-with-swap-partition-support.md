@@ -127,7 +127,7 @@ tmpfs       /tmp    tmpfs   nodev,nosuid,mode=1777          0 0
 
 ## 备份备份备份说三遍...
 
-[1]: http://7xivdp.com1.z0.glb.clouddn.com/png/2015/12/c15a5e9d656e25f165fc8a59315d47e3.png/xyz
-[2]: http://7xivdp.com1.z0.glb.clouddn.com/png/2015/12/3175234083078b49ffed03ec3c09ab4f.png/xyz
-[3]: http://7xivdp.com1.z0.glb.clouddn.com/png/2015/12/dc42631e1bf2c7400011b39d72fad3cd.png/xyz
-[4]: http://7xivdp.com1.z0.glb.clouddn.com/png/2015/12/54316ff659ae38fbf35ae530a38525d9.png/xyz
+[1]: https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2015/12/c15a5e9d656e25f165fc8a59315d47e3.png
+[2]: https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2015/12/3175234083078b49ffed03ec3c09ab4f.png
+[3]: https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2015/12/dc42631e1bf2c7400011b39d72fad3cd.png
+[4]: https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2015/12/54316ff659ae38fbf35ae530a38525d9.png

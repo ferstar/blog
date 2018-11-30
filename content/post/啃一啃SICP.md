@@ -285,7 +285,7 @@ a)
 ;; 解决方法 Choose Language --> uncheck Enforce constant definitions.
 ```
 
-![微信截图_20170825141550](http://7xivdp.com1.z0.glb.clouddn.com/png/2017/8/0dcfe8c59dfe42ca08ae8b2d945c9447.png/xyz)
+![微信截图_20170825141550](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2017/8/0dcfe8c59dfe42ca08ae8b2d945c9447.png)
 
 重写`sqrt`后运行会报错:
 
@@ -588,7 +588,7 @@ col: 0 1 2 3 4
 
 ### 1.13 原题翻译有误, 需要看英文原版
 
-![微信截图_20170827172527](http://7xivdp.com1.z0.glb.clouddn.com/png/2017/8/3ef5b133b00aef6adfb60e74d7f5a73a.png/xyz)
+![微信截图_20170827172527](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/png/2017/8/3ef5b133b00aef6adfb60e74d7f5a73a.png)
 
 这个原题翻译有问题, 需要看英文原版
 
@@ -596,5 +596,5 @@ col: 0 1 2 3 4
 
 > 绘制(count-change 11)在展开时的过程, 只手撸了部分...
 
-![微信图片_20170905114253](http://7xivdp.com1.z0.glb.clouddn.com/jpg/2017/9/43c93eba6fcc96cc9bc9212f1b1f333a.jpg/xyz)
+![微信图片_20170905114253](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/jpg/2017/9/43c93eba6fcc96cc9bc9212f1b1f333a.jpg)
 

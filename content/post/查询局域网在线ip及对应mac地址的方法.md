@@ -8,7 +8,7 @@ comments: true
 
 ## windows
 
-这个软件很不错 [maxcanner.rar](http://7xivdp.com1.z0.glb.clouddn.com/2015/08/1360260925.rar)，小巧快速，即开即用，有5档扫描方式，一般选择5或者4，可以得到主机名，如果有的话
+这个软件很不错 [maxcanner.rar](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/2015/08/1360260925.rar)，小巧快速，即开即用，有5档扫描方式，一般选择5或者4，可以得到主机名，如果有的话
 
 ## ubuntu
 

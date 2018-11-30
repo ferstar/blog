@@ -72,6 +72,6 @@ $(document).ready(function(){
 
 效果如图：
 
-![tooltips](http://7xivdp.com1.z0.glb.clouddn.com/jpg/2018/6/5c72ddc40df1977100b2b6b6440df9dd.jpg)
+![tooltips](https://blog-1253877569.cos.ap-chengdu.myqcloud.com/ext/jpg/2018/6/5c72ddc40df1977100b2b6b6440df9dd.jpg)
 
 咦，怎么还能加按钮？这个下回再说~
