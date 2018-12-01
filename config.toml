@@ -3,6 +3,9 @@ languageCode = "en-us"
 title = "STAY REAL"
 theme = "slim"
 
+[permalinks]
+  articles = "/:year/:month/:title/"
+
 [params]
   Subtitle = "May the truth be without barriers"
   GithubID = "ferstar"
