@@ -38,7 +38,7 @@ comments: true
 
 ```powershell
 cd /d "%SystemRoot%\system32"
-slmgr /skms kms.ferstar.org
+slmgr /skms kms.xxx.com
 slmgr /ato
 slmgr /xpr
 ```
