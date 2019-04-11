@@ -13,8 +13,15 @@ WHERE id IN (SELECT id
             WHERE dup_col IN (SELECT dup_col FROM des_table GROUP BY dup_col HAVING count(dup_col) > 1))
 	AND id NOT IN (SELECT min(id)
                   FROM des_table
-                  WHERE dup_col IN (SELECT dup_col FROM des_table GROUP BY HAVING count(dup_col) > 1));
+                  WHERE dup_col IN (SELECT dup_col FROM des_table GROUP BY dup_col HAVING count(dup_col) > 1));
 ```
 
 效果就是保留了重复记录`dup_col`中`id`最小的那个
 
+想到个更简单的
+
+```sql
+DELETE
+FROM dst_table
+WHERE id NOT IN (SELECT max(id) FROM dst_table GROUP BY dup_col);
+```
