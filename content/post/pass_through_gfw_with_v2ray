@@ -45,7 +45,7 @@ services:
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "/last"
+          "path": "/ray"
         },
         "security": "none"
       },
@@ -74,7 +74,7 @@ services:
 `Caddyfile`
 
 ```shell
-us.ferstar.org {
+xxx.xxx.xxx {
   log ./caddy.log
   gzip
   tls fer_star@qq.com
