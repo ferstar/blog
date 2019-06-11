@@ -2,7 +2,7 @@
 title: "Ubuntu 18.04 set up Shadowsocks server with fail2ban"
 date: 2018-12-01T13:33:45+08:00
 tags: ['LINUX', 'UBUNTU']
-comments: false
+comments: true
 ---
 
 >  Here I use Shadowsocks-libev for better performance
@@ -102,7 +102,6 @@ ignoreregex =
 
 datepattern = %%Y-%%m-%%d %%H:%%M:%%S
 EOF
-sudo vim /etc/fail2ban/jail.local
 ```
 
 **test**
