@@ -5,6 +5,10 @@ tags: ['DOCKER']
 comments: true
 ---
 
+这次功夫墙来的似乎比以往都猛一些, ss 彻底没法用了, 只好再整个梯子, 比如 v2ray
+托 docker 的福, 整个部署过程比较轻松写意, 不过因为家里移动宽带不给力的原因, 还得套个 cf 的 cdn 才能 ok
+小贴一下配置:
+
 `docker-compose.yml`
 
 ```yml
