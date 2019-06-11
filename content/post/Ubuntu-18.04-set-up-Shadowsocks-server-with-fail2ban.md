@@ -3,9 +3,11 @@ title: "Ubuntu 18.04 set up Shadowsocks server with fail2ban"
 date: 2018-12-01T13:33:45+08:00
 tags: ['LINUX', 'UBUNTU']
 comments: true
+
+
 ---
 
->  Here I use Shadowsocks-libev for better performance
+> Here I use Shadowsocks-libev for better performance
 
 # [Shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev)
 
@@ -39,7 +41,7 @@ sudo systemctl status shadowsocks-libev.service
 
 ## Problem
 
-systemctl status shadowsocks-libev.service status shows following error:[2][2]
+systemctl status shadowsocks-libev.service status shows following error:[2]
 
 > This system doesn’t provide enough entropy to quickly generate high-quality random numbers. The service will not start until enough entropy has been collected.
 
@@ -52,7 +54,7 @@ sudo rngd -r /dev/urandom
 
 # [fail2ban](https://github.com/fail2ban/fail2ban)
 
-There are also other options to secure the Shadowsocks Server[3][3]
+There are also other options to secure the Shadowsocks Server[3]
 
 But since my server is only uesd by some acquaintances, I just care about brute force password cracking.
 
@@ -60,14 +62,14 @@ But since my server is only uesd by some acquaintances, I just care about brute 
 
 fail2ban is used to ban IP addresses conducting too many failed login attempts.
 
-How fail2ban works?[4][4]
+How fail2ban works?[4]
 fail2ban use date pattern to capture and remove the date from log, and then use failregex to parse the log to get the IP. After that, fail2ban would update the firewall rule to block the IP addresses
 
 ## log file
 
 Both Shadowsocks and Shadowsocks-libev output log to /var/log/syslog, Shadowsocks also output some INFO and DEBUG level log to /var/log/shadowsocks.log
 
-Shadowsocks can customize log file location but Shadowsocks-libev cannot[5][5]
+Shadowsocks can customize log file location but Shadowsocks-libev cannot[5]
 
 I would use ufw rather than iptables to modify my firewall `sudo vim /etc/fail2ban/jail.local`
 
@@ -141,29 +143,29 @@ sudo fail2ban-client status shadowsocks-libev
 
   > UFW (Uncomplicated Firewall) is a front-end for iptables and is particularly well-suited for host-based firewalls.<https://help.ubuntu.com/community/Firewall>
 
-- `Can't assign requested address`[11][11]
+- `Can't assign requested address`[11]
   In config file, set the server_ip as 0.0.0.0
 
 # Reference
 
-[1]: https://novnan.github.io/Shadowsocks/setup-Shadowsocks-on-ubuntu-1604/
+[1] https://novnan.github.io/Shadowsocks/setup-Shadowsocks-on-ubuntu-1604/
 
-[2]: https://www.linuxbabe.com/ubuntu/shadowsocks-libev-proxy-server-ubuntu-16-04-17-10
+[2] https://www.linuxbabe.com/ubuntu/shadowsocks-libev-proxy-server-ubuntu-16-04-17-10
 
-[3]: https://github.com/shadowsocks/shadowsocks/wiki/Securing-Public-Shadowsocks-Server
+[3] https://github.com/shadowsocks/shadowsocks/wiki/Securing-Public-Shadowsocks-Server
 
-[4]: https://github.com/fail2ban/fail2ban/issues/2201#issuecomment-413155557
+[4] https://github.com/fail2ban/fail2ban/issues/2201#issuecomment-413155557
 
-[5]: https://github.com/shadowsocks/shadowsocks/issues/1242
+[5] https://github.com/shadowsocks/shadowsocks/issues/1242
 
-[6]: https://fail2ban.readthedocs.io/en/latest/filters.html
+[6] https://fail2ban.readthedocs.io/en/latest/filters.html
 
-[7]: https://www.fail2ban.org/wiki/index.php/MANUAL_0_8#Filters
+[7] https://www.fail2ban.org/wiki/index.php/MANUAL_0_8#Filters
 
-[8]: https://github.com/coleturner/fail2ban-slack-action
+[8] https://github.com/coleturner/fail2ban-slack-action
 
-[9]: https://api.slack.com/methods/chat.postMessage
+[9] https://api.slack.com/methods/chat.postMessage
 
-[10]: https://api.slack.com/incoming-webhooks
+[10] https://api.slack.com/incoming-webhooks
 
-[11]: https://github.com/shadowsocks/shadowsocks/issues/961
+[11] https://github.com/shadowsocks/shadowsocks/issues/961
