@@ -147,13 +147,23 @@ sudo fail2ban-client status shadowsocks-libev
 # Reference
 
 [1] https://novnan.github.io/Shadowsocks/setup-Shadowsocks-on-ubuntu-1604/
+
 [2] https://www.linuxbabe.com/ubuntu/shadowsocks-libev-proxy-server-ubuntu-16-04-17-10
+
 [3] https://github.com/shadowsocks/shadowsocks/wiki/Securing-Public-Shadowsocks-Server
+
 [4] https://github.com/fail2ban/fail2ban/issues/2201#issuecomment-413155557
+
 [5] https://github.com/shadowsocks/shadowsocks/issues/1242
+
 [6] https://fail2ban.readthedocs.io/en/latest/filters.html
+
 [7] https://www.fail2ban.org/wiki/index.php/MANUAL_0_8#Filters
+
 [8] https://github.com/coleturner/fail2ban-slack-action
+
 [9] https://api.slack.com/methods/chat.postMessage
+
 [10] https://api.slack.com/incoming-webhooks
+
 [11] https://github.com/shadowsocks/shadowsocks/issues/961
