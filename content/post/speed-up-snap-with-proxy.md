@@ -1,6 +1,6 @@
 ---
 title: "snap代理配置"
-date: "2019-07-20T10:06:55+08:00"
+date: 2019-07-20T10:06:55+08:00
 tags: ['LINUX']
 comments: true
 ---
