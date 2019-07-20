@@ -5,6 +5,7 @@ tags: ['LINUX']
 comments: true
 ---
 
+
 Ubuntu 自 16.04 开始自带的 snap 用起来真是舒服, 不过直连网络太差, 需要代理
 需要在`/etc/environment.snap`中指定需要使用的proxy
 ```shell
