@@ -1,0 +1,16 @@
+---
+title: "Speed Up Snap With Proxy"
+date: 2019-09-18T14:38:05+08:00
+tags: ['LINUX']
+comments: false
+---
+
+Ubuntu 自 16.04 开始自带的 snap 用起来真是舒服, 不过直连网络太差, 需要代理
+需要在`/etc/environment`中指定需要使用的proxy
+```shell
+http_proxy="socks5://192.168.0.25:7891"
+https_proxy="socks5://192.168.0.25:7891"
+```
+然后重启一下 snap service
+`sudo systemctl restart snapd.service`
+
