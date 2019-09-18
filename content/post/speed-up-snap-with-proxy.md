@@ -1,5 +1,5 @@
 ---
-title: "Speed Up Snap With Proxy"
+title: "给snap加代理"
 date: 2019-09-18T14:38:05+08:00
 tags: ['LINUX']
 comments: false
