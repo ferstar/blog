@@ -53,7 +53,7 @@ def upload_file(file_path):
     meta = {'action': 'upload', 'model': 0, 'file': file_path}
     boundary = uuid4().hex
     headers = {'content-type': "multipart/form-data; boundary=%s" % boundary}
-    conn = http.client.HTTPConnection("tmp.link")
+    conn = http.client.HTTPConnection("service.tmp.link:100")
     conn.request("POST", "/openapi/v1", body_iter(boundary, meta), headers)
     res = conn.getresponse()
     if res.code == 200:
