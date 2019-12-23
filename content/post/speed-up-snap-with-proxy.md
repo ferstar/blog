@@ -1,6 +1,6 @@
 ---
 title: "给snap加代理"
-date: 2019-09-18T14:38:05+08:00
+date: 2019-12-23T14:38:05+08:00
 tags: ['LINUX']
 comments: false
 ---
@@ -14,3 +14,17 @@ https_proxy="socks5://192.168.0.25:7891"
 然后重启一下 snap service
 `sudo systemctl restart snapd.service`
 
+## 删除snap历史packages
+
+```shell
+#!/bin/bash
+# Removes old revisions of snaps
+# CLOSE ALL SNAPS BEFORE RUNNING THIS
+set -eu
+
+LANG=C snap list --all | awk '/disabled/{print $1, $3}' |
+    while read snapname revision; do
+        snap remove "$snapname" --revision="$revision"
+    done
+
+```
