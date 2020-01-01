@@ -5,6 +5,8 @@ tags: ['PYTHON']
 comments: false
 ---
 
+> 这服务可能是要收费了, 最近不停的修改API, 蛋疼, 还好改一下还能用
+
 ```python
 #!/usr/bin/env python3
 import http.client
@@ -50,15 +52,22 @@ def body_iter(boundary, fields):
 
 
 def upload_file(file_path):
-    meta = {'action': 'upload', 'model': 0, 'file': file_path}
     boundary = uuid4().hex
     headers = {'content-type': "multipart/form-data; boundary=%s" % boundary}
-    conn = http.client.HTTPConnection("service.tmp.link:100")
-    conn.request("POST", "/openapi/v1", body_iter(boundary, meta), headers)
+    conn = http.client.HTTPSConnection("connect.tmp.link")
+    meta = {'action': 'token'}
+    conn.request("POST", "/api_v2/user", body_iter(boundary, meta), headers)
     res = conn.getresponse()
+    token = ''
     if res.code == 200:
         data = json.loads(res.read().decode("utf-8"))
-        if data.get('status') == 0 and isinstance(data.get('data'), dict):
+        token = data.get('data')
+    meta = {'action': 'upload', 'model': 0, 'token': token, 'file': file_path}
+    conn.request("POST", "/api_v2/file", body_iter(boundary, meta), headers)
+    res = conn.getresponse()
+    if token and res.code == 200:
+        data = json.loads(res.read().decode("utf-8"))
+        if data.get('data', {}).get('url'):
             return 'Here is your temp link: ' + data['data'].get('url', '')
     return 'Something wrong with the tmp.link service'
 
