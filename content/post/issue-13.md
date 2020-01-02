@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T12:14:45+08:00
 
-> update_date: 2020-01-02T12:35:10+08:00
+> update_date: 2020-01-02T20:54:56+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/13
 
@@ -16,3 +16,7 @@ comments: false
 ##### 2. 磨牙棒是个好东西
 
 ##### 3. 尽可能的多晒太阳
+
+##### 4. 生出来之前，几乎所有囤货都是大概率失败的
+
+> 比如尿不湿，没人肉体验之前你不知道哪款才不会红屁股
