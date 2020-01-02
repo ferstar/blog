@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-02T11:30:02+08:00
+> update_date: 2020-01-02T11:37:41+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -19,4 +19,8 @@ comments: false
 # 看说明
 sudo vi /etc/default/apport
 ```
+
+> 贴个图
+
+![DeepinScreenshot_select-area_20200102193713](https://user-images.githubusercontent.com/2854276/71665297-49d18180-2d97-11ea-81d5-ce927479c346.png)
 
