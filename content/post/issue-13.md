@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T12:14:45+08:00
 
-> update_date: 2020-01-02T21:02:18+08:00
+> update_date: 2020-01-02T21:02:40+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/13
 
@@ -22,7 +22,7 @@ comments: false
 > 比如尿不湿，没人肉体验之前你不知道哪款才不会红屁屁，我宝只有穿花王才不会红屁屁
 
 
-5. 关于黄疸
+##### 5. 关于黄疸
 1. 不要轻易停母乳
 2. 不要轻易给宝宝喂茵栀黄口服液
 3. 多晒太阳
