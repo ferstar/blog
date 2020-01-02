@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-02T11:37:41+08:00
+> update_date: 2020-01-02T12:11:54+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -24,3 +24,8 @@ sudo vi /etc/default/apport
 
 ![DeepinScreenshot_select-area_20200102193713](https://user-images.githubusercontent.com/2854276/71665297-49d18180-2d97-11ea-81d5-ce927479c346.png)
 
+##### 2.关于文件系统的选择
+
+> 一句话，机械用`ext4`，固态用`btrfs` 或`xfs` 
+
+- [ ] 优化参数
