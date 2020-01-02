@@ -7,9 +7,11 @@ comments: false
 
 > created_date: 2020-01-02T12:14:45+08:00
 
-> update_date: 2020-01-02T21:02:40+08:00
+> update_date: 2020-01-02T21:05:59+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/13
+
+> _2020年了，在这里记录下关于宝宝的日常，希望她健康成长_ 
 
 ##### 1. 爬爬垫是有必要的
 
