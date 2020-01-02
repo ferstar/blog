@@ -1,13 +1,13 @@
 ---
 title: "使用 GitHub Issues 进行持续博客写作"
 date: "2020-01-02T11:41:46+08:00"
-tags: ['Default']
+tags: ['Git', 'Idea']
 comments: false
 ---
 
 > created_date: 2020-01-02T11:41:46+08:00
 
-> update_date: 2020-01-02T11:41:46+08:00
+> update_date: 2020-01-02T11:41:59+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/12
 
