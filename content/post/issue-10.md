@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T10:51:58+08:00
 
-> update_date: 2020-01-02T10:56:53+08:00
+> update_date: 2020-01-02T11:11:18+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/10
 
@@ -20,3 +20,12 @@ git reset --hard <需要回退到的commit tag>
 git push --force
 ```
 
+2. 强制同步远端代码
+
+> 不小心把本地搞乱, 除了`rm and clone again`大法外, 还可以这样
+
+```shell
+git fetch origin master
+git reset --hard origin/master
+git pull -r
+```
