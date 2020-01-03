@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:41:46+08:00
 
-> update_date: 2020-01-03T01:28:52+08:00
+> update_date: 2020-01-03T01:31:37+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/12
 
@@ -35,3 +35,5 @@ issue create date --> hugo post time
 issue or comments update date --> hugo post update date
 comments --> hugo post comments
 ```
+
+除`1`需要人肉参与外，剩余流程都可以自动进行，也即所谓的`CI`
