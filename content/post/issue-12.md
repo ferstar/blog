@@ -7,11 +7,13 @@ comments: false
 
 > created_date: 2020-01-02T11:41:46+08:00
 
-> update_date: 2020-01-03T01:31:37+08:00
+> update_date: 2020-01-03T01:37:40+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/12
 
-如题，~~已经初步实现~~ ，有好的想法随时开`issue`写一发，然后借助`CI`自动把同一`issue`下的`comments`都拼接到一起，形成`post`，岂不美哉
+如题，有好的想法随时开`issue`写一发，然后借助`CI`自动把同一`issue`下的`comments`都拼接到一起，生成`post`。
+
+每次想到什么写什么，不论多少，没有一定要写完的压力，日积月累，应该会能形成一些起码篇幅不小的博文，想想都好激动的说。
 
 基本思路就是：
 
