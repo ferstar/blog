@@ -1,13 +1,13 @@
 ---
 title: "利用 GitHub Issues 持续写博灌水"
 date: "2020-01-02T11:41:46+08:00"
-tags: ['Git', 'Idea']
+tags: ['Git', 'Idea', 'TODO']
 comments: false
 ---
 
 > created_date: 2020-01-02T11:41:46+08:00
 
-> update_date: 2020-01-03T01:39:21+08:00
+> update_date: 2020-01-03T01:40:18+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/12
 
