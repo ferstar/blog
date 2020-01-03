@@ -7,12 +7,26 @@ comments: false
 
 > created_date: 2020-01-02T11:41:46+08:00
 
-> update_date: 2020-01-02T12:07:29+08:00
+> update_date: 2020-01-03T01:26:19+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/12
 
 如题，~~已经初步实现~~ ，有好的想法随时开`issue`写一发，然后借助`CI`自动把同一`issue`下的`comments`都拼接到一起，形成`post`，岂不美哉
 
-手机装个gayhub的第三方客户端，真香
+基本思路就是：
 
-Sent from my MI 8 using FastHub
+1. 新建一个issue，或者评论一个issue
+2. 触发一个issue event
+3. 利用webhook将这个event推送到vps
+4. 解析event中的issue id
+5. 通过issue id调用github api获得issue及comments正文
+6. 拼装成hugo post
+7. 提交到blog repo
+8. 触发push event
+9. vps收到push event后拉取blog repo最新提交
+10. 调用hugo命令重新生成blog页面
+
+其实就是issue+comments到hugo post的一个转换过程，对应关系如下：
+
+> issue label --> hugo tags
+> issue + comments --> hugo article(post)
