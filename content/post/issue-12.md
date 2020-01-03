@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:41:46+08:00
 
-> update_date: 2020-01-03T01:37:40+08:00
+> update_date: 2020-01-03T01:39:21+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/12
 
@@ -39,3 +39,5 @@ comments --> hugo post comments
 ```
 
 除`1`需要人肉参与外，剩余流程都可以自动进行，也即所谓的`CI`
+
+> _整个流程详解及代码待续_
