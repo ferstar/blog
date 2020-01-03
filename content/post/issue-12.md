@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:41:46+08:00
 
-> update_date: 2020-01-03T01:26:19+08:00
+> update_date: 2020-01-03T01:27:19+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/12
 
@@ -28,5 +28,7 @@ comments: false
 
 其实就是issue+comments到hugo post的一个转换过程，对应关系如下：
 
-> issue label --> hugo tags
-> issue + comments --> hugo article(post)
+```
+issue label --> hugo tags
+issue + comments --> hugo article(post)
+```
