@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:41:46+08:00
 
-> update_date: 2020-01-04T04:55:09+08:00
+> update_date: 2020-01-04T04:57:02+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/12
 
@@ -42,4 +42,4 @@ comments --> hugo post comments
 
 > _整个流程详解及代码待续_
 
-测试翻车了
+测试翻车了，删除comment没反应
