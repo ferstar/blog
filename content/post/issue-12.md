@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:41:46+08:00
 
-> update_date: 2020-01-04T06:20:50+08:00
+> update_date: 2020-01-04T06:21:10+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/12
 
@@ -47,7 +47,6 @@ comments --> hugo post comments
 ```json
 Headers
 
-Request URL: https://api.ferstar.org/postreceive
 Request method: POST
 content-type: application/json
 Expect: 
