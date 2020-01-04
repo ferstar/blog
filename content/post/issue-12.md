@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:41:46+08:00
 
-> update_date: 2020-01-04T04:57:02+08:00
+> update_date: 2020-01-04T06:20:50+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/12
 
@@ -42,4 +42,22 @@ comments --> hugo post comments
 
 > _整个流程详解及代码待续_
 
-测试翻车了，删除comment没反应
+测试翻车了，删除comment没反应，原来是策略失误，github webhook 推送日志如下
+
+```json
+Headers
+
+Request URL: https://api.ferstar.org/postreceive
+Request method: POST
+content-type: application/json
+Expect: 
+User-Agent: GitHub-Hookshot/a6f2714
+X-GitHub-Delivery: 3f5b10d2-2eae-11ea-9f6f-23c8940b9838
+X-GitHub-Event: issue_comment
+
+Payload
+
+{
+  "action": "deleted",
+...
+```
