@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:41:46+08:00
 
-> update_date: 2020-01-04T06:21:10+08:00
+> update_date: 2020-01-06T01:47:16+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/12
 
@@ -41,22 +41,3 @@ comments --> hugo post comments
 除`1`需要人肉参与外，剩余流程都可以自动进行，也即所谓的`CI`（实现这样一个流程想想其实还是有一定的技术门槛的）
 
 > _整个流程详解及代码待续_
-
-测试翻车了，删除comment没反应，原来是策略失误，github webhook 推送日志如下
-
-```json
-Headers
-
-Request method: POST
-content-type: application/json
-Expect: 
-User-Agent: GitHub-Hookshot/a6f2714
-X-GitHub-Delivery: 3f5b10d2-2eae-11ea-9f6f-23c8940b9838
-X-GitHub-Event: issue_comment
-
-Payload
-
-{
-  "action": "deleted",
-...
-```
