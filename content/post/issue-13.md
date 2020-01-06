@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T12:14:45+08:00
 
-> update_date: 2020-01-04T05:12:35+08:00
+> update_date: 2020-01-06T01:51:08+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/13
 
@@ -30,3 +30,5 @@ comments: false
 3. 多晒太阳
 4. 自购黄疸灯比把宝宝放医院灯箱好
 5. 褪黄时间个体差异巨大，没有特别严格的标准，只要宝宝精神正常，能吃能拉，管球多久褪，我宝3个月才褪掉
+
+##### 6. 辅食6个月后就可以添，母乳会越来越不顶饱的
