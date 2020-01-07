@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-02T12:11:54+08:00
+> update_date: 2020-01-07T02:11:58+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -28,4 +28,8 @@ sudo vi /etc/default/apport
 
 > 一句话，机械用`ext4`，固态用`btrfs` 或`xfs` 
 
-- [ ] 优化参数
+fstab配置
+
+```shell
+UUID=159417ca-b0d4-40a0-aa51-6829ac259a2f /               ext4    defaults,noatime,commit=120,barrier=0,errors=remount-ro 0       0
+```
