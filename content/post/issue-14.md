@@ -1,5 +1,5 @@
 ---
-title: "Tornado断点续传"
+title: "Tornado专题"
 date: "2020-01-03T13:10:40+08:00"
 tags: ['Python', 'TODO']
 comments: false
@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-03T13:10:40+08:00
 
-> update_date: 2020-01-07T10:10:50+08:00
+> update_date: 2020-01-07T10:11:23+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/14
 
