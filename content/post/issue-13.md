@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T12:14:45+08:00
 
-> update_date: 2020-01-07T03:14:46+08:00
+> update_date: 2020-01-07T03:16:32+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/13
 
@@ -16,6 +16,12 @@ comments: false
 ##### 1. 爬爬垫是有必要的
 
 ##### 2. 磨牙棒是个好东西
+
+> 吮吸手指的次数明显变少
+
+> 口水泗流的情况也大为缓解
+
+> 安慰作用明显
 
 ##### 3. 尽可能的多晒太阳
 
