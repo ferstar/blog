@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-07T02:11:58+08:00
+> update_date: 2020-01-07T02:33:09+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -33,3 +33,9 @@ fstab配置
 ```shell
 UUID=159417ca-b0d4-40a0-aa51-6829ac259a2f /               ext4    defaults,noatime,commit=120,barrier=0,errors=remount-ro 0       0
 ```
+
+##### 3. TLP - Linux电源优化利器
+
+> via: https://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html
+
+> 有人说跟`powertop`搭配可能效果更好，然而我不觉得，这两货一起用卡的要死，所以只留一个就好
