@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T12:14:45+08:00
 
-> update_date: 2020-01-06T01:51:08+08:00
+> update_date: 2020-01-07T03:14:46+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/13
 
@@ -18,6 +18,8 @@ comments: false
 ##### 2. 磨牙棒是个好东西
 
 ##### 3. 尽可能的多晒太阳
+
+> 去黄疸有奇效
 
 ##### 4. 生出来之前，几乎所有囤货都是大概率失败的
 
