@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-08T04:07:31+08:00
+> update_date: 2020-01-08T04:07:50+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -34,7 +34,7 @@ fstab配置
 UUID=159417ca-b0d4-40a0-aa51-6829ac259a2f /               ext4    defaults,noatime,commit=120,barrier=0,errors=remount-ro 0       0
 ```
 
-##### 3. TLP - Linux电源优化利器
+## 3. TLP - Linux电源优化利器
 
 > via: https://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html
 
