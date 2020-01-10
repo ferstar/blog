@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-10T01:02:42+08:00
+> update_date: 2020-01-10T02:15:06+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -24,17 +24,111 @@ sudo vi /etc/default/apport
 
 ![DeepinScreenshot_select-area_20200102193713](https://user-images.githubusercontent.com/2854276/71665297-49d18180-2d97-11ea-81d5-ce927479c346.png)
 
-## 2.关于文件系统的选择
+## 2.关于根分区文件系统的选择
 
-> ~~~一句话，机械用`ext4`，固态用`btrfs` 或`xfs` ~~~
+> `ext4`老当益壮，选他没错
 
-> 貌似f2fs是个不错的选择，感觉还是看个人倾向吧，速度玄学
+拿了个64GB的U盘（因为我想搞个Ubuntu2GO的东东）跑了下分：
 
-fstab配置
+跑分代码如下，哪抄的忘了，就是随机建大量小文件，然后再写&读，看耗时多少
+
+```python
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+filecount = 30000
+filesize = 1024
+
+
+import random, time
+from os import system
+flush = "sudo su -c 'sync ; echo 3 > /proc/sys/vm/drop_caches'"
+
+randfile = open("/dev/urandom", "r")
+
+print "\ncreate test folder:"
+starttime = time.time()
+system("rm -rf test && mkdir test")
+print time.time() - starttime
+system(flush)
+
+print "\ncreate files:"
+starttime = time.time()
+for i in xrange(filecount):
+    rand = randfile.read(int(filesize * 0.5 + filesize * random.random()))
+    outfile = open("test/" + unicode(i), "w")
+    outfile.write(rand)
+print time.time() - starttime
+system(flush)
+
+print "\nrewrite files:"
+starttime = time.time()
+for i in xrange(int(filecount / 10)):
+    rand = randfile.read(int(filesize * 0.5 + filesize * random.random()))
+    outfile = open("test/" + unicode(int(random.random() * filecount)), "w")
+    outfile.write(rand)
+print time.time() - starttime
+system(flush)
+
+print "\nread linear:"
+starttime = time.time()
+for i in xrange(int(filecount / 10)):
+    infile = open("test/" + unicode(i), "r")
+    outfile.write(infile.read());
+print time.time() - starttime
+system(flush)
+
+print "\nread random:"
+starttime = time.time()
+outfile = open("/dev/null", "w")
+for i in xrange(int(filecount / 10)):
+    infile = open("test/" + unicode(int(random.random() * filecount)), "r")
+    outfile.write(infile.read());
+print time.time() - starttime
+system(flush)
+
+print "\ndelete all files:"
+starttime = time.time()
+system("rm -rf test")
+print time.time() - starttime
+system(flush)
+```
+
+U盘被我格成这样：
 
 ```shell
-UUID=159417ca-b0d4-40a0-aa51-6829ac259a2f /               ext4    defaults,noatime,commit=120,barrier=0,errors=remount-ro 0       0
+# sudo gdisk -l /dev/sda
+Disk /dev/sda: 124822487 sectors, 59.5 GiB
+Model: ROS2GO          
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): B3D0C73A-433D-44C1-8F80-FA90167AAADC
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 124822453
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 1942420 sectors (948.4 MiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048        20482047   9.8 GiB     8300  ext4
+   2        20482048        40962047   9.8 GiB     8300  btrfs
+   3        40962048        61442047   9.8 GiB     8300  f2fs
+   4        61442048        81922047   9.8 GiB     8300  xfs
+   5        81922048       102402047   9.8 GiB     8300  reiserfs
 ```
+
+跑分结果：
+
+|          | create files | rewrite files | read linear | read random | delete all files |
+| -------- | ------------ | ------------- | ----------- | ----------- | ---------------- |
+| ext4     | 0.593394041  | 3.646025896   | 0.960836887 | 2.286855936 | 0.646140814      |
+| btrfs    | 5.707916975  | 2.0158391     | 0.446825027 | 2.039553881 | 2.933115005      |
+| f2fs     | 0.737277031  | 2.216201067   | 0.841583014 | 2.216186047 | 17.70262408      |
+| xfs      | 0.781413078  | 5.908052206   | 1.212768078 | 3.198234081 | 4.744434118      |
+| reiserfs | 1.735713959  | 1.866363049   | 0.23438096  | 1.559979916 | 2.575639963      |
+
+![bench](https://user-images.githubusercontent.com/2854276/72119789-92d59700-3390-11ea-80c3-b3af0b1f83f7.png)
+
+对于系统性能影响最大的应该是随机读写，这么看来还是`reiserfs`牛逼，几乎全面领先，可惜这货作者杀老婆，进局子了，但并不妨碍我用脚投票，选`reiserfs`做根分区文件系统。剩下的，`ext4`还是老当益壮，`btrfs`也可以，`xfs`则并没有如网传那样犀利，`f2fs`删除文件居然那么慢。
 
 ## 3. TLP - Linux电源优化利器
 
