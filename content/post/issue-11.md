@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-08T04:08:09+08:00
+> update_date: 2020-01-10T01:00:32+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -26,7 +26,9 @@ sudo vi /etc/default/apport
 
 ## 2.关于文件系统的选择
 
-> 一句话，机械用`ext4`，固态用`btrfs` 或`xfs` 
+> ~~一句话，机械用`ext4`，固态用`btrfs` 或`xfs` ~~
+
+> 貌似f2fs是个不错的选择，感觉还是看个人倾向吧，速度玄学
 
 fstab配置
 
