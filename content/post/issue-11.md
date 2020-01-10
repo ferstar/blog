@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-10T02:15:06+08:00
+> update_date: 2020-01-10T02:20:03+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -115,6 +115,25 @@ Number  Start (sector)    End (sector)  Size       Code  Name
    4        61442048        81922047   9.8 GiB     8300  xfs
    5        81922048       102402047   9.8 GiB     8300  reiserfs
 ```
+
+各分区挂载参数均是Ubuntu系统默认参数
+
+```shell
+f2fs (rw,nosuid,nodev,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=reuse,fsync_mode=posix,uhelper=udisks2)
+btrfs (rw,nosuid,nodev,relatime,space_cache,subvolid=5,subvol=/,uhelper=udisks2)
+ext4 (rw,nosuid,nodev,relatime,uhelper=udisks2)
+xfs (rw,nosuid,nodev,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota,uhelper=udisks2)
+reiserfs (rw,nosuid,nodev,relatime,uhelper=udisks2)
+```
+
+测试机系统：
+
+![DeepinScreenshot_select-area_20200110101815](https://user-images.githubusercontent.com/2854276/72120333-9f5aef00-3392-11ea-9e2e-131115439826.png)
+
+内核版本：
+
+`Linux xiaoxinpro 5.3.0-24-generic #26-Ubuntu SMP Thu Nov 14 01:33:18 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+`
 
 跑分结果：
 
