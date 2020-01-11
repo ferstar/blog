@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-10T02:20:03+08:00
+> update_date: 2020-01-11T23:58:17+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -147,7 +147,7 @@ reiserfs (rw,nosuid,nodev,relatime,uhelper=udisks2)
 
 ![bench](https://user-images.githubusercontent.com/2854276/72119789-92d59700-3390-11ea-80c3-b3af0b1f83f7.png)
 
-对于系统性能影响最大的应该是随机读写，这么看来还是`reiserfs`牛逼，几乎全面领先，可惜这货作者杀老婆，进局子了，但并不妨碍我用脚投票，选`reiserfs`做根分区文件系统。剩下的，`ext4`还是老当益壮，`btrfs`也可以，`xfs`则并没有如网传那样犀利，`f2fs`删除文件居然那么慢。
+对于系统性能影响最大的应该是随机读写，这么看来还是`reiserfs`牛逼，几乎全面领先，可惜这货作者杀老婆，进局子了，但并不妨碍我用脚投票，~~选`reiserfs`做根分区文件系统~~，然并卵，Ubuntu用这货做根分区丢资料，放弃。剩下的，`ext4`还是老当益壮，`btrfs`也可以，`xfs`则并没有如网传那样犀利，`f2fs`删除文件居然那么慢。
 
 ## 3. TLP - Linux电源优化利器
 
