@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T12:14:45+08:00
 
-> update_date: 2020-01-07T03:16:32+08:00
+> update_date: 2020-01-14T15:29:50+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/13
 
@@ -22,6 +22,9 @@ comments: false
 > 口水泗流的情况也大为缓解
 
 > 安慰作用明显
+
+我买的是这一款，不会糊的满脸都是，宝宝很喜欢。
+![photo_2020-01-14_23-29-04](https://user-images.githubusercontent.com/2854276/72357324-bcdae080-3725-11ea-931b-a97f597064dd.jpg)
 
 ##### 3. 尽可能的多晒太阳
 
