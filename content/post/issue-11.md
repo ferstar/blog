@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-11T23:58:17+08:00
+> update_date: 2020-01-14T15:22:24+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -263,3 +263,9 @@ vm.swappiness=10
 ```
 
 To test and more on why this may work, take a look at [this article](http://rudd-o.com/en/linux-and-free-software/tales-from-responsivenessland-why-linux-feels-slow-and-how-to-fix-that).
+
+## 5. 常用软件
+
+- Foxit Reader
+
+> 安装方法见：https://websiteforstudents.com/how-to-install-foxit-reader-on-ubuntu-16-04-17-10-18-04-desktop/
