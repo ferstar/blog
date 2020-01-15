@@ -6,9 +6,10 @@ comments: false
 ---
 
 > 这服务可能是要收费了, 最近不停的修改API, 蛋疼, 还好改一下还能用
+> 后续更新见 [gist](https://gist.github.com/ferstar/e3a63bf9ea3be3229c591a185801747c)
 
 ```python
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 import http.client
 import json
 import mimetypes
@@ -18,31 +19,28 @@ from urllib.parse import quote
 from uuid import uuid4
 
 
-def read_in_chunks(file_object, chunk_size=1024):
+def read_in_chunks(file_path, chunk_size=1024):
     """
     Lazy function (generator) to read a file piece by piece.
     Default chunk size: 1k.
     """
-    while True:
-        data = file_object.read(chunk_size)
-        if not data:
-            break
-        yield data
-
+    with open(file_path, "rb") as file_obj:
+        for chunk in iter(lambda: file_obj.read(chunk_size), b""):
+            yield chunk
 
 def body_iter(boundary, fields):
     for key, value in fields.items():
         yield '--{}\r\n'.format(boundary).encode('ascii')
         if key == 'file':
-            yield 'Content-Disposition: form-data; name={}; filename={}\r\n'.format(key, quote(os.path.basename(value))).encode('ascii')
+            yield 'Content-Disposition: form-data; name={}; filename={}\r\n'.format(key, quote(
+                os.path.basename(value))).encode('ascii')
             file_type = mimetypes.guess_type(value)[0] or 'application/octet-stream'
             yield 'Content-Type: {}\r\n'.format(file_type).encode('ascii')
             yield '\r\n'.encode('ascii')
             if not os.path.isfile(value):
                 sys.exit('File not found: {}'.format(value))
-            with open(value, 'rb') as file_obj:
-                for chunk in read_in_chunks(file_obj):
-                    yield chunk
+            for chunk in read_in_chunks(value):
+                yield chunk
             yield '\r\n'.encode('ascii')
         else:
             yield 'Content-Disposition: form-data; name={}\r\n'.format(key).encode('ascii')
