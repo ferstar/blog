@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-14T15:22:24+08:00
+> update_date: 2020-01-16T02:03:17+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -265,6 +265,36 @@ vm.swappiness=10
 To test and more on why this may work, take a look at [this article](http://rudd-o.com/en/linux-and-free-software/tales-from-responsivenessland-why-linux-feels-slow-and-how-to-fix-that).
 
 ## 5. 常用软件
+
+- Google Chrome/Chromium
+
+支持的一些启动参数如下所示，我一般用的是`--disk-cache-dir=/tmp/chrome_cache --process-per-site`，即缓存扔到`/tmp`分区，每个站点使用一个进程
+
+对于Chromium，可以在`/etc/chromium-browser/default`添加自己想要的配置参数，而对于Google Chrome，貌似只能从这里`/usr/share/applications/chromium-browser.desktop`加
+
+```shell
+--user-data-dir="[PATH]"  自定义用户数据目录
+--start-maximized                启动就最大化
+--no-sandbox                         取消沙盒模式
+--single-process                    单进程运行
+--process-per-tab                 每个标签使用单独进程
+--process-per-site                每个站点使用单独进程
+--in-process-plugins            插件不启用单独进程
+--disable-popup-blocking 禁用弹出拦截
+--disable-javascript             禁用JavaScript
+--disable-java                         禁用Java
+--disable-plugins                   禁用插件
+--disable-images                   禁用图像
+-incognito                               启动进入隐身模式
+--enable-udd-profiles        启用账户切换菜单
+--proxy-pac-url                   使用pac代理 [via 1/2]
+--lang=zh-CN                        设置语言为简体中文
+--disk-cache-dir="[PATH]" 自定义缓存目录
+--disk-cache-size=              自定义缓存最大值（单位byte）
+--media-cache-size=         自定义多媒体缓存最大值（单位byte）
+--bookmark-menu              在工具栏增加一个书签按钮
+--enable-sync                       启用书签同步
+```
 
 - Foxit Reader
 
