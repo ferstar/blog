@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-15T08:24:42+08:00
 
-> update_date: 2020-01-15T08:25:00+08:00
+> update_date: 2020-01-16T07:39:00+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/15
 
@@ -18,4 +18,29 @@ https://intellij-support.jetbrains.com/hc/en-us/community/posts/360006740379/com
 > Hello everyone!
 > 
 > Please use the following VM option -Dauto.disable.input.methods=false (https://intellij-support.jetbrains.com/hc/en-us/articles/206544869-Configuring-JVM-options-and-platform-properties) to resolve the problem.
+
+我的`pycharm64.vmoptions`文件内容如下：
+
+```shell
+-Xms1024m
+-Xmx4096m
+-XX:ReservedCodeCacheSize=1024m
+-XX:+UseCompressedOops
+-XX:+UseConcMarkSweepGC
+-XX:SoftRefLRUPolicyMSPerMB=50
+-ea
+-XX:CICompilerCount=2
+-Dsun.io.useCanonPrefixCache=false
+-Djava.net.preferIPv4Stack=true
+-Djdk.http.auth.tunneling.disabledSchemes=""
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:-OmitStackTraceInFastThrow
+-Djdk.attach.allowAttachSelf
+-Dkotlinx.coroutines.debug=off
+-Djdk.module.illegalAccess.silent=true
+-Dawt.useSystemAAFontSettings=lcd
+-Dsun.java2d.renderer=sun.java2d.marlin.MarlinRenderingEngine
+-Dsun.tools.attach.tmp.only=true
+-Dauto.disable.input.methods=false
+```
 
