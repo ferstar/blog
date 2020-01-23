@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-23T08:09:06+08:00
 
-> update_date: 2020-01-23T08:48:38+08:00
+> update_date: 2020-01-23T10:13:34+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/16
 
@@ -194,3 +194,19 @@ UUID=361c83ca-fa86-417a-96ce-29569c9bc98e /home   btrfs ssd,noatime,subvol=/   0
 
 注意这是压缩已有文件。如果要真正的“实时透明压缩”请在挂载参数上加`compress-force=lzo`，这样存进去的文件都会被压缩了。
 
+玩一玩子卷`subvolume`
+
+新建只读子卷，当做备份
+
+`sudo btrfs subvolume snapshot -r /@ /@backup`
+
+若干天后可能胡折腾系统挂了，需要还原
+
+```shell
+1. 删除原来启动的子卷
+sudo btrfs subvolume delete /@
+2. 从原来备份的子卷再建一个同名子卷
+sudo btrfs subvolume snapshot /@backup /@
+```
+
+所有更改就又回来了
