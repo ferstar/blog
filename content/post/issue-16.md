@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-23T08:09:06+08:00
 
-> update_date: 2020-01-23T08:09:06+08:00
+> update_date: 2020-01-23T08:17:25+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/16
 
@@ -194,3 +194,4 @@ UUID=361c83ca-fa86-417a-96ce-29569c9bc98e /home   btrfs ssd,noatime,subvol=/   0
 
 注意这是压缩已有文件。如果要真正的“实时透明压缩”请在挂载参数上加`compress-force=lzo`，这样存进去的文件都会被压缩了。
 
+test
