@@ -7,15 +7,141 @@ comments: false
 
 > created_date: 2020-01-03T13:10:40+08:00
 
-> update_date: 2020-01-07T11:20:48+08:00
+> update_date: 2020-02-03T11:30:32+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/14
 
-##### 1. 断点续传
+##### 1. 断点续传/分片下载
 
-> 待填坑
+> 抄这里的实现，主要应用场景就是某个接口要提供导出某某静态文件啊什么的，直接把文件绝对路径传给`export`方法即可。
 
-https://github.com/kzahel/tornado_gen/blob/master/tornado/web.py#L1509
+> https://github.com/kzahel/tornado_gen/blob/master/tornado/web.py#L1414
+
+```python
+# 你肯定得有个类似`BaseHandler`的类
+class BaseHandler(tornado.web.RequestHandler):
+    def __init__(self, *args, **kwargs):
+        """此处省略若干自定义初始化过程"""
+        pass
+    def export(self, abs_path, file_name=None, content_type=None):
+        def set_content_length(this, path, req_range):
+            size = os.path.getsize(path)
+            if req_range:
+                start, end = req_range
+                if (start is not None and start >= size) or end == 0:
+                    # As per RFC 2616 14.35.1, a range is not satisfiable only: if
+                    # the first requested byte is equal to or greater than the
+                    # content, or when a suffix with length 0 is specified
+                    this.set_status(416)  # Range Not Satisfiable
+                    this.set_header("Content-Type", "text/plain")
+                    this.set_header("Content-Range", "bytes */%s" % (size,))
+                    return start, end
+                if start is not None and start < 0:
+                    start += size
+                if end is not None and end > size:
+                    # Clients sometimes blindly use a large range to limit their
+                    # download size; cap the endpoint at the actual file size.
+                    end = size
+                # Note: only return HTTP 206 if less than the entire range has been
+                # requested. Not only is this semantically correct, but Chrome
+                # refuses to play audio if it gets an HTTP 206 in response to
+                # ``Range: bytes=0-``.
+                if size != (end or size) - (start or 0):
+                    this.set_status(206)  # Partial Content
+                    # pylint: disable=protected-access
+                    this.set_header("Content-Range", httputil._get_content_range(start, end, size))
+            else:
+                start = end = None
+
+            if start is not None and end is not None:
+                length = end - start
+            elif end is not None:
+                length = end
+            elif start is not None:
+                length = size - start
+            else:
+                length = size
+            this.set_header("Content-Length", length)
+            return start, end
+
+        def get_content_type(path):
+            mime_type, encoding = mimetypes.guess_type(path)
+            # per RFC 6713, use the appropriate type for a gzip compressed file
+            if encoding == "gzip":
+                return "application/gzip"
+            # As of 2015-07-21 there is no bzip2 encoding defined at
+            # http://www.iana.org/assignments/media-types/media-types.xhtml
+            # So for that (and any other encoding), use octet-stream.
+            elif encoding is not None:
+                return "application/octet-stream"
+            elif mime_type is not None:
+                return mime_type
+            # if mime_type not detected, use application/octet-stream
+            else:
+                return "application/octet-stream"
+
+        def get_content(abspath, start=None, end=None):
+            with open(abspath, "rb") as file:
+                if start is not None:
+                    file.seek(start)
+                if end is not None:
+                    remaining = end - (start or 0)
+                else:
+                    remaining = None
+                while True:
+                    chunk_size = 64 * 1024
+                    if remaining is not None and remaining < chunk_size:
+                        chunk_size = remaining
+                    chunk = file.read(chunk_size)
+                    if chunk:
+                        if remaining is not None:
+                            remaining -= len(chunk)
+                        yield chunk
+                    else:
+                        if remaining is not None:
+                            assert remaining == 0
+                        return
+
+        if isinstance(abs_path, bytes):
+            self.set_header('Content-Type', f'application/{content_type}')
+            if file_name:
+                file_name = urllib.parse.quote(file_name)
+                self.set_header('Content-Disposition', f'attachment; filename={file_name}')
+            self.finish(abs_path)
+
+        if not os.path.exists(abs_path):
+            raise CustomError(_("File not found"))
+        if not file_name:
+            file_name = os.path.basename(abs_path)
+        file_name = urllib.parse.quote(file_name)
+        self.set_header('Content-Disposition', f'attachment; filename={file_name}')
+        if not content_type:
+            content_type = get_content_type(abs_path)
+        self.set_header("Content-Type", content_type)
+
+        self.set_header("Accept-Ranges", "bytes")
+        self.set_header("Last-Modified", datetime.datetime.utcfromtimestamp(os.path.getmtime(abs_path)))
+
+        request_range = None
+        range_header = self.request.headers.get("Range")
+        if range_header:
+            # As per RFC 2616 14.16, if an invalid Range header is specified,
+            # the request will be treated as if the header didn't exist.
+            request_range = httputil._parse_request_range(range_header)  # pylint: disable=protected-access
+        start, end = set_content_length(self, abs_path, request_range)
+
+        if self.request.method == 'GET':
+            content = get_content(abs_path, start, end)
+            if isinstance(content, bytes):
+                content = [content]
+            for chunk in content:
+                try:
+                    self.write(chunk)
+                except iostream.StreamClosedError:
+                    return
+        else:
+            assert self.request.method == "HEAD"
+```
 
 ##### 2. CSRF
 
