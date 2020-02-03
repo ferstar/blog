@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-03T13:10:40+08:00
 
-> update_date: 2020-02-03T11:30:32+08:00
+> update_date: 2020-02-03T11:33:07+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/14
 
@@ -160,7 +160,7 @@ class BaseHandler(tornado.web.RequestHandler):
         pass
 
     def check_xsrf_cookie(self):
-        if not get_config('xsrf开关', False):
+        if self.request.method in ("GET", "HEAD", "OPTIONS") or not get_config('xsrf开关', False):
             return None
         for route_ext in get_config('不检查的路由白名单', []):
             if re.search(rf'不检查的路由', self.request.path):
