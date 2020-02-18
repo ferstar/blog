@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-02-18T02:14:03+08:00
 
-> update_date: 2020-02-18T02:14:20+08:00
+> update_date: 2020-02-18T02:21:06+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/17
 
@@ -60,4 +60,6 @@ sudo aptitude install libssl1.0-dev
 重新打开为知笔记即可正常登录
 
 > 预编译版本见：https://github.com/ferstar/WizQTClient/releases/tag/v2.8.2
+
+![image](https://user-images.githubusercontent.com/2854276/74698328-5c652480-5238-11ea-9040-b8ee4de7ee3d.png)
 
