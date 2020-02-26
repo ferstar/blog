@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-01-16T02:03:17+08:00
+> update_date: 2020-02-26T11:30:24+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -299,3 +299,9 @@ To test and more on why this may work, take a look at [this article](http://rudd
 - Foxit Reader
 
 > 安装方法见：https://websiteforstudents.com/how-to-install-foxit-reader-on-ubuntu-16-04-17-10-18-04-desktop/
+
+- Barrier 在Linux和其他设备之间共享键盘和鼠标
+
+> 我是从snap安装的，挺方便，务必带好梯子
+
+> https://snapcraft.io/barrier
