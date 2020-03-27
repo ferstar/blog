@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-15T08:24:42+08:00
 
-> update_date: 2020-01-16T07:39:00+08:00
+> update_date: 2020-03-27T01:35:05+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/15
 
@@ -17,7 +17,7 @@ https://intellij-support.jetbrains.com/hc/en-us/community/posts/360006740379/com
 
 > Hello everyone!
 > 
-> Please use the following VM option -Dauto.disable.input.methods=false (https://intellij-support.jetbrains.com/hc/en-us/articles/206544869-Configuring-JVM-options-and-platform-properties) to resolve the problem.
+> Please use the following VM option -Dauto.disable.input.methods=false to resolve the problem.
 
 我的`pycharm64.vmoptions`文件内容如下：
 
