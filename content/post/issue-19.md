@@ -1,13 +1,13 @@
 ---
 title: "TP x220首装Manjaro Xfce4配置"
 date: "2020-04-22T06:45:22+08:00"
-tags: ['Default']
+tags: ['Linux']
 comments: false
 ---
 
 > created_date: 2020-04-22T06:45:22+08:00
 
-> update_date: 2020-04-22T07:04:29+08:00
+> update_date: 2020-04-22T07:04:49+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/19
 
