@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-05-07T08:13:17+08:00
+> update_date: 2020-05-07T08:17:10+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -322,3 +322,13 @@ To test and more on why this may work, take a look at [this article](http://rudd
 > 我是从snap安装的，挺方便，务必带好梯子
 
 > https://snapcraft.io/barrier
+
+- FlameShot - 火焰截图
+
+- DeepinTerminal - 深度终端
+
+- CopyQ - 剪贴板增强
+
+- Qv2ray - 梯子客户端
+
+- Typora - MarkDown编辑器
