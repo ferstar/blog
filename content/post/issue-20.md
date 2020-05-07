@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-05-07T08:29:38+08:00
 
-> update_date: 2020-05-07T10:28:01+08:00
+> update_date: 2020-05-07T10:28:12+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/20
 
@@ -20,5 +20,5 @@ killall plasmashell; kstart5 plasmashell; exit
 后来发现把独显屏蔽似乎就没这个问题了, 看来还是NV显卡驱动的锅
 ![image](https://user-images.githubusercontent.com/2854276/81272274-db236e00-907f-11ea-99bc-f5219cbd83b1.png)
 
-另外如果发现菜单图表雪花, 也可以通过kill大法搞定, 如图
+另外如果发现菜单图标雪花, 也可以通过kill大法搞定, 如图
 ![image](https://user-images.githubusercontent.com/2854276/81284262-78869e00-9090-11ea-91a7-c13f3dc179e2.png)
