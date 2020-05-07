@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-23T08:09:06+08:00
 
-> update_date: 2020-01-24T04:32:36+08:00
+> update_date: 2020-05-07T08:01:50+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/16
 
@@ -210,3 +210,5 @@ sudo btrfs subvolume snapshot /@backup /@
 ```
 
 所有更改就又回来了
+
+BTRFS大法好!
