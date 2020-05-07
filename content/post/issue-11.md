@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-02-26T11:30:24+08:00
+> update_date: 2020-05-07T08:05:11+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -27,6 +27,8 @@ sudo vi /etc/default/apport
 ## 2.关于根分区文件系统的选择
 
 > `ext4`老当益壮，选他没错
+
+> `btrfs`真香, subvolume很赞!
 
 拿了个64GB的U盘（因为我想搞个Ubuntu2GO的东东）跑了下分：
 
