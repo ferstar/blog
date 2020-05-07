@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-05-07T08:05:11+08:00
+> update_date: 2020-05-07T08:13:17+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -156,6 +156,21 @@ reiserfs (rw,nosuid,nodev,relatime,uhelper=udisks2)
 > via: https://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html
 
 > 有人说跟`powertop`搭配可能效果更好，然而我不觉得，这两货一起用卡的要死，所以只留一个就好
+
+> btrfs 文件系统的话, 需要改个东西
+
+```shell
+# AHCI link power management (ALPM) for disk devices:
+#   min_power, med_power_with_dipm(*), medium_power, max_performance.
+# (*) Kernel >= 4.15 required, then recommended.
+# Multiple values separated with spaces are tried sequentially until success.
+# Default:
+#  - "med_power_with_dipm max_performance" (AC)
+#  - "med_power_with_dipm min_power" (BAT)
+
+SATA_LINKPWR_ON_AC="med_power_with_dipm max_performance"
+SATA_LINKPWR_ON_BAT="med_power_with_dipm max_performance"
+```
 
 ## 4. 要不要`swap`分区
 
