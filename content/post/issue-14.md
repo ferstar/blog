@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-03T13:10:40+08:00
 
-> update_date: 2020-02-03T11:33:07+08:00
+> update_date: 2020-05-26T23:21:16+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/14
 
@@ -200,3 +200,42 @@ class Application(tornado.web.Application):
 ```
 
 接下来告诉前端同学，任何`POST`，`DELETE`，`PUT`请求都带上`_xsrf`参数或者`X-Xsrftoken`请求头或者`X-Csrftoken`请求头，不要问为什么，问就甩[源码](https://github.com/tornadoweb/tornado/blob/master/tornado/web.py#L1513)
+
+3. 自适应修正可能错误的 Content-Type POST 请求头
+
+> 后端N久没动的一个接口被产品吐槽出bug了，debug发现原来是前端的锅，原本这个接口要求  Content-Type  得是 multipart/form-data，然而前端某次重构后，这个 Content-Type 变成了 application/json，于是在没有经过充分回归测试的情况下，bug出现了，接口没办法正常拿到正确的参数。
+
+定位到问题后，解决就很简单了，要么前端抖抖小手把这个header写对，要么后端在接收 POST 请求之前把 header 改对。介于我司小厂，测试不足，所以我还是双保险，后端也对这种情况做一个兼容。
+
+```python
+class BaseHandler(tornado.web.RequestHandler, SessionMixin):
+    def __init__(self, application, request, **kwargs):
+        super(BaseHandler, self).__init__(application, request, **kwargs)
+        # 一系列init方法
+
+    def prepare(self):
+        """
+        Called at the beginning of a request before  `get`/`post`/etc.
+        """
+        if self.request.method in ('POST', 'PUT'):
+            self.adapt_req_headers()
+
+    def adapt_req_headers(self):
+        """根据request body自适应修正Content-Type
+            https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
+        """
+
+        def parse_body():
+            self.request._parse_body()  # pylint: disable=protected-access
+            logging.warning('Content-Type does not match the request body, will correct it')
+
+        if self.request.body:
+            if b'Content-Disposition: form-data;' in self.request.body:
+                boundary = self.request.body.decode().split('\r\n')[0][2:] or 'boundary'
+                self.request.headers.update({'Content-Type': f'multipart/form-data;boundary="{boundary}"'})
+                parse_body()
+            elif all(len(i.partition('=')) == 3 for i in self.request.body.decode().split('&')):
+                self.request.headers.update({'Content-Type': 'application/x-www-form-urlencoded'})
+                parse_body()
+
+```
