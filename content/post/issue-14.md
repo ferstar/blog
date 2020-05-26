@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-03T13:10:40+08:00
 
-> update_date: 2020-05-26T23:21:16+08:00
+> update_date: 2020-05-26T23:23:00+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/14
 
@@ -201,7 +201,7 @@ class Application(tornado.web.Application):
 
 接下来告诉前端同学，任何`POST`，`DELETE`，`PUT`请求都带上`_xsrf`参数或者`X-Xsrftoken`请求头或者`X-Csrftoken`请求头，不要问为什么，问就甩[源码](https://github.com/tornadoweb/tornado/blob/master/tornado/web.py#L1513)
 
-3. 自适应修正可能错误的 Content-Type POST 请求头
+##### 3. 自适应修正可能错误的 Content-Type POST 请求头
 
 > 后端N久没动的一个接口被产品吐槽出bug了，debug发现原来是前端的锅，原本这个接口要求  Content-Type  得是 multipart/form-data，然而前端某次重构后，这个 Content-Type 变成了 application/json，于是在没有经过充分回归测试的情况下，bug出现了，接口没办法正常拿到正确的参数。
 
