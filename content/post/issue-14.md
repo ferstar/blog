@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-03T13:10:40+08:00
 
-> update_date: 2020-05-27T06:34:00+08:00
+> update_date: 2020-05-27T08:50:32+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/14
 
@@ -244,7 +244,7 @@ class BaseHandler(tornado.web.RequestHandler, SessionMixin):
                     parse_body()
                 return
             if not self.request.headers.get('Content-Type', '').startswith(www_form_prefix) and all(
-                [i.partition(b'=')[0] != b'' for i in self.request.body.split(b'&') if content_disp not in i]
+                [all(i.partition(b'=')) for i in self.request.body.split(b'&') if content_disp not in i]
                 or (False,)
             ):
                 self.request.headers.update({'Content-Type': www_form_prefix})
