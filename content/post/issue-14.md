@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-03T13:10:40+08:00
 
-> update_date: 2020-05-26T23:23:00+08:00
+> update_date: 2020-05-27T03:48:19+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/14
 
@@ -221,21 +221,33 @@ class BaseHandler(tornado.web.RequestHandler, SessionMixin):
             self.adapt_req_headers()
 
     def adapt_req_headers(self):
-        """根据request body自适应修正Content-Type
-            https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST
-        """
+        """根据request body自适应修正Content-Type"""
+        form_data_prefix = 'multipart/form-data;'
+        content_disp = b'Content-Disposition: form-data;'
+        www_form_prefix = 'application/x-www-form-urlencoded'
 
         def parse_body():
             self.request._parse_body()  # pylint: disable=protected-access
             logging.warning('Content-Type does not match the request body, will correct it')
 
         if self.request.body:
-            if b'Content-Disposition: form-data;' in self.request.body:
-                boundary = self.request.body.decode().split('\r\n')[0][2:] or 'boundary'
-                self.request.headers.update({'Content-Type': f'multipart/form-data;boundary="{boundary}"'})
+            if (
+                not self.request.headers.get('Content-Type', '').startswith(form_data_prefix)
+                and content_disp in self.request.body
+            ):
+                try:
+                    boundary = self.request.body.split(b'\r\n')[0][2:].decode() or 'boundary'
+                except UnicodeDecodeError as exp:
+                    logging.exception(exp)
+                else:
+                    self.request.headers.update({'Content-Type': f'{form_data_prefix} boundary="{boundary}"'})
+                    parse_body()
+                return
+            if not self.request.headers.get('Content-Type', '').startswith(www_form_prefix) and all(
+                [len(i.partition(b'=')) == 3 for i in self.request.body.split(b'&') if content_disp not in i]
+                or (False,)
+            ):
+                self.request.headers.update({'Content-Type': www_form_prefix})
                 parse_body()
-            elif all(len(i.partition('=')) == 3 for i in self.request.body.decode().split('&')):
-                self.request.headers.update({'Content-Type': 'application/x-www-form-urlencoded'})
-                parse_body()
-
+                return
 ```
