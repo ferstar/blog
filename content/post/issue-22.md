@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-07-12T04:50:33+08:00
 
-> update_date: 2020-07-12T04:50:33+08:00
+> update_date: 2020-07-12T04:50:53+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/22
 
@@ -22,7 +22,7 @@ comments: false
 打了这么些驱动：
 ![image](https://user-images.githubusercontent.com/2854276/87239101-b8298780-c43d-11ea-96d4-3f110eaa131f.png)
 
-关于Intel HD3000集显冻屏的问题，需要选择适合的旧版驱动才行，这个可以在http://dosdude1.com/mojave/拿到，我提取了其中的驱动安装工具包
+关于Intel HD3000集显冻屏的问题，需要选择适合的旧版驱动才行，这个可以在http://dosdude1.com/mojave/ 拿到，我提取了其中的驱动安装工具包
 
 ![image](https://user-images.githubusercontent.com/2854276/87239143-30904880-c43e-11ea-85f3-350dc2d398c1.png)
 
