@@ -1,13 +1,13 @@
 ---
 title: "联想小新Pro13 2019 i7笔记本装黑苹果小记"
 date: "2020-07-15T00:16:14+08:00"
-tags: ['TODO', 'macOS']
+tags: ['Idea', 'TODO', 'macOS']
 comments: false
 ---
 
 > created_date: 2020-07-15T00:16:14+08:00
 
-> update_date: 2020-07-15T00:16:14+08:00
+> update_date: 2020-07-29T07:38:55+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/24
 
