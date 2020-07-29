@@ -1,0 +1,20 @@
+baseURL = "https://ferstar.github.io/"
+languageCode = "en-us"
+title = "STAY REAL"
+theme = "slim"
+disableKinds= ["RSS"]
+
+[permalinks]
+  articles = "/:year/:month/:title/"
+
+[params]
+  Subtitle = "May the truth be without barriers"
+  GithubID = "ferstar"
+  # AnalyticsID = "Your Google Analytics tracking code"
+  DisqusShortname = "ferstar"
+  Summary = false # takes true or false
+  Content = false  # takes true or false
+  # if both are set to true, summary is shown.
+  FooterMsg = 'Copyright @ferstar 2020<br />Powered by <a href="http://gohugo.io">Hugo</a>. This theme—Slim—is open sourced on <a href="https://github.com/zhe/hugo-theme-slim">Github</a>.'
+  mainSections = ["post"]
+
