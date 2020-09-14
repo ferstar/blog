@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-03T13:10:40+08:00
 
-> update_date: 2020-09-14T16:32:33+08:00
+> update_date: 2020-09-14T16:38:20+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/14
 
@@ -251,3 +251,36 @@ class BaseHandler(tornado.web.RequestHandler, SessionMixin):
                 parse_body()
                 return
 ```
+
+##### 4. 跨域资源共享(CORS) 
+
+> 跨域资源共享(CORS) 是一种机制，它使用额外的HTTP 头来告诉浏览器 让运行在一个origin (domain) 上的Web应用被准许访问来自不同源服务器上的指定的资源。 当一个资源从与该资源本身所在的服务器不同的域、协议或端口请求一个资源时，资源会发起一个跨域HTTP 请求。
+
+> tornado 正确处理 CORS 请求的代码如下
+
+```python
+    def set_cors_header(self):
+        origin = f'{self.request.headers.get("Origin", "").rstrip("/")}'
+        trust_hosts = [...]
+        if origin not in trust_hosts:
+            logging.warning(f'Untrusted source request detected: {origin}')
+            return None
+        # NOTE: Can't be set "*" because a valid request always sending with cookies
+        # which will be blocked by CORS policy
+        self.set_header("Access-Control-Allow-Origin", origin)
+        # Must be set as "true"(case sensitive) to allow CORS with cookies
+        self.set_header("Access-Control-Allow-Credentials", "true")
+        self.set_header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS")
+        # Must contain all possible request headers from frontend requests
+        self.set_header(
+            "Access-Control-Allow-Headers",
+            "Accept, Accept-Encoding, Accept-Language, Access-Control-Request-Headers, Access-Control-Request-Method, "
+            "Cache-Control, Connection, Content-Type, "
+            "Host, Origin, Pragma, Referer, Sec-Fetch-Mode, User-Agent, X-Csrftoken",
+        )
+```
+
+参考: 
+
+https://fullstackbb.com/http/options-method-and-cors-preflight/
+https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS
