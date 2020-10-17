@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-10-17T10:23:39+08:00
 
-> update_date: 2020-10-17T10:23:39+08:00
+> update_date: 2020-10-17T10:24:55+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/26
 
@@ -19,7 +19,7 @@ comments: false
 
 2. ext4 or f2fs
 
-> 这个当然是 f2fs yes!, 其实从 MIUI10 起官方内核也是支持 f2fs 的, 只不过 ROM 默认还是用的是 ext4, 附一个补丁
+> 这个当然是 f2fs yes(4k随机写性能大概能比 ext4 高 25% 左右) 其实从 MIUI10 起官方内核也是支持 f2fs 的, 只不过 ROM 默认还是用的是 ext4, 附一个补丁
 [Patch-wayne-f2fs-any-rom.zip](https://github.com/ferstar/blog/files/5395404/Patch-wayne-f2fs-any-rom.zip) 其实很简单, 就是修改了系统`/data`及`/cache`的挂载参数, 另外最好再加刷一个 f2fs 优化补丁 
 [f2fs-optimize.zip](https://github.com/ferstar/blog/files/5395405/f2fs-optimize.zip)
 
