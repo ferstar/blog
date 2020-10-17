@@ -1,13 +1,13 @@
 ---
 title: "小米8养老折腾"
 date: "2020-10-17T10:23:39+08:00"
-tags: ['Default']
+tags: ['Android']
 comments: false
 ---
 
 > created_date: 2020-10-17T10:23:39+08:00
 
-> update_date: 2020-10-17T10:24:55+08:00
+> update_date: 2020-10-17T10:26:33+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/26
 
