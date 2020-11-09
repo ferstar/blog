@@ -24,7 +24,7 @@ class MSGCounter:
         return max(self.mention_count, self.p_msg_count)
 
     def __repr__(self):
-        return 'Mentioned msg count: {}\nPrivate channel msg count: {}'.format(self.mention_count, self.p_msg_count)
+        return '@you: {}, private channel: {}'.format(self.mention_count, self.p_msg_count)
 
 
 def http_get(url):
