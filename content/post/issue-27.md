@@ -1,13 +1,13 @@
 ---
 title: "miniconda的一个坑"
 date: "2020-11-28T00:56:32+08:00"
-tags: ['Default']
+tags: ['Linux', 'Python']
 comments: false
 ---
 
 > created_date: 2020-11-28T00:56:32+08:00
 
-> update_date: 2020-11-28T00:56:32+08:00
+> update_date: 2020-11-28T00:57:46+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/27
 
