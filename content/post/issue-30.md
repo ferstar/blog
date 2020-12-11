@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-12-11T22:12:02+08:00
 
-> update_date: 2020-12-11T22:12:16+08:00
+> update_date: 2020-12-11T22:49:07+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/30
 
@@ -46,3 +46,6 @@ for i in $(ls | awk -F . '{print $1}'); do uncompyle6 $i.cpython-36.pyc > ../$i.
 
 > 大概就是损失了午休的时间，于是公众号卖惨求红包，果然收到几个热心粉丝老板的红包打赏，开心。。。
 
+刚看到这里说`ext4magic`恢复效果要比extundelete`好，mark一下
+
+https://gist.github.com/ebautistabar/cca12863e6335d08a019f015f53fac4a
