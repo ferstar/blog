@@ -1,13 +1,13 @@
 ---
 title: "关于鼻炎"
 date: "2020-12-11T20:38:06+08:00"
-tags: ['Life', 'TODO']
+tags: ['Life']
 comments: false
 ---
 
 > created_date: 2020-12-11T20:38:06+08:00
 
-> update_date: 2020-12-11T20:55:41+08:00
+> update_date: 2020-12-11T21:12:01+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/28
 
