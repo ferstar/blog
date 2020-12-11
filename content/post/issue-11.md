@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-12-11T20:29:30+08:00
+> update_date: 2020-12-11T20:29:52+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -333,7 +333,7 @@ To test and more on why this may work, take a look at [this article](http://rudd
 
 - Typora - MarkDown编辑器
 
-## SNAP相关
+## 6. SNAP相关
 
 - ~~挂梯子~~
 
