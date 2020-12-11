@@ -1,13 +1,13 @@
 ---
 title: "对PostgreSQL jsonb部分key进行索引"
 date: "2020-12-11T21:22:57+08:00"
-tags: ['Default']
+tags: ['PostgreSQL']
 comments: false
 ---
 
 > created_date: 2020-12-11T21:22:57+08:00
 
-> update_date: 2020-12-11T21:26:55+08:00
+> update_date: 2020-12-11T21:27:39+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/29
 
