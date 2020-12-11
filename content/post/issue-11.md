@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-05-07T08:17:10+08:00
+> update_date: 2020-12-11T20:22:38+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -332,3 +332,12 @@ To test and more on why this may work, take a look at [this article](http://rudd
 - Qv2ray - 梯子客户端
 
 - Typora - MarkDown编辑器
+
+## 6. 删除旧的snap包
+
+```shell
+LANG=C snap list --all | awk '/disabled/{print $1, $(NF-3)}' |
+    while read snapname revision; do
+        sudo snap remove "$snapname" --revision="$revision"
+    done
+```
