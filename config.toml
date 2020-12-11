@@ -1,4 +1,4 @@
-baseURL = "https://ferstar.github.io/"
+baseURL = "https://blog.ferstar.org"
 languageCode = "en-us"
 title = "STAY REAL"
 theme = "slim"
