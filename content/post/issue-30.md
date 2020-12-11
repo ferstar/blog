@@ -1,13 +1,13 @@
 ---
 title: "记一次公众号后台删库不需跑路的过程"
 date: "2020-12-11T22:12:02+08:00"
-tags: ['Default']
+tags: ['Linux']
 comments: false
 ---
 
 > created_date: 2020-12-11T22:12:02+08:00
 
-> update_date: 2020-12-11T22:12:02+08:00
+> update_date: 2020-12-11T22:12:16+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/30
 
