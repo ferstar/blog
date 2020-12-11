@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-12-11T21:22:57+08:00
 
-> update_date: 2020-12-11T21:27:39+08:00
+> update_date: 2020-12-11T21:31:46+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/29
 
@@ -23,5 +23,16 @@ comments: false
 create extension if not exists pg_trgm;
 create extension if not exists btree_gin;
 create index idx_file_meta on file using gin ((meta ->> 'name'), (meta ->> 'alias') gin_trgm_ops);
+```
+
+ORM查询
+
+```python
+key = 'name'
+value = 'sample'
+cond = File.meta[key].astext.like(f'%{value.replace("%", "")}%')
+...
+# 转成实际的SQL语句就是
+meta ->> 'name' like '%sample%'
 ```
 
