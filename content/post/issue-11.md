@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-02T11:29:24+08:00
 
-> update_date: 2020-12-11T20:22:38+08:00
+> update_date: 2020-12-11T20:29:30+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/11
 
@@ -333,7 +333,13 @@ To test and more on why this may work, take a look at [this article](http://rudd
 
 - Typora - MarkDown编辑器
 
-## 6. 删除旧的snap包
+## SNAP相关
+
+- ~~挂梯子~~
+
+> 新的snap看起来用上了国内CDN，不用挂梯子也可以很舒服了
+
+- 删除旧的snap包
 
 ```shell
 LANG=C snap list --all | awk '/disabled/{print $1, $(NF-3)}' |
