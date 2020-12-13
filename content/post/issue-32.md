@@ -1,5 +1,5 @@
 ---
-title: "备份Linux系统小计"
+title: "Linux系统备份小计"
 date: "2020-12-13T08:08:17+08:00"
 tags: ['Linux']
 comments: false
@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-12-13T08:08:17+08:00
 
-> update_date: 2020-12-13T08:28:35+08:00
+> update_date: 2020-12-13T08:28:56+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/32
 
