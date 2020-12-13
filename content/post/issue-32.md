@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-12-13T08:08:17+08:00
 
-> update_date: 2020-12-13T08:17:19+08:00
+> update_date: 2020-12-13T08:28:35+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/32
 
@@ -33,7 +33,7 @@ comments: false
 sudo tar -I zstd -cpf - --exclude=/home --exclude=/proc --exclude=/tmp --exclude=/mnt --exclude=/dev --exclude=/sys --exclude=/run --exclude=/media --exclude=/var/log --exclude=/var/cache/apt/archives --one-file-system / | pv -s $(du -sb . | awk '{print $1}') | split -b 3900m - -d -a 3 backup_
 ```
 
-附上备份输出，可以看出其实pv给的进度其实不准，看看而已
+附上备份输出，可以看出pv给的进度其实不准，看看而已
 
 ```shell
 tar: Removing leading `/' from member names
