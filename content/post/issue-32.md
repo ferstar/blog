@@ -7,11 +7,19 @@ comments: false
 
 > created_date: 2020-12-13T08:08:17+08:00
 
-> update_date: 2020-12-13T08:08:17+08:00
+> update_date: 2020-12-13T08:17:19+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/32
 
-> 以Ubuntu为例, 参考[BackuoYourSystem](https://help.ubuntu.com/community/BackupYourSystem/TAR)
+### BTRFS专用，snapshot
+
+> 这个其实最方便最无感，有个软件很犀利：[timeshift](https://github.com/teejee2008/timeshift)，核心就是利用btrfs文件系统的快照能力。
+
+![image](https://user-images.githubusercontent.com/2854276/102006755-83a85780-3d5e-11eb-8c52-22be45b05e78.png)
+
+### 利用tar做备份
+
+> 以Ubuntu为例, 参考[BackuoYourSystem](https://help.ubuntu.com/community/BackupYourSystem/TAR)，适用于任意文件系统备份
 
 #### 用到的非系统内置软件
 - zstd：新一代无损压缩算法实现，用来压缩备份文件（需安装）
@@ -23,6 +31,24 @@ comments: false
 
 ```shell
 sudo tar -I zstd -cpf - --exclude=/home --exclude=/proc --exclude=/tmp --exclude=/mnt --exclude=/dev --exclude=/sys --exclude=/run --exclude=/media --exclude=/var/log --exclude=/var/cache/apt/archives --one-file-system / | pv -s $(du -sb . | awk '{print $1}') | split -b 3900m - -d -a 3 backup_
+```
+
+附上备份输出，可以看出其实pv给的进度其实不准，看看而已
+
+```shell
+tar: Removing leading `/' from member names
+tar: Removing leading `/' from hard link targets               ] 17% ETA 0:01:05
+tar: /root/.cache/keyring-87BMU0/control: socket ignored       ] 19% ETA 0:01:10
+tar: /var/snap/canonical-livepatch/95/livepatchd-priv.sock: socket ignored:00:05
+tar: /var/snap/canonical-livepatch/95/livepatchd.sock: socket ignored
+tar: /var/xdroid/common/data/system/ndebugsocket: socket ignored108% ETA 0:00:00
+tar: /var/xdroid/common/runtime/xdroid/sockets/0/qemu_pipe: socket ignored:00:00
+tar: /var/xdroid/common/runtime/xdroid/sockets/0/xdroid_bridge: socket ignored
+tar: /var/xdroid/common/runtime/xdroid/input/0/event0: socket ignored
+tar: /var/xdroid/common/runtime/xdroid/input/0/event1: socket ignored
+tar: /var/xdroid/common/runtime/xdroid/input/0/event2: socket ignored
+tar: /var/xdroid/common/sockets/xdroid-container.socket: socket ignored
+10.1GiB 0:01:49 [94.8MiB/s] [=================================] 116%
 ```
 
 #### 恢复
