@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-01-23T08:09:06+08:00
 
-> update_date: 2020-05-07T08:01:53+08:00
+> update_date: 2020-12-19T03:27:38+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/16
 
@@ -210,5 +210,7 @@ sudo btrfs subvolume snapshot /@backup /@
 ```
 
 所有更改就又回来了
+
+不习惯手动挡可以用这个自动挡：[timeshift](https://github.com/teejee2008/timeshift)
 
 BTRFS大法好!
