@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-07-13T15:37:46+08:00
 
-> update_date: 2020-07-14T06:28:12+08:00
+> update_date: 2020-12-21T02:09:08+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/23
 
@@ -46,3 +46,6 @@ MatterMost是一款非常好用的团队沟通工具，但是这货的安卓客�
 ![image](https://user-images.githubusercontent.com/2854276/87391930-345ad100-c5de-11ea-9213-43a3c891fe8a.png)
 
 > 当然你完全可以把脚本扔到自己的VPS上，然后AlertOver也可以替换成类似的服务，比如IFTTT之类，条条大路通罗马~
+
+PS: cookie如图示
+![image](https://user-images.githubusercontent.com/2854276/102732042-86b1d200-4374-11eb-9b66-215ed7a20fea.png)
