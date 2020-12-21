@@ -2,7 +2,7 @@ name: Send MM Notify
 
 on:
   schedule:
-    - cron: '*/10 0-11 * * *'
+    - cron: '*/5 0-12 * * *'
 
 jobs:
   alarm:
