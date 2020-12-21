@@ -21,7 +21,8 @@ class MSGCounter:
 
     @property
     def max_count(self):
-        return max(self.mention_count, self.p_msg_count)
+        # return max(self.mention_count, self.p_msg_count)
+        return self.mention_count
 
     def __repr__(self):
         return '@you: {}, private channel: {}'.format(self.mention_count, self.p_msg_count)
