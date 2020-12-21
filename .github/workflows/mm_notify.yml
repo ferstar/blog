@@ -12,7 +12,7 @@ jobs:
       - name: Install dependencies
         uses: BSFishy/pip-action@v1
         with:
-          packages: requests
+          packages: aiohttp
       - name: Run script
         run: python3 static/mm_notify.py
         env:
