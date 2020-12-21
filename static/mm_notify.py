@@ -24,6 +24,7 @@ headers = {
     'sec-fetch-dest': 'empty',
     'cookie': mm_cookie,
 }
+timeout = aiohttp.ClientTimeout(total=60)
 
 
 class MSGCounter:
@@ -49,7 +50,7 @@ async def http_get(session, url):
 
 async def calc_msg_count():
     counter = MSGCounter()
-    async with aiohttp.ClientSession(headers=headers) as session:
+    async with aiohttp.ClientSession(headers=headers, timeout=timeout) as session:
         url = '{}/api/v4/users/me/teams/unread'.format(mm_host)
         for item in await http_get(session, url):
             counter.mention_count += item.get('mention_count', 0)
@@ -73,7 +74,7 @@ async def send_notify(title, msg):
         "title": title,
         "content": msg
     }
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession(timeout=timeout) as session:
         async with session.post(url, json=data):
             pass
 
