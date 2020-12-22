@@ -7,13 +7,13 @@ comments: false
 
 > created_date: 2020-12-13T08:08:17+08:00
 
-> update_date: 2020-12-19T06:04:24+08:00
+> update_date: 2020-12-22T04:29:38+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/32
 
 ### BTRFS专用，snapshot
 
-> 这个其实最方便最无感，有个软件很犀利：[timeshift](https://github.com/teejee2008/timeshift)，核心就是利用btrfs文件系统的快照能力。
+> 这个其实最方便最无感，有个软件很犀利：[timeshift](https://github.com/teejee2008/timeshift)，核心就是利用btrfs文件系统的快照能力，但是成也快照败也快照，只能放在同盘分区下，如果单盘鼓掌，资料就跪了。
 
 ![image](https://user-images.githubusercontent.com/2854276/102006755-83a85780-3d5e-11eb-8c52-22be45b05e78.png)
 
@@ -57,7 +57,7 @@ tar: /var/xdroid/common/sockets/xdroid-container.socket: socket ignored
 ```shell
 cat backup_* | pv - | sudo tar -I zstd -xpf - -C /media/path_to_rec --numeric-owner
 # 补足缺失的目录
-mkdir /proc /sys /mnt /media 
+mkdir /proc /sys /mnt /media /dev
 ```
 
 #### 修复引导
