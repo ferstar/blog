@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-07-13T15:37:46+08:00
 
-> update_date: 2020-12-21T02:09:08+08:00
+> update_date: 2020-12-27T03:55:51+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/23
 
@@ -49,3 +49,5 @@ MatterMost是一款非常好用的团队沟通工具，但是这货的安卓客�
 
 PS: cookie如图示
 ![image](https://user-images.githubusercontent.com/2854276/102732042-86b1d200-4374-11eb-9b66-215ed7a20fea.png)
+
+白嫖的action服务越来越不守时了，只好把脚本改改放自己vps上，crontab安排起，也是蛮香的😌
