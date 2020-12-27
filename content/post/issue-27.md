@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-11-28T00:56:32+08:00
 
-> update_date: 2020-11-28T00:57:46+08:00
+> update_date: 2020-12-27T03:53:24+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/27
 
@@ -37,9 +37,9 @@ the platform doesn't support SO_REUSEPORT
 
 好吧居然没有`SO_REUSEPORT`属性，我一度以为是自己系统问题，然而并不是，问题出在miniconda的Python包上，换系统内置Python或者官方源码编译的就没有问题。
 
-准备给Conda官方提个issue，发现早有人发现这个问题
+准备给Conda官方提个issue，发现早有人遇到了这个问题
 
 https://github.com/conda/conda/issues/9151
 
-一直没人理会的感觉，瞟一眼1.7k+的issues，我还是跟conda拜拜吧，毕竟又不炼丹。
+只不过一直没人理会的感觉，瞟一眼1.7k+的issues，我还是跟conda拜拜吧，毕竟又不炼丹。
 
