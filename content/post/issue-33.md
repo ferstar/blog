@@ -7,12 +7,13 @@ comments: false
 
 > created_date: 2020-12-30T10:25:21+08:00
 
-> update_date: 2020-12-30T10:26:35+08:00
+> update_date: 2020-12-30T10:27:31+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/33
 
 - 症状：搜狗输入法文字候选框一直在窗口的左下角，根本看不见候选，只能盲打
 - 系统：
+
 ```shell
             .-/+oossssoo+/-.               ferstar@u2004-p13 
         `:+ssssssssssssssssss+:`           ----------------- 
@@ -36,6 +37,7 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso   WM: Mutter
             .-/+oossssoo+/-.                                       
                                                                    
 ```
+
 - PyCharm版本：`2020.3.1 Professional Edition from SnapStore`
 
 - 解决办法：
