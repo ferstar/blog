@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-12-30T10:25:21+08:00
 
-> update_date: 2020-12-30T10:25:21+08:00
+> update_date: 2020-12-30T10:26:35+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/33
 
@@ -41,6 +41,8 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso   WM: Mutter
 - 解决办法：
 
     下载解压 [这个runtime](https://github.com/RikudouPatrickstar/JetBrainsRuntime-for-Linux-x64/releases)
+
+    假设你解压的路径在`~/myprojects/jbr`
 
     `sudo mount -o bind ~/myprojects/jbr /snap/pycharm-professional/current/jbr`
 
