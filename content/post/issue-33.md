@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-12-30T10:25:21+08:00
 
-> update_date: 2020-12-30T10:29:09+08:00
+> update_date: 2021-01-07T10:18:17+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/33
 
@@ -15,27 +15,22 @@ comments: false
 - 系统：
 
 ```shell
-            .-/+oossssoo+/-.               ferstar@u2004-p13 
-        `:+ssssssssssssssssss+:`           ----------------- 
-      -+ssssssssssssssssssyyssss+-         OS: Ubuntu 20.04.1 LTS x86_64 
-    .ossssssssssssssssssdMMMNysssso.       Host: 82DM Lenovo XiaoXinPro-13ARE 2020 
-   /ssssssssssshdmmNNmmyNMMMMhssssss/      Kernel: 5.6.0-1038-oem 
-  +ssssssssshmydMMMMMMMNddddyssssssss+     Uptime: 3 days, 15 hours, 10 mins 
- /sssssssshNMMMyhhyyyyhmNMMMNhssssssss/    Packages: 2526 (dpkg), 17 (snap) 
-.ssssssssdMMMNhsssssssssshNMMMdssssssss.   Shell: zsh 5.8 
-+sssshhhyNMMNyssssssssssssyNMMMysssssss+   Resolution: 1680x1050, 1920x1080 
-ossyNMMMNyMMhsssssssssssssshmmmhssssssso   DE: GNOME 
-ossyNMMMNyMMhsssssssssssssshmmmhssssssso   WM: Mutter 
-+sssshhhyNMMNyssssssssssssyNMMMysssssss+   WM Theme: Yaru-dark 
-.ssssssssdMMMNhsssssssssshNMMMdssssssss.   Theme: Yaru [GTK2/3] 
- /sssssssshNMMMyhhyyyyhdNMMMNhssssssss/    Icons: Yaru [GTK2/3] 
-  +sssssssssdmydMMMMMMMMddddyssssssss+     Terminal: x-terminal-emul 
-   /ssssssssssshdmNNNNmyNMMMMhssssss/      CPU: AMD Ryzen 7 4800U with Radeon Graphics (16)  
-    .ossssssssssssssssssdMMMNysssso.       GPU: AMD ATI 03:00.0 Renoir 
-      -+sssssssssssssssssyyyssss+-         Memory: 5793MiB / 15432MiB 
-        `:+ssssssssssssssssss+:`
-            .-/+oossssoo+/-.                                       
-                                                                   
+OS: Ubuntu 20.04.1 LTS x86_64 
+Host: 82DM Lenovo XiaoXinPro-13ARE 2020 
+Kernel: 5.6.0-1038-oem 
+Uptime: 3 days, 15 hours, 10 mins 
+Packages: 2526 (dpkg), 17 (snap) 
+Shell: zsh 5.8 
+Resolution: 1680x1050, 1920x1080 
+DE: GNOME 
+WM: Mutter 
+WM Theme: Yaru-dark 
+Theme: Yaru [GTK2/3] 
+Icons: Yaru [GTK2/3] 
+Terminal: x-terminal-emul 
+CPU: AMD Ryzen 7 4800U with Radeon Graphics (16)  
+GPU: AMD ATI 03:00.0 Renoir 
+Memory: 5793MiB / 15432MiB                                                 
 ```
 
 - PyCharm版本：`2020.3.1 Professional Edition from SnapStore`
