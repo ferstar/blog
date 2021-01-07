@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-12-30T10:25:21+08:00
 
-> update_date: 2021-01-07T10:18:17+08:00
+> update_date: 2021-01-07T10:19:42+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/33
 
@@ -15,6 +15,7 @@ comments: false
 - 系统：
 
 ```shell
+fcitx version: 4.2.9.7
 OS: Ubuntu 20.04.1 LTS x86_64 
 Host: 82DM Lenovo XiaoXinPro-13ARE 2020 
 Kernel: 5.6.0-1038-oem 
