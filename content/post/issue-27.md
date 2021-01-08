@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-11-28T00:56:32+08:00
 
-> update_date: 2020-12-27T03:53:24+08:00
+> update_date: 2021-01-08T23:10:26+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/27
 
@@ -43,3 +43,4 @@ https://github.com/conda/conda/issues/9151
 
 只不过一直没人理会的感觉，瞟一眼1.7k+的issues，我还是跟conda拜拜吧，毕竟又不炼丹。
 
+PS: macOS 中这个属性又正常, 但配置了`reuse_port`也没用, 只有最先启动的实例才会响应请求, 后面启动的实例看上去完全被阻塞了
