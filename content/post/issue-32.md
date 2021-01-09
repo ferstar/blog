@@ -7,7 +7,7 @@ comments: false
 
 > created_date: 2020-12-13T08:08:17+08:00
 
-> update_date: 2020-12-22T04:29:59+08:00
+> update_date: 2021-01-09T09:10:03+08:00
 
 > comment_url: https://github.com/ferstar/blog/issues/32
 
@@ -57,7 +57,7 @@ tar: /var/xdroid/common/sockets/xdroid-container.socket: socket ignored
 ```shell
 cat backup_* | pv - | sudo tar -I zstd -xpf - -C /media/path_to_rec --numeric-owner
 # 补足缺失的目录
-mkdir /proc /sys /mnt /media /dev
+mkdir /proc /sys /mnt /media /dev /tmp
 ```
 
 #### 修复引导
