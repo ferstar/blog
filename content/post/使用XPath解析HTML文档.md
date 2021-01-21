@@ -125,6 +125,7 @@ all_img_src ['image1_thumb.jpg', 'image2_thumb.jpg', 'image3_thumb.jpg', 'image4
 
 # 参考资料
 
+- [Basic HTML Codes for Beginners(thanks @Abby)](https://www.websiteplanet.com/blog/html-guide-beginners/)
 - [XML Path Language (XPath)](https://www.w3.org/TR/xpath/)
 - [lxml - Processing XML and HTML with Python](http://lxml.de/)
 - [XPath 语法](http://www.w3school.com.cn/xpath/xpath_syntax.asp)
