@@ -5,12 +5,6 @@ tags: ['Python', 'macOS']
 comments: true
 ---
 
-> created_date: 2021-01-21T23:48:52+08:00
-
-> update_date: 2021-01-22T03:45:41+08:00
-
-> comment_url: https://github.com/ferstar/blog/issues/34
-
 I used to write some Python scripts, and some of them crashed when run on earlier version of macOS(<10.15.x).
 
 A typical exception may like this:
@@ -25,7 +19,7 @@ This was caused by macOS using an outdated OpenSSL version.
 
 I found [this page](https://fman.io/blog/battling-with-macos/#appendix) on Google and follow these steps to solve the problem:
 
-```
+```shell
 brew update
 brew install openssl
 # brew install pyenv  # I skipped this line because I used pyenv too
@@ -33,3 +27,8 @@ PYTHON_CONFIGURE_OPTS="--enable-shared" CFLAGS="-I$(brew --prefix openssl)/inclu
 ```
 After using this newly compiled Python interpreter, the problem disappeared
 
+```
+# NOTE: I am not responsible for any expired content.
+created_date: 2021-01-21T23:48:52+08:00
+update_date: 2021-02-12T21:44:52+08:00
+comment_url: https://github.com/ferstar/blog/issues/34
