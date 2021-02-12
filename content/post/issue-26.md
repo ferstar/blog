@@ -5,14 +5,7 @@ tags: ['Android']
 comments: true
 ---
 
-> created_date: 2020-10-17T10:23:39+08:00
-
-> update_date: 2020-11-28T00:44:11+08:00
-
-> comment_url: https://github.com/ferstar/blog/issues/26
-
-养老养老了，MIUI11 9.9.27，只装个面具root，其他模块调度全扔
----
+> 养老养老了，MIUI11 9.9.27，只装个面具root，其他模块调度全扔
 
 一路官方 OTA 上到 MIUI12, 感觉手上的米 8 已经战不动了, 正好官方最后的开发版定格在 MIUI12 20.9.4, 所以是时候再搞一波机, 养个老
 
@@ -52,5 +45,10 @@ comments: true
 
 > 酷安 & Scene & MT 管理器 & 钛备份 & AccuBattery & STM工具箱 & 搞机助手 & EX kernel manager
 
-8. To be continue...
+~~8. To be continue...~~
 
+```
+# NOTE: I am not responsible for any expired content.
+created_date: 2020-10-17T10:23:39+08:00
+update_date: 2021-02-12T22:13:18+08:00
+comment_url: https://github.com/ferstar/blog/issues/26
