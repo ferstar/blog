@@ -5,12 +5,6 @@ tags: ['Python']
 comments: true
 ---
 
-> created_date: 2020-12-11T22:39:38+08:00
-
-> update_date: 2020-12-11T22:39:38+08:00
-
-> comment_url: https://github.com/ferstar/blog/issues/31
-
 作为CRUD仔，经常这样的套路用ORM，想加个`to_dict`的方法来把ORM对象转换成json给前端返回，但已有的项目都是在各自的子类里写个`to_dict`的方法，太累了，放到基类可好？是可以的。
 ```python
 from sqlalchemy import Column, String, create_engine
@@ -67,3 +61,8 @@ Base = declarative_base(cls=_Base)
 
 这样子类model class就没必要去再写一遍`to_dict`方法了
 
+```
+# NOTE: I am not responsible for any expired content.
+created_date: 2020-12-11T22:39:38+08:00
+update_date: 2021-02-12T22:14:58+08:00
+comment_url: https://github.com/ferstar/blog/issues/31
