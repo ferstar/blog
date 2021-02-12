@@ -2,7 +2,7 @@
 title: "Git常用操作"
 date: "2020-01-02T10:51:58+08:00"
 tags: ['Git']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-01-02T10:51:58+08:00

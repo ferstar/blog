@@ -2,7 +2,7 @@
 title: "Linux系统备份小计"
 date: "2020-12-13T08:08:17+08:00"
 tags: ['Linux']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-12-13T08:08:17+08:00

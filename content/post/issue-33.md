@@ -2,7 +2,7 @@
 title: "修复Fcitx输入法文字候选框在PyCharm中无法跟随光标问题"
 date: "2020-12-30T10:25:21+08:00"
 tags: ['Linux', 'Python']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-12-30T10:25:21+08:00

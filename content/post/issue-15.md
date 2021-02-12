@@ -2,7 +2,7 @@
 title: "JetBrains全家桶升级到2019.3无法使用输入法的解决方法"
 date: "2020-01-15T08:24:42+08:00"
 tags: ['Python']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-01-15T08:24:42+08:00

@@ -2,7 +2,7 @@
 title: "Epson Lq 630 Communicate Error"
 date: 2018-06-27T17:28:52+08:00
 tags: ['WINDOWS']
-comments: false
+comments: true
 ---
 
 早上去财务报销，出纳小妹针式打印机罢工，报了这么个错

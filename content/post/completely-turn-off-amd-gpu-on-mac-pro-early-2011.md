@@ -2,7 +2,7 @@
 title: "Completely Turn Off Amd Gpu on Mac Pro Early 2011"
 date: 2018-12-09T16:57:37+08:00
 tags: ['OTHERS']
-comments: false
+comments: true
 ---
 
 手上的MacPro中了显卡门, 频繁花屏重启, 各种折腾后总算堪用, 完全禁掉了坑爹的AMD独显, 副作用是本子关上盖子屏幕就无法点亮(休眠是OK的,就是屏幕不亮, 重启才正常), 除了不再花屏卡死重启以外, 还有个额外的好处就是`C`面右手掌托位置几乎不会发热, 所以完全可以把左边风扇转速调大, 右边保持默认, 兼顾静音+散热

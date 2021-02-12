@@ -2,7 +2,7 @@
 title: "小米8养老折腾"
 date: "2020-10-17T10:23:39+08:00"
 tags: ['Android']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-10-17T10:23:39+08:00

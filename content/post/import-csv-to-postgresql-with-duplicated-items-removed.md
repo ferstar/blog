@@ -2,7 +2,7 @@
 title: "Import Csv to Postgresql With Duplicated Items Removed"
 date: 2018-12-09T15:51:13+08:00
 tags: ['OTHERS', 'SQL']
-comments: false
+comments: true
 ---
 
 碰到个业务需求: 把一大坨`csv`文件原样导入`PostgreSQL`中, 于是速查官方文档, 手撸`SQL`

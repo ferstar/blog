@@ -2,7 +2,7 @@
 title: "为知笔记在Ubuntu 18.04上的编译过程"
 date: "2020-02-18T02:14:03+08:00"
 tags: ['Linux']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-02-18T02:14:03+08:00

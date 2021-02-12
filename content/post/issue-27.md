@@ -2,7 +2,7 @@
 title: "miniconda的一个坑"
 date: "2020-11-28T00:56:32+08:00"
 tags: ['Linux', 'Python']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-11-28T00:56:32+08:00

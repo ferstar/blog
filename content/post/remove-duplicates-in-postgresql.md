@@ -2,7 +2,7 @@
 title: "Remove Duplicates in Postgresql"
 date: 2018-12-09T16:40:41+08:00
 tags: ['OTHERS', 'SQL']
-comments: false
+comments: true
 ---
 
 ```sql

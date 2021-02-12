@@ -2,7 +2,7 @@
 title: "转换ext4文件系统为btrfs"
 date: "2020-01-23T08:09:06+08:00"
 tags: ['Linux']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-01-23T08:09:06+08:00

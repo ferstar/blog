@@ -2,7 +2,7 @@
 title: "给SQLAlchemy declarative_base加个基类"
 date: "2020-12-11T22:39:38+08:00"
 tags: ['Python']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-12-11T22:39:38+08:00

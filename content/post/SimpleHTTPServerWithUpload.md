@@ -2,7 +2,7 @@
 title: "SimpleHTTPServerWithUpload"
 date: 2019-06-12T16:47:09+08:00
 tags: ['PYTHON']
-comments: false
+comments: true
 ---
 
 如题, 抄了个脚本, 偶尔从服务器上传或者下载比较用得着

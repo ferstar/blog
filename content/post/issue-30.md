@@ -2,7 +2,7 @@
 title: "记一次公众号后台删库不需跑路的过程"
 date: "2020-12-11T22:12:02+08:00"
 tags: ['Linux']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-12-11T22:12:02+08:00

@@ -2,7 +2,7 @@
 title: "Mkhash Cannot Execute Binary File"
 date: 2018-12-20T10:25:00+08:00
 tags: ['OPENWRT']
-comments: false
+comments: true
 ---
 
 编译openwrt固件时碰到这么个问题, 记录下解决方案:

@@ -2,7 +2,7 @@
 title: "临时解决plasmashell狂占CPU的bug"
 date: "2020-05-07T08:29:38+08:00"
 tags: ['Linux']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-05-07T08:29:38+08:00

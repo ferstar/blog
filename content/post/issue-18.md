@@ -2,7 +2,7 @@
 title: "Ubuntu禁用自动挂载USB设备"
 date: "2020-03-14T09:17:59+08:00"
 tags: ['Linux']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-03-14T09:17:59+08:00

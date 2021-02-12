@@ -2,7 +2,7 @@
 title: "ThinkPad X220 装黑苹果小记"
 date: "2020-07-12T04:50:33+08:00"
 tags: ['macOS']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-07-12T04:50:33+08:00

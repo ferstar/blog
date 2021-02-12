@@ -2,7 +2,7 @@
 title: "Postgresql Jsonb Functions and Operators"
 date: 2018-11-30T15:14:14+08:00
 tags: ['OTHERS', 'SQL']
-comments: false
+comments: true
 ---
 
 PG 对 json 的支持真是美如画

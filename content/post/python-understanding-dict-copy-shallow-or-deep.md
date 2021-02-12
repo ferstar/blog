@@ -2,7 +2,7 @@
 title: "Python Understanding Dict Copy Shallow or Deep"
 date: 2018-12-01T17:31:03+08:00
 tags: ['PYTHON']
-comments: false
+comments: true
 ---
 
 - **直接赋值：**其实就是对象的引用（别名）。

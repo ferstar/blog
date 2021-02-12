@@ -2,7 +2,7 @@
 title: "对PostgreSQL jsonb部分key进行索引"
 date: "2020-12-11T21:22:57+08:00"
 tags: ['PostgreSQL']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-12-11T21:22:57+08:00

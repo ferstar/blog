@@ -2,7 +2,7 @@
 title: "利用 GitHub Issues 持续写博灌水"
 date: "2020-01-02T11:41:46+08:00"
 tags: ['Git', 'Idea', 'TODO']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-01-02T11:41:46+08:00

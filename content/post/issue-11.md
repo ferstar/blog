@@ -2,7 +2,7 @@
 title: "Ubuntu优化"
 date: "2020-01-02T11:29:24+08:00"
 tags: ['Linux']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-01-02T11:29:24+08:00

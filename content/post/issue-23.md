@@ -2,7 +2,7 @@
 title: "利用GitHub Actions改善MatterMost安卓客户端的消息推送"
 date: "2020-07-13T15:37:46+08:00"
 tags: ['Idea', 'Linux', 'Python']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-07-13T15:37:46+08:00

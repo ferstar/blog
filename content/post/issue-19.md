@@ -2,7 +2,7 @@
 title: "ThinkPad x220首装Manjaro Xfce4配置"
 date: "2020-04-22T06:45:22+08:00"
 tags: ['Linux']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-04-22T06:45:22+08:00

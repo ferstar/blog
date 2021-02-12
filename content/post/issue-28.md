@@ -2,7 +2,7 @@
 title: "关于鼻炎"
 date: "2020-12-11T20:38:06+08:00"
 tags: ['Life']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-12-11T20:38:06+08:00

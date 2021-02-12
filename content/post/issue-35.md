@@ -2,7 +2,7 @@
 title: "Use pyenv to build a full functional Python interpreter on macOS Big Sur(11.1)"
 date: "2021-01-22T04:57:41+08:00"
 tags: ['Python', 'macOS']
-comments: false
+comments: true
 ---
 
 > created_date: 2021-01-22T04:57:41+08:00

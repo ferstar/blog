@@ -2,7 +2,7 @@
 title: "Docker 清日志"
 date: "2020-09-25T02:27:34+08:00"
 tags: ['Docker', 'Linux']
-comments: false
+comments: true
 ---
 
 > created_date: 2020-09-25T02:27:34+08:00

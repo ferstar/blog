@@ -2,7 +2,7 @@
 title: "Compiling Python with latest OpenSSL on earlier version macOS"
 date: "2021-01-21T23:48:52+08:00"
 tags: ['Python', 'macOS']
-comments: false
+comments: true
 ---
 
 > created_date: 2021-01-21T23:48:52+08:00

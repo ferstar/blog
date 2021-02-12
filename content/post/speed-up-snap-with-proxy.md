@@ -2,7 +2,7 @@
 title: "给snap加代理"
 date: 2019-12-23T14:38:05+08:00
 tags: ['LINUX']
-comments: false
+comments: true
 ---
 
 Ubuntu 自 16.04 开始自带的 snap 用起来真是舒服, 不过直连网络太差, 需要代理
