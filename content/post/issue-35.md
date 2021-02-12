@@ -5,12 +5,6 @@ tags: ['Python', 'macOS']
 comments: true
 ---
 
-> created_date: 2021-01-22T04:57:41+08:00
-
-> update_date: 2021-01-22T04:58:34+08:00
-
-> comment_url: https://github.com/ferstar/blog/issues/35
-
 - no build errors
 - `tkinter` module enabled
 - openssl from homebrew
@@ -57,3 +51,8 @@ references
 3. https://github.com/pyenv/pyenv/wiki#which-shell-startup-file-do-i-put-pyenv-config-in
 4. https://github.com/pyenv/pyenv/issues/1737#issuecomment-738080459
 
+```
+# NOTE: I am not responsible for any expired content.
+created_date: 2021-01-22T04:57:41+08:00
+update_date: 2021-02-12T22:03:34+08:00
+comment_url: https://github.com/ferstar/blog/issues/35
