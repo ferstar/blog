@@ -5,12 +5,6 @@ tags: ['Linux', 'Python']
 comments: true
 ---
 
-> created_date: 2020-12-30T10:25:21+08:00
-
-> update_date: 2021-01-07T10:19:42+08:00
-
-> comment_url: https://github.com/ferstar/blog/issues/33
-
 - 症状：搜狗输入法文字候选框一直在窗口的左下角，根本看不见候选，只能盲打
 - 系统：
 
@@ -56,8 +50,16 @@ Memory: 5793MiB / 15432MiB
 
 ![new-runtime](https://user-images.githubusercontent.com/2854276/103345302-01dd5b80-4acc-11eb-90dc-b5b75aa3f3a3.png)
 
-- 参考`对我无用，snap商店里的pycharm没有idea.sh这个启动脚本`
+- 参考`对我基本无用，snap商店里的pycharm没有idea.sh这个启动脚本`
 
 1. https://bbs.archlinuxcn.org/viewtopic.php?pid=43982#p43982
 2. https://blog.csdn.net/u011166277/article/details/106287587
 
+
+
+```
+# NOTE: I am not responsible for any expired content.
+create@: 2020-12-30T10:25:21+08:00
+update@: 2021-02-13T12:41:40+08:00
+comment@: https://github.com/ferstar/blog/issues/33
+```
