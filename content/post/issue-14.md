@@ -278,8 +278,10 @@ class BaseHandler(tornado.web.RequestHandler, SessionMixin):
 
 https://fullstackbb.com/http/options-method-and-cors-preflight/
 
-https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS```
+https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS
+```
 # NOTE: I am not responsible for any expired content.
-created_date: 2020-01-03T13:10:40+08:00
-update_date: 2021-02-13T03:26:56+08:00
-comment_url: https://github.com/ferstar/blog/issues/14
+create@: 2020-01-03T13:10:40+08:00
+update@: 2021-02-13T03:33:03+08:00
+comment@: https://github.com/ferstar/blog/issues/14
+```
