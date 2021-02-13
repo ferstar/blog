@@ -5,12 +5,6 @@ tags: ['Python', 'TODO']
 comments: true
 ---
 
-> created_date: 2020-01-03T13:10:40+08:00
-
-> update_date: 2020-09-14T16:38:20+08:00
-
-> comment_url: https://github.com/ferstar/blog/issues/14
-
 ##### 1. 断点续传/分片下载
 
 > 抄这里的实现，主要应用场景就是某个接口要提供导出某某静态文件啊什么的，直接把文件绝对路径传给`export`方法即可。
@@ -283,4 +277,9 @@ class BaseHandler(tornado.web.RequestHandler, SessionMixin):
 参考: 
 
 https://fullstackbb.com/http/options-method-and-cors-preflight/
-https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS
+
+https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS```
+# NOTE: I am not responsible for any expired content.
+created_date: 2020-01-03T13:10:40+08:00
+update_date: 2021-02-13T03:23:42+08:00
+comment_url: https://github.com/ferstar/blog/issues/14
