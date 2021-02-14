@@ -105,11 +105,15 @@ comments: true
 4. `Show Picker=False`, 跳过OC引导菜单直接进入系统
 5. 三码为空, 需要自行修改适配
 
+> 意外发现还保留了当年卡特琳娜的跑分记录, 当时用的型号是`MacBookAir9,1`, 看起来单核能跑4.7GHz对于跑分而言, 意义不大
 
+> https://browser.geekbench.com/v5/cpu/compare/2194367?baseline=6501218
+
+![image](https://user-images.githubusercontent.com/2854276/107880822-3db56e80-6f1c-11eb-9c64-512fb90d4564.png)
 
 ```
 # NOTE: I am not responsible for any expired content.
 create@: 2021-02-14T14:47:15+08:00
-update@: 2021-02-14T15:09:17+08:00
+update@: 2021-02-14T15:27:50+08:00
 comment@: https://github.com/ferstar/blog/issues/36
 ```
