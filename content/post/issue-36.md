@@ -100,7 +100,7 @@ comments: true
 [EFI.zip](https://github.com/ferstar/blog/files/5977914/EFI.zip)
 
 1. 机型`MacBookPro16,2`
-2. 添加`CPUFriend`以改善变频效果`实测10710U单核可跑到4.9GHz`
+2. 添加`CPUFriend`以改善变频效果`实测10710U单核可跑到4.9GHz` - [附GeekBench5跑分](https://browser.geekbench.com/v5/cpu/6501218)
 3. `Scan Policy配置为524547`仅扫描并引导macOS
 4. `Show Picker=False`, 跳过OC引导菜单直接进入系统
 5. 三码为空, 需要自行修改适配
@@ -110,6 +110,6 @@ comments: true
 ```
 # NOTE: I am not responsible for any expired content.
 create@: 2021-02-14T14:47:15+08:00
-update@: 2021-02-14T14:47:15+08:00
+update@: 2021-02-14T15:01:52+08:00
 comment@: https://github.com/ferstar/blog/issues/36
 ```
