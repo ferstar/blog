@@ -97,7 +97,7 @@ comments: true
 - 小新pro13insyde bios研究交流 635160015
         
 ## 本人自用EFI
-[EFI.zip](https://github.com/ferstar/blog/files/5977914/EFI.zip)
+[点击下载->>EFI.zip<<-](https://github.com/ferstar/blog/files/5977914/EFI.zip)
 
 1. 机型`MacBookPro16,2`
 2. 添加`CPUFriend`以改善变频效果`实测10710U单核可跑到4.7GHz` - [附GeekBench5跑分](https://browser.geekbench.com/v5/cpu/6501218)
@@ -114,6 +114,6 @@ comments: true
 ```
 # NOTE: I am not responsible for any expired content.
 create@: 2021-02-14T14:47:15+08:00
-update@: 2021-02-14T15:27:50+08:00
+update@: 2021-02-14T15:34:43+08:00
 comment@: https://github.com/ferstar/blog/issues/36
 ```
