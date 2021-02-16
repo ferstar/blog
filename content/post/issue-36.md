@@ -107,13 +107,13 @@ comments: true
 
 > 意外发现还保留了当年卡特琳娜的跑分记录, 当时用的型号是`MacBookAir9,1`, 看起来单核能跑4.7GHz对于跑分而言, 意义不大
 
-> https://browser.geekbench.com/v5/cpu/compare/2194367?baseline=6501218
+> https://browser.geekbench.com/v5/cpu/compare/2194367?baseline=6535363
 
-![image](https://user-images.githubusercontent.com/2854276/107880822-3db56e80-6f1c-11eb-9c64-512fb90d4564.png)
+![image](https://user-images.githubusercontent.com/2854276/108083812-708f6c00-70ae-11eb-8d1c-b316e2658909.png)
 
 ```
 # NOTE: I am not responsible for any expired content.
-create@: 2021-02-14T14:47:15+08:00
-update@: 2021-02-14T16:23:51+08:00
-comment@: https://github.com/ferstar/blog/issues/36
+create@2021-02-14T14:47:15+08:00
+update@2021-02-16T15:27:14+08:00
+comment@https://github.com/ferstar/blog/issues/36
 ```
