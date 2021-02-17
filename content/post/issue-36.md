@@ -12,11 +12,11 @@ comments: true
 |操作系统| 11.2 (20D64)|
 |处理器| 英特尔 酷睿 i7-10710U |
 |内存| 16GB板载无法更换 |
-|硬盘|原装 ~~三星981A 512GB~~ 更换为 三星PM961 1TB |
+|硬盘| ~~原装三星981A 512GB~~ 更换为 三星PM961 1TB |
 |显卡| Intel HD Graphics CFL CRB（UHD620）|
 |显示器| 13.3 英寸 IPS 2560x1600 华星光电 |
 |声卡| Realtek ALC257 |
-|网卡| 原装~~Intel AX201NGW~~ 更换为 BCM94360CS2 |
+|网卡| ~~原装Intel AX201NGW~~ 更换为 BCM94360CS2(需加转接卡) |
 |SMBIOS| MacBookPro16,2 |
 
 ## 使用说明【请仔细阅读】
@@ -106,6 +106,6 @@ comments: true
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-02-14T14:47:15+08:00
-update@2021-02-17T08:24:19+08:00
+update@2021-02-17T13:16:12+08:00
 comment@https://github.com/ferstar/blog/issues/36
 ```
