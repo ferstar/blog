@@ -73,14 +73,6 @@ comments: true
 ### 镜像下载
   
 - [[**黑果小兵的部落阁**] :【黑果小兵】原版镜像](https://blog.daliansky.net/categories/下载/镜像/)
-
-### EFI下载
-
-- [OpenCore 正式版](https://github.com/Hush-vv/Lenovo-XiaoXinPro13-Hackintosh/releases)
-
-- [OpenCore 开发版](https://github.com/Hush-vv/Lenovo-XiaoXinPro13-Hackintosh/archive/master.zip)
-   
-- Clover[请移驾daliansky](https://github.com/daliansky/XiaoXinPro-13-hackintosh)
         
 ### 感谢
 - 本EFI所使用的`ACPI`均来自 @宪武 大佬
@@ -114,6 +106,6 @@ comments: true
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-02-14T14:47:15+08:00
-update@2021-02-16T15:27:14+08:00
+update@2021-02-17T08:24:19+08:00
 comment@https://github.com/ferstar/blog/issues/36
 ```
