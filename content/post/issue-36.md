@@ -70,6 +70,12 @@ comments: true
 ### 哪些可以工作更好
 - 开启 [HIDPI](https://github.com/xzhih/one-key-hidpi) 来提升系统UI质量, `可能会出现花屏现象`
 
+| AAPL,ig-platform-id | device-id | 备注                   |
+| ------------------- | --------- | ---------------------- |
+| 0500A53E            | A53E0000  | 解决i7-10710u花屏/闪屏 |
+| 0400A53E            | A53E0004  | 解决i7-10710u花屏/闪屏 |
+| 0500A63E            | A63E0000  | 通用                   |
+
 ### 镜像下载
   
 - [[**黑果小兵的部落阁**] :【黑果小兵】原版镜像](https://blog.daliansky.net/categories/下载/镜像/)
@@ -82,11 +88,6 @@ comments: true
 - 感谢群友Dreamn提供的[`SleepWithoutBluetoothAndWifi`](https://github.com/dreamncn/SleepWithoutBluetoothAndWifi)工具        
 
     ......
-
-### QQ群
-- 小新pro黑苹果 946132482
-    
-- 小新pro13insyde bios研究交流 635160015
         
 ## 本人自用EFI
 [点击下载->>EFI.zip<<-](https://github.com/ferstar/blog/files/5977914/EFI.zip)
@@ -106,6 +107,6 @@ comments: true
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-02-14T14:47:15+08:00
-update@2021-02-17T13:16:12+08:00
+update@2021-02-27T00:13:42+08:00
 comment@https://github.com/ferstar/blog/issues/36
 ```
