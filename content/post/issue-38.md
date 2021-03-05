@@ -29,6 +29,6 @@ brew install postgresql
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-03-05T02:33:26+08:00
-update@2021-03-05T02:33:36+08:00
+update@2021-03-05T02:33:40+08:00
 comment@https://github.com/ferstar/blog/issues/38
 ```
