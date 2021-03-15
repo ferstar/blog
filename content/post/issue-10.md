@@ -5,7 +5,7 @@ tags: ['Git']
 comments: true
 ---
 
-##### 1. 强行抹掉远程commit log
+1. 强行抹掉远程commit log
 
 > 不小心把不该提交的东西提交了, 可以用这招救命, **团队协作慎用**
 
@@ -41,6 +41,6 @@ git fetch -v
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T10:51:58+08:00
-update@2021-03-15T07:32:23+08:00
+update@2021-03-15T07:34:54+08:00
 comment@https://github.com/ferstar/blog/issues/10
 ```
