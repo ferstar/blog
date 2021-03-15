@@ -104,9 +104,13 @@ comments: true
 
 ![image](https://user-images.githubusercontent.com/2854276/108083812-708f6c00-70ae-11eb-8d1c-b316e2658909.png)
 
+养老了养老了, 受不了 bugsur, 果断退回Catalina, 本子宛如新生, 香~
+
+PS: 时光机恢复了两遍才恢复成功, 先是用 bigsur 的 recovery 恢复, 结果卡苹果, 万幸重启以后变成 Catalina 的 recovery 了, 忐忑之中又恢复了一把, 搞定
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-02-14T14:47:15+08:00
-update@2021-02-27T00:13:42+08:00
+update@2021-03-15T07:49:36+08:00
 comment@https://github.com/ferstar/blog/issues/36
 ```
