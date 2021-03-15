@@ -24,7 +24,7 @@ git reset --hard origin/master
 git pull -r
 ```
 
-##### 3. git clone xxx --depth=x 后遗症
+3. git clone xxx --depth=x 后遗症
 
 > 包括不仅限于: 看不到太多 commit log 以及无法查看/切换远程分支
 
@@ -41,6 +41,6 @@ git fetch -v
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T10:51:58+08:00
-update@2021-03-15T07:35:01+08:00
+update@2021-03-15T07:35:08+08:00
 comment@https://github.com/ferstar/blog/issues/10
 ```
