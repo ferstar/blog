@@ -14,7 +14,7 @@ git reset --hard <需要回退到的commit tag>
 git push --force
 ```
 
-##### 2. 强制同步远端代码
+2. 强制同步远端代码
 
 > 不小心把本地搞乱, 除了`rm and clone again`大法外, 还可以这样
 
@@ -41,6 +41,6 @@ git fetch -v
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T10:51:58+08:00
-update@2021-03-15T07:34:54+08:00
+update@2021-03-15T07:35:01+08:00
 comment@https://github.com/ferstar/blog/issues/10
 ```
