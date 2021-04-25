@@ -46,9 +46,13 @@ PS: cookie如图示
 
 白嫖的action服务越来越不守时了，只好把脚本改改放自己vps上，crontab安排起，也是蛮香的😌
 
+> mattermost 有私人聊天信息api吗。官网好像没看到
+
+这个我也没看到, 另外 MatterMost 在iOS上的推送挺及时的, 不需要折腾
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-07-13T15:37:46+08:00
-update@2021-04-19T09:55:03+08:00
+update@2021-04-25T06:36:21+08:00
 comment@https://github.com/ferstar/blog/issues/23
 ```
