@@ -5,12 +5,6 @@ tags: ['Linux']
 comments: true
 ---
 
-> created_date: 2020-01-02T11:29:24+08:00
-
-> update_date: 2021-02-12T19:27:37+08:00
-
-> comment_url: https://github.com/ferstar/blog/issues/11
-
 ## 1. 关闭错误报告
 
 > 可以选择直接卸载`apport`这个软件包, 但最好还是改配置
@@ -283,7 +277,7 @@ To test and more on why this may work, take a look at [this article](http://rudd
 
 ## 5. 常用软件
 
-- Google Chrome/Chromium
+- ~~Google Chrome/Chromium~~Edge已经堪用, 巨硬威武!!!
 
 支持的一些启动参数如下所示，我一般用的是`--disk-cache-dir=/tmp/chrome_cache --process-per-site`，即缓存扔到`/tmp`分区，每个站点使用一个进程
 
@@ -346,4 +340,11 @@ LANG=C snap list --all | awk '/disabled/{print $1, $(NF-3)}' |
     while read snapname revision; do
         sudo snap remove "$snapname" --revision="$revision"
     done
+```
+
+```
+# NOTE: I am not responsible for any expired content.
+create@2020-01-02T11:29:24+08:00
+update@2021-04-30T00:58:12+08:00
+comment@https://github.com/ferstar/blog/issues/11
 ```
