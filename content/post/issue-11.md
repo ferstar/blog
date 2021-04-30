@@ -329,6 +329,8 @@ To test and more on why this may work, take a look at [this article](http://rudd
 
 ## 6. SNAP相关
 
+> 有人号称装完Ubuntu第一时间卸载snap, 但我觉得很香
+
 - ~~挂梯子~~
 
 > 新的snap看起来用上了国内CDN，不用挂梯子也可以很舒服了
@@ -345,6 +347,6 @@ LANG=C snap list --all | awk '/disabled/{print $1, $(NF-3)}' |
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T11:29:24+08:00
-update@2021-04-30T00:58:12+08:00
+update@2021-04-30T01:00:03+08:00
 comment@https://github.com/ferstar/blog/issues/11
 ```
