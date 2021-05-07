@@ -37,6 +37,6 @@ ORDER BY reltuples DESC;
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-05-07T04:03:57+08:00
-update@2021-05-07T04:03:57+08:00
+update@2021-05-07T04:04:24+08:00
 comment@https://github.com/ferstar/blog/issues/40
 ```
