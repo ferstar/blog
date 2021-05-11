@@ -1,7 +1,7 @@
 ---
 title: "Git lfs将某个文件回退到任意历史oid"
 date: "2021-05-11T04:11:25+08:00"
-tags: ['Default']
+tags: ['Git']
 comments: true
 ---
 
@@ -35,6 +35,6 @@ size 32731432
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-05-11T04:11:25+08:00
-update@2021-05-11T04:11:25+08:00
+update@2021-05-11T04:11:37+08:00
 comment@https://github.com/ferstar/blog/issues/41
 ```
