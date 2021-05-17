@@ -108,9 +108,13 @@ comments: true
 
 PS: 时光机恢复了两遍才恢复成功, 先是用 bigsur 的 recovery 恢复, 结果卡苹果, 万幸重启以后变成 Catalina 的 recovery 了, 忐忑之中又恢复了一把, 搞定
 
+## 零散tips
+1. 解锁网卡区域设置: boot-args: brcmfx-country=#a
+2. igfxonln=1, igfxrpsc=1 设上面两个boot-args参数会偶发核显满频不降, Intel Power Gadget -> GFX/AVG 5.xx
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-02-14T14:47:15+08:00
-update@2021-03-15T07:49:36+08:00
+update@2021-05-17T06:39:00+08:00
 comment@https://github.com/ferstar/blog/issues/36
 ```
