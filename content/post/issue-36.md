@@ -110,7 +110,7 @@ PS: 时光机恢复了两遍才恢复成功, 先是用 bigsur 的 recovery 恢�
 
 ## 零散tips
 1. 解锁网卡区域设置: boot-args: brcmfx-country=#a
-2. igfxonln=1, igfxrpsc=1 设上面两个boot-args参数会偶发核显满频不降, Intel Power Gadget -> GFX/AVG 5.xx
+2. igfxonln=1, igfxrpsc=1 两个同时配置boot-args参数会偶发核显满频不降`Intel Power Gadget -> GFX/AVG 5.xx`, 我只保留了`igfxrpsc=1`, 据说能稍微提升一点点垃圾核显的性能
 
 ## 散热改造
 
@@ -136,6 +136,6 @@ PS: 时光机恢复了两遍才恢复成功, 先是用 bigsur 的 recovery 恢�
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-02-14T14:47:15+08:00
-update@2021-06-19T08:18:05+08:00
+update@2021-06-19T08:19:16+08:00
 comment@https://github.com/ferstar/blog/issues/36
 ```
