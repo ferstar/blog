@@ -60,7 +60,7 @@ if __name__ == '__main__':
             replace(file)
 ```
 
-2. Like most open source projects, we also use [pylint](http://pylint.pycqa.org/) to check the code style, I copied the template and wrote a custom checker:
+2. Like most Python projects, we also use [pylint](http://pylint.pycqa.org/) to check the code style, I copied the template and wrote a custom checker:
 
 ```python
 """file: py3_style_checker.py"""
@@ -125,6 +125,6 @@ done!
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-07-10T23:11:20+08:00
-update@2021-07-10T23:15:36+08:00
+update@2021-07-10T23:23:59+08:00
 comment@https://github.com/ferstar/blog/issues/42
 ```
