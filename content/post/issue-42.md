@@ -1,5 +1,5 @@
 ---
-title: "FIx "RuntimeError: super(): __class__ cell not found""
+title: "Deal with "RuntimeError: super(): __class__ cell not found" bugs"
 date: "2021-07-10T23:11:20+08:00"
 tags: ['Python']
 comments: true
@@ -125,6 +125,6 @@ done!
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-07-10T23:11:20+08:00
-update@2021-07-10T23:11:49+08:00
+update@2021-07-10T23:12:19+08:00
 comment@https://github.com/ferstar/blog/issues/42
 ```
