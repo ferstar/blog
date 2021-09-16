@@ -323,11 +323,13 @@ To test and more on why this may work, take a look at [this article](http://rudd
 
 - DeepinTerminal - 深度终端
 
+- alacritty - 最近在用这个，跟tmux搭配还是蛮舒服
+
 - CopyQ - 剪贴板增强
 
 - Qv2ray - 梯子客户端
 
-- Typora - MarkDown编辑器
+- Typora - MarkDown编辑器，配合坚果云同步算是比较非常舒服的个人文档管理方案了
 
 ## 6. SNAP相关`不再推荐装这玩意`
 
@@ -382,6 +384,6 @@ LANG=C snap list --all | awk '/disabled/{print $1, $(NF-3)}' |
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T11:29:24+08:00
-update@2021-09-16T06:31:23+08:00
+update@2021-09-16T06:33:03+08:00
 comment@https://github.com/ferstar/blog/issues/11
 ```
