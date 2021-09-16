@@ -319,6 +319,8 @@ To test and more on why this may work, take a look at [this article](http://rudd
 
 - FlameShot - 火焰截图
 
+> 最近发现高分屏上面用他会冻屏，参考这里的解决方法暂时得到解决 https://github.com/flameshot-org/flameshot/issues/564#issuecomment-750014960
+
 - DeepinTerminal - 深度终端
 
 - CopyQ - 剪贴板增强
@@ -380,6 +382,6 @@ LANG=C snap list --all | awk '/disabled/{print $1, $(NF-3)}' |
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T11:29:24+08:00
-update@2021-09-16T06:29:41+08:00
+update@2021-09-16T06:31:23+08:00
 comment@https://github.com/ferstar/blog/issues/11
 ```
