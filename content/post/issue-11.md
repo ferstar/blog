@@ -327,7 +327,40 @@ To test and more on why this may work, take a look at [this article](http://rudd
 
 - Typora - MarkDown编辑器
 
-## 6. SNAP相关
+## 6. SNAP相关`不再推荐装这玩意`
+
+> via https://plumz.me/archives/11705/
+
+一起来干掉这些傻逼的 Snap，恢复原有的商店。
+
+for p in $(snap list | awk '{print $1}'); do
+  sudo snap remove $p
+done
+删掉所有的已经安装的 Snap 软件。
+
+sudo systemctl stop snapd
+for m in /snap/core/*; do
+   sudo umount $m
+done
+sudo snap remove core
+干掉 Snap 的 Core 文件，很大哟。
+
+sudo apt autoremove --purge snapd
+干掉 Snap 的管理工具。
+
+rm -rf ~/snap
+sudo rm -rf /snap
+sudo rm -rf /var/snap
+sudo rm -rf /var/lib/snapd
+sudo rm -rf /var/cache/snapd
+干掉 Snap 的目录。
+
+sudo bash -c "cat > /etc/apt/preferences.d/no-snapd.pref" << EOL
+Package: snapd
+Pin: origin ""
+Pin-Priority: -1
+EOL
+干掉 Snap 的更新源。
 
 > 有人号称装完Ubuntu第一时间卸载snap, 但我觉得很香
 
@@ -347,6 +380,6 @@ LANG=C snap list --all | awk '/disabled/{print $1, $(NF-3)}' |
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T11:29:24+08:00
-update@2021-04-30T01:00:03+08:00
+update@2021-09-16T06:29:41+08:00
 comment@https://github.com/ferstar/blog/issues/11
 ```
