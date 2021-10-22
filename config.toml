@@ -94,7 +94,7 @@ uglyURLs = false
     # 名字
     name = "ferstar"
     # 邮箱
-    email = "zhangjianfei3@gmail.com"
+    email = ""
     # 座右铭或简介
     motto = "May the truth be without barriers"
     # 头像
@@ -186,7 +186,7 @@ uglyURLs = false
     #     post = "home"
     [[menu.main]]
         url = "/post/"
-        name = "文章"
+        name = "Archive"
         weight = 2
         pre = "internal"
         post = "archive"
@@ -198,7 +198,7 @@ uglyURLs = false
     #    post = "th"
     [[menu.main]]
         url = "/tags/"
-        name = "标签"
+        name = "Tags"
         weight = 4
         pre = "internal"
         post = "tags"
@@ -229,14 +229,14 @@ uglyURLs = false
     # 顶栏
 
     # 是否开启
-    enableHeader = true
+    enableHeader = false
 
     # 是否自动隐藏
     enableHeaderAutoHide = true
     # 说明：仅对弹性布局的顶栏有效
 
     # 是否在首页显示
-    displayHeaderInHome = true
+    displayHeaderInHome = false
     # 说明：对弹性布局的顶栏无效
 
     # 背景
@@ -244,11 +244,11 @@ uglyURLs = false
     # 说明：https://developer.mozilla.org/zh-CN/docs/Web/CSS/background
 
     # 顶栏布局
-    headerLayout = "flex"
+    headerLayout = "center"
     # 说明：居中布局（center）或弹性布局（flex）
 
     # 在窄视图下隐藏菜单栏并显示一个按钮？
-    enableNavToggle = true
+    enableNavToggle = false
 
     navHeight = "10em"
     # 说明：菜单栏展开时的高度
@@ -275,11 +275,11 @@ uglyURLs = false
     # 菜单栏
 
     # 是否开启
-    enableMenu = true
+    enableMenu = false
     # 说明：对弹性布局的顶栏无效
 
     # 是否在首页显示
-    displayMenuInHome = true
+    displayMenuInHome = false
     # 说明：对弹性布局的顶栏无效
 
     # 是否按文章分区高亮当前菜单项
@@ -298,11 +298,11 @@ uglyURLs = false
     # 3. posts     文章摘要
     # 4. page      普通页面
 
-    homeLayout = "posts"
+    homeLayout = "poetry"
 
     ## 「诗意人生」
     # 诗句，支持 Markdown
-    homePoetry = []
+    homePoetry = ["## 断章", "你站在桥上看风景", "看风景人在楼上看你", "明月装饰了你的窗子", "你装饰了别人的梦", "---", "|👉[**POSTS**](/post)👈 | 👉[**TAGS**](/tags)👈|", "---"]
     # 底部链接的内间距，单位：em
     homeLinksPadding = 1
 
@@ -401,7 +401,7 @@ uglyURLs = false
     # 列表页面
 
     # 宽度
-    listWidth = 36
+    listWidth = ""
     # 说明：如果留空（""），则用 42 作为默认值
     #      单位：em
 
@@ -409,7 +409,7 @@ uglyURLs = false
     displayListTitle = true
 
     # 日期的格式
-    listDateFormat = "1 月 2 日"
+    listDateFormat = "2006-01-02"
     # 注意：请遵循格式 https://gohugo.io/functions/format/
 
     # 日期的位置
@@ -417,15 +417,15 @@ uglyURLs = false
     # 说明：left（左边）或 right（右边）
 
     # 是否按月份分隔列表
-    groupByMonth = true
+    groupByMonth = false
 
     # 是否开启十二生肖
     chineseZodiac = true
 
     # 是否翻译年份（仅对年份标题有效）
-    i18nYear = true
+    i18nYear = false
     # 是否翻译月份（仅对月份标题有效）
-    i18nMonth = true
+    i18nMonth = false
 
 
     ######################################
@@ -671,7 +671,7 @@ uglyURLs = false
     # 注意：只支持 HSL 颜色值
 
     # 文章的内容宽度
-    postWidth = 36
+    postWidth = ""
     # 说明：如果留空（""），则用 42 作为默认值
     #      单位：em
 
@@ -758,15 +758,15 @@ uglyURLs = false
     # 文章目录
 
     # 是否开启（全局设置）
-    enableTOC = true
+    enableTOC = false
     # 说明：文章的 Front Matter 中的 `toc`
     #      的优先级高于此处
 
     # 是否显示目录标题
-    displayTOCTitle = true
+    displayTOCTitle = false
 
     # 是否显示数字（全局设置）
-    displayTOCNum = true
+    displayTOCNum = false
     # 说明：文章的 Front Matter 中的 `tocNum`
     #      的优先级高于此处
 
@@ -998,10 +998,10 @@ uglyURLs = false
     # 文章版权
 
     # 是否开启
-    enablePostCopyright = true
+    enablePostCopyright = false
 
     # 是否显示（全局设置）
-    displayPostCopyright = true
+    displayPostCopyright = false
     # 说明：文章的 Front Matter 中的 `displayCopyright`
     #      的优先级高于此处
 
@@ -1068,10 +1068,10 @@ uglyURLs = false
     # 文章分享
 
     # 是否开启
-    enablePostShare = true
+    enablePostShare = false
 
     # 是否显示（全局设置）
-    displayPostShare = true
+    displayPostShare = false
     # 说明：文章的 Front Matter 中的 `share`
     #      的优先级高于此处
 
@@ -1111,7 +1111,7 @@ uglyURLs = false
     # 文章的标签
 
     # 是否开启
-    enablePostTags = true
+    enablePostTags = false
 
     # 标签的图标
     postTagsIcon = "tag"
@@ -1138,8 +1138,8 @@ uglyURLs = false
     # 极简页脚
 
     # 是否开启
-    enableMinimalFooter = false
-    enableVerticalBarStructure = false
+    enableMinimalFooter = true
+    enableVerticalBarStructure = true
     # 说明：如果开启此项，显示在右边的部类或分区
     #      将会包含全部的第一级部类或分区，并且
     #      以竖线（|）分隔开来。
@@ -1196,10 +1196,10 @@ uglyURLs = false
     displayPoweredBy = true
 
     # 是否显示站点的版权信息
-    displaySiteCopyright = true
+    displaySiteCopyright = false
 
     # 自定义页脚（支持 Markdown）
-    customFooter = ""
+    customFooter = "👀[闲谈莫论人非静坐常思己过](/)👀"
 
     displayBusuanziSiteUVAndPV = false
     busuanziSiteUVText = "本站访客数"
@@ -1211,7 +1211,7 @@ uglyURLs = false
     #      https://busuanzi.ibruce.info/
 
     # 社交链接
-    enableSocials = true
+    enableSocials = false
     # 说明：见 data/Socials.toml
 
 
