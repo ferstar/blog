@@ -1,7 +1,7 @@
 ---
 title: "爸爸你走开，我在看电视不要打扰我！"
 date: "2021-10-25T16:05:16+08:00"
-tags: ['Default']
+tags: ['Baby', 'Life']
 comments: true
 ---
 
@@ -14,6 +14,6 @@ comments: true
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-10-25T16:05:16+08:00
-update@2021-10-25T16:05:16+08:00
+update@2021-10-25T16:05:32+08:00
 comment@https://github.com/ferstar/blog/issues/46
 ```
