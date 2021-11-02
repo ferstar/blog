@@ -115,7 +115,7 @@ repos:
 
 ## 教训
 
-最大的坑点就是换 ORM 么有做好技术选型, 匆匆选择了 gino, 当时哪怕换个 peewee-async 也比 gino 香啊, 何况 SQLAlchemy 这个渣男人家 blog 上早就把异步支持写进了 roadmap, 当然了, 也没有说 gino 就垃圾, 只是我们用的不爽而已, 比如: xxx.gion.xxx() 这种强烈的个人主义设定, 以及屎一样的 join 支持......
+最大的坑点就是换 ORM 么有做好技术选型, 匆匆选择了 gino, 当时哪怕换个 peewee-async 也比 gino 香啊, 何况 SQLAlchemy 这个渣男人家 blog 上早就把异步支持写进了 roadmap, 当然了, 也没有说 gino 就垃圾, 只是我们用的不爽而已, 比如: xxx.gino.xxx() 这种强烈的个人主义设定, 以及屎一样的 join 支持......
 
 > 下一次重构: 干掉 gino 换 SQLAlchemy!
 
@@ -124,6 +124,6 @@ repos:
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-07-11T14:46:05+08:00
-update@2021-11-02T22:44:12+08:00
+update@2021-11-02T22:44:56+08:00
 comment@https://github.com/ferstar/blog/issues/43
 ```
