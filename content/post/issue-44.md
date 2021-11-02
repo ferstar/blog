@@ -10,6 +10,13 @@ comments: true
 import ast
 import operator
 
+valid_ops = {
+    ast.Add: operator.add,
+    ast.Sub: operator.sub,
+    ast.Mult: operator.mul,
+    ast.Div: operator.truediv,
+    ast.Mod: operator.mod,
+}
 
 def safe_eval(expr):
     """Use `ast.literal_eval` instead of `eval`
@@ -42,6 +49,6 @@ Out[4]: 1.0
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-10-25T01:49:59+08:00
-update@2021-10-25T01:49:59+08:00
+update@2021-11-02T22:28:53+08:00
 comment@https://github.com/ferstar/blog/issues/44
 ```
