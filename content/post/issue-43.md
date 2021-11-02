@@ -17,7 +17,7 @@ comments: true
 > | Code style check | pylint only | multi pre-commit hooks                   |
 > | 单元测试         | 无          | 有(基本覆盖基础业务API&主要数据处理流程) |
 > | 热重载           | 不支持      | 支持(gunicorn)                           |
-> | 项目冷启动速度   | 8~10秒      | 2秒                                      |
+> | 项目冷启动速度   | 8~10秒      | <2秒                                      |
 > | 类型注释         | 无          | 有(持续完善中)                           |
 
 
@@ -124,6 +124,6 @@ repos:
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-07-11T14:46:05+08:00
-update@2021-11-02T22:44:56+08:00
+update@2021-11-02T22:45:29+08:00
 comment@https://github.com/ferstar/blog/issues/43
 ```
