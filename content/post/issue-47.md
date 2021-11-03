@@ -9,7 +9,7 @@ comments: true
 
 1. PyCharm 全局搜索框调不出来或者一闪而逝
 
-这个[issue](https://github.com/microsoft/wslg/issues/96)里找到了神仙解法: 狂按快捷键, 直到全局搜索框出来为止, 然后 pin 住, 就欧了...
+这个[issue](https://github.com/microsoft/wslg/issues/96#issuecomment-858257113)里找到了神仙解法: 狂按快捷键, 直到全局搜索框出来为止, 然后 pin 住, 就欧了...
 
 2. 中文输入法
 
@@ -42,6 +42,6 @@ sudo sed -i "s/$old_host/$new_host/g" /etc/proxychains4.conf
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2021-11-03T01:32:55+08:00
+update@2021-11-03T01:33:51+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
