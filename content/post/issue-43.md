@@ -107,7 +107,7 @@ repos:
 
 ### 热重载
 
-> 这是运维同事提的需求，对于一个活跃开发的分支环境，`CI` 的频繁启停，导致服务不可用的情况时有发生，对业务组的同事非常不友好。关于这部分的折腾，可以看我这里的说明：[https://github.com/ferstar/blog/issues/39](/post/issues-39) 其实就是借助`gunicorn`实现了`HUP signal`的支持。
+> 这是运维同事提的需求，对于一个活跃开发的分支环境，`CI` 的频繁启停，导致服务不可用的情况时有发生，对业务组的同事非常不友好。关于这部分的折腾，可以看我这里的说明：[https://github.com/ferstar/blog/issues/39](/post/issue-39) 其实就是借助`gunicorn`实现了`HUP signal`的支持。
 
 ## 结论
 
@@ -124,6 +124,6 @@ repos:
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-07-11T14:46:05+08:00
-update@2021-11-09T11:09:53+08:00
+update@2021-11-09T11:11:36+08:00
 comment@https://github.com/ferstar/blog/issues/43
 ```
