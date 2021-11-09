@@ -52,6 +52,6 @@ class TornadoWorker(Worker):
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-09T11:02:12+08:00
-update@2021-11-09T11:02:12+08:00
+update@2021-11-09T11:02:50+08:00
 comment@https://github.com/ferstar/blog/issues/48
 ```
