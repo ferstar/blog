@@ -1,7 +1,7 @@
 ---
 title: "Fix TypeError: __call__() takes 2 positional arguments but 3 were given"
 date: "2021-03-23T01:54:07+08:00"
-tags: ['Linux', 'Python']
+tags: ['Linux', 'Python', 'Tornado', 'Gunicorn']
 comments: true
 ---
 
@@ -214,6 +214,6 @@ app = Application([
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-03-23T01:54:07+08:00
-update@2021-03-23T01:58:30+08:00
+update@2021-11-09T11:07:43+08:00
 comment@https://github.com/ferstar/blog/issues/39
 ```
