@@ -1,5 +1,5 @@
 ---
-title: "热重载机制下lru_cache的一个隐藏的坑点"
+title: "Tornado热重载机制下使用lru_cache一个隐藏的坑点"
 date: "2021-11-09T11:02:12+08:00"
 tags: ['Python', 'TODO', 'Tornado']
 comments: true
@@ -52,6 +52,6 @@ class TornadoWorker(Worker):
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-09T11:02:12+08:00
-update@2021-11-09T11:02:50+08:00
+update@2021-11-09T11:03:56+08:00
 comment@https://github.com/ferstar/blog/issues/48
 ```
