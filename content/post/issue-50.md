@@ -85,6 +85,6 @@ if __name__ == "__main__":
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-20T03:17:30+08:00
-update@2021-11-20T03:18:44+08:00
+update@2021-11-20T03:19:06+08:00
 comment@https://github.com/ferstar/blog/issues/50
 ```
