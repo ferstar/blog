@@ -47,11 +47,17 @@ old_host=$(grep -E '^socks5' /etc/proxychains4.conf | awk '{print $2}')
 sudo sed -i "s/$old_host/$new_host/g" /etc/proxychains4.conf
 ```
 
+5. Windows Terminal 进 Ubuntu 子系统默认目录不是`~`
+
+设置 -> Ubuntu -> 常规 -> 命令行 -> `wsl.exe -d Ubuntu-20.04 --cd ~`
+
+![image](https://user-images.githubusercontent.com/2854276/142790024-9b05f0e5-1784-4ae6-a575-d9536f793242.png)
+
 
 
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2021-11-11T05:54:13+08:00
+update@2021-11-22T02:00:17+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
