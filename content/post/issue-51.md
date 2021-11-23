@@ -1,7 +1,7 @@
 ---
 title: "Find common substring between two strings"
 date: "2021-11-23T06:56:34+08:00"
-tags: ['Default']
+tags: ['Python', 'TODO', 'Snippet']
 comments: true
 ---
 
@@ -78,6 +78,6 @@ def find_longest_sub_str1(str_a, str_b):
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-23T06:56:34+08:00
-update@2021-11-23T06:56:34+08:00
+update@2021-11-23T06:56:48+08:00
 comment@https://github.com/ferstar/blog/issues/51
 ```
