@@ -53,11 +53,14 @@ sudo sed -i "s/$old_host/$new_host/g" /etc/proxychains4.conf
 
 ![image](https://user-images.githubusercontent.com/2854276/142790024-9b05f0e5-1784-4ae6-a575-d9536f793242.png)
 
+6. Nahimic 无法发布?
 
+直接卸载就完事, 如果卸载不掉, 可以试试我从[知乎](https://zhuanlan.zhihu.com/p/347961733)淘来的一个脚本 
+[RemoveNahimic_20210111.zip](https://github.com/ferstar/blog/files/7599644/RemoveNahimic_20210111.zip)
 
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2021-11-22T02:00:17+08:00
+update@2021-11-25T02:05:24+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
