@@ -279,9 +279,53 @@ class BaseHandler(tornado.web.RequestHandler, SessionMixin):
 https://fullstackbb.com/http/options-method-and-cors-preflight/
 
 https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS
+
+##### 5. Under tornado v4+ WebSocket connections get refused with 403
+
+> https://stackoverflow.com/a/24800437
+
+简单说就是基于安全原因, 新一点的 Tornado 版本在 ws 增加了 同源 校验
+
+Tornado 4.0 introduced an, on by default, same origin check. This checks that the origin header set by the browser is the same as the host header
+
+The [code looks like:](https://github.com/tornadoweb/tornado/blob/master/tornado/websocket.py#L274)
+
+```
+ def check_origin(self, origin):
+    """Override to enable support for allowing alternate origins.
+
+    The ``origin`` argument is the value of the ``Origin`` HTTP header,
+    the url responsible for initiating this request.
+
+    .. versionadded:: 4.0
+    """
+    parsed_origin = urlparse(origin)
+    origin = parsed_origin.netloc
+    origin = origin.lower()
+
+    host = self.request.headers.get("Host")
+
+    # Check to see that origin matches host directly, including ports
+    return origin == host
+```
+
+In order for your proxied websocket connection to still work you will need to override check origin on the WebSocketHandler and whitelist the domains that you care about. Something like this.
+
+```
+import re
+from tornado import websocket
+
+class YouConnection(websocket.WebSocketHandler):
+
+    def check_origin(self, origin):
+        return bool(re.match(r'^.*?\.mydomain\.com', origin))
+```
+
+This will let the connections coming through from `info.mydomain.com` to get through as before.
+
 ```
 # NOTE: I am not responsible for any expired content.
-create@: 2020-01-03T13:10:40+08:00
-update@: 2021-02-13T03:33:03+08:00
-comment@: https://github.com/ferstar/blog/issues/14
+create@2020-01-03T13:10:40+08:00
+update@2021-11-30T04:16:11+08:00
+comment@https://github.com/ferstar/blog/issues/14
 ```
