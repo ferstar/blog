@@ -58,9 +58,15 @@ sudo sed -i "s/$old_host/$new_host/g" /etc/proxychains4.conf
 直接卸载就完事, 如果卸载不掉, 可以试试我从[知乎](https://zhuanlan.zhihu.com/p/347961733)淘来的一个脚本 
 [RemoveNahimic_20210111.zip](https://github.com/ferstar/blog/files/7599644/RemoveNahimic_20210111.zip)
 
+7. JB全家桶里面中文输入法没法光标跟随?
+
+参考我之前[这里](/post/issue-33/)的说明, WSLg环境依然有效, 主要就是用魔改的`jbr`替换JB官方的`jbr`目录
+
+![image](https://user-images.githubusercontent.com/2854276/144391926-256746e8-f2cb-49d9-9476-0168fbe88b85.png)
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2021-11-25T02:05:24+08:00
+update@2021-12-02T09:10:54+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
