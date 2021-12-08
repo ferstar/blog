@@ -64,9 +64,13 @@ sudo sed -i "s/$old_host/$new_host/g" /etc/proxychains4.conf
 
 ![image](https://user-images.githubusercontent.com/2854276/144391926-256746e8-f2cb-49d9-9476-0168fbe88b85.png)
 
+8. 偶尔 WSLg GUI 没有响应, 一般发生在长时间睡眠的唤醒时, 不频繁
+
+shutdown掉子系统, 卸载重装 WSLg 再开子系统即可
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2021-12-02T09:10:54+08:00
+update@2021-12-08T01:55:07+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
