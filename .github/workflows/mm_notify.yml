@@ -1,14 +1,13 @@
 name: Send MM Notify
 
 on:
-  schedule:
-    - cron: '*/5 0-12 * * *'
+  workflow_dispatch:
 
 jobs:
   alarm:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1.0.0
+      - uses: actions/checkout@v2
       - name: Install dependencies
         uses: BSFishy/pip-action@v1
         with:
