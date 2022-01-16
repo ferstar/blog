@@ -2,6 +2,10 @@
 
 https://blog.ferstar.org
 
-mirror: https://ferstar.github.io
+mirrors:
+
+1. https://ferstar.github.io
+
+2. https://ferstar.pages.dev
 
 powered by Hugo
