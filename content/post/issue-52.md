@@ -44,6 +44,6 @@ Thanks to the github actions, the only thing you need to care is about the code,
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-01-16T07:19:22+08:00
-update@2022-01-16T07:19:22+08:00
+update@2022-01-16T07:19:28+08:00
 comment@https://github.com/ferstar/blog/issues/52
 ```
