@@ -9,13 +9,13 @@ comments: true
 
 0. 垃圾WSL IO巨慢
 
-这里喷IO慢的仔细一看基本都是妈的项目在Windows里, 然后 runtime 在 WSL, 这他喵跨着9p不卡才怪
+这里喷IO慢的仔细一看基本都是项目在Windows里, 然后 runtime 在 WSL, 这他喵跨着9p不卡才怪
 
 解决方法也很简单, runtime IDE什么的一股脑统统丢 WSL 里不就完了, 啥? 嫌空间不够用? WSL挂载磁盘了解下? 直接就是原生磁盘IO的性能
 
-1. PyCharm 全局搜索框调不出来或者一闪而逝
+1. ~~PyCharm 全局搜索框调不出来或者一闪而逝~~`此坑已填: https://youtrack.jetbrains.com/issue/IDEA-265390`
 
-这个[issue](https://github.com/microsoft/wslg/issues/96#issuecomment-858257113)里找到了神仙解法: 狂按快捷键, 直到全局搜索框出来为止, 然后 pin 住, 就欧了...
+~~这个[issue](https://github.com/microsoft/wslg/issues/96#issuecomment-858257113)里找到了神仙解法: 狂按快捷键, 直到全局搜索框出来为止, 然后 pin 住, 就欧了...~~
 
 2. 中文输入法
 
@@ -71,6 +71,6 @@ shutdown掉子系统, 卸载重装 WSLg 再开子系统即可
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2021-12-08T01:55:07+08:00
+update@2022-02-24T10:23:17+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
