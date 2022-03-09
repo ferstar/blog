@@ -66,11 +66,13 @@ sudo sed -i "s/$old_host/$new_host/g" /etc/proxychains4.conf
 
 8. 偶尔 WSLg GUI 没有响应, 一般发生在长时间睡眠的唤醒时, 不频繁
 
-shutdown掉子系统, 卸载重装 WSLg 再开子系统即可
+~~shutdown掉子系统, 卸载重装 WSLg 再开子系统即可~~
+
+后来定位到其实是 AMD 核显驱动的问题, 换`独显直通`用 NVIDIA 独显就没事了
 
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2022-02-24T10:23:17+08:00
+update@2022-03-09T20:41:12+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
