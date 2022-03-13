@@ -7,7 +7,7 @@ comments: true
 
 后知后觉入了甲骨文坡县的账号, 发现正经建免费 ARM 实例几乎不可能, 于是就随便找了篇[抢购教程](https://www.daniao.org/14121.html), 具体过程不细表, 只说几个关键的点:
 
-1. 网传的 Python啊 Go 的啥脚本基本没啥用, 还容易被甲骨文封 IP;
+1. 网传的 Python 啊 Go 的啥脚本基本没啥用, 还容易被甲骨文封 IP;
 2. 为了增加抢购成功率, 可以先**不配公网IP; 选个中低配/不要一下子拉满; 使用官方 OCI cli 工具来刷(基本不会被封 IP)**
 3. 官方 OCI 工具也是个 Python 脚本, 视网络情况不同可能执行一次需要几秒甚至几十秒不等
 
@@ -30,9 +30,9 @@ oci compute instance launch --availability-domain LyQn:AP-SINGAPORE-1-AD-1 \
 at $(date -d "$(date) + 2 minutes" +"%H:%M %Y-%m-%d") < ~/oracle.cron.sh
 ```
 
-我是挂了大概 12 小时左右就抢到两台(超免费账户限额后会就不会能创建新的, 所以不用担心脚本会重建一堆实例然后甲骨文把你扣穷), **然后删掉一台, 再对剩下的一台做扩容操作(CPU/RAM/DISK 都拉满), 再上公网 IP, 再上 ipv6**
+我是挂了大概 12 小时左右就抢到两台(超免费账户限额后就不能创建新的, 所以不用担心脚本会重建一堆实例然后甲骨文把你扣到底裤不剩), **然后删掉一台, 再对剩下的一台做扩容操作(CPU/RAM/DISK 都拉满), 再上公网 IP, 再上 ipv6**
 
-PS: 注意甲骨文的 OS 比较恶心的一点是预置了一堆 iptables 规则, 最好提前干掉(我换了`ufw`来管理)
+PS: 注意甲骨文的 OS 比较恶心的一点是预置了一堆 iptables 规则, 最好提前干掉(我换了`ufw`来管理, 有效降低了心智负担)
 
 ```shell
 # 开放所有
@@ -58,6 +58,6 @@ net.ipv4.tcp_congestion_control=bbr
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-03-13T13:17:06+08:00
-update@2022-03-13T13:17:06+08:00
+update@2022-03-13T13:21:43+08:00
 comment@https://github.com/ferstar/blog/issues/53
 ```
