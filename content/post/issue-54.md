@@ -24,6 +24,7 @@ stream {
     upstream ssh {
         # 默认 ssh 连接会回落到 default , 然后到本机 22 端口
         server localhost:22;
+        # 你甚至可以在这里挂个 openvpn ...
     }
     server {
         listen 443 so_keepalive=on;
@@ -43,6 +44,6 @@ stream {
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-03-13T13:36:29+08:00
-update@2022-03-13T13:36:41+08:00
+update@2022-03-13T13:41:28+08:00
 comment@https://github.com/ferstar/blog/issues/54
 ```
