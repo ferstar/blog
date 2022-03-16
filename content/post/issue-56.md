@@ -33,11 +33,11 @@ comments: true
 2. `cft`当前免费有 1TB/month 的流量, 但不确定未来收费水平
 3. 移动端比较耗电
 
-
+还有一种非主流的姿势, 对弱鸡加速效果明显: https://github.com/HyNetwork/hysteria/wiki
 
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-03-16T23:10:03+08:00
-update@2022-03-16T23:28:44+08:00
+update@2022-03-16T23:35:15+08:00
 comment@https://github.com/ferstar/blog/issues/56
 ```
