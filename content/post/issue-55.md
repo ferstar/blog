@@ -5,11 +5,11 @@ tags: ['Python', 'TODO']
 comments: true
 ---
 
-> 最近在使用`openpyxl`时踩了个小坑: 遍历 Excel 时`openpyxl`可能会提前终止(由于对行数的误判)
+> 最近在使用`openpyxl`时踩了个小坑: 遍历 Excel 时`openpyxl`可能会由于对行数的误判而提前终止
 
 测试 Excel: [sample.xlsx](https://github.com/ferstar/blog/files/8274837/sample.xlsx) 这个 Excel 实际只有 10 行
 
-代码(分别使用了`openpyxl/pylightxl/xlrd`来计算实例文件的行数): 
+代码(分别使用了`openpyxl/pylightxl/xlrd`来计算示例文件的行数): 
 
 ```python
 import openpyxl
@@ -68,6 +68,6 @@ if __name__ == '__main__':
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-03-16T22:41:01+08:00
-update@2022-03-16T22:41:01+08:00
+update@2022-03-16T22:43:59+08:00
 comment@https://github.com/ferstar/blog/issues/55
 ```
