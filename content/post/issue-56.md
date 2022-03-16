@@ -31,12 +31,13 @@ comments: true
 
 1. 延时高(>500ms), 所以不适合臭打游戏的
 2. `cft`当前免费有 1TB/month 的流量, 但不确定未来收费水平
+3. 移动端比较耗电
 
 
 
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-03-16T23:10:03+08:00
-update@2022-03-16T23:14:20+08:00
+update@2022-03-16T23:19:33+08:00
 comment@https://github.com/ferstar/blog/issues/56
 ```
