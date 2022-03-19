@@ -459,9 +459,13 @@ If you want to come back to default behavior (nautilus with sidebar) you can sim
 
 `gsettings set org.gnome.nautilus.window-state start-with-sidebar true`
 
+## 9. [This location could not be displayed](https://askubuntu.com/questions/858793/this-location-could-not-be-displayed-on-ubuntu-16-10)
+
+`chmod -R 775 /media`
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T11:29:24+08:00
-update@2022-03-19T06:42:06+08:00
+update@2022-03-19T06:43:14+08:00
 comment@https://github.com/ferstar/blog/issues/11
 ```
