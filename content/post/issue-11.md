@@ -451,9 +451,17 @@ In Gnome [screen locking guide](https://help.gnome.org/users/gnome-power-manager
 > - `/apps/gnome-power-manager/lock/suspend`
 > - `/apps/gnome-power-manager/lock/hibernate`
 
+## 8. 文件管理nautilus左侧边栏消失
+
+> https://askubuntu.com/a/766618
+
+If you want to come back to default behavior (nautilus with sidebar) you can simply set the previous setting to true:
+
+`gsettings set org.gnome.nautilus.window-state start-with-sidebar true`
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T11:29:24+08:00
-update@2021-11-21T15:31:58+08:00
+update@2022-03-19T06:42:06+08:00
 comment@https://github.com/ferstar/blog/issues/11
 ```
