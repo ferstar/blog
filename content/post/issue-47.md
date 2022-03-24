@@ -82,9 +82,17 @@ sudo sed -i "s/$old_host/$new_host/g" /etc/proxychains4.conf
 
 [现成的注册表备份: NoActiveProbe.zip](https://github.com/ferstar/blog/files/8339080/NoActiveProbe.zip)
 
+11. 系统更新后 Scoop Apps 内应用图标丢失?
+
+见: https://github.com/ScoopInstaller/Scoop/issues/3941
+
+```shell
+scoop reset *
+```
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2022-03-24T06:53:44+08:00
+update@2022-03-24T06:57:49+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
