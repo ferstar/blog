@@ -90,9 +90,29 @@ sudo sed -i "s/$old_host/$new_host/g" /etc/proxychains4.conf
 scoop reset *
 ```
 
+12. zsh 粘贴又卡又慢?
+
+看这里: https://github.com/zsh-users/zsh-autosuggestions/issues/238#issuecomment-389324292
+
+```shell
+# 粘贴到.zshrc再source一下即可
+# This speeds up pasting w/ autosuggest
+# https://github.com/zsh-users/zsh-autosuggestions/issues/238
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+```
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2022-03-24T06:57:49+08:00
+update@2022-03-24T08:11:28+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
