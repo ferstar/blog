@@ -110,9 +110,13 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 ```
 
+13. 微软输入法选字框消失?
+
+> 设置〉时间和语言〉语言和区域〉选项〉微软拼音〉常规〉兼容性〉使用以前版本的微软拼音输入法
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2022-03-24T08:11:28+08:00
+update@2022-03-31T03:26:51+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
