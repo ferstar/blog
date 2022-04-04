@@ -63,11 +63,13 @@ if __name__ == '__main__':
 
 我选改造源文件, 即遍历 Excel 前先把`xml`中隐藏的空值行全干掉, 这样就欧了, 同时也提了个 issue 给`openpyxl`项目: https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1806
 
+但官方不认为这是个 bug, 因为 xml 文件确实是有内容的, 只不过是几个空行, 尴尬
+
 
 
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-03-16T22:41:01+08:00
-update@2022-04-04T13:08:03+08:00
+update@2022-04-04T13:09:27+08:00
 comment@https://github.com/ferstar/blog/issues/55
 ```
