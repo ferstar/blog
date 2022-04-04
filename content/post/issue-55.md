@@ -1,7 +1,7 @@
 ---
 title: "以openpyxl为例, 不要太信任你所使用的库"
 date: "2022-03-16T22:41:01+08:00"
-tags: ['Python', 'TODO']
+tags: ['Python']
 comments: true
 ---
 
@@ -68,6 +68,6 @@ if __name__ == '__main__':
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-03-16T22:41:01+08:00
-update@2022-03-16T22:43:59+08:00
+update@2022-04-04T13:08:03+08:00
 comment@https://github.com/ferstar/blog/issues/55
 ```
