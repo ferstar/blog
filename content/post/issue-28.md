@@ -5,12 +5,6 @@ tags: ['Life']
 comments: true
 ---
 
-> created_date: 2020-12-11T20:38:06+08:00
-
-> update_date: 2021-02-12T19:21:32+08:00
-
-> comment_url: https://github.com/ferstar/blog/issues/28
-
 列一下还算有效的喷剂
 
 1. 辅舒良 - 过敏性鼻炎（季节性、花粉）可以在季节交替或花粉期之前预防性使用，可能效果会更好
@@ -19,10 +13,23 @@ comments: true
 
 实在堵的受不了可以用上述任何一个喷剂都能有效缓解
 
+减少过敏反应的药物
+
+1. 氯雷他定片
+2. 息斯敏 貌似有效成分还是氯雷他定
+
 因为鼻子实在太脆弱，清洗必不可少，可选的有
 
 1. 生理性海盐水 - 这玩意挺贵
-2. 洗鼻器 - 据说坚持用有很好的效果
+5. 洗鼻器 - 据说坚持用有很好的效果
 
 迫于日益厚重的雾霾&预防新冠，**口罩**也是必不可少，毕竟鼻子实在太脆
 
+
+
+```
+# NOTE: I am not responsible for any expired content.
+create@2020-12-11T20:38:06+08:00
+update@2022-04-04T13:11:55+08:00
+comment@https://github.com/ferstar/blog/issues/28
+```
