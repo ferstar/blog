@@ -20,6 +20,6 @@ def count_pages(path):
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-04-08T02:51:14+08:00
-update@2022-04-08T02:51:14+08:00
+update@2022-04-08T02:51:19+08:00
 comment@https://github.com/ferstar/blog/issues/59
 ```
