@@ -114,9 +114,66 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 > 设置〉时间和语言〉语言和区域〉选项〉微软拼音〉常规〉兼容性〉使用以前版本的微软拼音输入法
 
+14. 开启 SSH
+
+> 从这抄的: http://dancingline.cn/%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5WSL2/
+
+> 为防 404, 摘抄一份
+
+据说自带的OpenSSH有问题，需要先卸后装
+
+```shell
+sudo apt remove openssh-server
+sudo apt install openssh-server
+```
+
+修改 sshd 配置文件
+
+```shell
+Port 2222   #设置ssh的端口号, 由于22在windows中有别的用处, 尽量不修改系统的端口号
+PermitRootLogin yes   # 可以root远程登录
+PasswordAuthentication yes     # 允许密码验证登录
+AllowUsers dancingline # 远程登录时的用户名
+```
+
+重启服务
+
+```shell
+sudo service ssh --full-restart
+```
+
+Windows端口转发(保存为.ps1 后缀, 直接运行即可, 会自动申请管理员权限)
+
+```powershell
+if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
+{  
+  $arguments = "& '" +$myinvocation.mycommand.definition + "'"
+  Start-Process powershell -Verb runAs -ArgumentList $arguments
+  Break
+}
+# 找到WSL2的IP
+$ip = bash.exe -c "ifconfig eth0 | grep 'inet '"
+$found = $ip -match '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
+if( $found ) {
+$ip = $matches[0];
+echo "Found IP $ip"
+# 端口转发，listenport和listenaddress表示监听的端口和IP，connectport和connectaddress表示转发到的端口和IP
+iex "netsh interface portproxy add v4tov4 listenport=2222 listenaddress=* connectport=2222 connectaddress=$ip";
+# 展示已有的
+iex "netsh interface portproxy show all;"
+}
+else { echo "The ip address of WSL2 cannot be found!"; }
+```
+
+完事以后就可以从局域网 or 外网直接 ssh 链接了
+
+```shell
+ssh root@x.x.x.x -p 2222
+```
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2022-03-31T03:26:51+08:00
+update@2022-04-18T11:47:13+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
