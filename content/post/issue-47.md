@@ -144,6 +144,8 @@ sudo service ssh --full-restart
 
 Windows端口转发(保存为.ps1 后缀, 直接运行即可, 会自动申请管理员权限)
 
+> 防火墙配置就不多说, 我是直接关掉
+
 ```powershell
 if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))  
 {  
@@ -174,6 +176,6 @@ ssh root@x.x.x.x -p 2222
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2022-04-18T11:47:13+08:00
+update@2022-04-18T11:48:54+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
