@@ -5,6 +5,8 @@ tags: ['Linux']
 comments: true
 ---
 
+> 2022年04月28日更新：垃圾甲骨文，又莫须有删我实例，告辞。
+
 后知后觉入了甲骨文坡县的账号, 发现正经建免费 ARM 实例几乎不可能, 于是就随便找了篇[抢购教程](https://www.daniao.org/14121.html), 具体过程不细表, 只说几个关键的点:
 
 1. 网传的 Python 啊 Go 的啥脚本基本没啥用, 还容易被甲骨文封 IP;
@@ -58,6 +60,6 @@ net.ipv4.tcp_congestion_control=bbr
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-03-13T13:17:06+08:00
-update@2022-03-13T13:24:06+08:00
+update@2022-04-28T10:22:24+08:00
 comment@https://github.com/ferstar/blog/issues/53
 ```
