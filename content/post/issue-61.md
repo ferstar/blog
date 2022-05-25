@@ -50,6 +50,6 @@ type=SYSCALL msg=audit(1653373992.503:379): arch=c000003e syscall=257 success=ye
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-05-25T08:09:52+08:00
-update@2022-05-25T08:10:22+08:00
+update@2022-05-25T08:10:27+08:00
 comment@https://github.com/ferstar/blog/issues/61
 ```
