@@ -28,7 +28,8 @@ type=SYSCALL msg=audit(1653373992.503:379): arch=c000003e syscall=257 success=ye
 
 大功告成！等等，这玩意下次重启还会恢复原样，当然可以搞个启动脚本简单处理，但是本着逼格无限的折腾精神，我找到了`logrotate`：定时根据定义配置来rotate指定的文件，还可以定义post hooks命令，就是你了杰尼龟：
 
-```shell cat /etc/logrotate.d/xxxtmp
+```shell
+~ cat /etc/logrotate.d/xxxtmp
 /tmp/xxxtmp.log {
         su ferstar ferstar
         daily
@@ -49,6 +50,6 @@ type=SYSCALL msg=audit(1653373992.503:379): arch=c000003e syscall=257 success=ye
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-05-25T08:09:52+08:00
-update@2022-05-25T08:09:52+08:00
+update@2022-05-25T08:10:22+08:00
 comment@https://github.com/ferstar/blog/issues/61
 ```
