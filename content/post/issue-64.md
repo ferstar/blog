@@ -69,6 +69,6 @@ $AXEL_BIN --max-redirect=3 -n $PROCESS_COUNT -a -k -U "$USER_AGENT" $URL -o $OUT
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-05-31T07:35:23+08:00
-update@2022-05-31T07:35:23+08:00
+update@2022-05-31T07:35:38+08:00
 comment@https://github.com/ferstar/blog/issues/64
 ```
