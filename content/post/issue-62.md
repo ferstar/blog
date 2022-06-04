@@ -73,6 +73,6 @@ for item in data:
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-05-25T08:12:46+08:00
-update@2022-06-04T23:18:12+08:00
+update@2022-06-04T23:18:21+08:00
 comment@https://github.com/ferstar/blog/issues/62
 ```
