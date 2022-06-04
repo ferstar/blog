@@ -54,7 +54,7 @@ with gzip.open(path, 'rb') as fp:
     data = decode(fp.read(), type=List[Item])
 
 for item in data:
-    print(item.Z.ZZ)
+    print(item.Z)
 ```
 
 代码量看起来是比以前一把梭哈`json.load`多了一点，但收益巨大：同样的硬件条件，使用`msgspec.decode`快了近一个数量级。
@@ -73,6 +73,6 @@ for item in data:
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-05-25T08:12:46+08:00
-update@2022-06-04T23:12:30+08:00
+update@2022-06-04T23:18:12+08:00
 comment@https://github.com/ferstar/blog/issues/62
 ```
