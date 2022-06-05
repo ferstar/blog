@@ -41,6 +41,8 @@ if __name__ == '__main__':
 
 ```python
 def do_ai_pipe():
+    # 可能有人会有疑问：改成 local import 的话，岂不是每次调用方法都要重复 import 一次，这多浪费
+    # 先说答案：不会，因为 import 是有全局缓存的，第二次 import 直接从缓存里取了
     import torch  # 实际项目的引用关系要复杂得多
 
     print(torch.__version__)
@@ -56,7 +58,7 @@ if __name__ == '__main__':
 
 可以看到内存骤降至 KB 级别，代码几乎是不需要做什么改动的。
 
-当然这只是一个简单的例子：某些情况下一些方法引用了一个比较重的依赖，但这个方法本身又不是经常使用，那么就可以考虑把这个重依赖从`global import`改为`local import`，可以极大降低项目整体启动的时间和内存占用。
+当然这只是一个简单的例子：某些情况下一些方法引用了一个比较重的依赖，那么就可以考虑把这个重依赖从`global import`改为`local import`，可以极大降低项目整体启动的时间和内存占用。
 
 借助`memray`可以清晰直观地展现出项目所有调用的内存使用情况，你可以很快定位到最需要优化的`func`，然后根据实际需要，稍微做一点调整，即可获得不错的性能收益。
 
@@ -92,6 +94,6 @@ yyyy-mm-dd HH:20:07,631 - [INFO] [MainThread] (server:90) the web server is list
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-05-25T08:13:58+08:00
-update@2022-06-05T00:21:25+08:00
+update@2022-06-05T00:27:36+08:00
 comment@https://github.com/ferstar/blog/issues/63
 ```
