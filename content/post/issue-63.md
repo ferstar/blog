@@ -94,6 +94,6 @@ yyyy-mm-dd HH:20:07,631 - [INFO] [MainThread] (server:90) the web server is list
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-05-25T08:13:58+08:00
-update@2022-06-05T00:27:36+08:00
+update@2022-06-05T00:28:06+08:00
 comment@https://github.com/ferstar/blog/issues/63
 ```
