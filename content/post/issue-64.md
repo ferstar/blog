@@ -24,6 +24,13 @@ DLAGENTS=('file::/home/ferstar/.local/bin/lftp_wrapper.sh %u %o'
           'scp::/usr/bin/scp -C %u %o')
 ```
 
+`/etc/pacman.conf`这里也改一下
+
+```shell
+#XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
+XferCommand = /home/ferstar/.local/bin/lftp_wrapper.sh %u %o
+```
+
 2. 写脚本处理URL&调起第三方下载工具下载文件
 
 ```shell
@@ -69,6 +76,6 @@ $AXEL_BIN --max-redirect=3 -n $PROCESS_COUNT -a -k -U "$USER_AGENT" $URL -o $OUT
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-05-31T07:35:23+08:00
-update@2022-05-31T07:35:38+08:00
+update@2022-06-09T07:33:48+08:00
 comment@https://github.com/ferstar/blog/issues/64
 ```
