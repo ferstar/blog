@@ -8,6 +8,12 @@ comments: true
 - 症状：搜狗输入法文字候选框一直在窗口的左下角，根本看不见候选，只能盲打
 - 系统：
 
+> 大概JB也知道自家runtime坑了，所以不知从哪个版本开始支持更换自定义的runtime，所以事情就变得更简单了： 下载合适的runtime换一下就行OK
+
+https://github.com/ayanamist/JetBrainsRuntime-for-fcitx
+
+---
+
 ```shell
 fcitx version: 4.2.9.7
 OS: Ubuntu 20.04.1 LTS x86_64 
@@ -59,7 +65,7 @@ Memory: 5793MiB / 15432MiB
 
 ```
 # NOTE: I am not responsible for any expired content.
-create@: 2020-12-30T10:25:21+08:00
-update@: 2021-02-13T12:41:40+08:00
-comment@: https://github.com/ferstar/blog/issues/33
+create@2020-12-30T10:25:21+08:00
+update@2022-08-01T02:47:04+08:00
+comment@https://github.com/ferstar/blog/issues/33
 ```
