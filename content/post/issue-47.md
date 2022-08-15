@@ -5,6 +5,10 @@ tags: ['Windows', 'WSL2']
 comments: true
 ---
 
+好了，我宣布WSLg就是个锤锤，投奔Linux怀抱
+
+---
+
 > 开个坑, 慢慢填
 
 0. 垃圾WSL IO巨慢
@@ -176,6 +180,6 @@ ssh root@x.x.x.x -p 2222
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2022-04-18T11:48:54+08:00
+update@2022-08-15T06:46:09+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
