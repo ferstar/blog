@@ -180,6 +180,6 @@ ssh root@x.x.x.x -p 2222
 ```
 # NOTE: I am not responsible for any expired content.
 create@2021-11-02T22:47:57+08:00
-update@2022-08-15T06:46:09+08:00
+update@2022-08-15T06:46:18+08:00
 comment@https://github.com/ferstar/blog/issues/47
 ```
