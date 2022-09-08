@@ -38,9 +38,11 @@ git remote set-branches origin '*'
 git fetch -v
 ```
 
+> 算了，没什么好写的，官方文档很清楚，遇事不决直接查就是。
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T10:51:58+08:00
-update@2021-03-15T07:35:08+08:00
+update@2022-09-08T04:45:14+08:00
 comment@https://github.com/ferstar/blog/issues/10
 ```
