@@ -46,9 +46,13 @@ comments: true
 
 我要忏悔，要养气，要讲究疏导方法，要淡定。。。
 
+##### 9. 发现个超棒的玩具：弹射竹蜻蜓
+
+女儿很喜欢，逗猫一级棒
+
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T12:14:45+08:00
-update@2022-09-08T04:53:42+08:00
+update@2022-09-08T04:56:21+08:00
 comment@https://github.com/ferstar/blog/issues/13
 ```
