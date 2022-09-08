@@ -43,6 +43,6 @@ git fetch -v
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-01-02T10:51:58+08:00
-update@2022-09-08T04:45:14+08:00
+update@2022-09-08T04:45:18+08:00
 comment@https://github.com/ferstar/blog/issues/10
 ```
