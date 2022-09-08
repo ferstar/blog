@@ -25,11 +25,11 @@ comments: true
 
 迫于日益厚重的雾霾&预防新冠，**口罩**也是必不可少，毕竟鼻子实在太脆
 
-
+> 万万没想到疫情持续到现在还没有停的迹象，得益于天天戴口罩，鼻炎竟然不药而愈，看来关键还是空气质量太差的锅，自己鼻子太脆，不扛艹。。。
 
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-12-11T20:38:06+08:00
-update@2022-04-04T13:11:55+08:00
+update@2022-09-08T04:44:06+08:00
 comment@https://github.com/ferstar/blog/issues/28
 ```
