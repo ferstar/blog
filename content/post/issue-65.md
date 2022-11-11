@@ -19,8 +19,8 @@ comments: true
 
 - About This Mac -> System Information -> Power -> Serial Number 记下你现在的电池序列号，小新的话默认应该是`123456789`
 - 工具：[MaciASL](https://github.com/acidanthera/MaciASL)
-- 挂载EFI分区，打开SSDT-BATS-PRO13.aml文件`123456789`
-- 查找上面记下的序列号，替换成任意你喜欢的数字组合，最好保证长度一致
+- 挂载EFI分区，打开SSDT-BATS-PRO13.aml文件
+- 查找上面记下的序列号`123456789`，替换成任意你喜欢的数字组合，最好保证长度一致
 - 改完点保存
 - 重启电脑，电池维修的提示就没有了
 
@@ -29,6 +29,6 @@ comments: true
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-11-11T02:11:54+08:00
-update@2022-11-11T02:12:41+08:00
+update@2022-11-11T02:15:58+08:00
 comment@https://github.com/ferstar/blog/issues/65
 ```
