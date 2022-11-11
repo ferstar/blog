@@ -5,7 +5,7 @@ tags: ['macOS']
 comments: true
 ---
 
-装用了三年多的小新pro13电池终于不行了，提示“电池建议维修”
+装黑苹果用了三年多的小新pro13电池终于不行了，提示“电池建议维修”
 
 ![image](https://user-images.githubusercontent.com/2854276/201245551-5ab8aa61-6a5f-4532-999e-d19d070b813c.png)
 
@@ -19,8 +19,7 @@ comments: true
 
 - About This Mac -> System Information -> Power -> Serial Number 记下你现在的电池序列号，小新的话默认应该是`123456789`
 - 工具：[MaciASL](https://github.com/acidanthera/MaciASL)
-- 挂载EFI分区，打开SSDT-BATS-PRO13.aml文件
-- About This Mac -> System Information -> Power -> Serial Number 记下你现在的电池序列号，小新的话默认应该是`123456789`
+- 挂载EFI分区，打开SSDT-BATS-PRO13.aml文件`123456789`
 - 查找上面记下的序列号，替换成任意你喜欢的数字组合，最好保证长度一致
 - 改完点保存
 - 重启电脑，电池维修的提示就没有了
@@ -30,6 +29,6 @@ comments: true
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-11-11T02:11:54+08:00
-update@2022-11-11T02:12:03+08:00
+update@2022-11-11T02:12:41+08:00
 comment@https://github.com/ferstar/blog/issues/65
 ```
