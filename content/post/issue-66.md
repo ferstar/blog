@@ -1,7 +1,7 @@
 ---
 title: "再说点梯子的事情"
 date: "2022-11-14T00:39:53+08:00"
-tags: ['Default']
+tags: ['Linux', 'Docker', 'Android']
 comments: true
 ---
 
@@ -18,6 +18,6 @@ _先挖坑，空了填_
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-11-14T00:39:53+08:00
-update@2022-11-14T00:39:53+08:00
+update@2022-11-14T00:40:58+08:00
 comment@https://github.com/ferstar/blog/issues/66
 ```
