@@ -38,6 +38,6 @@ sudo dpkg -i /tmp/ssl.deb
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-12-09T06:22:11+08:00
-update@2022-12-09T06:22:11+08:00
+update@2022-12-09T06:39:46+08:00
 comment@https://github.com/ferstar/blog/issues/67
 ```
