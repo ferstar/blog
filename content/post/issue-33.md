@@ -10,6 +10,8 @@ comments: true
 
 > 大概JB也知道自家runtime坑了，所以不知从哪个版本开始支持更换自定义的runtime，所以事情就变得更简单了： 下载合适的runtime换一下就行OK
 
+> 注意：如果你最近更新了PyCharm，然后发现频繁闪退，那就得先把runtime切换为IDE默认，然后再更新一下自定义runtime即可
+
 https://github.com/ayanamist/JetBrainsRuntime-for-fcitx
 
 ---
@@ -66,6 +68,6 @@ Memory: 5793MiB / 15432MiB
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-12-30T10:25:21+08:00
-update@2022-08-01T02:47:04+08:00
+update@2022-12-30T06:33:09+08:00
 comment@https://github.com/ferstar/blog/issues/33
 ```
