@@ -5,11 +5,11 @@ tags: ['Linux']
 comments: true
 ---
 
-> created_date: 2020-12-13T08:08:17+08:00
+### 终极奥义btrfs send&receive
 
-> update_date: 2021-02-12T19:17:02+08:00
+> 我现在换新机直接用这招：先清一波垃圾文件如缓存日志等，然后把旧机硬盘拆出来放移动硬盘盒里，挂到新机器启动，再用btrfs send&receive转移子卷数据，转完以后把新盘uuid写入/etc/fstab和/boot/grub/grub.cfg即可，方便快捷
 
-> comment_url: https://github.com/ferstar/blog/issues/32
+`sudo btrfs send root | sudo btrfs receive /tmp/rootfs`
 
 ### BTRFS专用，snapshot
 
@@ -69,3 +69,11 @@ chroot /media/whatever
 dpkg-reconfigure grub-pc
 ```
 
+
+
+```
+# NOTE: I am not responsible for any expired content.
+create@2020-12-13T08:08:17+08:00
+update@2023-01-04T13:16:34+08:00
+comment@https://github.com/ferstar/blog/issues/32
+```
