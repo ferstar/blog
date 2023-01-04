@@ -1,7 +1,7 @@
 ---
 title: "不死小强——timeshift+btrfs-grub"
 date: "2022-05-01T14:04:25+08:00"
-tags: ['Linux', 'TODO']
+tags: ['Linux']
 comments: true
 ---
 
@@ -41,6 +41,6 @@ btrfs-grub https://github.com/Antynea/grub-btrfs 直接去项目主页看说明�
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-05-01T14:04:25+08:00
-update@2023-01-04T13:09:25+08:00
+update@2023-01-04T13:09:35+08:00
 comment@https://github.com/ferstar/blog/issues/60
 ```
