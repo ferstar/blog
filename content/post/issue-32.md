@@ -74,6 +74,6 @@ dpkg-reconfigure grub-pc
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-12-13T08:08:17+08:00
-update@2023-01-04T13:16:34+08:00
+update@2023-01-04T13:16:40+08:00
 comment@https://github.com/ferstar/blog/issues/32
 ```
