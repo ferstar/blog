@@ -5,6 +5,8 @@ tags: ['Linux']
 comments: true
 ---
 
+> 注意：Manjaro/Arch 里这个包叫 `openssl-1.1` 不小心卸载了的话，得装回来。
+
 最近把Ubuntu更新到22.10，发现openssl已经到3.x了，之前万年1.1.1包居然默认被删掉，这就导致一个问题：之前基于这玩意的很多包如果没有及时做兼容的话，大概率是不能用的，如utools：
 
 ```shell
@@ -38,6 +40,6 @@ sudo dpkg -i /tmp/ssl.deb
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-12-09T06:22:11+08:00
-update@2022-12-09T06:39:46+08:00
+update@2023-01-24T17:24:02+08:00
 comment@https://github.com/ferstar/blog/issues/67
 ```
