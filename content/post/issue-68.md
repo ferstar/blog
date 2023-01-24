@@ -5,7 +5,7 @@ tags: ['Linux']
 comments: true
 ---
 
-前阵子换了个新电脑，重装是不可能的，于是拷一份老机的数据到新机，具体过程不表，基本就是 #32 说的那套。
+前阵子换了个新电脑，重装是不可能的，于是拷一份老机的数据到新机，具体过程不表，基本就是 [#32](https://blog.ferstar.org/post/issue-32/) 说的那套。
 
 搞完发现系统么发启动，具体报错忘了，大概就是找不到启动配置的意思，这种一般就是grub的问题，于是进`/boot/efi`瞧一瞧：
 
@@ -53,6 +53,6 @@ feature_net_search_cfg
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-01-24T00:57:55+08:00
-update@2023-01-24T00:57:55+08:00
+update@2023-01-24T00:59:16+08:00
 comment@https://github.com/ferstar/blog/issues/68
 ```
