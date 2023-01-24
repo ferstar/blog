@@ -1,5 +1,5 @@
 ---
-title: "AX3600 ShellClash 替换 clash-meta 内核"
+title: "AX3600 ShellClash 替换 clash-meta 核心"
 date: "2023-01-24T01:17:09+08:00"
 tags: ['Linux']
 comments: true
@@ -7,7 +7,7 @@ comments: true
 
 这个路由的 root 包括安装 shellclash 这个帖子介绍的很清楚：https://qust.me/post/ax3600_shellclash/
 
-我自然懒得赘述，下面主要提一下如何替换 clash-meta 核心以实现 hysteria 以及 tuic 这种非主流代理协议的方法 #66 
+我自然懒得赘述，下面主要提一下如何替换 clash-meta 核心以支持 hysteria 以及 tuic 这种非主流代理协议的方法 #66 
 
 1. 当然是先下载 clash 的啦（选 arm64 ）：https://github.com/MetaCubeX/Clash.Meta/releases，我用 Alpha，就是这么头铁
 2. 解压&塞到路由器里
@@ -55,6 +55,6 @@ One more thing，hysteria 这个协议比较吃 CPU，建议适当限制下行�
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-01-24T01:17:09+08:00
-update@2023-01-24T17:18:18+08:00
+update@2023-01-24T17:19:55+08:00
 comment@https://github.com/ferstar/blog/issues/70
 ```
