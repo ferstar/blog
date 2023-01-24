@@ -55,6 +55,6 @@ One more thing，hysteria 这个协议比较吃 CPU，建议适当限制下行�
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-01-24T01:17:09+08:00
-update@2023-01-24T17:18:06+08:00
+update@2023-01-24T17:18:18+08:00
 comment@https://github.com/ferstar/blog/issues/70
 ```
