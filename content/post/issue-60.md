@@ -13,7 +13,7 @@ comments: true
 
 我的挂载信息：
 
-> 可以看到我把 cache log docker 等划分了单独的 subvolume，同时启用了 zstd 压缩，异步碎片整理等特性
+> 可以看到我把 cache log docker 等划分了单独的 subvolume，同时启用了 zstd 压缩等特性
 
 ```shell
  ~ cat /etc/fstab
@@ -25,11 +25,11 @@ comments: true
 #
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
 UUID=3EB0-83DA /boot/efi       vfat    umask=0077      0       0
-UUID=d28630c8-a642-45e6-baae-b41de3da008e /               btrfs   defaults,ssd,noatime,compress-force=zstd,commit=120,discard=async,space_cache=v2,subvol=/@ 0       2
-UUID=d28630c8-a642-45e6-baae-b41de3da008e /home           btrfs   defaults,ssd,noatime,compress-force=zstd,commit=120,discard=async,space_cache=v2,subvol=/@home 0       0
-UUID=d28630c8-a642-45e6-baae-b41de3da008e /var/lib/docker btrfs   defaults,ssd,noatime,compress-force=zstd,commit=120,discard=async,space_cache=v2,subvol=/@docker 0       0
-UUID=d28630c8-a642-45e6-baae-b41de3da008e /var/cache btrfs   defaults,ssd,noatime,compress-force=zstd,commit=120,discard=async,space_cache=v2,subvol=/@cache 0       0
-UUID=d28630c8-a642-45e6-baae-b41de3da008e /var/log btrfs   defaults,ssd,noatime,compress-force=zstd,commit=120,discard=async,space_cache=v2,subvol=/@log 0       0
+UUID=d28630c8-a642-45e6-baae-b41de3da008e /               btrfs   defaults,ssd,noatime,compress-force=zstd,commit=120,space_cache=v2,subvol=/@ 0       2
+UUID=d28630c8-a642-45e6-baae-b41de3da008e /home           btrfs   defaults,ssd,noatime,compress-force=zstd,commit=120,space_cache=v2,subvol=/@home 0       0
+UUID=d28630c8-a642-45e6-baae-b41de3da008e /var/lib/docker btrfs   defaults,ssd,noatime,compress-force=zstd,commit=120,space_cache=v2,subvol=/@docker 0       0
+UUID=d28630c8-a642-45e6-baae-b41de3da008e /var/cache btrfs   defaults,ssd,noatime,compress-force=zstd,commit=120,space_cache=v2,subvol=/@cache 0       0
+UUID=d28630c8-a642-45e6-baae-b41de3da008e /var/log btrfs   defaults,ssd,noatime,compress-force=zstd,commit=120,space_cache=v2,subvol=/@log 0       0
 ```
 
 Timeshift 这个不必多说，很好用的一个快照管理软件；
@@ -41,6 +41,6 @@ btrfs-grub https://github.com/Antynea/grub-btrfs 直接去项目主页看说明�
 ```
 # NOTE: I am not responsible for any expired content.
 create@2022-05-01T14:04:25+08:00
-update@2023-01-04T13:09:35+08:00
+update@2023-01-25T15:43:30+08:00
 comment@https://github.com/ferstar/blog/issues/60
 ```
