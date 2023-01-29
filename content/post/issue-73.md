@@ -31,7 +31,7 @@ comments: true
 终极缝合以后的产物效果还不错，基本符合预期：
 
 1. CPU 占用极低（极限情况：疯狂三指拖拽某窗口，本 fork 实现 CPU 占用不到1%；原实现5~10%；Python、Ruby等实现30%+）
-2. 拖拽体验丝滑
+2. 拖拽体验丝滑（如果觉得不够滑，那一定是你本子的触控板太渣，逃~）
 3. 重放手指后支持继续拖动（延迟时间`mouse_up_delay`可配）
 4. 拖拽速度`acceleration`可配置
 
@@ -44,6 +44,6 @@ Enjoy！
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-01-29T02:08:34+08:00
-update@2023-01-29T02:13:21+08:00
+update@2023-01-29T02:15:20+08:00
 comment@https://github.com/ferstar/blog/issues/73
 ```
