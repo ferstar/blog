@@ -24,7 +24,7 @@ comments: true
 我最在意的手势莫过于**三指拖拽**，实现这个功能有两个注意的点：
 
 1. 拖拽起止会有持续不断的位移指令发出，所以通过 fork shell 不间断发送位移指令的操作是非常低效的，见这个[讨论](https://github.com/riley-martin/gestures/discussions/6)。
-2. 为了媲美 macOS 的丝滑拖拽效果，那就要求程序实现要尽可能的高效。
+2. 为了媲美 macOS 的丝滑拖拽效果，必须使用尽可能高效的实现。
 
 于是乎我选择了一个 Rust [实现](https://github.com/riley-martin/gestures)开抄，负责实现 API 级别的触控手势识别，然后缝合了另一个 Rust [实现](https://github.com/marsqing/libinput-three-finger-drag)，负责实现 API 级别的**拖拽**效果。
 
@@ -44,6 +44,6 @@ Enjoy！
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-01-29T02:08:34+08:00
-update@2023-01-29T02:11:08+08:00
+update@2023-01-29T02:13:21+08:00
 comment@https://github.com/ferstar/blog/issues/73
 ```
