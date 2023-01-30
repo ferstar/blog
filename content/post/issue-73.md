@@ -5,7 +5,7 @@ tags: ['Linux']
 comments: true
 ---
 
-> 转用 Linux 后我一直都比较怀念 macOS 上丝滑的**三指拖拽**效果，鉴于近几年出的 Windows 本子触控板面积以及跟手性肉眼可见的改善了很多，我觉得是时候在 Linux 上折腾下**触控板手势**了。
+> 转用 Linux 后一直都比较怀念 macOS 上丝滑的**三指拖拽**效果，鉴于近几年出的 Windows 本子触控板面积以及跟手性肉眼可见的改善了很多，我觉得是时候在 Linux 上折腾下**触控板手势**了。
 
 说干就干，放狗搜了一下，发现类似的实现还不少，小罗列下：
 
@@ -35,7 +35,7 @@ comments: true
 3. 重放手指后支持继续拖动（延迟时间`mouse_up_delay`可配）
 4. 拖拽速度`acceleration`可配置
 
-编译好的二进制和示例配置文件见：https://github.com/ferstar/gestures/releases/tag/0.3.0 理论上支持所有 Linux X11 桌面环境。
+编译好的二进制和示例配置文件见：[Link](https://github.com/ferstar/gestures/releases/tag/0.3.0) 理论上支持所有 Linux X11 桌面环境。
 
 Enjoy！
 
@@ -44,6 +44,6 @@ Enjoy！
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-01-29T02:08:34+08:00
-update@2023-01-29T02:15:20+08:00
+update@2023-01-30T15:19:57+08:00
 comment@https://github.com/ferstar/blog/issues/73
 ```
