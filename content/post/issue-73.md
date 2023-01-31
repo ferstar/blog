@@ -35,7 +35,9 @@ comments: true
 3. 重放手指后支持继续拖动（延迟时间`mouse_up_delay`可配）
 4. 拖拽速度`acceleration`可配置
 
-编译好的二进制和示例配置文件见：[Link](https://github.com/ferstar/gestures/releases/tag/0.3.0) 理论上支持所有 Linux X11 桌面环境。
+编译好的二进制和示例配置文件见：[点我直达，选最新发布的就行](https://github.com/ferstar/gestures/releases) 理论上支持所有 Linux X11 桌面环境。
+
+迫于远程控制、截图等硬伤，我暂无转向 Wayland 的打算，所以就先不整 Wayland 的支持了。
 
 Enjoy！
 
@@ -44,6 +46,6 @@ Enjoy！
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-01-29T02:08:34+08:00
-update@2023-01-30T15:19:57+08:00
+update@2023-01-31T12:55:29+08:00
 comment@https://github.com/ferstar/blog/issues/73
 ```
