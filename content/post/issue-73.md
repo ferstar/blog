@@ -37,7 +37,7 @@ comments: true
 
 编译好的二进制和示例配置文件见：[点我直达，选最新发布的就行](https://github.com/ferstar/gestures/releases) 理论上支持所有 Linux X11 桌面环境。
 
-迫于远程控制、截图等硬伤，我暂无转向 Wayland 的打算，所以就先不整 Wayland 的支持了。
+迫于远程控制、截图等硬伤，我暂无转向 Wayland 的打算，~~所以就先不整 Wayland 的支持了。~~ Wayland已支持
 
 Enjoy！
 
@@ -46,6 +46,6 @@ Enjoy！
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-01-29T02:08:34+08:00
-update@2023-01-31T12:55:29+08:00
+update@2023-02-03T12:04:05+08:00
 comment@https://github.com/ferstar/blog/issues/73
 ```
