@@ -111,6 +111,6 @@ A: initdb -D data/pg_data --locale=zh_CN.UTF-8 --encoding=UTF8 指定一样的lo
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-02-03T11:51:35+08:00
-update@2023-02-03T11:51:35+08:00
+update@2023-02-03T11:51:48+08:00
 comment@https://github.com/ferstar/blog/issues/74
 ```
