@@ -14,6 +14,7 @@ comments: true
 - initdb -D data/pg_data --locale=zh_CN.UTF-8 --encoding=UTF8
 - pg_upgrade -b /opt/pgsql-14/bin -B /usr/bin -d data/pg_data.old -D data/pg_data
 - 一切正常后删掉 data/pg_data.old 备份
+- 卸载掉 postgresql-old-upgrade
 
 一些输出：
 
@@ -104,6 +105,7 @@ Running this script will delete the old cluster's data files:
 可能会碰到的报错：
 
 Q: lc_collate values for database "template1" do not match:  old "zh_CN.UTF-8", new "en_US.UTF-8"
+
 A: initdb -D data/pg_data --locale=zh_CN.UTF-8 --encoding=UTF8 指定一样的locale即可
 
 
@@ -111,6 +113,6 @@ A: initdb -D data/pg_data --locale=zh_CN.UTF-8 --encoding=UTF8 指定一样的lo
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-02-03T11:51:35+08:00
-update@2023-02-03T11:51:48+08:00
+update@2023-02-03T11:56:34+08:00
 comment@https://github.com/ferstar/blog/issues/74
 ```
