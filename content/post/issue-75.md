@@ -128,6 +128,6 @@ BTRFS info (device nvme0n1p5: state M): force zstd compression, level 3
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-02-07T06:32:08+08:00
-update@2023-02-07T06:32:08+08:00
+update@2023-02-07T06:32:15+08:00
 comment@https://github.com/ferstar/blog/issues/75
 ```
