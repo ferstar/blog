@@ -23,9 +23,20 @@ grub_gpt_partition_map_iterate
 
 鉴于对这种写死做法的鄙夷，我决定换一种优雅的解决办法：
 
-随便找了个 Ubuntu 的 Server 镜像，从里面把 /efi/{Boot,ubuntu} 一起拷贝出来
+~~随便找了个 Ubuntu 的 Server 镜像，从里面把 /efi/{Boot,ubuntu} 一起拷贝出来~~
 
-把 /boot/efi/EFI/Boot/bootx64.efi 用 Ubuntu 的替换掉
+~~把 /boot/efi/EFI/Boot/bootx64.efi 用 Ubuntu 的替换掉~~
+
+其实完全可以用`grub-mkimage`这个工具来自定义生成一个个性的efi文件：
+
+```shell
+grub-mkimage -o bootx64.efi -O x86_64-efi -p /EFI/helloworld ntfs hfs appleldr \
+  boot cat efi_gop efi_uga elf fat hfsplus iso9660 linux keylayouts memdisk \
+  minicmd part_apple ext2 extcmd xfs xnu part_bsd part_gpt search \
+  search_fs_file chain btrfs loadbios loadenv lvm minix minix2 reiserfs \
+  memrw mmap msdospart scsi loopback normal configfile gzio all_video efi_gop \
+  efi_uga gfxterm gettext echo boot chain eval ls test sleep png gfxmenu part_msdos
+```
 
 把 /boot/efi/EFI/ubuntu 复制过去，修改一下 grub.cfg 里面的 uuid 指向新盘 root 分区的 uuid 即可
 
@@ -53,6 +64,6 @@ feature_net_search_cfg
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-01-24T00:57:55+08:00
-update@2023-01-24T00:59:29+08:00
+update@2023-02-09T15:16:17+08:00
 comment@https://github.com/ferstar/blog/issues/68
 ```
