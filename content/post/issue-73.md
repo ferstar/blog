@@ -1,5 +1,5 @@
 ---
-title: "Linux触控板手势增强「三指拖移」"
+title: "Linux触控板手势增强「三指拖拽」"
 date: "2023-01-29T02:08:34+08:00"
 tags: ['Linux']
 comments: true
@@ -46,6 +46,6 @@ Enjoy！
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-01-29T02:08:34+08:00
-update@2023-02-19T00:51:22+08:00
+update@2023-02-19T00:51:46+08:00
 comment@https://github.com/ferstar/blog/issues/73
 ```
