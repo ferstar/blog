@@ -44,7 +44,7 @@ xrandr --newmode "2560x1600_165.00" 777.410 2560 2608 2640 2720 1600 1603 1609 1
 xrandr --addmode eDP-1 2560x1600_165.00
 ```
 
-此时打开显示器配置，熟悉的高刷分辨率就回来了，切可以自由切换。
+此时打开显示器配置，熟悉的高刷分辨率就回来了，且可以自由切换。
 
 ![image](https://user-images.githubusercontent.com/2854276/234154957-dab73e59-5526-40bd-a1be-8e5ebdf0f103.png)
 
@@ -103,6 +103,6 @@ change_fps "$1"
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-04-25T02:40:04+08:00
-update@2023-04-25T02:40:04+08:00
+update@2023-05-08T05:52:52+08:00
 comment@https://github.com/ferstar/blog/issues/76
 ```
