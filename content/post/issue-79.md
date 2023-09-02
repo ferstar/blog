@@ -52,6 +52,6 @@ please note that the `RUNNER_TOKEN` is not your github access token
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-09-02T04:23:11+08:00
-update@2023-09-02T04:23:11+08:00
+update@2023-09-02T04:23:42+08:00
 comment@https://github.com/ferstar/blog/issues/79
 ```
