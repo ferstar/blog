@@ -47,11 +47,58 @@ please note that the `RUNNER_TOKEN` is not your github access token
 
 ![image](https://github.com/ferstar/blog/assets/2854276/7d6a6fbe-0812-4299-91b3-a2dc2d595167)
 
+some normal running logs:
+
+```shell
+docker-compose up
+Recreating github-actions_worker_1 ... done
+Attaching to github-actions_worker_1
+worker_1  | Runner reusage is disabled
+worker_1  | Configuring
+worker_1  |
+worker_1  | --------------------------------------------------------------------------------
+worker_1  | |        ____ _ _   _   _       _          _        _   _                      |
+worker_1  | |       / ___(_) |_| | | |_   _| |__      / \   ___| |_(_) ___  _ __  ___      |
+worker_1  | |      | |  _| | __| |_| | | | | '_ \    / _ \ / __| __| |/ _ \| '_ \/ __|     |
+worker_1  | |      | |_| | | |_|  _  | |_| | |_) |  / ___ \ (__| |_| | (_) | | | \__ \     |
+worker_1  | |       \____|_|\__|_| |_|\__,_|_.__/  /_/   \_\___|\__|_|\___/|_| |_|___/     |
+worker_1  | |                                                                              |
+worker_1  | |                       Self-hosted runner registration                        |
+worker_1  | |                                                                              |
+worker_1  | --------------------------------------------------------------------------------
+worker_1  |
+worker_1  | # Authentication
+worker_1  |
+worker_1  |
+worker_1  | √ Connected to GitHub
+worker_1  |
+worker_1  | # Runner Registration
+worker_1  |
+worker_1  |
+worker_1  |
+worker_1  |
+worker_1  | √ Runner successfully added
+worker_1  | √ Runner connection is good
+worker_1  |
+worker_1  | # Runner settings
+worker_1  |
+worker_1  |
+worker_1  | √ Settings Saved.
+worker_1  |
+worker_1  |
+worker_1  | √ Connected to GitHub
+worker_1  |
+worker_1  | Current runner version: '2.308.0'
+worker_1  | 2023-09-02 03:22:29Z: Listening for Jobs
+worker_1  | 2023-09-02 03:23:08Z: Running job: build_deb
+worker_1  | 2023-09-02 03:26:51Z: Job build_deb completed with result: Succeeded
+```
+
 
 
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-09-02T04:23:11+08:00
-update@2023-09-02T04:23:42+08:00
+update@2023-09-02T04:25:56+08:00
 comment@https://github.com/ferstar/blog/issues/79
 ```
