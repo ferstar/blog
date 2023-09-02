@@ -5,9 +5,9 @@ tags: ['Linux', 'Git']
 comments: true
 ---
 
-official docs: https://docs.github.com/en/actions/hosting-your-own-runners
+Official docs: https://docs.github.com/en/actions/hosting-your-own-runners
 
-simple docker compose file:
+Simple docker compose file:
 
 ```yaml
 version: '3.8'
@@ -18,6 +18,8 @@ services:
       REPO_URL: ${RUNNER_REPO}
       RUNNER_NAME: ${RUNNER_NAME}
       RUNNER_TOKEN: ${RUNNER_TOKEN}
+      CONFIGURED_ACTIONS_RUNNER_FILES_DIR: ${CONFIGURED_ACTIONS_RUNNER_FILES_DIR}
+      DISABLE_AUTOMATIC_DEREGISTRATION: ${DISABLE_AUTOMATIC_DEREGISTRATION}
       RUNNER_WORKDIR: /tmp/runner/work
       ORG_RUNNER: 'false'
       LABELS: linux,x64,home-1
@@ -27,27 +29,30 @@ services:
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
       - '/tmp/runner:/tmp/runner'
+      - './data:/data'
       # note: a quirk of docker-in-docker is that this path
       # needs to be the same path on host and inside the container,
       # docker mgmt cmds run outside of docker but expect the paths from within
 ```
 
-your `.env` file may be like this:
+Your `.env` file may be like this:
 
 ```shell
 RUNNER_REPO=https://github.com/user/repo
 RUNNER_TOKEN=NOT THE GITHUB ACCESS TOKEN
 RUNNER_NAME=foo
+CONFIGURED_ACTIONS_RUNNER_FILES_DIR=/data
+DISABLE_AUTOMATIC_DEREGISTRATION=true
 ```
 
-please note that the `RUNNER_TOKEN` is not your github access token
+Please note that the `RUNNER_TOKEN` is not your github access token
 
 1. visit https://github.com/user/repo/settings/actions/runners/new
 2. get your action's real token
 
 ![image](https://github.com/ferstar/blog/assets/2854276/7d6a6fbe-0812-4299-91b3-a2dc2d595167)
 
-some normal running logs:
+Some normal running logs:
 
 ```shell
 docker-compose up
@@ -99,6 +104,6 @@ worker_1  | 2023-09-02 03:26:51Z: Job build_deb completed with result: Succeeded
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-09-02T04:23:11+08:00
-update@2023-09-02T04:25:56+08:00
+update@2023-09-02T05:21:40+08:00
 comment@https://github.com/ferstar/blog/issues/79
 ```
