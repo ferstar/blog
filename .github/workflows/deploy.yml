@@ -7,9 +7,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.6.0
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 1    # Fetch all history for .GitInfo and .Lastmod
