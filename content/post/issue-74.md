@@ -5,6 +5,28 @@ tags: ['Linux', 'PostgreSQL']
 comments: true
 ---
 
+奶奶的又升16了，都开始刷版本，我不跟了，Docker 钉死先
+
+```yml
+version: "3.8"
+
+services:
+  postgres:
+    restart: on-failure
+    container_name: pg_pin
+    image: postgres:15
+    volumes:
+      - "./pg_data:/var/lib/postgresql/data"
+    environment:
+      - DEBUG=false
+      - POSTGRES_PASSWORD=xzsDwlk3LqaY
+    # ports:
+      # - 5432:5432
+    network_mode: host
+```
+
+---
+
 > https://wiki.archlinux.org/title/PostgreSQL#Upgrading_PostgreSQL
 
 我的 PG 一般是随项目走的，假设路径：data/pg_data
@@ -113,6 +135,6 @@ A: initdb -D data/pg_data --locale=zh_CN.UTF-8 --encoding=UTF8 指定一样的lo
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-02-03T11:51:35+08:00
-update@2023-02-03T11:56:34+08:00
+update@2023-12-26T02:27:10+08:00
 comment@https://github.com/ferstar/blog/issues/74
 ```
