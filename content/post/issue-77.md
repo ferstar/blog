@@ -1,7 +1,7 @@
 ---
 title: "Migrate from Tornado to FastAPI"
 date: "2023-06-09T12:32:25+08:00"
-tags: ['TODO']
+tags: ['Python', 'Tornado']
 comments: true
 ---
 
@@ -353,6 +353,6 @@ Hello, world%
 ```
 # NOTE: I am not responsible for any expired content.
 create@2023-06-09T12:32:25+08:00
-update@2023-12-27T11:06:25+08:00
+update@2023-12-27T11:07:29+08:00
 comment@https://github.com/ferstar/blog/issues/77
 ```
