@@ -16,6 +16,6 @@ Domain Transfer Out 的这个窗口从迁移开始到结束必须开着，别关
 ```
 # NOTE: I am not responsible for any expired content.
 create@2024-01-10T03:10:50+08:00
-update@2024-01-10T03:13:19+08:00
+update@2024-01-10T03:13:34+08:00
 comment@https://github.com/ferstar/blog/issues/80
 ```
