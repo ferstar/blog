@@ -22,6 +22,6 @@ killall plasmashell; kstart5 plasmashell; exit
 ```
 # NOTE: I am not responsible for any expired content.
 create@2020-05-07T08:29:38+08:00
-update@2024-06-12T00:45:25+08:00
+update@2024-06-12T02:46:00+08:00
 comment@https://github.com/ferstar/blog/issues/20
 ```
