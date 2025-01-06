@@ -44,10 +44,9 @@ https://gist.github.com/ferstar/972623e6a7af464d5437d4a3b710ade2
 
 ---
 
-> NOTE: I am not responsible for any expired content.
-
-> Created at: `2020-01-02T11:41:46+08:00`
-
-> Updated at: `2025-01-06T14:25:28+08:00`
-
-> Origin issue: https://github.com/ferstar/blog/issues/12
+```js
+NOTE: I am not responsible for any expired content.
+Created at: 2020-01-02T11:41:46+08:00
+Updated at: 2025-01-06T14:25:28+08:00
+Origin issue: https://github.com/ferstar/blog/issues/12
+```
