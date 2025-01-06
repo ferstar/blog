@@ -303,7 +303,7 @@ uglyURLs = false
 
     ## 「诗意人生」
     # 诗句，支持 Markdown
-    homePoetry = ["## 断章", "你站在桥上看风景", "看风景的人在楼上看你", "明月装饰了你的窗子", "你装饰了别人的梦", "---", "|👉[**POSTS**](/post)👈 | 👉[**TAGS**](/tags)👈|", "---", "Github Mirror: [https://ferstar.github.io](https://ferstar.github.io/post)", "Cloudflare Mirror: [https://ferstar.pages.dev](https://ferstar.pages.dev/post)"]
+    homePoetry = ["## 断章", "你站在桥上看风景", "看风景的人在楼上看你", "明月装饰了你的窗子", "你装饰了别人的梦", "---", "| 👉[**Posts**](/post)👈 | 👉[**Tags**](/tags)👈 | 👉[**GitHub**](https://github.com/ferstar)👈 |", "---"]
     # 底部链接的内间距，单位：em
     homeLinksPadding = 1
 
