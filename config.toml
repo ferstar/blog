@@ -37,7 +37,8 @@ enableGitInfo = false
 enableRobotsTXT = false
 
 # 每一分页的文章数（仅对「文章摘要」首页布局有效）
-paginate = 5
+[pagination]
+    pagerSize = 5
 
 # URL 相关
 disablePathToLower = false
