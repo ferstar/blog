@@ -1,7 +1,7 @@
 ---
 title: "利用 GitHub Issues 持续写博灌水"
 date: "2020-01-02T11:41:46+08:00"
-tags: ['Idea', 'Git', 'TODO']
+tags: ['Idea', 'Git']
 comments: true
 ---
 
@@ -47,6 +47,6 @@ https://gist.github.com/ferstar/972623e6a7af464d5437d4a3b710ade2
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2020-01-02T11:41:46+08:00
-Updated at: 2025-01-06T14:25:28+08:00
+Updated at: 2025-01-12T16:10:04+08:00
 Origin issue: https://github.com/ferstar/blog/issues/12
 ```
