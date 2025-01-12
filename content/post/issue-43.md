@@ -1,7 +1,7 @@
 ---
 title: "关于最近项目持续重构的一点复盘"
 date: "2021-07-11T14:46:05+08:00"
-tags: ['Python', 'PostgreSQL', 'TODO']
+tags: ['Python']
 comments: true
 ---
 
@@ -121,9 +121,11 @@ repos:
 
 
 
-```
-# NOTE: I am not responsible for any expired content.
-create@2021-07-11T14:46:05+08:00
-update@2022-01-16T03:42:52+08:00
-comment@https://github.com/ferstar/blog/issues/43
+---
+
+```js
+NOTE: I am not responsible for any expired content.
+Created at: 2021-07-11T14:46:05+08:00
+Updated at: 2025-01-12T20:07:46+08:00
+Origin issue: https://github.com/ferstar/blog/issues/43
 ```
