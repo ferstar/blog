@@ -167,7 +167,7 @@ async def quality_check(diff: CommitDiff):
 
 ```
 
-你应该很容易能把上述片段代码集成到自己的 Workflow 里，成品效果，类似这种问题其实很容易在人肉 Review 的时候被忽略掉，但 AI 几乎不会漏。
+你应该很容易能把上述片段代码集成到自己的 Workflow 里，成品效果如图，类似这种问题其实很容易在人肉 Review 的时候被忽略掉，但 AI 几乎不会漏。
 
 ![image](https://github.com/user-attachments/assets/a38a8d86-abcc-4f6a-bbd8-89eb3ee5a573)
 
@@ -181,6 +181,6 @@ async def quality_check(diff: CommitDiff):
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-06T14:55:44+08:00
-Updated at: 2025-01-12T16:02:31+08:00
+Updated at: 2025-01-12T16:02:56+08:00
 Origin issue: https://github.com/ferstar/blog/issues/81
 ```
