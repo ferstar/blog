@@ -67,6 +67,6 @@ Locale: en_US.UTF-8
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-12T16:58:10+08:00
-Updated at: 2025-01-12T16:58:11+08:00
+Updated at: 2025-01-12T16:58:51+08:00
 Origin issue: https://github.com/ferstar/blog/issues/83
 ```
