@@ -62,13 +62,13 @@ Locale: en_US.UTF-8
 
 ---
 
-注意：对于某些比较新的联想机型，可能`7z`就能直接解压得到 BIOS 固件了，一般是 `xxx.bin` 的命名，`innoextract` 并不是必须的。
+注意：对于某些比较新的联想机型，可能`7z`就能直接解压得到 BIOS 固件了，一般是 `xxx.bin` 的命名，`innoextract` 并不是必须的；还有`7z`也不不是必须的，你可以换任何能解包`exe`的工具，比如`bsdtar`之类。
 
 ---
 
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-12T16:58:10+08:00
-Updated at: 2025-01-12T17:01:57+08:00
+Updated at: 2025-01-12T17:03:34+08:00
 Origin issue: https://github.com/ferstar/blog/issues/83
 ```
