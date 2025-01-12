@@ -42,11 +42,15 @@ comments --> hugo post comments
 
 https://gist.github.com/ferstar/972623e6a7af464d5437d4a3b710ade2
 
+终于可以勉强把这个鸽了五年的帖子完善一下了，代码见：https://github.com/ferstar/webhook_receive/commit/d4535d522926f15277a36292d5258e1743911a9b
+
+流程还是我之前写的没变，只是框架实现从当年自己随便乱写的 Flask （已扔）变成了 FastAPI，另外 blog 的生成 & 发布从 GitHub Actions 迁移到了赛博大善人 Cloudflare 的 Pages 服务，相当丝滑。
+
 ---
 
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2020-01-02T11:41:46+08:00
-Updated at: 2025-01-12T16:10:04+08:00
+Updated at: 2025-01-12T16:14:39+08:00
 Origin issue: https://github.com/ferstar/blog/issues/12
 ```
