@@ -5,7 +5,7 @@ tags: ['Linux', 'Idea']
 comments: true
 ---
 
-作为一个骨灰级 Linux 发烧友，我的电脑到手基本都是第一时间换装 Linux 发行版。这样设备厂商出厂自带的 Windows 系统几乎毫无作用，但我又不能把它干掉——我还得靠它来更新厂商发布的 BIOS。为了偶尔更 BIOS 的需求而不得不保留这近 100GB 磁盘占用的 Windows 成了我的心病，当然我知道可以用类似 Win2GO 的玩意来更 BIOS，但这又有什么区别呢，还是离不开 Windows。
+作为一个骨灰级 Linux 发烧友，我的电脑到手基本都是第一时间换装 Linux 发行版。这样设备厂商出厂自带的 Windows 系统几乎毫无作用，但我又不能把它干掉——我还得靠它来更新厂商发布的 BIOS。为了偶尔更 BIOS 的需求而不得不保留这近 100GB 磁盘占用的 Windows 着实有些蛋疼，当然我知道可以用类似 WIN2GO 的玩意来更 BIOS，但这又有什么区别呢，还是离不开 Windows。
 
 终于赶在 2024 年的尾巴，我在 Twitter 上闲逛时发现有人提到了纯 Linux 环境更新 BIOS 的方案：https://x.com/felixonmars/status/1876646199207604351
 
@@ -69,6 +69,6 @@ Locale: en_US.UTF-8
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-12T16:58:10+08:00
-Updated at: 2025-01-12T17:03:34+08:00
+Updated at: 2025-01-12T17:04:21+08:00
 Origin issue: https://github.com/ferstar/blog/issues/83
 ```
