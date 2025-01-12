@@ -176,6 +176,6 @@ async def quality_check(diff: CommitDiff):
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-06T14:55:44+08:00
-Updated at: 2025-01-12T15:56:57+08:00
+Updated at: 2025-01-12T15:57:02+08:00
 Origin issue: https://github.com/ferstar/blog/issues/81
 ```
