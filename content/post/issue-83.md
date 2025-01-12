@@ -60,13 +60,15 @@ Locale: en_US.UTF-8
 
 终于可以把自带的 Windows 分区扔进垃圾堆了✌️
 
+---
 
+注意：对于某些比较新的联想机型，可能`7z`就能直接解压得到 BIOS 固件了，一般是 `xxx.bin` 的命名，`innoextract` 并不是必须的。
 
 ---
 
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-12T16:58:10+08:00
-Updated at: 2025-01-12T16:58:51+08:00
+Updated at: 2025-01-12T17:01:57+08:00
 Origin issue: https://github.com/ferstar/blog/issues/83
 ```
