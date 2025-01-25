@@ -1,7 +1,7 @@
 ---
 title: "修复联想笔记本Linux下合盖睡死与功能键异常关机问题"
 date: "2025-01-13T07:15:03+08:00"
-tags: ['Linux', 'TODO']
+tags: ['Linux']
 comments: true
 ---
 
@@ -89,6 +89,6 @@ sudo reboot
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-13T07:15:03+08:00
-Updated at: 2025-01-25T10:12:20+08:00
+Updated at: 2025-01-25T10:12:25+08:00
 Origin issue: https://github.com/ferstar/blog/issues/85
 ```
