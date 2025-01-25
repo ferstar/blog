@@ -1,7 +1,7 @@
 ---
 title: "How to Build Kernel for Redmi Note11 Turbo Pro(xaga) "
 date: "2025-01-13T07:45:39+08:00"
-tags: ['TODO', 'Android']
+tags: ['Android']
 comments: true
 ---
 
@@ -14,6 +14,6 @@ comments: true
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-13T07:45:39+08:00
-Updated at: 2025-01-25T10:18:57+08:00
+Updated at: 2025-01-25T10:19:06+08:00
 Origin issue: https://github.com/ferstar/blog/issues/86
 ```
