@@ -89,6 +89,6 @@ sudo reboot
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-13T07:15:03+08:00
-Updated at: 2025-01-25T10:12:25+08:00
+Updated at: 2025-01-25T10:12:29+08:00
 Origin issue: https://github.com/ferstar/blog/issues/85
 ```
