@@ -10,6 +10,8 @@ comments: true
 1. 按 author 拆分 commit，获取 diff codes
 
 ```Python
+P_SKIP_CI = re.compile(r"\[(skip\s*ci|ci\s*skip|no\s*ci)]", re.IGNORECASE)
+
 @dataclass
 class CommitCache:
     path: Path = Path(tempfile.gettempdir()) / "commits_cache.txt"
@@ -42,8 +44,14 @@ class CommitDiff:
 ```"""
 
     @property
+    def msg(self):
+        return run(f"git log {self.rev}^! --format=%B", hide=True).stdout.strip()
+
+    @property
     def need_review(self):
-        return any(i.startswith("diff --git") and i.endswith((".py", ".sh")) for i in self.content.split("\n"))
+        return any(
+            i.startswith("diff --git") and i.endswith((".py", ".sh")) for i in self.content.split("\n")
+        ) and not P_SKIP_CI.search(self.msg)
 
 def prepare_commit_diff(log_range: int = 10, commit_range: int = 3) -> Iterable[CommitDiff]:
     """从指定(默认为最近10次)的提交中提取各 author 最近(默认为最近3次)的修改内容"""
@@ -181,6 +189,6 @@ async def quality_check(diff: CommitDiff):
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-06T14:55:44+08:00
-Updated at: 2025-01-12T16:02:56+08:00
+Updated at: 2025-01-26T03:59:13+08:00
 Origin issue: https://github.com/ferstar/blog/issues/81
 ```
