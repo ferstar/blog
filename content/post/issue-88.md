@@ -5,6 +5,17 @@ tags: ['Android']
 comments: true
 ---
 
+好了，懒人脚本：
+
+```shell
+git clone git@github.com:ferstar/kernel_manifest.git
+cd kernel_manifest
+chmod +x build.sh
+./build.sh
+```
+
+---
+
 1. 环境&配置
 
 操作系统 Ubuntu、Debian 都可以，内存 16 GB 起步，不够的自行加 swap，硬盘空间 50GB
@@ -24,7 +35,6 @@ sudo chmod +x /usr/bin/repo
 mkdir kernel
 cd kernel
 export REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo' 
-# 安卓14可以把 gt5pro_v.xml 换成 gt5pro_u.xml
 repo init --repo-rev=v2.16 --depth=1 -u https://github.com/ferstar/kernel_manifest.git -b realme/sm8650 -m gt5pro_v.xml
 repo sync --no-tags
 cd kernel_platform
@@ -34,7 +44,7 @@ rm common/android/abi_gki_protected_exports_*
 python build_with_bazel.py -t pineapple gki  --lto=thin --config=fast --disk_cache=$HOME/.cache/bazel --//msm-kernel:skip_abi=true --//msm-kernel:skip_abl=true -o "$(pwd)/out" || true
 ```
 
-因为真我只开源了Kernel和Vendor，没有common source，所以这个方案是跟一加12杂交的，上面的编译中间会有报错，但不影响，内核可以正常生成：
+因为真我只开源了Kernel和Vendor，没有common source，这个方案是跟一加Ace5杂交的，所以上面的编译最终会有报错，但不影响内核的正常生成：
 
 `bazel-out/k8-fastbuild/bin/msm-kernel/pineapple_gki_kbuild_mixed_tree/Image`
 
@@ -47,6 +57,6 @@ python build_with_bazel.py -t pineapple gki  --lto=thin --config=fast --disk_cac
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-25T10:45:41+08:00
-Updated at: 2025-01-25T10:45:51+08:00
+Updated at: 2025-01-27T16:26:43+08:00
 Origin issue: https://github.com/ferstar/blog/issues/88
 ```
