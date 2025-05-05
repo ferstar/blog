@@ -15,7 +15,7 @@ START=99
 SERVICE_DAEMONIZE=1
 SERVICE_WRITE_PID=1
 USE_PROCD=1
-COMMAND="/etc/clash/tools -c /etc/clash/config.json"
+COMMAND="/etc/clash/tools/tuic -c /etc/clash/config.json"
 
 start_service() {
         procd_open_instance
@@ -54,6 +54,6 @@ Available commands:
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-05-05T06:38:18+08:00
-Updated at: 2025-05-05T06:38:18+08:00
+Updated at: 2025-05-05T06:38:44+08:00
 Origin issue: https://github.com/ferstar/blog/issues/89
 ```
