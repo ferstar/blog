@@ -54,6 +54,6 @@ Available commands:
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-05-05T06:38:18+08:00
-Updated at: 2025-05-05T06:38:44+08:00
+Updated at: 2025-05-05T06:38:53+08:00
 Origin issue: https://github.com/ferstar/blog/issues/89
 ```
