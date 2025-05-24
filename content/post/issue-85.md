@@ -67,8 +67,7 @@ sudo reboot
 
 ## 注意事项
 
-1. **功能键变更**  
-   `Fn+F4`（麦克风静音）将失效，建议通过系统托盘或`pactl`命令控制麦克风状态
+1. **禁麦/音LED灯不亮**：移步这个项目 [lenovo-wmi-hotkey-utilities](https://github.com/ferstar/lenovo-wmi-hotkey-utilities)，如果你的机型键盘按键并没有这两个LED灯，那么可以忽略
 
 2. **电源状态验证**  
    安装后可通过以下命令测试：
@@ -89,6 +88,6 @@ sudo reboot
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-13T07:15:03+08:00
-Updated at: 2025-01-25T10:12:29+08:00
+Updated at: 2025-05-24T03:21:49+08:00
 Origin issue: https://github.com/ferstar/blog/issues/85
 ```
