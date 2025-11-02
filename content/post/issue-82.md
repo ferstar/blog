@@ -244,16 +244,6 @@ sudo update-grub
 grep menuentry /boot/grub/grub.cfg
 ```
 
-## 实际案例（待填坑）
-
-准备做的几个事情：
-- [ ] 给 AMD GPU 打性能优化补丁
-- [ ] 启用一些实验性特性（io_uring 优化）
-- [ ] 修复某些硬件的驱动问题
-- [ ] 测试 BBRv3 拥塞控制
-
----
-
 ## 参考资料
 
 - [ubuntu-mainline-kernel.sh GitHub](https://github.com/pimlie/ubuntu-mainline-kernel.sh)
@@ -261,15 +251,13 @@ grep menuentry /boot/grub/grub.cfg
 - [TuxInvader 的 Docker 镜像](https://github.com/TuxInvader/focal-mainline-builder)
 - [内核编译官方文档](https://www.kernel.org/doc/html/latest/)
 
-慢慢填坑...
-
-
+文档已完成
 
 ---
 
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-12T16:16:49+08:00
-Updated at: 2025-11-02T06:56:35+08:00
+Updated at: 2025-11-02T07:01:13+08:00
 Origin issue: https://github.com/ferstar/blog/issues/82
 ```
