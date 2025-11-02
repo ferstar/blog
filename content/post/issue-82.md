@@ -1,7 +1,7 @@
 ---
 title: "Build my own patched Ubuntu mainline kernel"
 date: "2025-01-12T16:16:49+08:00"
-tags: ['TODO']
+tags: ['Default']
 comments: true
 ---
 
@@ -258,6 +258,6 @@ grep menuentry /boot/grub/grub.cfg
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-01-12T16:16:49+08:00
-Updated at: 2025-11-02T07:01:13+08:00
+Updated at: 2025-11-02T07:01:28+08:00
 Origin issue: https://github.com/ferstar/blog/issues/82
 ```
