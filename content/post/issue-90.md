@@ -202,6 +202,6 @@ dd if=/sdcard/custom_boot.img of=/dev/block/by-name/boot
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-10-04T14:42:47+08:00
-Updated at: 2025-11-02T06:52:43+08:00
+Updated at: 2025-11-02T06:59:10+08:00
 Origin issue: https://github.com/ferstar/blog/issues/90
 ```
