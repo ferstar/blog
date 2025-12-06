@@ -8,6 +8,8 @@ comments: true
 
 闲鱼买了两kk-sp3插座，准备搭配`shairport-sync`把吃灰的有线音箱用起来
 
+请点击此处查看说明 https://github.com/yurt-page/Kankun_KK-SP3
+
 hack link：<http://www.anites.com/2015/01/hacking-kankun-smart-wifi-plug.html>
 ssid：0K_SP3
 管理IP：192.168.10.253
