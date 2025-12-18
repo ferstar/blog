@@ -125,7 +125,7 @@ ss -tni
 
 - [DualPI2 - IETF Draft](https://datatracker.ietf.org/doc/draft-ietf-tsvwg-aqm-dualq-coupled/)
 - [BBR Congestion Control](https://github.com/google/bbr)
-- [Linux 6.17 sch_dualpi2](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=bc820e7a76b)
+- [sch_dualpi2](https://datatracker.ietf.org/doc/rfc9332/)
 
 
 
@@ -134,6 +134,6 @@ ss -tni
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-12-18T06:30:04+08:00
-Updated at: 2025-12-18T06:31:23+08:00
+Updated at: 2025-12-18T12:06:30+08:00
 Origin issue: https://github.com/ferstar/blog/issues/92
 ```
