@@ -182,6 +182,6 @@ ethtool -K <IFACE> tso on gso on gro on
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-12-31T12:09:54+08:00
-Updated at: 2025-12-31T12:18:26+08:00
+Updated at: 2025-12-31T12:20:54+08:00
 Origin issue: https://github.com/ferstar/blog/issues/93
 ```
