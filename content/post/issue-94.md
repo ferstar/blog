@@ -1,5 +1,5 @@
 ---
-title: "2025 年终总结（迟到）：AI Coding 的生产级验证"
+title: "Vibe Coding 实战：当代码不再需要手写"
 date: "2025-12-31T21:46:31+08:00"
 tags: ['Default']
 comments: true
@@ -843,6 +843,6 @@ graph TD
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-12-31T21:46:31+08:00
-Updated at: 2025-12-31T21:46:31+08:00
+Updated at: 2025-12-31T21:47:33+08:00
 Origin issue: https://github.com/ferstar/blog/issues/94
 ```
