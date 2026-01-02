@@ -119,44 +119,42 @@ AI 交付质量 = 上下文质量 × 验证自动化 × 任务适配度
 
 没有验证，输出只能算草稿；任务不适配，验证成本会爆炸。
 
-**上下文四层金字塔**：
+**上下文三层模型**：
 
 ```mermaid
 graph TB
     subgraph 上下文金字塔
-        L4["L4 项目级<br/>技术栈、基本规则、常用命令<br/>CLAUDE.md / README"]
-        L3["L3 架构级<br/>分层模式、命名规范、目录约定<br/>DDD / 标准化设计"]
-        L2["L2 任务级<br/>需求描述、边界条件、验收标准"]
-        L1["L1 对话级<br/>当前会话历史、中间结果"]
+        P["Project Context<br/>技术栈 / 目录结构 / 命名规范 / 禁令<br/>CLAUDE.md"]
+        T["Task Context<br/>需求 / 边界 / 验收标准 / 领域术语<br/>Prompt"]
+        S["Session Context<br/>对话历史 / 中间结果<br/>自动累积"]
     end
 
-    L4 --> L3 --> L2 --> L1
+    P --> T --> S
 
-    style L4 fill:#4ecdc4,stroke:#333,stroke-width:2px
-    style L3 fill:#95e1d3
-    style L2 fill:#f38181
-    style L1 fill:#fce38a
+    style P fill:#4ecdc4,stroke:#333,stroke-width:2px
+    style T fill:#f38181
+    style S fill:#fce38a
 ```
 
 **各层级详解**：
 
-| 层级 | 核心问题 | 具体内容 | 载体 |
-|:---|:---|:---|:---|
-| L4 项目级 | 项目是什么？怎么跑？ | 技术栈、依赖管理、开发命令、零容忍规则 | CLAUDE.md |
-| L3 架构级 | 代码怎么组织？ | DDD 分层、命名规范（`*Controller`）、目录结构 | CLAUDE.md + 目录本身 |
-| L2 任务级 | 这次要做什么？ | 功能需求、边界条件、不要做什么 | Prompt |
-| L1 对话级 | 刚才聊了什么？ | 会话历史、AI 的中间输出 | 自动累积 |
+| 层级 | 核心问题 | 具体内容 | 载体 | 投入 |
+|:---|:---|:---|:---|:---|
+| **Project** | 这个项目怎么玩？ | 技术栈、目录约定、命名规范、零容忍规则、常用命令 | CLAUDE.md | 一次性 |
+| **Task** | 这次要做什么？ | 功能需求、边界条件、不要做什么、相关领域术语 | Prompt | 每任务 |
+| **Session** | 刚才聊了什么？ | 会话历史、AI 的中间输出、已确认的决策 | 自动 | 无 |
 
 **投资回报**：
 
-| 层级 | 投入 | 回报 | ROI |
-|:---|:---|:---|:---:|
-| L4 项目级 | 一次性 8h + 持续维护 | 每次交互受益 | ⭐⭐⭐⭐⭐ |
-| L3 架构级 | 一次性设计 + 文档化 | 每次交互受益 | ⭐⭐⭐⭐⭐ |
-| L2 任务级 | 每次 5-10min | 当次任务 | ⭐⭐⭐ |
-| L1 对话级 | 自动累积 | 当次对话 | ⭐ |
+```
+投入产出比：Project >> Task >> Session
 
-**结论**：L4 + L3 都是"一次投入，持续受益"，复利最高。区别是 L4 偏"环境"，L3 偏"架构"。
+Project：8h 投入 → 所有任务受益（复利）
+Task：5-10min → 当次任务
+Session：0 → 当次对话
+```
+
+**结论**：Project Context 是"一次投入，持续受益"，复利最高。把精力花在写好 CLAUDE.md 上，是 ROI 最高的投资。
 
 #### 2.2 瓶颈转移
 
@@ -774,6 +772,6 @@ graph TD
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-12-31T21:46:31+08:00
-Updated at: 2026-01-02T04:45:42+08:00
+Updated at: 2026-01-02T04:50:10+08:00
 Origin issue: https://github.com/ferstar/blog/issues/94
 ```
