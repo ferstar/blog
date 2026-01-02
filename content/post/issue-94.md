@@ -216,11 +216,11 @@ pie title 时间分配（经验值）
 
 **为什么有效**：AI 不用猜，直接按规范来。
 
-##### 案例：有无上下文的输出差异
+##### 案例：ast-grep 如何拦截 AI 的坏习惯
 
 **需求**：写一个处理 PDF 临时文件的函数
 
-**无上下文** — AI 输出：
+**AI 输出**（常见模式）：
 
 ```python
 import tempfile
@@ -239,17 +239,25 @@ def process_pdf(content: bytes) -> str:
         tmp_path.unlink(missing_ok=True)  # 手动清理
 ```
 
-**问题/不足**：
+**问题**：
 - `delete=False` 强迫引入手动清理逻辑，代码更长、维护成本更高
 - 这类清理逻辑一旦遗漏/写错（例如忘记 `try/finally`），就会引入临时文件泄漏
 - 同类代码越多，review 与一致性成本越高
 
-**有 CLAUDE.md** — AI 输出：
+**ast-grep 拦截**：
+
+```bash
+$ git commit -m "feat: add pdf processor"
+error[no-tempfile-delete-false]: NamedTemporaryFile with delete=False is forbidden
+  --> src/utils/pdf.py:6:10
+   |
+ 6 |     with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
+   |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+```
+
+**修复后**：
 
 ```python
-import tempfile
-from pathlib import Path
-
 def process_pdf(content: bytes) -> str:
     with tempfile.NamedTemporaryFile(suffix=".pdf") as tmp:  # 默认 delete=True
         tmp_path = Path(tmp.name)
@@ -261,7 +269,7 @@ def process_pdf(content: bytes) -> str:
     # 退出 with 块时自动清理，无泄漏风险
 ```
 
-**差距**：AI 读了 `CLAUDE.md` 里的零容忍规则（不要使用 `NamedTemporaryFile(delete=False)`），直接按规范生成更安全、更短的写法。
+**关键点**：不是靠 AI "自觉遵守" CLAUDE.md，而是靠 ast-grep **强制拦截**。AI 可能还是会犯错，但错误代码无法通过 pre-commit 进入代码库。
 
 #### 3.2 自动化验证体系
 
@@ -772,6 +780,6 @@ graph TD
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-12-31T21:46:31+08:00
-Updated at: 2026-01-02T04:50:10+08:00
+Updated at: 2026-01-02T04:52:36+08:00
 Origin issue: https://github.com/ferstar/blog/issues/94
 ```
