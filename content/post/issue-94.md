@@ -8,8 +8,6 @@ comments: true
 # Vibe Coding 实战：当代码不再需要手写
 
 > 基于 Vibe Coding Skeleton 的工程实践
->
-> **脱敏说明**：本文用于对外分享，已对真实项目信息做脱敏处理（项目名/仓库地址/环境名/具体日期等已替换或区间化）；数字为近似值；代码片段为演示或来自本仓库。
 > **对齐说明**：涉及到具体落地细节时，以本仓库 `CLAUDE.md` / `.pre-commit-config.yaml` / `ast-grep/` / `sgconfig.yml` / `justfile` 为准。
 
 ---
@@ -17,73 +15,6 @@ comments: true
 **TL;DR**：不是“让 AI 写代码”，而是“用工程化让 AI 写对代码”。
 
 ---
-
-## 大纲
-
-### 第一部分：一个事实（3分钟）
-
-1. **数据冲击**
-   - 约 8 个月，1k+ commits，代码主要由 AI 生成
-   - 人的工作：需求拆解 + 架构决策 + 验证审查（决定“写什么”、验证“写对没”）
-
-2. **角色转变**
-   - 从 Coder → Architect + Reviewer
-   - 从「写代码」→「定义规则 + 验证交付」
-
-### 第二部分：为什么能做到（5分钟）
-
-3. **上下文为王**
-   - AI 输出质量 ≈ 你提供上下文的质量
-   - 投资 L4/L3（项目级/架构级），复利最高
-
-4. **瓶颈转移**
-   - 生成越来越快，瓶颈在验证
-   - 自动化验证是信任 AI 的前提
-
-### 第三部分：怎么做到的（25分钟）
-
-5. **项目级上下文：CLAUDE.md**
-   - 约 300 行的「AI 入职手册」
-   - 案例：有无上下文的输出差异
-
-6. **自动化验证体系**
-   - pre-commit + ast-grep + pytest
-   - 把“约定”变成“可执行护栏”
-
-7. **标准化设计**
-   - DDD 分层 + 命名规范 + 目录约定
-   - 减少“猜”的空间，提升一致性
-
-8. **提示词工程**
-   - 分步确认模式
-   - 明确目标/边界/验收
-
-### 第四部分：边界与止损（5分钟）
-
-9. **甜点区 vs 泥潭**
-   - 不是「AI 能不能写」，是「验证成本高不高」
-
-10. **放弃阈值**
-    - 改 3 次不对就自己写
-
-11. **AI 常见错误与防线**
-    - 把可自动化的错误交给工具拦截
-
-### 第五部分：行动清单（3分钟）
-
-12. **行动清单**
-    - 立即/中期/长期怎么落地
-
-### 第六部分：房间里的大象（5分钟）
-
-13. **人的价值与焦虑**
-    - 决策权 + 验证力 + 认知带宽管理（可选，偏思考）
-
-### Q&A（5分钟）
-
----
-
-## 详细
 
 ### 一、一个事实
 
@@ -136,7 +67,7 @@ comments: true
 
 **新的分工模式**：
 
-```mermaid
+\`\`\`mermaid
 flowchart TB
     subgraph 人的工作
         A[需求拆解] --> B[业务梳理]
@@ -157,7 +88,7 @@ flowchart TB
 
     D --> F & G & H & I & J & K & L
     F & G & H & I & J & K & L --> E
-```
+\`\`\`
 
 **角色定义**：
 
@@ -176,21 +107,21 @@ flowchart TB
 
 **核心公式**：
 
-```
+\`\`\`
 AI 写代码的水平 = 你提供上下文的水平
-```
+\`\`\`
 
 **更完整的版本**：
 
-```
+\`\`\`
 AI 交付质量 = 上下文质量 × 验证自动化 × 任务适配度
-```
+\`\`\`
 
 没有验证，输出只能算草稿；任务不适配，验证成本会爆炸。
 
 **上下文四层金字塔**：
 
-```mermaid
+\`\`\`mermaid
 graph TB
     subgraph 上下文金字塔
         L4["L4 项目级<br/>技术栈、基本规则、常用命令<br/>CLAUDE.md / README"]
@@ -205,7 +136,7 @@ graph TB
     style L3 fill:#95e1d3
     style L2 fill:#f38181
     style L1 fill:#fce38a
-```
+\`\`\`
 
 **各层级详解**：
 
@@ -231,7 +162,7 @@ graph TB
 
 **开发流程对比**：
 
-```mermaid
+\`\`\`mermaid
 graph TB
     subgraph 传统开发
         A1[需求] --> A2[设计] --> A3[编码] --> A4[测试] --> A5[部署]
@@ -242,18 +173,18 @@ graph TB
 
     style A3 fill:#ff6b6b,stroke:#333,stroke-width:3px
     style B4 fill:#ff6b6b,stroke:#333,stroke-width:3px
-```
+\`\`\`
 
 **我的时间分配**：
 
-```mermaid
+\`\`\`mermaid
 pie title 时间分配（经验值）
     "需求理解/架构设计" : 20
     "准备上下文" : 15
     "AI 生成(等待)" : 5
     "验证 + 修复" : 40
     "技术债偿还" : 20
-```
+\`\`\`
 
 **关键洞察**：
 - 40% 时间在「验」，不是「写」
@@ -272,7 +203,7 @@ pie title 时间分配（经验值）
 
 **核心结构**：
 
-```markdown
+\`\`\`markdown
 # CLAUDE.md
 
 ## Project Overview        # 项目是干什么的
@@ -283,7 +214,7 @@ pie title 时间分配（经验值）
 ## Coding Style            # 风格：ruff 格式化，150 字符行宽
 ## Testing Guidelines      # 测试：pytest（fail-fast，warnings-as-errors）
 ## CLI Commands            # CLI：litestar database upgrade, litestar run
-```
+\`\`\`
 
 **为什么有效**：AI 不用猜，直接按规范来。
 
@@ -293,7 +224,7 @@ pie title 时间分配（经验值）
 
 **无上下文** — AI 输出：
 
-```python
+\`\`\`python
 import tempfile
 from pathlib import Path
 
@@ -308,7 +239,7 @@ def process_pdf(content: bytes) -> str:
         return result
     finally:
         tmp_path.unlink(missing_ok=True)  # 手动清理
-```
+\`\`\`
 
 **问题/不足**：
 - `delete=False` 强迫引入手动清理逻辑，代码更长、维护成本更高
@@ -317,7 +248,7 @@ def process_pdf(content: bytes) -> str:
 
 **有 CLAUDE.md** — AI 输出：
 
-```python
+\`\`\`python
 import tempfile
 from pathlib import Path
 
@@ -330,7 +261,7 @@ def process_pdf(content: bytes) -> str:
         result = parse_pdf(tmp_path)
         return result
     # 退出 with 块时自动清理，无泄漏风险
-```
+\`\`\`
 
 **差距**：AI 读了 `CLAUDE.md` 里的零容忍规则（不要使用 `NamedTemporaryFile(delete=False)`），直接按规范生成更安全、更短的写法。
 
@@ -342,7 +273,7 @@ AI 生成的代码必须过质检流水线：门禁不过，就不应该进入�
 
 **验证流水线**：
 
-```mermaid
+\`\`\`mermaid
 flowchart LR
     A[代码修改] --> B[pre-commit: ruff format]
     B --> C[pre-commit: ruff check]
@@ -354,7 +285,7 @@ flowchart LR
 
     style D fill:#ff6b6b,stroke:#333,stroke-width:2px
     style H fill:#4ecdc4,stroke:#333,stroke-width:2px
-```
+\`\`\`
 
 **pre-commit 核心配置**：
 
@@ -387,14 +318,14 @@ AI 不知道项目的特殊约束，但 ast-grep 会自动拦截。
 
 **案例：match/case 事件**
 
-```python
+\`\`\`python
 # AI 生成了 Python 3.10 的 match/case
 match value:
     case 1:
         return "one"
     case _:
         return "other"
-```
+\`\`\`
 
 - Cython 编译失败
 - 人工 review 没发现
@@ -418,7 +349,7 @@ match value:
 
 ##### DDD 分层
 
-```mermaid
+\`\`\`mermaid
 graph TB
     subgraph "src/"
         subgraph "domain/ 业务领域"
@@ -440,7 +371,7 @@ graph TB
     US --> C & S & SC & R
     FI --> C & S & SC & R
     C --> S --> R --> DB
-```
+\`\`\`
 
 ##### 命名规范
 
@@ -455,7 +386,7 @@ graph TB
 
 ##### 目录约定（与本仓库一致）
 
-```text
+\`\`\`text
 src/domain/
   users/
     controller.py
@@ -467,20 +398,20 @@ src/domain/
     service.py
     repository.py
     schema.py
-```
+\`\`\`
 
 #### 3.4 提示词工程
 
 ##### 分步确认模式
 
-```
+\`\`\`
 我需要开发 [功能]。请按以下步骤：
 1. 先读相关代码了解架构
 2. 制定实现计划
 3. 实现核心功能
 4. 写测试
 每完成一步暂停等我确认。
-```
+\`\`\`
 
 **为什么有效**：复杂任务拆成小步，每步可回退，减少返工。
 
@@ -497,7 +428,7 @@ src/domain/
 
 ##### 核心原则
 
-```mermaid
+\`\`\`mermaid
 flowchart LR
     A[明确具体] --> B[设边界]
     B --> C[分步骤]
@@ -507,7 +438,7 @@ flowchart LR
     B1["明确什么要做<br/>什么不要做"] -.-> B
     C1["复杂任务拆开<br/>每步确认"] -.-> C
     D1["重要步骤<br/>要求确认再继续"] -.-> D
-```
+\`\`\`
 
 ---
 
@@ -517,7 +448,7 @@ flowchart LR
 
 **核心认知**：不是「AI 能不能写」—— AI 都能写。是「验证成本高不高」。
 
-```mermaid
+\`\`\`mermaid
 flowchart TB
     subgraph 验证成本高
         subgraph Q1["❌ 泥潭区"]
@@ -537,7 +468,7 @@ flowchart TB
 
     style Q3 fill:#4ecdc4,stroke:#333
     style Q1 fill:#ff6b6b,stroke:#333
-```
+\`\`\`
 
 **判断标准**：
 
@@ -559,20 +490,20 @@ flowchart TB
 
 **错误做法** — 让 AI 在缺少数据的情况下“猜”：
 
-```
+\`\`\`
 我：这个接口太慢了，帮我优化
 AI：加预加载 / 加缓存 / 加索引...（缺少证据，很可能无效）
-```
+\`\`\`
 
 **正确做法** — 先把“运行时事实”拿出来：
 
-```
+\`\`\`
 1. 人：在测试环境执行 EXPLAIN (ANALYZE, BUFFERS)，拿到查询计划
 2. AI（分析型）：根据计划定位瓶颈（例如某子查询导致重复扫描）
 3. 人：确认改写思路 + 需要的索引/迁移策略
 4. AI（执行型）：生成代码 + 迁移脚本 + 对应测试
 5. 人：跑 `just test` 并做简单压测对比
-```
+\`\`\`
 
 **结果**：通常能把“秒级”拉回到“百毫秒级”（具体数字因业务而异）。
 
@@ -601,39 +532,39 @@ AI：加预加载 / 加缓存 / 加索引...（缺少证据，很可能无效）
 
 ##### 1. 过度简化 — 破坏隐含逻辑
 
-```python
+\`\`\`python
 # AI "简化"前（正确）
 if server_session_id != request.session["id"].encode():
 
 # AI "简化"后（错误）
 if server_session_id != request.session["id"]:
 # bytes vs str 比较，永远不相等，所有用户被踢出登录
-```
+\`\`\`
 
 **后果**：用户认证失败，需回滚
 
 ##### 2. 遗漏关键调用 — 上下文不足
 
-```python
+\`\`\`python
 # AI 生成的代码
 async def update_user_email_task(session, repo, user_id: int, email: str):
     await repo.update_email(user_id, email)
     # 忘记 await session.commit() ← 更新不会落库
     return {"status": "success"}
-```
+\`\`\`
 
 **后果**：数据库状态未持久化，任务状态丢失
 
 ##### 3. 忽略项目约定 — 不知道特殊规则
 
-```python
+\`\`\`python
 # AI 在 CLI 文件里写了全局导入
 from src.domain.users.service import UserService  # ❌ 违反规则
 
 # 应该用局部导入
 def create_user():
     from src.domain.users.service import UserService  # ✅
-```
+\`\`\`
 
 **后果**：CLI 启动慢，循环依赖风险
 
@@ -727,13 +658,13 @@ AI 只是把这个问题**加速暴露**了。
 
 #### 6.4 如果你感到焦虑
 
-```
+\`\`\`
 1. 承认焦虑是合理的
 2. 但焦虑不解决问题
 3. 要么卷（学 Prompt、学架构、往上走）
 4. 要么换赛道（AI 不擅长的领域）
 5. 要么接受（成为"AI 协作者"，放下对"手写代码"的执念）
-```
+\`\`\`
 
 **今天的分享不是要告诉你"你必须这样做"，而是分享一种可能性。**
 
@@ -783,12 +714,12 @@ AI 只是把这个问题**加速暴露**了。
 
 一个最小闭环（示例）：
 
-```bash
+\`\`\`bash
 source .venv/bin/activate
 uv sync --group=dev
 just lint
 just test
-```
+\`\`\`
 
 > 注：如果测试依赖数据库/缓存等外部服务，请按 `README.md` / `CLAUDE.md` 完成环境配置后再运行。
 
@@ -796,7 +727,7 @@ just test
 
 ### 附录 B：多模型协作（抽象版）
 
-```mermaid
+\`\`\`mermaid
 graph TD
     Human((人<br/>Architect + Reviewer))
 
@@ -817,7 +748,7 @@ graph TD
         Coder --> Gate[ruff + ast-grep + pytest]
         Gate --> Human
     end
-```
+\`\`\`
 
 **核心原则**：人是决策节点，AI 是执行层；验证体系是信任的前提。
 
@@ -843,6 +774,6 @@ graph TD
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-12-31T21:46:31+08:00
-Updated at: 2025-12-31T21:47:33+08:00
+Updated at: 2026-01-02T04:39:37+08:00
 Origin issue: https://github.com/ferstar/blog/issues/94
 ```
