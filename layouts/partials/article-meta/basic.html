@@ -66,9 +66,25 @@
 
 
   <div class="flex flex-row flex-wrap items-center">
-    {{/* Output partials */}}
+    {{/* Output partials (Date, etc.) */}}
     {{ with ($meta.Get "partials") }}
       {{ delimit . "<span class=\"px-2 text-primary-500\">&middot;</span>" | safeHTML }}
+    {{ end }}
+
+    {{/* Output taxonomies inline with date */}}
+    {{ if .Params.showTaxonomies | default (.Site.Params.article.showTaxonomies | default false) }}
+      {{ range $taxonomy, $terms := .Site.Taxonomies }}
+        {{ if and (not (eq $taxonomy "authors")) (not (eq $taxonomy "series")) }}
+          {{ if (gt (len ($context.GetTerms $taxonomy)) 0) }}
+            <span class="px-2 text-primary-500">&middot;</span>
+            {{ range $context.GetTerms $taxonomy }}
+              <a class="relative me-2 hover:underline" href="{{ .RelPermalink }}">
+                #{{ .LinkTitle }}
+              </a>
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
     {{ end }}
 
     {{/* Output draft label */}}
@@ -76,40 +92,6 @@
       <span class="ps-2">{{ partial "badge.html" (i18n "article.draft" | emojify) }}</span>
     {{ end }}
   </div>
-
-  {{ if and (eq $scope "single") (.Params.showAuthorsBadges | default (.Site.Params.article.showAuthorsBadges | default false)) }}
-    <div class="flex flex-row flex-wrap items-center">
-      {{ range $taxonomy, $terms := .Site.Taxonomies }}
-        {{ if (eq $taxonomy "authors") }}
-          {{ if (gt (len ($context.GetTerms $taxonomy)) 0) }}
-            {{ range $i, $a := $context.GetTerms $taxonomy }}
-              {{ if not (eq $i 0) }}
-                ,&nbsp;
-              {{ end }}
-              <a href="{{ $a.RelPermalink }}" class="relative">{{ $a.LinkTitle }}</a>
-            {{ end }}
-          {{ end }}
-        {{ end }}
-      {{ end }}
-    </div>
-  {{ end }}
-
-  {{/* Output taxonomies */}}
-  {{ if and (eq $scope "single") (.Params.showTaxonomies | default (.Site.Params.article.showTaxonomies | default false)) }}
-    <div class="flex flex-row flex-wrap items-center">
-      {{ range $taxonomy, $terms := .Site.Taxonomies }}
-        {{ if and (not (eq $taxonomy "authors")) (not (eq $taxonomy "series")) }}
-          {{ if (gt (len ($context.GetTerms $taxonomy)) 0) }}
-            {{ range $context.GetTerms $taxonomy }}
-              <a class="relative mt-[0.5rem] me-2" href="{{ .RelPermalink }}">
-                {{ partial "badge.html" .LinkTitle }}
-              </a>
-            {{ end }}
-          {{ end }}
-        {{ end }}
-      {{ end }}
-    </div>
-  {{ end }}
 
   {{/* Output only category */}}
   {{ if and (eq $scope "single") (.Params.showCategoryOnly | default (.Site.Params.article.showCategoryOnly | default false)) }}
