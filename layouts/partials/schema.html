@@ -1,0 +1,58 @@
+{{- if .IsHome -}}
+  {{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" "WebSite"
+    "@id" (site.Home.Permalink | safeURL)
+    "name" (.Site.Title | emojify)
+    "url" (site.Home.Permalink | safeURL)
+    "inLanguage" (.Site.LanguageCode | default "zh-cn")
+    "publisher" (dict "@type" "Person" "name" .Site.Params.Author.name)
+  -}}
+  {{- with .Site.Params.description -}}
+    {{- $schema = merge $schema (dict "description" .) -}}
+  {{- end -}}
+  <script type="application/ld+json">
+    {{- $schema | jsonify | safeJS -}}
+  </script>
+{{- else -}}
+  {{- $iso8601 := "2006-01-02T15:04:05-07:00" -}}
+  {{- $articleSchema := dict
+    "@context" "https://schema.org"
+    "@type" "Article"
+    "articleSection" ((site.GetPage .Section).Title | default "Posts")
+    "name" .Title
+    "headline" .Title
+    "inLanguage" (.Site.LanguageCode | default "zh-cn")
+    "url" .Permalink
+    "author" (dict "@type" "Person" "name" .Site.Params.Author.name)
+    "mainEntityOfPage" "true"
+    "wordCount" .WordCount
+  -}}
+  {{- if .Date -}}
+    {{- $articleSchema = merge $articleSchema (dict "dateCreated" (.Date.Format $iso8601) "datePublished" (.Date.Format $iso8601) "dateModified" (.Lastmod.Format $iso8601) "copyrightYear" (.Date.Format "2006")) -}}
+  {{- end -}}
+  {{- with .Params.tags -}}
+    {{- $articleSchema = merge $articleSchema (dict "keywords" .) -}}
+  {{- end -}}
+  
+  {{- $schemas := slice $articleSchema -}}
+  
+  {{- if site.Params.enableStructuredBreadcrumbs | default false -}}
+    {{- $breadcrumbs := slice -}}
+    {{- $position := 0 -}}
+    {{- range .Ancestors -}}
+      {{- if not .IsHome -}}
+        {{- $position = add $position 1 -}}
+        {{- $breadcrumbs = $breadcrumbs | append (dict "@type" "ListItem" "position" $position "name" .Title "item" .Permalink) -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $position = add $position 1 -}}
+    {{- $breadcrumbs = $breadcrumbs | append (dict "@type" "ListItem" "position" $position "name" $.Title "item" $.Permalink) -}}
+    {{- $breadcrumbSchema := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $breadcrumbs -}}
+    {{- $schemas = $schemas | append $breadcrumbSchema -}}
+  {{- end -}}
+
+  <script type="application/ld+json">
+    {{- $schemas | jsonify | safeJS -}}
+  </script>
+{{- end -}}
