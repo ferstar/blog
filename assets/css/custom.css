@@ -4,6 +4,27 @@
     width: auto !important;
 }
 
+/* Adjust the fixed header placeholder height for better breathing room */
+.min-h-\[148px\] {
+    min-height: 100px !important;
+}
+
+/* Remove the negative margin to restore natural spacing */
+.home #main-content {
+    margin-top: 0 !important;
+}
+
+/* Reduce vertical spacing between posts in the list view */
+.prose li {
+    margin-bottom: 0.5rem !important;
+}
+
+/* For Blowfish list items */
+section article {
+    margin-bottom: 1.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
 /* Ensure the home page title is hidden */
 .home .prose h1 {
     display: none;
