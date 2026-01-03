@@ -1,0 +1,30 @@
+baseURL = "https://blog.ferstar.org/"
+title = "STAY REAL"
+theme = "blowfish"
+languageCode = "zh-CN"
+defaultContentLanguage = "zh-cn"
+hasCJKLanguage = true
+summaryLength = 42
+enableEmoji = true
+googleAnalytics = "UA-7491858-2"
+copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)"
+
+[author]
+    name = "ferstar"
+    motto = "May the truth be without barriers"
+    avatar = "/icons/apple-touch-icon.png"
+
+[taxonomies]
+    tag = "tags"
+    series = "series"
+    category = "categories"
+
+[outputs]
+    home = ["HTML", "RSS", "JSON"]
+
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true
+    [markup.highlight]
+        noClasses = false

@@ -1,0 +1,21 @@
+languageCode = "zh-cn"
+languageName = "简体中文"
+weight = 1
+title = "STAY REAL"
+
+[params]
+  displayName = "简体中文"
+  isoCode = "zh-cn"
+  rtl = false
+  dateFormat = "2006-01-02"
+  logo = "site-logo.png"
+  description = "May the truth be without barriers"
+
+[params.author]
+  name = "ferstar"
+  image = "site-logo.png"
+  headline = "May the truth be without barriers"
+  bio = "闲谈莫论人非，静坐常思己过。"
+  links = [
+    { github = "https://github.com/ferstar" },
+  ]
