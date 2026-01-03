@@ -75,27 +75,12 @@ iptables -I DOCKER-USER -i tailscale0 -p tcp --dport 3022:3080 -j ACCEPT
 # 拦截来自公网物理网卡 ens3 的所有入站尝试
 iptables -A DOCKER-USER -i ens3 -p tcp --dport 3022:3080 -j DROP
 ```
-
 ---
 
-## 5. 容灾设计：解除“循环依赖”
-在早期配置中，Nginx 曾指向 Tailscale IP。为防止 VPN 服务自身异常导致管理入口全线崩溃，我们最终将转发目标改为 `127.0.0.1` 本地回环。
+## 附录：生产级配置文件参考（最终演进版）
 
-这种设计实现了**即便 Tailscale 网络波动，只要公网 443 畅通，管理员依然能进入堡垒机管理集群**的健壮架构。
-
----
-
-## 结语
-安全运维的本质并非堆砌工具，而是通过合理的架构设计，在不牺牲核心人员效率的前提下，建立起一套**透明且不可篡改的操作审计线**。
-
-通过 Teleport 与 Tailscale 的结合，我们不仅实现了 GPU 集群的公网“隐身”，更让每一次操作都拥有了确定的追溯依据。
-
----
-
-## 附录：生产级配置文件参考（脱敏）
-
-### A. Docker Compose 配置 (docker-compose.yml)
-为实现“内外解耦”，监听地址保持为 `0.0.0.0`。安全策略由宿主机 `iptables` (DOCKER-USER 链) 统一管控。
+### A. 极致精简的 Docker Compose (docker-compose.yml)
+利用 Teleport 的 **多路复用 (Multiplexing)** 特性，我们只需暴露一个业务端口（3080）。
 
 ```yaml
 services:
@@ -104,46 +89,41 @@ services:
     container_name: teleport
     restart: always
     ports:
-      - '3080:3080' # Web UI / Proxy
-      - '3023:3023' # SSH Proxy
-      - '3024:3024' # Reverse Tunnel
-      - '3025:3025' # Auth API
+      - '3080:3080' # 全能入口：承载 Web、SSH Proxy 和反向隧道流量
+      - '127.0.0.1:3025:3025' # Auth API：仅限宿主机本地管理
     volumes:
       - ./data:/var/lib/teleport
       - ./teleport.yaml:/etc/teleport/teleport.yaml
-    networks:
-      - teleport-net
 ```
 
-### B. IPTables 安全加固 (DOCKER-USER)
-这是拦截公网探测同时保证内网连通性的核心指令。
+### B. 收窄后的 IPTables 加固 (DOCKER-USER)
+防护策略精简为只管控 3080 单一入口。
 
 ```bash
-# 1. 允许本地回环 (Nginx -> Teleport)
-iptables -I DOCKER-USER -i lo -p tcp --dport 3022:3080 -j ACCEPT
+# 针对 3080 端口：只允许 Nginx 回环和 Tailscale 内部节点连接
+iptables -I DOCKER-USER -i lo -p tcp --dport 3080 -j ACCEPT
+iptables -I DOCKER-USER -i tailscale0 -p tcp --dport 3080 -j ACCEPT
+iptables -A DOCKER-USER -i ens3 -p tcp --dport 3080 -j DROP
 
-# 2. 允许 Tailscale 网段 (GPU Nodes -> Teleport)
-iptables -I DOCKER-USER -i tailscale0 -p tcp --dport 3022:3080 -j ACCEPT
-
-# 3. 拦截公网接口入站请求 (ens3)
-iptables -A DOCKER-USER -i ens3 -p tcp --dport 3022:3080 -j DROP
+# 针对 3025 端口：仅限本地
+iptables -I DOCKER-USER -i lo -p tcp --dport 3025 -j ACCEPT
+iptables -A DOCKER-USER -i ens3 -p tcp --dport 3025 -j DROP
 ```
 
-### C. Teleport 核心配置 (teleport.yaml)
+### C. 开启多路复用的 Teleport 配置 (teleport.yaml)
 ```yaml
 version: v3
-teleport:
-  nodename: bastion-host
 auth_service:
   enabled: yes
   cluster_name: prod-cluster
+  # 开启多路复用，这是端口精简的技术前提
   proxy_listener_mode: multiplex
 proxy_service:
   enabled: yes
-  # 关键：同时声明域名地址与内网管理地址
+  # 声明双重身份，确保 Web 端和内网 Agent 都能找到对应的握手地址
   public_addr: [teleport.example.com:443, 100.64.0.x:3080]
 ssh_service:
-  enabled: "no" # 禁用堡垒机自身的 SSH 接口
+  enabled: "no"
 ```
 
 
@@ -153,6 +133,6 @@ ssh_service:
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2026-01-03T03:58:20+08:00
-Updated at: 2026-01-03T04:03:44+08:00
+Updated at: 2026-01-03T04:09:06+08:00
 Origin issue: https://github.com/ferstar/blog/issues/95
 ```
