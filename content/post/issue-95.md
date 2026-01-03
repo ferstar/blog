@@ -5,9 +5,7 @@ tags: ['Linux', 'Idea']
 comments: true
 ---
 
-## GPU 集群堡垒机方案：Teleport + Tailscale 一把梭
-
-手头有几台 DGX H800，内网环境，但偶尔要让供应商远程上来调试。需求很简单：
+有几台 DGX H800，内网环境，但偶尔要让供应商远程上来调试。需求很简单：
 
 1. 供应商能连上机器干活
 2. 全程录屏审计，但别让他知道在录（"静默"）
@@ -134,6 +132,6 @@ proxy_service:
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2026-01-03T03:58:20+08:00
-Updated at: 2026-01-03T05:54:12+08:00
+Updated at: 2026-01-03T05:54:29+08:00
 Origin issue: https://github.com/ferstar/blog/issues/95
 ```
