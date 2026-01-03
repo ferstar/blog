@@ -1,44 +1,66 @@
 ---
-title: "Cloudflare Argo Tunnels+Brook 一种非主流的科学上网姿势"
+title: "Cloudflare Tunnel + Brook: 拯救低速 VPS 的高性价比穿透方案"
 slug: "cloudflare-argo-tunnel-brook-setup"
 date: "2022-03-16T23:10:03+08:00"
 tags: ['Idea']
 comments: true
 ---
 
-先把用到的东西摆出来:
+> **注：** 2026 年进行了技术审计。虽然协议在变，但 Cloudflare 边缘加速的底层逻辑依然稳健。
 
-1. https://blog.cloudflare.com/argo-tunnels-that-live-forever/
-2. https://txthinking.github.io/brook/#/brook-wsserver
+#### 原理
+利用 `Cloudflare Tunnel` (原 Argo Tunnels) 将本地服务映射到 Cloudflare 的边缘网络。线路质量欠佳的 VPS（如 Oracle Free Tier 等）能通过 CDN 实现起死回生的加速。
 
-用`Cloudflare Argo Tunnels`(以下简称`cft`)的目的主要是薅`Cloudflare`的`CDN`网络为自己的垃圾`VPS`加速
-
-食用方法:
-
-1. 把上面两样东西装好
-2. [启动 cft](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/tunnel-guide/) `cloudflared tunnel run --url http://localhost:8888 hello`
-3. 启动 brook ws: `brook wsserver --listen 127.0.0.1:8888 --password auok`
-4. 虽然小众, 但基本该有的[客户端](https://txthinking.github.io/brook/#/install-gui-client)都有
-5. 注意客户端需要以 wss 的方式链接, 因为要过 cft
-
-优点:
-
-1. 背靠 cft , VPS 的 IP 几乎不可能被封
-2. 如果你的 VPS 恰好是那种纯 docker 型或者网络出口有限制(有v6无v4)的话, `cft`也能帮你突破`VPS`所在域的网络限制
-3. 有 CDN 加持, 垃圾线路也可以轻松满速
-4. 相比 ss/v2ray 这种盛名在外的方案, brook ws 还是个小众的东西, 墙也许不那么敏感
-
-缺点:
-
-1. 延时高(>500ms), 所以不适合臭打游戏的
-2. `cft`当前免费有 1TB/month 的流量, 但不确定未来收费水平
-3. 移动端比较耗电
-
-还有一种非主流的姿势, 对弱鸡加速效果明显: https://github.com/HyNetwork/hysteria/wiki
-
+```mermaid
+graph LR
+    User((Client)) -- "WSS Request" --> CF[Cloudflare Edge]
+    subgraph "Your Home/VPS"
+        CFT[cloudflared] -- "Persistent Tunnel" --> CF
+        Brook[Brook WSServer] -- "Local Loopback" --> CFT
+    end
+    style User fill:#f9f,stroke:#333,stroke-width:2px
+    style CF fill:#f96,stroke:#333,stroke-width:2px
+    style Brook fill:#4ecdc4,stroke:#333,stroke-width:2px
 ```
+
+#### 食用方法
+
+1.  **准备工作**：
+    *   [Cloudflare Zero Trust 控制台](https://one.dash.cloudflare.com/)：直接在 Dashboard 里创建 Tunnel，比命令行折腾证书方便。
+    *   [Brook wsserver](https://txthinking.github.io/brook/#/brook-wsserver)：极其简单的逻辑。
+
+2.  **服务端启动**：
+    `brook wsserver --listen 127.0.0.1:8888 --password your_pass`
+
+3.  **配置 Tunnel**：
+    在 Cloudflare 后台将你的域名指向 `http://localhost:8888`。
+
+4.  **关键设置 (必做)**：
+    **务必在 Cloudflare 的 Network 设置中开启 WebSocket 支持**，否则 wss 连接会直接断掉。
+
+5.  **客户端连接**：
+    协议模式选 **wss**，流量走加密隧道。
+
+#### 优缺点
+
+**优点：**
+*   **隐身**：不直接暴露 VPS IP，由 Cloudflare 抗压，基本不会被封。
+*   **穿透**：支持 IPv6-only 或纯内网环境。
+*   **免费**：Cloudflare 个人用户额度基本够用。
+
+**缺点：**
+*   **延时**：中转路径多了一层，延时在几百毫秒级别，不适合打游戏。
+*   **UDP**：对非 HTTP 流量的 UDP 支持一般，推荐 TCP/WSS 场景。
+
+#### 进阶参考
+*   [Hysteria 2](https://github.com/HyNetwork/hysteria)：非 CF 中转场景下的性能怪兽。
+*   [Cloudflare WARP](https://1.1.1.1/)：辅助优化。
+
+---
+
+```js
 # NOTE: I am not responsible for any expired content.
 create@2022-03-16T23:10:03+08:00
-update@2022-03-16T23:35:15+08:00
+update@2026-01-04T05:40:00+08:00
 comment@https://github.com/ferstar/blog/issues/56
 ```
