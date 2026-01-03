@@ -9,6 +9,38 @@
     min-height: 100px !important;
 }
 
+@media (max-width: 640px) {
+    /* Zero out vertical spacing and flex gaps on mobile */
+    .space-y-4 > :not([hidden]) ~ :not([hidden]),
+    section.space-y-4 {
+        margin-top: 0 !important;
+        gap: 0 !important;
+    }
+
+    /* Kill any padding on article and its containers */
+    article, 
+    article > div {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: -0.5rem !important; /* Pull the next article closer */
+    }
+
+    /* Ensure the title has no space above it */
+    article h2 {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        line-height: 1.2 !important;
+    }
+
+    /* Meta info adjustment - positive space from title, but no space below */
+    article .text-sm {
+        margin-top: 0.25rem !important;
+        margin-bottom: 0 !important;
+        line-height: 1.2 !important;
+    }
+}
+
 /* Remove the negative margin to restore natural spacing */
 .home #main-content {
     margin-top: 0 !important;
