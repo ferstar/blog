@@ -4,3 +4,12 @@
     <link rel="preload" as="image" href="{{ $logo.RelPermalink }}" fetchpriority="high">
   {{ end }}
 {{ end }}
+
+<style>
+  /* Lock light mode colors early to prevent theme-switch flash/shift */
+  :root {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+    color: rgb(23 23 23) !important;
+  }
+</style>

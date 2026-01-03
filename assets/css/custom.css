@@ -67,7 +67,41 @@ section article {
 
 
 
+/* Fix massive CLS by forcing scrollbar and stabilizing body */
+
+html {
+
+    overflow-y: scroll; /* Force vertical scrollbar to prevent horizontal jumps */
+
+}
+
+
+
+body {
+
+    text-rendering: optimizeLegibility;
+
+    -webkit-font-smoothing: antialiased;
+
+    font-display: swap; /* Prevent font-swap shifts */
+
+}
+
+
+
+/* Stabilize the fixed header to prevent jumps during JS init */
+
+header {
+
+    min-height: 80px;
+
+}
+
+
+
 /* Stabilize code blocks to reduce CLS */
+
+
 
 .highlight-wrapper {
 
