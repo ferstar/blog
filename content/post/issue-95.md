@@ -5,125 +5,110 @@ tags: ['Linux', 'Idea']
 comments: true
 ---
 
-## 0. 背景：高价值资产的访问瓶颈
-在管理 **DGX H800** 等核心算力资源时，运维团队面临着极其复杂的情况：
-- **物理隔离**：计算节点位于严格受限的私有云内网。
-- **跨境访问**：管理终端与服务器分布在不同地域。
-- **合规审计**：外部供应商（Vendor）介入安装平台软件时，必须实现全程可追溯。
+## 0. 背景：高价值算力资源的访问挑战
+在运维 **DGX H800** 等核心算力集群时，我们需要平衡三个关键维度：
+- **物理连通性**：计算节点位于隔离的内网环境。
+- **管理合规性**：外部供应商（Vendor）介入时，必须实现“静默审计”与全量录屏。
+- **管理员效率**：核心运维人员需具备绕过堡垒机、直达底层的“特权通道”。
 
-为了平衡“接入便利性”与“安全审计强度”，我们通过 **Teleport** 与 **Tailscale** 落地了一套零信任架构下的堡垒机方案。
-
----
-
-## 1. 架构逻辑：连通性与审计的分层解耦
-我们将安全防线分为两层：
-- **网络层（Tailscale）**：利用 Overlay 网络打通私有网段，隐藏物理拓扑。
-- **协议层（Teleport）**：通过 SSH 证书化、指令级记录和会话录屏，实现对操作行为的闭环管理。
-- **接入层（Nginx）**：收口到 443 端口，通过域名提供标准的 HTTPS 管理门户。
+通过 **Teleport** 与 **Tailscale** 的结合，我们构建了一套零信任架构下的堡垒机方案，实现了对操作行为的闭环管理。
 
 ---
 
-## 2. 部署实战：突破内网孤岛的连接
-由于 GPU 节点无法直连中转节点，Agent 必须通过代理发起反向隧道请求。
+## 1. 架构逻辑：连通性与审计的分层
+- **网络层（Tailscale）**：解决跨地域、跨内网的底层连接，隐藏物理拓扑。
+- **协议审计层（Teleport）**：负责身份认证、指令过滤及会话录制。
+- **统一接入层（Nginx）**：收口 443 端口，通过标准域名提供 HTTPS 管理门户。
 
-### 2.1 强制代理环境下的 Agent 部署
-在计算节点利用 `HTTP_PROXY` 指向中转节点的隧道端口。针对包管理器在代理环境下的证书或 403 权限问题，采用了显式 Repo Proxy 配置：
+---
+
+## 2. 核心技术点：单端口多路复用 (Multiplexing)
+在传统部署中，Teleport 需要开放 3022-3080 多个端口。为简化网络拓扑和安全策略，我们启用了 **Multiplexing** 模式。
+- **原理**：Teleport Proxy 在单一端口（3080）上根据 ALPN 协议自动识别流量类型（HTTPS/SSH/Tunnel）。
+- **优势**：防火墙只需监控一个入口，极大缩小了受攻击面。
+
+---
+
+## 3. 部署细节：突破内网孤岛
+
+### 3.1 Agent 隧道接入
+针对位于内网的 GPU 节点，我们通过 `HTTP_PROXY` 引导 Teleport Agent 建立反向隧道。针对包管理器在代理环境下的证书问题，需显式配置 Repo 代理：
 ```bash
 # /etc/yum.repos.d/teleport.repo
 [teleport]
-# ... 
-proxy=http://[VIP_BASTION]:8888  # 确保包管理器的网络路径独立可控
+proxy=http://[VIP_BASTION]:8888 
 ```
 
-### 2.2 公共地址映射（Public Addr）
-为了解决登录后的域名/IP 跳转冲突，我们在中转机配置了多公共地址，同时兼顾了用户的域名访问与 Agent 的私网心跳：
-```yaml
-proxy_service:
-  # 域名用于 Web 访问，IP 用于节点心跳
-  public_addr: [teleport.example.com:443, 100.64.0.x:3080]
-```
+### 3.2 Nginx 代理调优
+为确保 Web Terminal（WebSocket）稳定，Nginx 必须配置：
+1. **协议一致性**：上游必须使用 `https` 协议。
+2. **SSL 验证忽略**：`proxy_ssl_verify off`（处理容器内自签名证书）。
+3. **长连接维持**：配置标准的 `Upgrade` 和 `Connection "upgrade"` 头部。
 
 ---
 
-## 3. 安全模型：管理员与供应商的权限切割
+## 4. 权限加固：管理员与供应商的角色解耦
 
-### 3.1 管理员：高性能、免干预接入
-管理员通过 **Ed25519 专用密钥** 走 22 端口直接访问。
-- **零信任改造**：彻底禁用 root 密码，改为仅限证书/密钥验证。
-- **体验优化**：利用 `~/.ssh/config` 别名配置，实现秒级免感登录，绕过堡垒机包装层以获取原生 Bash 性能。
+### 4.1 管理员：独立密钥与原生 Shell
+管理员使用 Ed25519 密钥走 22 端口直接访问。
+- **策略**：禁用所有 root 密码登录。
+- **体验**：配置本地 SSH Config 别名，实现免感登录并保留原生 Bash 操作体验。
 
-### 3.2 外部供应商：强制收口、全量审计
-外部人员统一分配 `dev` 账号，仅能通过 Web 端操作。
-- **RBAC 定制**：创建 `restricted-dev` 角色，剥离审计日志查看权限。
-- **效果**：操作人员仅能操作其授权范围内的节点，而管理员可作为 `auditor` 实时监控并回放所有历史会话。
+### 4.2 外部供应商：受限访问与静默审计
+分配 `dev` 账号，仅限 Web 连接。
+- **RBAC 定制**：创建 `restricted-dev` 角色，剥离所有审计日志与录屏的查看权限。
+- **效果**：操作人员无感知录屏，管理员作为 `auditor` 拥有全局追溯权。
 
 ---
 
-## 4. 深度调优：Nginx 与防火墙的联动
+## 5. 安全防护：IPTables 手术刀式过滤
+由于 Docker 映射端口会绕过常规防火墙，我们必须在 **`DOCKER-USER`** 链中进行精准防护。
 
-### 4.1 Nginx 全流量转发
-在 1Panel/OpenResty 环境下，Nginx 必须解决 WebTerminal 的长连接稳定性：
-1. **SSL 协议透传**：`proxy_pass https://`（Teleport 强制加密）并开启 `proxy_ssl_verify off`。
-2. **WebSocket 优化**：显式指定 `Upgrade` 和 `Connection` 头部，防止 Web Shell 意外断连。
+### 5.1 规则逻辑
+我们舍弃了模糊的网卡接口匹配，改为基于 **源 IP/网段** 的精准过滤：
+1. **允许本地**：`127.0.0.1` 访问 3080 (支持 Nginx 转发)。
+2. **允许 VPN**：`100.64.0.0/10` 访问 3080 (支持 GPU 节点接入)。
+3. **默认拒绝**：公网或其他来源的一切 3080 访问请求。
 
-### 4.2 IPTables 隐身术
-针对 Docker 映射端口绕过普通防火墙的问题，我们在 **`DOCKER-USER`** 链执行了精准封锁：
-```bash
-# 仅允许本地 lo (Nginx) 和虚拟网卡 tailscale0 进入容器
-iptables -I DOCKER-USER -i lo -p tcp --dport 3022:3080 -j ACCEPT
-iptables -I DOCKER-USER -i tailscale0 -p tcp --dport 3022:3080 -j ACCEPT
-# 拦截来自公网物理网卡 ens3 的所有入站尝试
-iptables -A DOCKER-USER -i ens3 -p tcp --dport 3022:3080 -j DROP
-```
+这种“显式允许，默认拒绝”的策略确保了算力资源对公网的完全隐身。
+
 ---
 
-## 附录：生产级配置文件参考（最终演进版）
+## 6. 容灾：解除循环依赖
+早期配置中 Nginx 指向了 VPN IP，导致 VPN 故障时管理门户瘫痪。最终我们将其优化为 **127.0.0.1 本地回环转发**，实现了即便 VPN 网络波动，公网域名管理入口依然固若金汤。
 
-### A. 极致精简的 Docker Compose (docker-compose.yml)
-利用 Teleport 的 **多路复用 (Multiplexing)** 特性，我们只需暴露一个业务端口（3080）。
+---
 
+## 附录：核心配置文件（脱敏）
+
+### A. Docker Compose (docker-compose.yml)
 ```yaml
 services:
   teleport:
-    image: public.ecr.aws/gravitational/teleport-distroless:18.6.0
-    container_name: teleport
-    restart: always
     ports:
-      - '3080:3080' # 全能入口：承载 Web、SSH Proxy 和反向隧道流量
-      - '127.0.0.1:3025:3025' # Auth API：仅限宿主机本地管理
+      - '3080:3080'           # 全能业务端口
+      - '127.0.0.1:3025:3025' # 管理 API，仅限本地
     volumes:
-      - ./data:/var/lib/teleport
       - ./teleport.yaml:/etc/teleport/teleport.yaml
 ```
 
-### B. 收窄后的 IPTables 加固 (DOCKER-USER)
-防护策略精简为只管控 3080 单一入口。
-
+### B. IPTables 修正版指令
 ```bash
-# 针对 3080 端口：只允许 Nginx 回环和 Tailscale 内部节点连接
-iptables -I DOCKER-USER -i lo -p tcp --dport 3080 -j ACCEPT
-iptables -I DOCKER-USER -i tailscale0 -p tcp --dport 3080 -j ACCEPT
-iptables -A DOCKER-USER -i ens3 -p tcp --dport 3080 -j DROP
-
-# 针对 3025 端口：仅限本地
-iptables -I DOCKER-USER -i lo -p tcp --dport 3025 -j ACCEPT
-iptables -A DOCKER-USER -i ens3 -p tcp --dport 3025 -j DROP
+# 清空并重新构建 DOCKER-USER 链
+iptables -F DOCKER-USER
+# 3080 端口精准放行 127.0.0.1 和 Tailscale 网段
+iptables -A DOCKER-USER -s 127.0.0.1 -p tcp --dport 3080 -j ACCEPT
+iptables -A DOCKER-USER -s 100.64.0.0/10 -p tcp --dport 3080 -j ACCEPT
+iptables -A DOCKER-USER -p tcp --dport 3080 -j DROP
 ```
 
-### C. 开启多路复用的 Teleport 配置 (teleport.yaml)
+### C. Teleport 核心配置 (teleport.yaml)
 ```yaml
-version: v3
 auth_service:
-  enabled: yes
-  cluster_name: prod-cluster
-  # 开启多路复用，这是端口精简的技术前提
-  proxy_listener_mode: multiplex
+  proxy_listener_mode: multiplex # 开启多路复用
 proxy_service:
-  enabled: yes
-  # 声明双重身份，确保 Web 端和内网 Agent 都能找到对应的握手地址
+  # 同时声明域名与内部网关，确保握手兼容性
   public_addr: [teleport.example.com:443, 100.64.0.x:3080]
-ssh_service:
-  enabled: "no"
 ```
 
 
@@ -133,6 +118,6 @@ ssh_service:
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2026-01-03T03:58:20+08:00
-Updated at: 2026-01-03T04:09:06+08:00
+Updated at: 2026-01-03T04:12:36+08:00
 Origin issue: https://github.com/ferstar/blog/issues/95
 ```
