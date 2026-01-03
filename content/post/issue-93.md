@@ -17,7 +17,7 @@ comments: true
 
 典型的"单行道"症状。链路没断，但某个协议层面的天花板被撞了。
 
-一开始怀疑运营商限速、偷包，甚至想过是不是 QoS 策略在搞鬼。折腾半天，压根没往 MTU 方向想——典型的专家盲区：手里拿着抓包工具，看什么都像协议问题，反而忽略了最基础的链路参数。就像网络高手帮朋友排查问题，`tcpdump` 、`wireshark` 一顿操作，最后发现是宽带欠费了。
+一开始怀疑运营商限速、偷包，甚至想过是不是 QoS 策略在搞鬼。折腾半天，压根没往 MTU 方向想——典型的专家盲区：手里拿着抓包工具，看什么都像协议问题，反而忽略了最基础的链路参数。就像网络高手帮朋友排查问题，`tcpdump`、`wireshark` 一顿操作，最后发现是宽带欠费了。
 
 ---
 
@@ -90,13 +90,15 @@ TCP MSS = 单个 TCP 段的 payload 上限，受路径 MTU 限制。
 
 ### 解决方案
 
-#### A. 根治（如果合规允许）
+#### A. 根治（理想情况）
 
 不是放行 `ping`，而是只放行 PMTUD 必要的 ICMP：
 - IPv4：ICMP Type 3 Code 4（Fragmentation Needed）
 - IPv6：ICMPv6 Type 2（Packet Too Big）
 
 这样 TCP 能自动收敛到正确 MTU，不用硬编码 MSS。
+
+**但现实是**：这类安全策略往往不归你管，合规要求动不了。往下看。
 
 #### B. 权宜 1：降隧道 MTU
 
@@ -182,6 +184,6 @@ ethtool -K <IFACE> tso on gso on gro on
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-12-31T12:09:54+08:00
-Updated at: 2026-01-03T06:06:38+08:00
+Updated at: 2026-01-03T06:10:01+08:00
 Origin issue: https://github.com/ferstar/blog/issues/93
 ```
