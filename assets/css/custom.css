@@ -1,0 +1,10 @@
+/* Shrink the header logo */
+.logo {
+    height: 2rem !important;
+    width: auto !important;
+}
+
+/* Ensure the home page title is hidden */
+.home .prose h1 {
+    display: none;
+}
