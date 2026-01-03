@@ -2,3 +2,5 @@ public/
 .DS_Store
 config.toml.bak
 .gemini-clipboard/
+x.xlsx
+*.xlsx

@@ -1,7 +1,7 @@
 ---
-title: "Ubuntu 18.04 set up Shadowsocks server with fail2ban"
-slug: "ubuntu-18-04-set-up-shadowsocks-server-with-fail2ban"
-date: 2018-12-01T13:33:45+08:00
+title: "Set up Shadowsocks server with fail2ban on Ubuntu"
+slug: "ubuntu-shadowsocks-fail2ban-setup"
+date: "2018-06-14T15:11:14+00:00"
 tags: ['LINUX', 'UBUNTU']
 comments: true
 

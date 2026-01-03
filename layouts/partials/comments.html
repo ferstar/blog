@@ -1,0 +1,15 @@
+{{ if .Site.Params.comments.cfcomment.enable }}
+<section class="mt-10">
+  <div id="cf-comment-container"></div>
+  <script src="{{ .Site.Params.comments.cfcomment.scriptUrl | default "https://cdn.jsdelivr.net/npm/cf-comment@latest/dist/cf-comment.min.js" }}"></script>
+  <script>
+    new CFComment({
+      container: '#cf-comment-container',
+      serverUrl: '{{ .Site.Params.comments.cfcomment.serverUrl }}',
+      pageId: '{{ .RelPermalink }}',
+      pageTitle: '{{ .Title }}',
+      lang: 'zh-CN'
+    });
+  </script>
+</section>
+{{ end }}
