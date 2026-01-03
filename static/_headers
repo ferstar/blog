@@ -1,0 +1,17 @@
+# Global default: cache HTML for 1 hour, revalidate with origin
+/*
+  Cache-Control: public, max-age=3600, s-maxage=3600, must-revalidate
+
+# Immutable assets: cache for 1 year
+/js/*
+  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
+/css/*
+  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
+/lib/*
+  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
+
+# Media assets
+/img/*
+  Cache-Control: public, max-age=604800, s-maxage=604800
+/favicon*
+  Cache-Control: public, max-age=604800, s-maxage=604800
