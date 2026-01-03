@@ -132,6 +132,6 @@ proxy_service:
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2026-01-03T03:58:20+08:00
-Updated at: 2026-01-03T05:54:29+08:00
+Updated at: 2026-01-03T05:55:29+08:00
 Origin issue: https://github.com/ferstar/blog/issues/95
 ```
