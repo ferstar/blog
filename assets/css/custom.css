@@ -1,278 +1,131 @@
-/* Shrink the header logo */
+/* ==========================================================================
+   Blog Custom Styles - Blowfish Theme
+   ========================================================================== */
+
+/* --- Logo & Header --- */
 .logo {
-    height: 2rem !important;
-    width: auto !important;
+  height: 2rem !important;
+  width: auto !important;
 }
 
-/* Adjust the fixed header placeholder height for better breathing room */
+/* Adjust fixed header placeholder height for better breathing room */
 .min-h-\[148px\] {
-    min-height: 100px !important;
+  min-height: 100px !important;
 }
-
-@media (max-width: 640px) {
-    /* Zero out vertical spacing and flex gaps on mobile */
-    .space-y-4 > :not([hidden]) ~ :not([hidden]),
-    section.space-y-4 {
-        margin-top: 0 !important;
-        gap: 0 !important;
-    }
-
-    /* Kill any padding on article and its containers */
-    article, 
-    article > div {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        margin-top: 0 !important;
-        margin-bottom: -0.5rem !important; /* Pull the next article closer */
-    }
-
-    /* Ensure the title has no space above it */
-    article h2 {
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-        line-height: 1.2 !important;
-    }
-
-    /* Meta info adjustment - positive space from title, but no space below */
-    article .text-sm {
-        margin-top: 0.25rem !important;
-        margin-bottom: 0 !important;
-        line-height: 1.2 !important;
-    }
-}
-
-/* Remove the negative margin to restore natural spacing */
-.home #main-content {
-    margin-top: 0 !important;
-}
-
-/* Reduce vertical spacing between posts in the list view */
-.prose li {
-    margin-bottom: 0.5rem !important;
-}
-
-/* For Blowfish list items */
-section article {
-    margin-bottom: 1.5rem !important;
-    padding-bottom: 0.5rem !important;
-}
-
-/* Ensure the home page title is hidden */
-
-.home .prose h1 {
-
-    display: none;
-
-}
-
-
-
-/* Fix massive CLS by forcing scrollbar and stabilizing body */
-
-html {
-
-    overflow-y: scroll; /* Force vertical scrollbar to prevent horizontal jumps */
-
-}
-
-
-
-body {
-
-    text-rendering: optimizeLegibility;
-
-    -webkit-font-smoothing: antialiased;
-
-    font-display: swap; /* Prevent font-swap shifts */
-
-}
-
-
-
-/* Stabilize the fixed header to prevent jumps during JS init */
 
 header {
-
-    min-height: 80px;
-
+  min-height: 80px;
 }
 
-
-
-/* Stabilize code blocks to reduce CLS */
-
-
-
-.highlight-wrapper {
-
-
-
-    position: relative;
-
-
-
-    min-height: 3rem; /* Better default for code blocks */
-
-
-
+/* --- Homepage Layout --- */
+.home .prose h1 {
+  display: none;
 }
 
-
-
-
-
-
-
-/* Stabilize the TOC/Sidebar area to prevent horizontal content jumping */
-
-
-
-@media (min-width: 1024px) {
-
-
-
-    .toc {
-
-
-
-        min-width: 20rem; /* Match Blowfish default sidebar width */
-
-
-
-    }
-
-
-
+.home #main-content {
+  margin-top: 0 !important;
 }
 
-
-
-
-
-
-
-/* Reserve space for Utterances comments to prevent footer jumping */
-
-
-
-#utterances-container, .utterances {
-
-
-
-    min-height: 260px; /* Average height of a comment box */
-
-
-
-    display: block;
-
-
-
+/* --- Post Listing Density (Desktop) --- */
+.prose li {
+  margin-bottom: 0.5rem !important;
 }
 
-
-
-
-
-
-
-/* Prevent image jumping by ensuring they take space before loading */
-
-
-
-img {
-
-
-
-    height: auto;
-
-
-
-    content-visibility: auto;
-
-
-
+section article {
+  margin-bottom: 1.5rem !important;
+  padding-bottom: 0.5rem !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-/* Tighten post listing density on desktop */
-
-
 
 header.items-center {
-
-
-
-    margin-bottom: -0.25rem !important;
-
-
-
+  margin-bottom: -0.25rem !important;
 }
-
-
-
-
-
-
 
 article h2 {
-
-
-
-    margin-bottom: 0 !important;
-
-
-
+  margin-bottom: 0 !important;
 }
-
-
-
-
-
-
 
 article .text-sm {
+  margin-top: 0 !important;
+}
 
-
-
+/* --- Mobile Specific Optimizations (max-width: 640px) --- */
+@media (max-width: 640px) {
+  /* Zero out vertical spacing and flex gaps */
+  .space-y-4 > :not([hidden]) ~ :not([hidden]),
+  section.space-y-4 {
     margin-top: 0 !important;
+    gap: 0 !important;
+  }
 
+  /* Kill any padding on article and its containers */
+  article,
+  article > div {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: -0.5rem !important;
+  }
 
+  /* Ensure the title has no space above it */
+  article h2 {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    line-height: 1.2 !important;
+  }
 
+  /* Meta info adjustment - positive space from title, but no space below */
+  article .text-sm {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0 !important;
+    line-height: 1.2 !important;
+  }
 }
 
-
-
-
-
-
-
-/* Pre-size Mermaid blocks to reduce CLS */
-
-.mermaid {
-
-    min-height: 200px; /* Average height for a diagram */
-
-    display: block;
-
-    overflow: hidden;
-
+/* --- Performance & Stability (CLS Fixes) --- */
+html {
+  overflow-y: scroll; /* Force vertical scrollbar to prevent horizontal jumps */
 }
 
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-display: swap;
+}
 
+/* Stabilize code blocks */
+.highlight-wrapper {
+  position: relative;
+  min-height: 3rem;
+}
 
-/* Ensure copy button doesn't shift layout */
-
+/* Prevent copy button from shifting layout */
 .copy-button {
+  position: absolute !important;
+}
 
-    position: absolute !important;
+/* Pre-size Mermaid blocks */
+.mermaid {
+  min-height: 200px;
+  display: block;
+  overflow: hidden;
+}
 
+/* Stabilize TOC sidebar */
+@media (min-width: 1024px) {
+  .toc {
+    min-width: 20rem;
+  }
+}
+
+/* Reserve space for Utterances comments */
+#utterances-container,
+.utterances {
+  min-height: 260px;
+  display: block;
+}
+
+/* Prevent image jumping */
+img {
+  height: auto;
+  content-visibility: auto;
 }
