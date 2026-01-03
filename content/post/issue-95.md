@@ -6,7 +6,7 @@ comments: true
 ---
 
 ## 0. 背景：高价值资产的访问瓶颈
-在运维 **DGX H800** 等核心算力资源时，运维团队面临着极其复杂的情况：
+在管理 **DGX H800** 等核心算力资源时，运维团队面临着极其复杂的情况：
 - **物理隔离**：计算节点位于严格受限的私有云内网。
 - **跨境访问**：管理终端与服务器分布在不同地域。
 - **合规审计**：外部供应商（Vendor）介入安装平台软件时，必须实现全程可追溯。
@@ -97,6 +97,6 @@ iptables -A DOCKER-USER -i ens3 -p tcp --dport 3022:3080 -j DROP
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2026-01-03T03:58:20+08:00
-Updated at: 2026-01-03T03:58:20+08:00
+Updated at: 2026-01-03T03:59:10+08:00
 Origin issue: https://github.com/ferstar/blog/issues/95
 ```
