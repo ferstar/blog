@@ -6,7 +6,7 @@ comments: true
 ---
 
 ## 0. 背景：高价值算力资源的访问挑战
-在运维 **DGX H800** 等核心算力集群时，我们需要平衡三个关键维度：
+在管理 **DGX H800** 等核心算力集群时，我们需要平衡三个关键维度：
 - **物理连通性**：计算节点位于隔离的内网环境。
 - **管理合规性**：外部供应商（Vendor）介入时，必须实现“静默审计”与全量录屏。
 - **管理员效率**：核心运维人员需具备绕过堡垒机、直达底层的“特权通道”。
@@ -118,6 +118,6 @@ proxy_service:
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2026-01-03T03:58:20+08:00
-Updated at: 2026-01-03T04:12:36+08:00
+Updated at: 2026-01-03T04:13:24+08:00
 Origin issue: https://github.com/ferstar/blog/issues/95
 ```
