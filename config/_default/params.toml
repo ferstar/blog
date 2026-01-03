@@ -169,8 +169,8 @@ fingerprintAlgorithm = "sha512" # Valid values are "sha512" (default), "sha384",
   # enableTrackEvent = false
 
 [buymeacoffee]
-  identifier = "nunocoracao"
-  globalWidget = true
+  # identifier = "nunocoracao"
+  globalWidget = false
   globalWidgetMessage = ""
   globalWidgetColor = "#FFDD00"
   globalWidgetPosition = "right"
