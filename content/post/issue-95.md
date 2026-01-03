@@ -5,111 +5,127 @@ tags: ['Linux', 'Idea']
 comments: true
 ---
 
-## 0. 背景：高价值算力资源的访问挑战
-在管理 **DGX H800** 等核心算力集群时，我们需要平衡三个关键维度：
-- **物理连通性**：计算节点位于隔离的内网环境。
-- **管理合规性**：外部供应商（Vendor）介入时，必须实现“静默审计”与全量录屏。
-- **管理员效率**：核心运维人员需具备绕过堡垒机、直达底层的“特权通道”。
+## GPU 集群堡垒机方案：Teleport + Tailscale 一把梭
 
-通过 **Teleport** 与 **Tailscale** 的结合，我们构建了一套零信任架构下的堡垒机方案，实现了对操作行为的闭环管理。
+手头有几台 DGX H800，内网环境，但偶尔要让供应商远程上来调试。需求很简单：
 
----
+1. 供应商能连上机器干活
+2. 全程录屏审计，但别让他知道在录（"静默"）
+3. 我们自己人要有特权通道，绕过堡垒机直连
 
-## 1. 架构逻辑：连通性与审计的分层
-- **网络层（Tailscale）**：解决跨地域、跨内网的底层连接，隐藏物理拓扑。
-- **协议审计层（Teleport）**：负责身份认证、指令过滤及会话录制。
-- **统一接入层（Nginx）**：收口 443 端口，通过标准域名提供 HTTPS 管理门户。
+放狗搜了一圈，最后选了 **Teleport** 做堡垒机 + **Tailscale** 打通内网隧道。让 Gemini 帮忙查文档、生成配置，个把小时就搞定了。踩的坑不少，记录一下。
 
 ---
 
-## 2. 核心技术点：单端口多路复用 (Multiplexing)
-在传统部署中，Teleport 需要开放 3022-3080 多个端口。为简化网络拓扑和安全策略，我们启用了 **Multiplexing** 模式。
-- **原理**：Teleport Proxy 在单一端口（3080）上根据 ALPN 协议自动识别流量类型（HTTPS/SSH/Tunnel）。
-- **优势**：防火墙只需监控一个入口，极大缩小了受攻击面。
+### 架构一句话
+
+```
+公网用户 → Nginx(443) → Teleport Proxy(3080) → GPU 节点
+                                    ↑
+                        Tailscale 隧道打通内网
+```
 
 ---
 
-## 3. 部署细节：突破内网孤岛
+### 踩坑 1：端口太多
 
-### 3.1 Agent 隧道接入
-针对位于内网的 GPU 节点，我们通过 `HTTP_PROXY` 引导 Teleport Agent 建立反向隧道。针对包管理器在代理环境下的证书问题，需显式配置 Repo 代理：
-```bash
+Teleport 默认要开 3022-3080 好几个端口，防火墙规则写到吐。后来发现有个 **Multiplexing** 模式，单端口搞定：
+
+```yaml
+# teleport.yaml
+auth_service:
+  proxy_listener_mode: multiplex
+```
+
+原理是 ALPN 协议自动识别流量类型，HTTPS/SSH/Tunnel 全走 3080。防火墙只管一个口，舒服。
+
+---
+
+### 踩坑 2：内网节点装 Agent 装不上
+
+GPU 节点在隔离内网，装 Teleport Agent 需要走代理。yum 死活装不上，证书报错。最后发现要在 repo 文件里显式配代理：
+
+```ini
 # /etc/yum.repos.d/teleport.repo
 [teleport]
-proxy=http://[VIP_BASTION]:8888 
+proxy=http://[堡垒机VIP]:8888
 ```
 
-### 3.2 Nginx 代理调优
-为确保 Web Terminal（WebSocket）稳定，Nginx 必须配置：
-1. **协议一致性**：上游必须使用 `https` 协议。
-2. **SSL 验证忽略**：`proxy_ssl_verify off`（处理容器内自签名证书）。
-3. **长连接维持**：配置标准的 `Upgrade` 和 `Connection "upgrade"` 头部。
-
 ---
 
-## 4. 权限加固：管理员与供应商的角色解耦
+### 踩坑 3：WebSocket 断连
 
-### 4.1 管理员：独立密钥与原生 Shell
-管理员使用 Ed25519 密钥走 22 端口直接访问。
-- **策略**：禁用所有 root 密码登录。
-- **体验**：配置本地 SSH Config 别名，实现免感登录并保留原生 Bash 操作体验。
+Nginx 反代 Teleport Web Terminal，页面能打开但终端秒断。查了半天，三个配置缺一不可：
 
-### 4.2 外部供应商：受限访问与静默审计
-分配 `dev` 账号，仅限 Web 连接。
-- **RBAC 定制**：创建 `restricted-dev` 角色，剥离所有审计日志与录屏的查看权限。
-- **效果**：操作人员无感知录屏，管理员作为 `auditor` 拥有全局追溯权。
-
----
-
-## 5. 安全防护：IPTables 手术刀式过滤
-由于 Docker 映射端口会绕过常规防火墙，我们必须在 **`DOCKER-USER`** 链中进行精准防护。
-
-### 5.1 规则逻辑
-我们舍弃了模糊的网卡接口匹配，改为基于 **源 IP/网段** 的精准过滤：
-1. **允许本地**：`127.0.0.1` 访问 3080 (支持 Nginx 转发)。
-2. **允许 VPN**：`100.64.0.0/10` 访问 3080 (支持 GPU 节点接入)。
-3. **默认拒绝**：公网或其他来源的一切 3080 访问请求。
-
-这种“显式允许，默认拒绝”的策略确保了算力资源对公网的完全隐身。
-
----
-
-## 6. 容灾：解除循环依赖
-早期配置中 Nginx 指向了 VPN IP，导致 VPN 故障时管理门户瘫痪。最终我们将其优化为 **127.0.0.1 本地回环转发**，实现了即便 VPN 网络波动，公网域名管理入口依然固若金汤。
-
----
-
-## 附录：核心配置文件（脱敏）
-
-### A. Docker Compose (docker-compose.yml)
-```yaml
-services:
-  teleport:
-    ports:
-      - '3080:3080'           # 全能业务端口
-      - '127.0.0.1:3025:3025' # 管理 API，仅限本地
-    volumes:
-      - ./teleport.yaml:/etc/teleport/teleport.yaml
+```nginx
+proxy_pass https://127.0.0.1:3080;  # 必须 https
+proxy_ssl_verify off;                # 自签名证书
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection "upgrade";
 ```
 
-### B. IPTables 修正版指令
+---
+
+### 踩坑 4：Docker 端口绕过 iptables
+
+这个最坑。Docker 映射的端口会绕过 `INPUT` 链，直接走 `DOCKER-USER`。之前写的规则形同虚设，3080 对公网敞开着。
+
+修复版：
+
 ```bash
-# 清空并重新构建 DOCKER-USER 链
 iptables -F DOCKER-USER
-# 3080 端口精准放行 127.0.0.1 和 Tailscale 网段
+# 只允许本地和 Tailscale 网段
 iptables -A DOCKER-USER -s 127.0.0.1 -p tcp --dport 3080 -j ACCEPT
 iptables -A DOCKER-USER -s 100.64.0.0/10 -p tcp --dport 3080 -j ACCEPT
 iptables -A DOCKER-USER -p tcp --dport 3080 -j DROP
 ```
 
-### C. Teleport 核心配置 (teleport.yaml)
+---
+
+### 踩坑 5：Nginx 指向 VPN IP 导致循环依赖
+
+早期 Nginx 配的是 Tailscale VPN IP，结果 VPN 一抖，管理页面直接挂。
+
+改成 `127.0.0.1` 本地回环，VPN 挂了照样能从公网进管理台。
+
+---
+
+### 权限设计
+
+| 角色 | 登录方式 | 审计 |
+|:---|:---|:---|
+| 管理员 | SSH 22 端口 + Ed25519 密钥 | 无 |
+| 供应商 | Web Terminal | 全程录屏，自己看不到录像 |
+
+RBAC 配置要点：给供应商的 `restricted-dev` 角色剥离 `audit` 权限，实现"静默审计"。
+
+---
+
+### 核心配置
+
+**docker-compose.yml**
+
 ```yaml
-auth_service:
-  proxy_listener_mode: multiplex # 开启多路复用
+services:
+  teleport:
+    ports:
+      - '3080:3080'
+      - '127.0.0.1:3025:3025'  # 管理 API 只本地
+```
+
+**teleport.yaml**
+
+```yaml
 proxy_service:
-  # 同时声明域名与内部网关，确保握手兼容性
   public_addr: [teleport.example.com:443, 100.64.0.x:3080]
 ```
+
+---
+
+折腾完这套，供应商老老实实走 Web 干活，我们照常 SSH 直连。录像审计随时调取，公网完全隐身。
+
+挺好。
 
 
 
@@ -118,6 +134,6 @@ proxy_service:
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2026-01-03T03:58:20+08:00
-Updated at: 2026-01-03T04:13:24+08:00
+Updated at: 2026-01-03T05:54:12+08:00
 Origin issue: https://github.com/ferstar/blog/issues/95
 ```
