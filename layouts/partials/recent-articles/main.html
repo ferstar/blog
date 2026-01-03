@@ -19,7 +19,7 @@
     {{ end }}
     {{/* Optimization: If destination is post list, skip to page 2 since page 1 is seen on home */}}
     {{ if or (eq $showMoreLinkDest "post") (eq $showMoreLinkDest "posts") (eq $showMoreLinkDest "/post/") (eq $showMoreLinkDest "/posts/") }}
-      {{ $showMoreLinkDest = printf "%s/page/2/" (strings.TrimSuffix "/" $showMoreLinkDest) }}
+      {{ $showMoreLinkDest = printf "%s/pages/2/" (strings.TrimSuffix "/" $showMoreLinkDest) }}
     {{ end }}
     <div class="mt-10 flex justify-center">
       <a href="{{ $showMoreLinkDest | relLangURL }}">
