@@ -1,7 +1,7 @@
 ---
 title: "Vibe Coding 实战：当代码不再需要手写"
 date: "2025-12-31T21:46:31+08:00"
-tags: ['Default']
+tags: ['Idea']
 comments: true
 ---
 
@@ -780,6 +780,6 @@ graph TD
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-12-31T21:46:31+08:00
-Updated at: 2026-01-03T03:57:03+08:00
+Updated at: 2026-01-03T03:58:25+08:00
 Origin issue: https://github.com/ferstar/blog/issues/94
 ```
