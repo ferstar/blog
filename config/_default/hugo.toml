@@ -6,6 +6,10 @@ defaultContentLanguage = "zh-cn"
 hasCJKLanguage = true
 summaryLength = 42
 enableEmoji = true
+
+[pagination]
+    pagerSize = 9
+
 googleAnalytics = "UA-7491858-2"
 copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)"
 
