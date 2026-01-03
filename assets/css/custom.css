@@ -58,6 +58,47 @@ section article {
 }
 
 /* Ensure the home page title is hidden */
+
 .home .prose h1 {
+
     display: none;
+
+}
+
+
+
+/* Stabilize code blocks to reduce CLS */
+
+.highlight-wrapper {
+
+    position: relative;
+
+    min-height: 1.5em; /* Prevent zero-height collapse */
+
+    overflow: hidden;
+
+}
+
+
+
+/* Pre-size Mermaid blocks to reduce CLS */
+
+.mermaid {
+
+    min-height: 200px; /* Average height for a diagram */
+
+    display: block;
+
+    overflow: hidden;
+
+}
+
+
+
+/* Ensure copy button doesn't shift layout */
+
+.copy-button {
+
+    position: absolute !important;
+
 }
