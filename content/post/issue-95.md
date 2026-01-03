@@ -91,12 +91,70 @@ iptables -A DOCKER-USER -i ens3 -p tcp --dport 3022:3080 -j DROP
 通过 Teleport 与 Tailscale 的结合，我们不仅实现了 GPU 集群的公网“隐身”，更让每一次操作都拥有了确定的追溯依据。
 
 
+---
+
+## 附录：生产级配置文件参考（脱敏）
+
+### A. Docker Compose 配置 (docker-compose.yml)
+该配置实现了端口的精准绑定，确保管理端口仅对内网（Tailscale）和本地回环开放。
+
+```yaml
+services:
+  teleport:
+    image: public.ecr.aws/gravitational/teleport-distroless:18.6.0
+    container_name: teleport
+    restart: always
+    ports:
+      # 绑定到 Tailscale IP，对公网隐身
+      - '100.64.0.x:3080:3080' # Web UI / Proxy
+      - '100.64.0.x:3023:3023' # SSH Proxy
+      - '100.64.0.x:3024:3024' # Reverse Tunnel (关键：节点接入)
+      # 绑定到本地，仅限宿主机管理
+      - '127.0.0.1:3025:3025' # Auth API
+    volumes:
+      - ./data:/var/lib/teleport
+      - ./teleport.yaml:/etc/teleport/teleport.yaml
+    networks:
+      - teleport-net
+
+networks:
+  teleport-net:
+    driver: bridge
+```
+
+### B. Teleport 核心配置 (teleport.yaml)
+注意 `public_addr` 的多地址设置，这是平衡域名访问与节点心跳的关键。
+
+```yaml
+version: v3
+teleport:
+  nodename: bastion-host
+  data_dir: /var/lib/teleport
+  log:
+    output: stderr
+    severity: INFO
+auth_service:
+  enabled: yes
+  listen_addr: 0.0.0.0:3025
+  cluster_name: prod-cluster
+  proxy_listener_mode: multiplex
+proxy_service:
+  enabled: yes
+  web_listen_addr: 0.0.0.0:3080
+  # 同时支持域名（用户用）和内网IP（Node用）
+  public_addr: [teleport.example.com:443, 100.64.0.x:3080]
+ssh_service:
+  # 禁用堡垒机自身的 SSH 登录，保持其作为纯粹的转发枢纽
+  enabled: "no"
+```
+
+
 
 ---
 
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2026-01-03T03:58:20+08:00
-Updated at: 2026-01-03T03:59:20+08:00
+Updated at: 2026-01-03T04:00:37+08:00
 Origin issue: https://github.com/ferstar/blog/issues/95
 ```
