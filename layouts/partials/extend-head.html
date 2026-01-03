@@ -1,0 +1,6 @@
+{{ if .Params.logo }}
+  {{ $logo := resources.Get .Params.logo }}
+  {{ if $logo }}
+    <link rel="preload" as="image" href="{{ $logo.RelPermalink }}" fetchpriority="high">
+  {{ end }}
+{{ end }}
