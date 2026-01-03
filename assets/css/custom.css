@@ -105,13 +105,153 @@ header {
 
 .highlight-wrapper {
 
+
+
     position: relative;
 
-    min-height: 1.5em; /* Prevent zero-height collapse */
 
-    overflow: hidden;
+
+    min-height: 3rem; /* Better default for code blocks */
+
+
 
 }
+
+
+
+
+
+
+
+/* Stabilize the TOC/Sidebar area to prevent horizontal content jumping */
+
+
+
+@media (min-width: 1024px) {
+
+
+
+    .toc {
+
+
+
+        min-width: 20rem; /* Match Blowfish default sidebar width */
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+/* Reserve space for Utterances comments to prevent footer jumping */
+
+
+
+#utterances-container, .utterances {
+
+
+
+    min-height: 260px; /* Average height of a comment box */
+
+
+
+    display: block;
+
+
+
+}
+
+
+
+
+
+
+
+/* Prevent image jumping by ensuring they take space before loading */
+
+
+
+img {
+
+
+
+    height: auto;
+
+
+
+    content-visibility: auto;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Tighten post listing density on desktop */
+
+
+
+header.items-center {
+
+
+
+    margin-bottom: -0.25rem !important;
+
+
+
+}
+
+
+
+
+
+
+
+article h2 {
+
+
+
+    margin-bottom: 0 !important;
+
+
+
+}
+
+
+
+
+
+
+
+article .text-sm {
+
+
+
+    margin-top: 0 !important;
+
+
+
+}
+
+
+
+
 
 
 
