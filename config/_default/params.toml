@@ -36,13 +36,7 @@ smartTOC = true
 smartTOCHideUnfocusedChildren = false
 
 [comments]
-  showAndTrigger = true
-  [comments.utterances]
-    repo = "ferstar/ferstar.github.io"
-    issueTerm = "pathname"
-    label = "Comment"
-    theme = "github-light"
-    darkTheme = "photon-dark"
+  showAndTrigger = false
 
 #giteaDefaultServer = "https://git.fsfe.org"
 #forgejoDefaultServer = "https://v11.next.forgejo.org"

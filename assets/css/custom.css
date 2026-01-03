@@ -117,13 +117,6 @@ body {
   }
 }
 
-/* Reserve space for Utterances comments */
-#utterances-container,
-.utterances {
-  min-height: 260px;
-  display: block;
-}
-
 /* Prevent image jumping */
 img {
   height: auto;
