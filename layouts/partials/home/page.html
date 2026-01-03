@@ -1,1 +1,8 @@
-{{ if .Content }}\n<article class="max-w-full prose dark:prose-invert">\n  <section class="w-full">{{ .Content }}</section>\n</article>\n{{ end }}\n<section class="mt-0">\n  {{ partial "recent-articles/main.html" . }}\n</section>
+{{ if .Content }}
+<article class="max-w-full prose dark:prose-invert">
+  <section class="w-full">{{ .Content }}</section>
+</article>
+{{ end }}
+<section class="mt-0">
+  {{ partial "recent-articles/main.html" . }}
+</section>
