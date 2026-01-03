@@ -1,6 +1,6 @@
 ---
 title: "Migrate from Tornado to FastAPI"
-slug: "migrate-tornado-to-fastapi"
+slug: "migrating-legacy-tornado-to-fastapi"
 date: "2023-06-09T12:32:25+08:00"
 tags: ['Python', 'Tornado', 'FastAPI']
 comments: true

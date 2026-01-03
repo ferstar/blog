@@ -1,6 +1,6 @@
 ---
 title: "转换ext4文件系统为btrfs"
-slug: "linux-convert-ext4-to-btrfs"
+slug: "convert-ext4-to-btrfs-inplace-guide"
 date: "2020-01-23T08:09:06+08:00"
 tags: ['Linux']
 comments: true

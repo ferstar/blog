@@ -1,6 +1,6 @@
 ---
 title: "修复联想笔记本Linux下合盖睡死与功能键异常关机问题"
-slug: "fix-lenovo-linux-sleep-issues"
+slug: "fix-lenovo-linux-suspend-sleep-bug"
 date: "2025-01-13T07:15:03+08:00"
 tags: ['Linux']
 comments: true

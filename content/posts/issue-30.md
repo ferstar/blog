@@ -1,6 +1,6 @@
 ---
 title: "记一次公众号后台删库不需跑路的过程"
-slug: "database-restore-experience-manual"
+slug: "postgresql-disaster-recovery-postmortem"
 date: "2020-12-11T22:12:02+08:00"
 tags: ['Linux']
 comments: true

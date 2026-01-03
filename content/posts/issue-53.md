@@ -1,6 +1,6 @@
 ---
 title: "撸了个甲骨文ARM(4C24G200G)的机子"
-slug: "oracle-cloud-arm-vps-experience"
+slug: "oracle-cloud-arm-free-tier-vps"
 date: "2022-03-13T13:17:06+08:00"
 tags: ['Linux']
 comments: true

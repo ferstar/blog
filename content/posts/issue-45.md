@@ -1,6 +1,6 @@
 ---
 title: "我可能是最能删代码的了"
-slug: "coding-philosophy-deleting-code"
+slug: "philosophy-of-deleting-dead-code"
 date: "2021-10-25T15:55:45+08:00"
 tags: ['Life']
 comments: true

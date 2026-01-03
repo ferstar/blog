@@ -1,6 +1,6 @@
 ---
 title: "Tornado热重载机制下使用lru_cache一个隐藏的坑点"
-slug: "tornado-lru-cache-reload-bug"
+slug: "tornado-reloading-lru-cache-pitfalls"
 date: "2021-11-09T11:02:12+08:00"
 tags: ['Python', 'Tornado']
 comments: true

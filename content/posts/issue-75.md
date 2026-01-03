@@ -1,6 +1,6 @@
 ---
 title: "记一次莫名的BTRFS修复过程"
-slug: "btrfs-filesystem-fix-record"
+slug: "btrfs-filesystem-corruption-repair"
 date: "2023-02-07T06:32:08+08:00"
 tags: ['Linux']
 comments: true

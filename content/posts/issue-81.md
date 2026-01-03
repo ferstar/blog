@@ -1,6 +1,6 @@
 ---
 title: "AI codereview实践"
-slug: "ai-code-review-experience"
+slug: "ai-assisted-code-review-automation"
 date: "2025-01-06T14:55:44+08:00"
 tags: ['Linux', 'Snippet']
 comments: true

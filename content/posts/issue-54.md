@@ -1,6 +1,6 @@
 ---
 title: "利用Nginx Stream模块把 ssh 藏在 443 端口"
-slug: "nginx-stream-ssh-over-443"
+slug: "obfuscate-ssh-over-https-with-nginx"
 date: "2022-03-13T13:36:29+08:00"
 tags: ['Linux', 'Snippet']
 comments: true

@@ -1,6 +1,6 @@
 ---
 title: "关于鼻炎"
-slug: "health-rhinitis-sharing-experience"
+slug: "battling-chronic-rhinitis-notes"
 date: "2020-12-11T20:38:06+08:00"
 tags: ['Life']
 comments: true

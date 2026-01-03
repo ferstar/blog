@@ -1,6 +1,6 @@
 ---
 title: "Tornado专题"
-slug: "tornado-web-framework-topic"
+slug: "tornado-web-framework-deep-dive"
 date: "2020-01-03T13:10:40+08:00"
 tags: ['Python', 'Tornado']
 comments: true

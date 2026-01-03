@@ -1,6 +1,6 @@
 ---
 title: "gRPC小记"
-slug: "grpc-learning-notes"
+slug: "grpc-implementation-and-best-practices"
 date: "2023-01-24T01:23:27+08:00"
 tags: ['Linux', 'Python']
 comments: true

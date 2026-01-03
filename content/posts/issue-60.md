@@ -1,6 +1,6 @@
 ---
 title: "不死小强——timeshift+btrfs-grub"
-slug: "linux-timeshift-btrfs-grub-guide"
+slug: "immutable-linux-recovery-timeshift-btrfs"
 date: "2022-05-01T14:04:25+08:00"
 tags: ['Linux']
 comments: true

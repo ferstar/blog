@@ -1,6 +1,6 @@
 ---
 title: "利用memray重构项目，提升内存利用效率"
-slug: "python-memray-memory-optimization"
+slug: "memory-profiling-and-optimization-memray"
 date: "2022-05-25T08:13:58+08:00"
 tags: ['Python']
 comments: true

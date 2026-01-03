@@ -1,6 +1,6 @@
 ---
 title: "关于最近项目持续重构的一点复盘"
-slug: "project-refactoring-experience-review"
+slug: "software-architecture-refactoring-lessons"
 date: "2021-07-11T14:46:05+08:00"
 tags: ['Python']
 comments: true

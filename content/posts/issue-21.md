@@ -1,6 +1,6 @@
 ---
 title: "记一次迁移postgresql数据库的过程"
-slug: "postgresql-database-migration-process"
+slug: "postgresql-zero-downtime-migration"
 date: "2020-05-21T02:15:07+08:00"
 tags: ['Linux', 'PostgreSQL']
 comments: true

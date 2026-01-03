@@ -1,6 +1,6 @@
 ---
 title: "Using COUNT(*) OVER() in current query with SQLAlchemy over PostgreSQL"
-slug: "postgresql-sqlalchemy-window-function"
+slug: "sqlalchemy-postgresql-window-functions-usage"
 date: "2021-02-19T02:56:17+08:00"
 tags: ['Linux', 'PostgreSQL', 'Python']
 comments: true

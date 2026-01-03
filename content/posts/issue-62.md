@@ -1,6 +1,6 @@
 ---
 title: "利用msgspec加速大json文件反序列化速度"
-slug: "python-msgspec-json-performance"
+slug: "high-performance-json-parsing-msgspec"
 date: "2022-05-25T08:12:46+08:00"
 tags: ['Python']
 comments: true

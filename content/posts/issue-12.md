@@ -1,6 +1,6 @@
 ---
 title: "利用 GitHub Issues 持续写博灌水"
-slug: "blogging-with-github-issues"
+slug: "git-as-a-cms-blogging-experience"
 date: "2020-01-02T11:41:46+08:00"
 tags: ['Idea', 'Git']
 comments: true
