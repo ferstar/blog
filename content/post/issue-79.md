@@ -1,5 +1,6 @@
 ---
 title: "Try github self-hosted action runner"
+slug: "github-self-hosted-runner-setup"
 date: "2023-09-02T04:23:11+08:00"
 tags: ['Linux', 'Git']
 comments: true

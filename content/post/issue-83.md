@@ -1,5 +1,6 @@
 ---
 title: "How to update InsydeH2O BIOS with pure Linux"
+slug: "update-insydeh2o-bios-linux"
 date: "2025-01-12T16:58:10+08:00"
 tags: ['Linux', 'Idea']
 comments: true

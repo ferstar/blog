@@ -1,5 +1,6 @@
 ---
 title: "如何在Linux X11开启R9000P2021款笔记本165Hz刷新率"
+slug: "r9000p-165hz-linux-x11"
 date: "2023-04-25T02:40:04+08:00"
 tags: ['Linux']
 comments: true

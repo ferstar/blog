@@ -1,5 +1,6 @@
 ---
 title: "Linux 6.17 网络优化：DualPI2 + BBR 彻底解决 50Mbps 窄带宽 Bufferbloat"
+slug: "linux-network-bbr-dualpi2"
 date: "2025-12-18T06:30:04+08:00"
 tags: ['Linux']
 comments: true

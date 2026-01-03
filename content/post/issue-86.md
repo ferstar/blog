@@ -1,5 +1,6 @@
 ---
 title: "How to Build Kernel for Redmi Note11 Turbo Pro(xaga) "
+slug: "build-kernel-redmi-note11-pro"
 date: "2025-01-13T07:45:39+08:00"
 tags: ['Android']
 comments: true

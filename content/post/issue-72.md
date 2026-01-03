@@ -1,5 +1,6 @@
 ---
 title: "Do not use Super in comprehension if you need cython"
+slug: "cython-comprehension-super-bug"
 date: "2023-01-24T01:24:35+08:00"
 tags: ['Python']
 comments: true

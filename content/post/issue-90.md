@@ -1,5 +1,6 @@
 ---
 title: "2025年了，为什么我还要root？"
+slug: "why-still-root-android-2025"
 date: "2025-10-04T14:42:47+08:00"
 tags: ['Android']
 comments: true

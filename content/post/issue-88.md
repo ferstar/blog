@@ -1,5 +1,6 @@
 ---
 title: "How to Build Kernel for Realme GT5 Pro(RMX3888)"
+slug: "build-kernel-realme-gt5-pro"
 date: "2025-01-25T10:45:41+08:00"
 tags: ['Android']
 comments: true

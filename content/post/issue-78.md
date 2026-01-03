@@ -1,5 +1,6 @@
 ---
 title: "信创之从PostgreSQL到GaussDB"
+slug: "migrate-postgresql-gaussdb"
 date: "2023-06-15T06:19:44+08:00"
 tags: ['Linux', 'Python', 'PostgreSQL']
 comments: true

@@ -1,5 +1,6 @@
 ---
 title: "水一发GoDaddy转域名到Cloudflare的坑"
+slug: "transfer-domain-godaddy-cloudflare"
 date: "2024-01-10T03:10:50+08:00"
 tags: ['Idea']
 comments: true

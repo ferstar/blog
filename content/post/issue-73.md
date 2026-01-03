@@ -1,5 +1,6 @@
 ---
 title: "Linux触控板手势增强之「三指拖拽」"
+slug: "linux-touchpad-gestures-drag"
 date: "2023-01-29T02:08:34+08:00"
 tags: ['Linux']
 comments: true

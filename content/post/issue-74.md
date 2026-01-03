@@ -1,5 +1,6 @@
 ---
 title: "Upgrading PostgreSQL from v14 to v15"
+slug: "upgrade-postgresql-14-15"
 date: "2023-02-03T11:51:35+08:00"
 tags: ['Linux', 'PostgreSQL']
 comments: true

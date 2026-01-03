@@ -1,5 +1,6 @@
 ---
 title: "多层隧道 MTU 黑洞排查：scp 跑 30KB/s 的玄学"
+slug: "mtu-black-hole-scp-optimization"
 date: "2025-12-31T12:09:54+08:00"
 tags: ['Linux']
 comments: true

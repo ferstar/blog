@@ -1,5 +1,6 @@
 ---
 title: "Vibe Coding 实战：当代码不再需要手写"
+slug: "vibe-coding-engineering-practice"
 date: "2025-12-31T21:46:31+08:00"
 tags: ['Idea']
 comments: true

@@ -1,5 +1,6 @@
 ---
 title: "AX3600 ShellClash 替换 clash-meta 核心"
+slug: "ax3600-clash-meta-upgrade"
 date: "2023-01-24T01:17:09+08:00"
 tags: ['Linux']
 comments: true

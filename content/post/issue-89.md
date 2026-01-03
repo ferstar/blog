@@ -1,5 +1,6 @@
 ---
 title: "一个简单的OpenWrt procd 守护脚本"
+slug: "openwrt-procd-daemon-script"
 date: "2025-05-05T06:38:18+08:00"
 tags: ['Linux']
 comments: true

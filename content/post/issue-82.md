@@ -1,5 +1,6 @@
 ---
 title: "Build my own patched Ubuntu mainline kernel"
+slug: "build-ubuntu-mainline-kernel"
 date: "2025-01-12T16:16:49+08:00"
 tags: ['Default']
 comments: true

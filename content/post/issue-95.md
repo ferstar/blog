@@ -1,5 +1,6 @@
 ---
 title: "基于 Teleport + Tailscale 的 GPU 集群访问控制与审计实战"
+slug: "teleport-tailscale-gpu-access"
 date: "2026-01-03T03:58:20+08:00"
 tags: ['Linux', 'Idea']
 comments: true

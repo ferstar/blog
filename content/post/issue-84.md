@@ -1,5 +1,6 @@
 ---
 title: "How to Fix High CPU load of kwin_x11 when locking or turning off the screen"
+slug: "fix-kwin-x11-high-cpu"
 date: "2025-01-13T02:01:49+08:00"
 tags: ['Linux']
 comments: true
