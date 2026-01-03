@@ -1,7 +1,7 @@
 ---
 title: "基于 Teleport + Tailscale 的 GPU 集群访问控制与审计实战"
 date: "2026-01-03T03:58:20+08:00"
-tags: ['Default']
+tags: ['Linux', 'Idea']
 comments: true
 ---
 
@@ -155,6 +155,6 @@ ssh_service:
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2026-01-03T03:58:20+08:00
-Updated at: 2026-01-03T04:00:37+08:00
+Updated at: 2026-01-03T04:01:56+08:00
 Origin issue: https://github.com/ferstar/blog/issues/95
 ```
