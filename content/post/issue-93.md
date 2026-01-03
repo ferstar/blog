@@ -17,6 +17,8 @@ comments: true
 
 典型的"单行道"症状。链路没断，但某个协议层面的天花板被撞了。
 
+一开始还怀疑是不是运营商限速或者偷包，折腾半天压根没往 MTU 方向想。就像网络高手帮朋友排查问题，一顿抓包分析，最后发现是宽带欠费了。
+
 ---
 
 ### 排查：没 ICMP 怎么玩？
@@ -180,6 +182,6 @@ ethtool -K <IFACE> tso on gso on gro on
 ```js
 NOTE: I am not responsible for any expired content.
 Created at: 2025-12-31T12:09:54+08:00
-Updated at: 2026-01-03T05:59:14+08:00
+Updated at: 2026-01-03T06:03:22+08:00
 Origin issue: https://github.com/ferstar/blog/issues/93
 ```
