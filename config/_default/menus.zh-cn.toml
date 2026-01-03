@@ -1,6 +1,6 @@
 [[main]]
   name = "Archive"
-  url = "/post/"
+  url = "/posts/"
   weight = 10
 
 [[main]]
