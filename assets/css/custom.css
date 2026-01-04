@@ -106,8 +106,13 @@ body {
 /* Pre-size Mermaid blocks */
 .mermaid {
   min-height: 200px;
-  display: block;
+  display: flex;
+  justify-content: center;
   overflow: hidden;
+}
+
+.mermaid svg {
+  margin: 0 auto;
 }
 
 /* Stabilize TOC sidebar */
