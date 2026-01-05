@@ -29,12 +29,12 @@ I chose to fork and merge two Rust projects to create a unified solution. One pr
 
 ```mermaid
 graph TD
-    A["Touchpad Event"] --> B{"libinput"}
-    B --> C["ferstar/gestures<br>Rust Engine"]
-    C --> D{"Display Server"}
-    D -- X11 --> E["libxdo API"]
-    D -- Wayland --> F["ydotool daemon"]
-    E --> G["Smooth Drag / Key Stroke"]
+    A[Touchpad Event] --> B{libinput}
+    B --> C[ferstar/gestures <br/>Rust Engine]
+    C --> D{Display Server}
+    D -- X11 --> E[libxdo API]
+    D -- Wayland --> F[ydotool daemon]
+    E --> G[Smooth Drag / Key Stroke]
     F --> G
     
     style C fill:#f96,stroke:#333,stroke-width:2px
