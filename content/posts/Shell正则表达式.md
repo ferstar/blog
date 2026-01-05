@@ -1,6 +1,6 @@
 ---
 title: "Shell正则表达式"
-slug: "shell"
+slug: "shell-regex"
 date: "2017-06-13T10:27:00+08:00"
 tags: ['OTHERS']
 comments: true

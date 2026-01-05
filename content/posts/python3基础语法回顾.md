@@ -7,8 +7,6 @@ comments: true
 ---
 
 
-# python3基础语法回顾
-
 ## python保留字
 ```python
 import keyword

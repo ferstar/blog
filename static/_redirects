@@ -35,8 +35,8 @@
 /post/SOLVED-g-internal-compiler-error-Killed-program-cc1plus/  /posts/solved-g-internal-compiler-error-killed-program-cc1plus/  301
 /post/SSR被恶意扫描时需要做的事情/  /posts/ssr/  301
 /post/Send-Email-when-new-Mailgun-messages-fail-delivery/  /posts/notify-email-on-mailgun-delivery-failure/  301
-/post/Shell变量的定义、删除变量、只读变量、变量类型/  /posts/shell/  301
-/post/Shell正则表达式/  /posts/shell/  301
+/post/Shell变量的定义、删除变量、只读变量、变量类型/  /posts/shell-variables/  301
+/post/Shell正则表达式/  /posts/shell-regex/  301
 /post/SimpleHTTPServerWithUpload/  /posts/simplehttpserverwithupload/  301
 /post/Start VirtualBox VM in Headless Mode/  /posts/start-virtualbox-vm-in-headless-mode/  301
 /post/Static-IP-Setup-On-Arch-Linux-ARM/  /posts/static-ip-setup-on-arch-linux-arm/  301

@@ -1,7 +1,7 @@
 ---
 title: "Shell变量的定义、删除变量、只读变量、变量类型"
-slug: "shell"
-date: "2016-08-12T09:08:00+08:00"
+slug: "shell-variables"
+date: "2016-08-12T12:14:45+08:00"
 tags: ['OTHERS']
 comments: true
 ---
