@@ -6,8 +6,6 @@ tags: ['Idea']
 comments: true
 ---
 
-# Vibe Coding 实战：当代码不再需要手写
-
 > 基于 Vibe Coding Skeleton 的工程实践
 > **对齐说明**：涉及到具体落地细节时，以本仓库 `CLAUDE.md` / `.pre-commit-config.yaml` / `ast-grep/` / `sgconfig.yml` / `justfile` 为准。
 
