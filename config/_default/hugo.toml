@@ -4,6 +4,15 @@ theme = "blowfish"
 languageCode = "zh-CN"
 defaultContentLanguage = "zh-cn"
 hasCJKLanguage = true
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.zh-cn]
+    contentDir = "content"
+    weight = 1
+  [languages.en]
+    contentDir = "content.en"
+    weight = 2
 summaryLength = 42
 enableEmoji = true
 

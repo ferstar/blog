@@ -1,0 +1,15 @@
+[[main]]
+  name = "Archive"
+  url = "/posts/"
+  weight = 10
+
+[[main]]
+  name = "Tags"
+  url = "/tags/"
+  weight = 20
+
+[[main]]
+  identifier = "github"
+  pre = "github"
+  url = "https://github.com/ferstar"
+  weight = 30

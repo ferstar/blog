@@ -1,0 +1,21 @@
+languageCode = "en"
+languageName = "English"
+weight = 2
+title = "STAY REAL"
+
+[params]
+  displayName = "English"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "Jan 2, 2006"
+  logo = "site-logo.png"
+  description = "May the truth be without barriers"
+
+[params.author]
+  name = "ferstar"
+  image = "site-logo.png"
+  headline = "May the truth be without barriers"
+  bio = "Silence is a source of great strength."
+  links = [
+    { github = "https://github.com/ferstar" },
+  ]
