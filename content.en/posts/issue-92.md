@@ -48,6 +48,11 @@ net.core.rmem_max = 4194304
 net.core.wmem_max = 4194304
 net.ipv4.tcp_rmem = 4096 16384 4194304
 net.ipv4.tcp_wmem = 4096 16384 4194304
+
+# --- Stability Optimization ---
+net.core.somaxconn = 2048
+net.ipv4.tcp_max_syn_backlog = 2048
+net.mptcp.enabled = 1
 ```
 
 ### 3. Auto-load Module
@@ -59,6 +64,34 @@ echo "sch_dualpi2" | sudo tee /etc/modules-load.d/dualpi2.conf
 Create `/etc/udev/rules.d/99-ens3-dualpi2.rules`:
 ```bash
 ACTION=="add", SUBSYSTEM=="net", NAME=="ens3", RUN+="/sbin/tc qdisc replace dev ens3 root dualpi2"
+```
+
+> Replace `ens3` with your network interface name.
+
+### 5. Apply Configuration
+```bash
+sudo sysctl -p
+sudo tc qdisc replace dev ens3 root dualpi2
+```
+
+## Verification Methods
+
+### Check DualPI2 Status
+```bash
+tc -s qdisc show dev ens3
+# Observe the target value, default is 5ms
+```
+
+### Stress Testing (Solution for ICMP-Disabled Servers)
+Traditional `ping` fails on servers with ICMP blocked. Use kernel RTT statistics instead:
+
+```bash
+# Client: Saturate the bandwidth
+iperf3 -c <server> -t 60
+
+# Server: Observe Kernel RTT
+ss -tni
+# Focus on rtt:X/Y — X is mean RTT, Y is jitter (mdev)
 ```
 
 ## Results

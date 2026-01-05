@@ -34,11 +34,11 @@ Bandwidth locked at ~0.4Mbps with massive retransmissions (`Retr`).
 
 #### 3) TCP MSS Stepping (The Breakthrough)
 ```bash
-iperf3 -c <SITE_A_IP> -t 10 -M 1400  # Still failing, heavy retrans
+iperf3 -c <SITE_A_IP> -t 10 -M 1400  # Bandwidth collapses, heavy retrans
 iperf3 -c <SITE_A_IP> -t 10 -M 1350  # Instant recovery to ~49Mbps
 ```
 
-**Case Closed**: A classic **PMTUD Black Hole** triggered in a "blind" network environment.
+**Case Closed**: A classic **PMTUD Black Hole** triggered in a "blind" network environment. This is a typical "expert's blind spot": you have `tcpdump` and `wireshark` running, looking for complex protocol issues, while ignoring the most fundamental link parameters.
 
 ---
 
@@ -68,16 +68,32 @@ Allow specifically required ICMP types:
 - IPv4: ICMP Type 3 Code 4 (Fragmentation Needed)
 - IPv6: ICMPv6 Type 2 (Packet Too Big)
 
-#### B. Workaround: Lower Tunnel MTU
+#### B. Workaround 1: Lower Interface MTU
 Lower the MTU on the WireGuard or IPsec interfaces to stop the bleeding.
 
-#### C. Workaround: MSS Clamping (My Choice)
-Since ICMP is unreliable, force the MSS rewrite on the gateway:
+#### C. Workaround 2: MSS Clamping (My Implementation)
+Since ICMP is unreliable, force the MSS rewrite on the transit gateway:
 
 ```bash
 #!/bin/bash
-# MSS Clamping for site-to-site traffic
-iptables -t mangle -I FORWARD -p tcp -d 10.0.0.0/24 --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1280
+set -euo pipefail
+
+# --- Config ---
+PHY_IF="ens3"
+REMOTE_NET="10.0.0.0/24"
+
+# 1. Physical Layer Optimization (increases CPU overhead, enable as needed)
+ip link set dev "$PHY_IF" mtu 1400
+ethtool -K "$PHY_IF" tso off gso off gro off
+
+# 2. MSS Clamping
+# For Forwarded traffic: 1280 (Conservative)
+iptables -t mangle -C FORWARD -p tcp -d "$REMOTE_NET" --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1280 2>/dev/null || \
+iptables -t mangle -I FORWARD -p tcp -d "$REMOTE_NET" --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1280
+
+# For Local traffic: 1350 (Aggressive but functional in this case)
+iptables -t mangle -C OUTPUT -p tcp -d "$REMOTE_NET" --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1350 2>/dev/null || \
+iptables -t mangle -I OUTPUT -p tcp -d "$REMOTE_NET" --tcp-flags SYN,RST SYN -j TCPMSS --set-mss 1350
 ```
 
 ---
