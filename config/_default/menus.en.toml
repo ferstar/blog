@@ -1,11 +1,11 @@
 [[main]]
   name = "Archive"
-  url = "/posts/"
+  pageRef = "posts"
   weight = 10
 
 [[main]]
   name = "Tags"
-  url = "/tags/"
+  pageRef = "tags"
   weight = 20
 
 [[main]]
