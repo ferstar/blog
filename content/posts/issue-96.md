@@ -1,7 +1,7 @@
 ---
 title: "AI-First 博客进阶：全站 SEO 优化与中英双语实战"
 slug: "blog-seo-multilingual-ai-optimization"
-date: "2026-01-06T10:00:00+08:00"
+date: "2026-01-06T03:00:00+08:00"
 tags: ['Idea', 'Linux']
 series: ["Network & Security"]
 description: "记录一次深度利用 AI Agent 进行博客治理的过程：从清理 300+ 乱序重定向，到基于 GSC 数据进行标题/描述优化，再到构建高保真中英双语站点的实战经验。"

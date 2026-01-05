@@ -1,7 +1,7 @@
 ---
 title: "AI-First Blog Evolution: Full-Site SEO and Multilingual Transition in Practice"
 slug: "blog-seo-multilingual-ai-optimization"
-date: "2026-01-06T10:00:00+08:00"
+date: "2026-01-06T03:00:00+08:00"
 tags: ['Idea', 'Linux']
 series: ["Network & Security"]
 description: "A deep dive into site-wide blog governance using AI Agents: from cleaning 300+ legacy redirects to data-driven metadata optimization and building a high-fidelity bilingual site."
