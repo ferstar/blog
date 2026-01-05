@@ -4,8 +4,8 @@ slug: "github-self-hosted-runner-setup"
 date: "2023-09-02T04:23:11+08:00"
 tags: ['Linux', 'Git']
 comments: true
+description: "详解 GitHub Actions Self-hosted Runner 生产环境部署方案，解决由于网络隔离或资源受限导致的 CI/CD 瓶颈，实现高效本地自动化构建。"
 ---
-
 Official docs: https://docs.github.com/en/actions/hosting-your-own-runners
 
 Simple docker compose file:

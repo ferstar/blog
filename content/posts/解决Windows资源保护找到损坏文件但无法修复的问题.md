@@ -1,11 +1,11 @@
 ---
-title: "解决Windows资源保护找到损坏文件但无法修复的问题"
+title: "Windows 资源保护损坏且无法修复？三行指令搞定 SFC 与 DISM 修复难题"
 slug: "fix-windows-resource-protection-corrupt-files"
 date: 2018-05-11T13:04:37+08:00
 tags: ['WINDOWS']
 comments: true
+description: "遇到 SFC 扫描报错“找到损坏文件但无法修复”？本文提供终极解决方案：通过离线镜像与 DISM 指令强制修复系统组件，解决 90% 的 Windows 损坏难题。"
 ---
-
 昨天更新Windows10 5月累计补丁，早上发现蓝牙耳机无法连接，折腾驱动神马的未果，怀疑是系统文件受损导致，Google一番，官方推荐`sfc /scannow`验证系统并修复受损文件，但得到的提示如下：
 
 ```powershell

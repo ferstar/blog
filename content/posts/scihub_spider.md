@@ -4,8 +4,8 @@ slug: "scihub-paper-downloader-spider"
 date: 2017-12-12T15:22:02+08:00
 tags: ['PYTHON', 'SCIHUB']
 comments: true
+description: "科研必备：高效 Sci-Hub 论文自动下载爬虫。支持批量抓取 DOI，自动绕过限制，助你快速构建本地学术文献库，2025 持续可用。"
 ---
-
 元宵节把SciHub Spider搬到了个人订阅号上，从此无视终端随心查看文档
 
 微信推文链接：<https://mp.weixin.qq.com/s/RulEtKY2L0iChQEq5ZSmJQ>

@@ -4,8 +4,8 @@ slug: "diy-on-newifi-mini"
 date: 2018-02-01T13:40:26+08:00
 tags: ['OPENWRT', 'LINUX']
 comments: true
+description: "老路由不吃灰：Newifi Mini DIY 折腾全记录。包含固件刷入、功能扩展及内网穿透实战，打造最高性价比的家用微型服务器。"
 ---
-
 > 不得不说这款路由真是神器，可玩性很高
 
 ## 三种接入

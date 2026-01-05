@@ -1,10 +1,10 @@
 ---
-title: "AX3600 ShellClash 替换 clash-meta 核心"
+title: "AX3600 终极改造：ShellClash 替换 Clash-Meta 核心，完美支持 Hysteria 2"
 slug: "ax3600-clash-meta-upgrade"
 date: "2023-01-24T01:17:09+08:00"
 tags: ['Linux']
 comments: true
-description: "针对小米 AX3600 路由器存储不足问题，本文详解如何利用 UPX 压缩技术替换 Clash-Meta 核心，完美支持 Hysteria 与 TUIC 协议，并附带自动清理日志脚本优化性能。"
+description: "针对小米 AX3600 存储不足难题，详解利用 UPX 压缩技术替换 Clash-Meta 核心，实现对 Hysteria 2、TUIC 等新协议的完美支持，让老路由重焕青春。"
 series: ["Network & Security"]
 ---
 这个路由的 root 包括安装 shellclash 这个帖子介绍的很清楚：https://qust.me/post/ax3600_shellclash/
