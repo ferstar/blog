@@ -311,3 +311,5 @@
 /post/记一次好玩的微信刷票/  /posts/automated-weixin-voting-script-fun/  301
 /post/非国行5C开启自带九宫格的方法(需越狱)/  /posts/enable-ios-nine-grid-keyboard-iphone5c/  301
 /post/高效的itertools模块/  /posts/python-itertools-efficiency-guide/  301
+/post/*  /posts/:splat  301
+/post/  /posts/  301
