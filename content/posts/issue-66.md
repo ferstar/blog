@@ -4,8 +4,9 @@ slug: "proxy-setup-sharing-experience"
 date: "2022-11-14T00:39:53+08:00"
 tags: ['Linux', 'Docker', 'Android']
 comments: true
+description: "深度实测 Hysteria、TUIC 与 NaiveProxy 性能，对比带宽、抗封锁能力及系统开销。提供基于 Docker 的一键部署配置，助你选择最适合的 QUIC 协议方案。"
+series: ["Network & Security"]
 ---
-
 被我放弃的甲骨文坡县小机居然坚挺了大半年之久，于是又废物利用，试用了一下最近风头正盛的几个小众的梯子。
 
 从跑带宽测速来排位：Hysteria > tuic > naiveproxy

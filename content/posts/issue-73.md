@@ -5,8 +5,9 @@ date: "2023-01-29T02:08:34+08:00"
 tags: ['Linux']
 comments: true
 showTableOfContents: true
+description: "在 Linux 上找回 macOS 丝滑的“三指拖拽”体验！基于 Rust 实现的高性能 libinput 手势增强方案，支持 X11 与 Wayland，CPU 占用不到 1% 且配置灵活。"
+series: ["Linux Experience"]
 ---
-
 转用 Linux 后一直都比较怀念 macOS 上丝滑的**三指拖拽**效果，鉴于近几年出的 Windows 本子触控板面积以及跟手性肉眼可见的改善了很多，我觉得是时候在 Linux 上折腾下**触控板手势**了。
 
 After switching to Linux, I've been missing the smooth **three-finger drag** experience from macOS. Given that recent Windows laptops have significantly improved touchpad size and responsiveness, I decided it was time to tackle **touchpad gestures** on Linux.

@@ -4,8 +4,8 @@ slug: "use-tasker-do-some-funny-things"
 date: 2018-07-09T13:39:42+08:00
 tags: ['ANDROID']
 comments: true
+description: "拒绝手动操作！本文教你利用 Tasker、Secure Settings 及 ADB 指令打造 Android 自动签到神器，支持自动唤醒屏幕、滑动解锁及工作日逻辑判断。"
 ---
-
 > 本文不适合小白用户操作，搞机有风险，入坑须谨慎！
 
 Android 上的 Tasker 绝对称得上是 Android 系统的神器之一， 可以完成很复杂多样的自定义任务。这里介绍一下利用他完成某 APP 自动签到的过程。

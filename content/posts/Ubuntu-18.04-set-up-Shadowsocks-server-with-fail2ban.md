@@ -4,10 +4,8 @@ slug: "ubuntu-shadowsocks-fail2ban-setup"
 date: "2018-06-14T15:11:14+00:00"
 tags: ['LINUX', 'UBUNTU']
 comments: true
-
-
+description: "提升代理服务器安全性！详解如何在 Ubuntu 上部署 Shadowsocks-libev 并配合 Fail2ban 自动封禁暴力破解 IP，确保服务稳定不被攻击。"
 ---
-
 > Here I use Shadowsocks-libev for better performance
 
 # [Shadowsocks-libev](https://github.com/shadowsocks/shadowsocks-libev)

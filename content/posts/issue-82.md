@@ -4,8 +4,8 @@ slug: "build-ubuntu-mainline-kernel"
 date: "2025-01-12T16:16:49+08:00"
 tags: ['Default']
 comments: true
+series: ["Kernel Development"]
 ---
-
 记录下用 ubuntu-mainline-kernel.sh 编译打补丁内核的过程
 
 ## 背景

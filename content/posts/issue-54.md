@@ -4,8 +4,8 @@ slug: "obfuscate-ssh-over-https-with-nginx"
 date: "2022-03-13T13:36:29+08:00"
 tags: ['Linux', 'Snippet']
 comments: true
+series: ["Network & Security"]
 ---
-
 Stream 模块真是牛的不行, 直接放配置
 
 ```shell

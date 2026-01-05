@@ -4,8 +4,8 @@ slug: "resolve-google-scholar-with-ipv6-only"
 date: 2018-03-08T09:49:42+08:00
 tags: ['Linux', 'Idea']
 comments: true
+description: "解决教育网或纯 IPv6 环境下 Google Scholar 无法访问的难题。通过修改 hosts 或 DNS 配置强制 IPv6 访问，助你无障碍查阅学术文献。"
 ---
-
 If you are still struggling with Google Scholar "Bot Verification" (Captcha) on your VPS, the 2018 method of manually editing `/etc/hosts` has become obsolete. The most reliable and low-maintenance solution today is leveraging **Cloudflare WARP**.
 
 ### The Logic

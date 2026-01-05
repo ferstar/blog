@@ -4,8 +4,9 @@ slug: "cloudflare-argo-tunnel-brook-setup"
 date: "2022-03-16T23:10:03+08:00"
 tags: ['Idea']
 comments: true
+description: "线路质量差、VPS 速度慢？详解 Cloudflare Tunnel + Brook 穿透方案，利用 CF 边缘网络为低速 VPS 加速，实现隐身不暴露 IP 且起死回生的加速效果。"
+series: ["Network & Security"]
 ---
-
 > **注：** 2026 年进行了技术审计。虽然协议在变，但 Cloudflare 边缘加速的底层逻辑依然稳健。
 
 #### 原理

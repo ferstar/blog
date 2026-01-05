@@ -4,8 +4,8 @@ slug: "linux-network-bbr-dualpi2"
 date: "2025-12-18T06:30:04+08:00"
 tags: ['Linux']
 comments: true
+series: ["Network & Security"]
 ---
-
 ## 背景
 
 在一台 50Mbps 带宽的云主机上部署 VPN 中转服务时，遇到了经典的 **Bufferbloat**（缓冲区膨胀）问题：一旦有大文件下载占满带宽，SSH 延迟从 50ms 飙升到 200ms+，严重影响交互体验。

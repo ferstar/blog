@@ -4,8 +4,8 @@ slug: "build-kernel-redmi-note11-pro"
 date: "2025-01-13T07:45:39+08:00"
 tags: ['Android']
 comments: true
+series: ["Kernel Development"]
 ---
-
 很简单，直接看：https://github.com/ferstar/xiaomi_xaga_kernel 中的 buildebug.sh 脚本即可，把该装的依赖装好，完事。
 
 也可以直接用我编译好的内核：

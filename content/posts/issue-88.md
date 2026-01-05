@@ -4,8 +4,9 @@ slug: "build-kernel-realme-gt5-pro"
 date: "2025-01-25T10:45:41+08:00"
 tags: ['Android']
 comments: true
+description: "真我 Realme GT5 Pro (RMX3888) 内核编译实操指南。提供一键编译脚本、Bazel 编译优化配置及 AnyKernel3 打包方法，解决 WiFi、蓝牙驱动兼容性坑位。"
+series: ["Kernel Development"]
 ---
-
 好了，懒人脚本：
 
 ```shell

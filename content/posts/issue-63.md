@@ -5,8 +5,8 @@ date: "2022-05-25T08:13:58+08:00"
 tags: ['Python']
 comments: true
 showTableOfContents: true
+description: "Python 内存泄露排查利器！详解 Memray 使用技巧，快速定位代码中的高内存开销点并进行性能优化。"
 ---
-
 > 人生苦短，快用`memray`
 
 > 不知不觉距离上次大的重构 #43 已经过去一年多，不曾想冷启动时间又肉眼可见的慢了起来，坚决不能忍，搞起
