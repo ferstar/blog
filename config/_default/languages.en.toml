@@ -11,6 +11,9 @@ title = "STAY REAL"
   logo = "site-logo.png"
   description = "May the truth be without barriers"
 
+[params.homepage]
+  showMoreLink = false
+
 [params.author]
   name = "ferstar"
   image = "site-logo.png"
