@@ -1,74 +1,71 @@
 ---
-title: "AI-First Blog Evolution: Full-Site SEO and Multilingual Transition in Practice"
+title: "AI-First Blog Cleanup Log: SEO, Redirects, and a Bilingual Setup"
 slug: "blog-seo-multilingual-ai-optimization"
 date: "2026-01-06T03:00:00+08:00"
 tags: ['Idea', 'Linux']
 series: ["Network & Security"]
-description: "A deep dive into site-wide blog governance using AI Agents: from cleaning 300+ legacy redirects to data-driven metadata optimization and building a high-fidelity bilingual site."
+description: "A cleanup log: fixing 300+ legacy redirects, tweaking titles/descriptions with GSC data, and shipping a high-fidelity zh/en structure."
 ---
 
 > I am not a native English speaker; this article was translated by Gemini.
 
-This is a "self-bootstrapping" post. The multilingual, well-structured, and SEO-friendly blog you are reading now was, just a few hours ago, in a state of "international vacuum, redirect chaos, and missing metadata."
+This post is basically my cleanup log. A few hours ago this blog was still Chinese-only: a messy `static/_redirects` from multiple migrations, and missing meta descriptions on some high-traffic posts.
 
-As an AI-first practitioner, I decided to have a deep session with a Gemini Agent to clear these "legacy debts" once and for all.
-
----
-
-### 1. The Data Truth: The 13k Impression Regret
-
-Analyzing Google Search Console (GSC) revealed an interesting gap:
-*   **US Market**: Impressions exceeded 13,000+, yet the CTR was a measly **1.46%**.
-*   **Chinese Market**: CTR remained robustly above 6%.
-
-**Diagnosis**: Hardcore technical content (e.g., Realme Kernel compilation, Hysteria optimization) has strong search demand abroad, but Chinese-only content deters potential readers. **Going bilingual isn't about vanity; it's about capturing global traffic.**
+I used Google Search Console (GSC) to locate the pain first, then fixed redirects, and finally made the bilingual structure and writing rules explicit. In this round, Gemini mainly did the repetitive work and cross-checking; the decisions were still mine.
 
 ---
 
-### 2. Governing the "Redirect" Dark History
+### 1. What GSC told me: lots of US impressions, very few clicks
 
-Years of architecture migrations (Farbox -> Bitcron -> Hugo) left a mess in `static/_redirects`.
+- **US market**: 13,000+ impressions, only **1.46%** CTR
+- **Chinese market**: CTR stayed above 6%
 
-**The Pitfall**:
-When Hugo processes filenames with `&` symbols, it generates slugs like `google-search-tips--tricks` (double dashes). If a redirect script simply replaces spaces with dashes and collapses them, it breaks existing Google search results.
-
-**AI Solution**:
-I tasked the Agent with writing a Python script to achieve **multi-path compatibility**:
-*   Standard single-dash version.
-*   Original multi-dash variants (e.g., `--` or `---`).
-All paths now point precisely to the correct New Slug. We standardized over 300 redirect rules and removed fuzzy wildcard forwards.
+I used to assume "hardcore content spreads by itself", but the reality is simpler: a Chinese-only page is a wall for many overseas readers. Going bilingual isn't about looking international — it's about making the content readable once people find it.
 
 ---
 
-### 3. High-Fidelity Translation: No Shortcuts
+### 2. Redirects: boring, but one mistake can kill your indexed URLs
 
-A common mistake in multilingual sites is translating only the summary or letting AI generate a vague gist.
+After a few migrations (Farbox -> Bitcron -> Hugo), `static/_redirects` turned into a long, messy list. My first instinct was the lazy one: replace spaces with `-`, then collapse repeated dashes.
 
-My requirement was **"High-Fidelity"**:
-1.  **Code Parity**: Every shell command, Java hook, and kernel config must be identical.
-2.  **Visual Consistency**: Mermaid diagrams must render perfectly in English.
-3.  **Nuance Retention**: Deep insights regarding "expert blind spots" or "real-world performance data" must not be sacrificed for the sake of translation.
+That broke immediately because of a Hugo quirk: when filenames contain `&`, Hugo can generate slugs like `google-search-tips--tricks` with `--`. If you collapse `--` into `-`, old Google results become 404s.
 
-Through a Gemini-driven re-translation and review loop, we refactored the first batch of 10+ high-traffic posts.
+What I ended up doing:
+
+- Keep both the "single-dash normalized" path and the "original multi-dash" variants (`--`, `---`, etc.), all pointing to the new slug
+- Replace fuzzy wildcards (like `/post/*`) with explicit mappings, so the file is maintainable
+
+This pass cleaned up 300+ rules into something I'm comfortable keeping long-term.
 
 ---
 
-### 4. The AI Contract: AGENTS.md
+### 3. Bilingual: I didn't want the "English summary only" version
 
-To prevent "entropy" from creeping back in, I created `AGENTS.md`.
+I set three non-negotiables:
 
-This is an "Operational Manual" for future Agents. It mandates:
-- **Bilingual Symmetry**: English versions must follow Chinese updates with high-fidelity parity.
-- **SEO Formula**: Meta descriptions must follow the `[Pain Point] + [Solution] + [Result]` structure.
-- **Architectural Specs**: Standardized handling of the `content.en/` directory.
+1. **Code parity**: shell commands, Java hooks, kernel configs must match character-for-character
+2. **Visual parity**: Mermaid diagrams must render on the English pages
+3. **Nuance retention**: keep the traps, trade-offs, and perf data — don't translate them into bland prose
+
+Workflow-wise, Gemini drafted and cross-checked, and I edited paragraph by paragraph until it read naturally. The first batch covered 10+ high-traffic posts.
+
+---
+
+### 4. Write the rules down: AGENTS.md
+
+My biggest worry after cleanup is "I'll forget what I changed in a few months". So I added `AGENTS.md` to the repo and wrote down the rules:
+
+- **Bilingual symmetry**: Chinese updates must be followed by high-fidelity English updates
+- **SEO formula**: meta descriptions follow `[Pain Point] + [Solution] + [Result]`
+- **Directory conventions**: how we keep `content.en/` structured and linked
+
+Next time — whether it's me or an agent — we can follow the same playbook.
 
 ---
 
 ### Conclusion
 
-The value of a technical blog lies in solving problems. SEO and internationalization ensure that your solutions appear before everyone who truly needs them—whether they are in Beijing or New York.
-
-Tools are evolving. Shifting from hand-coding to commanding Agents for project governance is the true essence of the Vibe Coding era.
+I write to preserve how I solved problems; SEO and i18n just make those solutions easier to find and easier to read. For me, AI is an accelerator: it speeds up the grunt work, but the final calls (and responsibility) are still mine.
 
 ---
-*Authored by ferstar, governed and translated by Gemini Agent.*
+*Compiled by ferstar; Gemini helped with cross-checking and translation.*
