@@ -12,7 +12,7 @@ title = "STAY REAL"
   description = "May the truth be without barriers"
 
 [params.homepage]
-  showMoreLink = false
+  showMoreLink = true
 
 [params.author]
   name = "ferstar"
