@@ -1,5 +1,5 @@
 baseURL = "https://blog.ferstar.org/"
-title = "STAY REAL"
+title = "Code is cheap, let's talk"
 theme = "blowfish"
 languageCode = "zh-CN"
 defaultContentLanguage = "zh-cn"
@@ -25,7 +25,7 @@ copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0
 
 [author]
     name = "ferstar"
-    motto = "May the truth be without barriers"
+    motto = "Code is cheap, let's talk"
     avatar = "/icons/apple-touch-icon.png"
 
 [taxonomies]

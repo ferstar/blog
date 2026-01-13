@@ -1,7 +1,7 @@
 languageCode = "en"
 languageName = "English"
 weight = 2
-title = "STAY REAL"
+title = "Code is cheap, let's talk"
 
 [params]
   displayName = "English"
@@ -9,7 +9,7 @@ title = "STAY REAL"
   rtl = false
   dateFormat = "Jan 2, 2006"
   logo = "site-logo.png"
-  description = "May the truth be without barriers"
+  description = "Code is cheap, let's talk"
 
 [params.homepage]
   showMoreLink = true
@@ -17,8 +17,7 @@ title = "STAY REAL"
 [params.author]
   name = "ferstar"
   image = "site-logo.png"
-  headline = "May the truth be without barriers"
-  bio = "Silence is a source of great strength."
+  headline = "Code is cheap, let's talk"
   links = [
     { github = "https://github.com/ferstar" },
   ]
