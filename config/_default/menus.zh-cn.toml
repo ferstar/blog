@@ -16,7 +16,6 @@
 
 [[main]]
   identifier = "rss"
-  name = "RSS"
   pre = "rss"
   url = "/index.xml"
   weight = 40
