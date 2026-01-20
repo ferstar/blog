@@ -3,6 +3,7 @@ title: "VPS 迁移与性能压榨手册 (Debian 13 + XanMod + 443 端口复用)"
 slug: "vps-migration-and-optimization-guide"
 date: "2026-01-20T10:00:00+08:00"
 tags: ["VPS", "Debian", "Nginx", "Linux", "Optimization"]
+description: "小内存 VPS 迁移后性能吃紧，借助 XanMod、内核/内存调优与 443 端口复用方案，低配也能稳定跑服务。"
 ---
 
 本文档记录了从 DigitalOcean 旧主机 (Ubuntu 20.04) 到新主机 (Debian 13 + XanMod) 的迁移过程及调优细节。
@@ -26,6 +27,7 @@ wget -qO - https://dl.xanmod.org/archive.key | gpg --dearmor | tee /usr/share/ke
 echo 'deb [signed-by=/usr/share/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main' | tee /etc/apt/sources.list.d/xanmod-kernel.list
 apt update && apt install linux-xanmod-edge-x64v3 -y
 ```
+注意：`linux-xanmod-edge-x64v3` 需要 CPU 支持 x86-64-v3 指令集，若不支持可改用 `linux-xanmod-edge-x64v2` 或 `linux-xanmod-edge-x64`。
 
 ### 2.2 内存压榨与持久化 (zswap + MGLRU + KSM)
 针对 512MB RAM 的极限优化。由于部分内核参数不支持 `sysctl` 直接持久化，统一通过 `crontab` 的 `@reboot` 机制在开机时强制注入：

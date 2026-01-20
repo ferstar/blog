@@ -3,15 +3,16 @@ title: "VPS Migration and Performance Squeezing Guide (Debian 13 + XanMod + Port
 slug: "vps-migration-and-optimization-guide"
 date: "2026-01-20T10:00:00+08:00"
 tags: ["VPS", "Debian", "Nginx", "Linux", "Optimization"]
+description: "A low-memory VPS struggles after migration; use XanMod, kernel/memory tuning, and port 443 multiplexing to keep services stable on a smaller plan."
 ---
 
 > I am not a native English speaker; this article was translated by AI.
 
-This document records the migration process and optimization details from an old DigitalOcean host (Ubuntu 20.04) to a new host (Debian 13 + XanMod).
+This guide records the migration process and optimization details from an old DigitalOcean host (Ubuntu 20.04) to a new host (Debian 13 + XanMod).
 
-It all started when I realized my $6/mo instance (1GB RAM / 20GB DISK / 1TB BW) was sitting idle most of the time. To keep up with the "consumption downgrade" trend, I moved to the $4/mo plan (512MB RAM / 10GB DISK / 500GB BW), saving a solid 1/3 of the cost.
+It all started when I realized my $6/mo instance (1GB RAM / 20GB DISK / 1TB BW) was idle most of the time. To follow the belt-tightening trend, I moved to the $4/mo plan (512MB RAM / 10GB DISK / 500GB BW), cutting the cost by a solid third.
 
-Now that my blog is hosted on "Cyber Bodhisattva" (Cloudflare Pages), this 512MB "smol chicken" has been relieved of its heavy lifting. It now serves as a backup proxy and a home for my quiet WeChat backend. Even though the RAM is cut in half, after some serious performance squeezing, the little machine still runs like a champ.
+Now that my blog is hosted on "Cyber Bodhisattva" (Cloudflare Pages), this 512MB droplet has been relieved of its heavy lifting. It now serves as a backup proxy and a dormant WeChat public account backend. Even though the RAM is cut in half, after some serious performance squeezing, the little machine still runs rock-solid.
 
 ## 1. Basic Environment
 - **Source Host**: DigitalOcean Ubuntu 20.04 (IP hidden)
@@ -22,15 +23,16 @@ Now that my blog is hosted on "Cyber Bodhisattva" (Cloudflare Pages), this 512MB
 ## 2. Kernel and Memory Optimization (Kernel 6.18+)
 
 ### 2.1 Upgrade to XanMod Edge
-Install the kernel with BBRv3 and the latest scheduling features:
+Install a kernel with BBRv3 and the latest scheduling features:
 ```bash
 wget -qO - https://dl.xanmod.org/archive.key | gpg --dearmor | tee /usr/share/keyrings/xanmod-archive-keyring.gpg > /dev/null
 echo 'deb [signed-by=/usr/share/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main' | tee /etc/apt/sources.list.d/xanmod-kernel.list
 apt update && apt install linux-xanmod-edge-x64v3 -y
 ```
+Note: `linux-xanmod-edge-x64v3` requires a CPU that supports the x86-64-v3 instruction set. If not supported, use `linux-xanmod-edge-x64v2` or `linux-xanmod-edge-x64`.
 
 ### 2.2 Memory Squeezing and Persistence (zswap + MGLRU + KSM)
-Extreme optimization for 512MB RAM. Since some kernel parameters do not support direct persistence via `sysctl`, they are forced at boot using the `@reboot` mechanism in `crontab`:
+An extreme tuning set for 512MB RAM. Since some kernel parameters do not support direct persistence via `sysctl`, they are forced at boot via `crontab`'s `@reboot`:
 
 **Persistence Commands (`crontab -e`):**
 ```bash
@@ -73,19 +75,19 @@ stream {
 ```
 
 ### 3.2 Architectural Advantages
-- **Minimalist Firewall**: Only one port 443 needs to be exposed to the outside to carry multiple protocols (HTTP/SSH/Proxy).
+- **Minimal Firewall**: Only one port 443 needs to be exposed to the outside to carry multiple protocols (HTTP/SSH/Proxy).
 - **Security**: Hides sensitive ports like SSH (22), effectively countering brute-force scanning.
 - **Protocol Coexistence**: True protocol steering without affecting standard HTTPS access, bypassing strict network environments.
 
 ### 3.3 Async IO Optimization
-Enable thread pool asynchronous IO in the `http` block to prevent large file R/W from blocking the main process:
+Enable thread-pool async IO in the `http` block to prevent large file read/write from blocking the main process:
 - `aio threads;`
 - `thread_pool default threads=32 max_queue=65536;`
 - `directio 4m;`
 
 ## 4. Firewall Configuration (UFW)
 
-Implement a minimal port opening strategy, closing inbound port 22 (replaced by 443 forwarding):
+Use a minimal port-opening strategy, closing inbound port 22 (replaced by 443 forwarding):
 ```bash
 ufw reset
 ufw default deny incoming
@@ -104,7 +106,7 @@ The wildcard certificate (`*.ferstar.org`) uses the `dns-cloudflare` plugin for 
 - **Credential File**: `/root/certbot-creds.ini` (contains CF API Token).
 - **Plugin Installation**: `apt install python3-certbot-dns-cloudflare -y`.
 
-### 5.2 Auto-renewal Logic
+### 5.2 Auto-renewal
 Renewal configuration is located at `/etc/letsencrypt/renewal/ferstar.org.conf`:
 ```bash
 post_hook = systemctl reload nginx && docker restart hysteria hysteria2 tuic-server
