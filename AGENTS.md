@@ -1,37 +1,25 @@
-# AI Agent Operational Guide & History
+## 1) 内容（强制）
+- **双语对齐**：`content/` 的新文章必须在 `content.en/` 提供高保真翻译。
+- **内容一致**：代码块、命令行、Mermaid 图、表格两端保持一致。
+- **图示优先**：能用 Mermaid 的示意图优先用 Mermaid，避免字符画。
+- **Front Matter 必填**：新文章必须包含 `title`、`slug`、`date`、`tags`、`description`；
+  中英字段名一致；`slug`/`date`/`tags` 必须相同，`title`/`description` 可翻译；
+  `series` 可选，但中英文必须一致。
+- **降低 AI 味**：语言自然、具体，避免模板化措辞、口号式小节名与冗余铺垫。
+- **英文声明**：每篇英文文章必须包含：
+  `> I am not a native English speaker; this article was translated by AI.`
 
-This document serves as the source of truth for AI Agents interacting with this blog repository. It outlines critical workflows and historical optimizations to ensure consistency and performance.
+## 2) SEO 与重定向（不得回退）
+- **重定向**：`static/_redirects` 只允许显式规则，禁止 `/post/*` 这类模糊通配。
+- **历史链接**：保留多破折号 slug（如 `google-search-tips--tricks`）以兼容历史流量。
+- **描述规范**：高流量文章 description 使用 `[痛点] + [方案] + [结果]`。
+- **系列聚合**：相关内容用 Hugo `series` 做内链。
 
-## 1. Multilingual Content Mandate
+## 3) 多语言站点设置（保持）
+- `contentDir` 保持拆分：`content/`（zh-cn）与 `content.en/`（en）。
+- 导航链接使用 Hugo `pageRef` 保证多语言安全跳转。
 
-To maintain the global reach established in January 2026, the following protocol is **mandatory** for all new content:
-
-- **Bilingual Symmetry**: Every new post created in `content/` (Chinese) MUST have a corresponding high-fidelity translation in `content.en/` (English).
-- **High-Fidelity Standard**:
-    - **Code Parity**: All shell commands, Java/Python snippets, and configurations must be identical between versions.
-    - **Visual Assets**: Mermaid diagrams and data tables must be fully preserved and rendered correctly in both languages.
-    - **Nuance Retention**: Philosophical insights, "expert's blind spots," and technical troubleshooting logic must be translated with depth, avoiding over-simplification.
-- **Disclaimer**: Every English post must include the standard disclaimer:
-  `> I am not a native English speaker; this article was translated by Gemini.`
-
-## 2. SEO Optimization History (Jan 6, 2026 Session)
-
-The following measures were implemented based on Google Search Console (GSC) data analysis:
-
-### A. Redirect Architecture
-- **Standardization**: Cleaned and slugified 300+ legacy redirects in `static/_redirects`.
-- **Compatibility**: Added specific rules for "multi-dash" slugs (e.g., `google-search-tips--tricks`) to ensure historical Google search results do not break.
-- **Precision**: Removed fuzzy wildcard redirects (`/post/*`) in favor of explicit mapping.
-
-### B. Metadata & Content Discovery
-- **Top-10 Optimization**: Applied custom `description` fields to the top 10 high-traffic posts using the `[Pain Point] + [Solution] + [Result]` formula.
-- **CTR Recovery**: Retitled and re-described "high impression, low CTR" pages (e.g., Windows Resource Protection fix, ShellClash upgrade) to boost organic clicks.
-- **Internal Linking (Series)**: Grouped related posts into Hugo `series` (e.g., "Network & Security", "Kernel Development") to improve link equity distribution and user retention.
-
-### C. Multilingual Architecture
-- **Structure**: Implemented `contentDir` partitioning (`content/` for zh-cn, `content.en/` for en).
-- **Navigation**: Fixed multi-language Archive and Tag links using Hugo `pageRef`.
-- **UX**: Configured language-specific homepage settings (e.g., disabling `showMoreLink` for the English version until content volume exceeds 20 posts).
+## 4) 格式（强制）
+- 中英版本均禁止连续空行超过 2 行。
 
 ---
-*Maintained by ferstar and Gemini.*
