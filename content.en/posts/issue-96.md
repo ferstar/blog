@@ -7,11 +7,11 @@ series: ["Network & Security"]
 description: "A cleanup log: fixing 300+ legacy redirects, tweaking titles/descriptions with GSC data, and shipping a high-fidelity zh/en structure."
 ---
 
-> I am not a native English speaker; this article was translated by Gemini.
+> I am not a native English speaker; this article was translated by AI.
 
 This post is basically my cleanup log. A few hours ago this blog was still Chinese-only: a messy `static/_redirects` from multiple migrations, and missing meta descriptions on some high-traffic posts.
 
-I used Google Search Console (GSC) to locate the pain first, then fixed redirects, and finally made the bilingual structure and writing rules explicit. In this round, Gemini mainly did the repetitive work and cross-checking; the decisions were still mine.
+I used Google Search Console (GSC) to locate the pain first, then fixed redirects, and finally made the bilingual structure and writing rules explicit. In this round, AI mainly did the repetitive work and cross-checking; the decisions were still mine.
 
 ---
 
@@ -47,7 +47,7 @@ I set three non-negotiables:
 2. **Visual parity**: Mermaid diagrams must render on the English pages
 3. **Nuance retention**: keep the traps, trade-offs, and perf data — don't translate them into bland prose
 
-Workflow-wise, Gemini drafted and cross-checked, and I edited paragraph by paragraph until it read naturally. The first batch covered 10+ high-traffic posts.
+Workflow-wise, AI drafted and cross-checked, and I edited paragraph by paragraph until it read naturally. The first batch covered 10+ high-traffic posts.
 
 ---
 
@@ -68,4 +68,3 @@ Next time — whether it's me or an agent — we can follow the same playbook.
 I write to preserve how I solved problems; SEO and i18n just make those solutions easier to find and easier to read. For me, AI is an accelerator: it speeds up the grunt work, but the final calls (and responsibility) are still mine.
 
 ---
-*Compiled by ferstar; Gemini helped with cross-checking and translation.*

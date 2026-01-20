@@ -6,7 +6,7 @@ tags: ['Android']
 description: "It's 2025, and Android is more mature than ever. So why do I still root my devices? From custom kernel features and privacy control to automated bookkeeping and hardware tuning, here's why rooting is still essential for power users."
 ---
 
-> I am not a native English speaker; this article was translated by Gemini.
+> I am not a native English speaker; this article was translated by AI.
 
 Android has matured significantly, but for power users, rooting remains a prerequisite for total control over the hardware and software experience. Here is why rooting still matters in 2025.
 

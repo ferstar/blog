@@ -7,7 +7,7 @@ series: ["Network & Security"]
 description: "Say goodbye to lag during large downloads. Learn how to use the DualPI2 scheduler introduced in Linux 6.17 combined with BBR to fix Bufferbloat on narrow bandwidth links."
 ---
 
-> I am not a native English speaker; this article was translated by Gemini.
+> I am not a native English speaker; this article was translated by AI.
 
 ## Background
 

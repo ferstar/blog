@@ -6,7 +6,7 @@ tags: ['Linux', 'Idea']
 comments: true
 ---
 
-> I am not a native English speaker; this article was translated by Gemini.
+> I am not a native English speaker; this article was translated by AI.
 
 As a long-time Linux enthusiast, I usually install a Linux distro as soon as I get a new laptop. That makes the preinstalled Windows almost useless, but I still couldn't delete it — I needed it to run vendor BIOS updaters. Keeping a ~100GB Windows partition just for the occasional BIOS update is pretty annoying. Sure, something like Windows To Go exists, but that doesn't really change the situation: you're still relying on Windows.
 

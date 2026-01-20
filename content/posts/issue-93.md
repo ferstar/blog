@@ -6,7 +6,7 @@ tags: ['Linux']
 comments: true
 ---
 
-> Gemini 协助编写
+> AI 协助编写
 
 ### 问题
 

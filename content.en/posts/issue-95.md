@@ -6,7 +6,7 @@ tags: ['Linux', 'Idea']
 description: "How to manage secure remote access for GPU clusters (DGX H800) in isolated environments using Teleport as a bastion and Tailscale for tunneling, featuring silent session recording and audit bypass."
 ---
 
-> I am not a native English speaker; this article was translated by Gemini.
+> I am not a native English speaker; this article was translated by AI.
 
 I have several DGX H800 nodes in an internal network, and occasionally need to grant remote access to vendors for debugging. The requirements are simple:
 
@@ -14,7 +14,7 @@ I have several DGX H800 nodes in an internal network, and occasionally need to g
 2. Full session recording/auditing is required, but it should be "silent" (vendors shouldn't know they are being recorded).
 3. Our internal team needs a privileged channel to bypass the bastion host and connect directly.
 
-After some research, I chose **Teleport** as the bastion host and **Tailscale** to bridge the internal network tunnel. With Gemini's help for documentation and configuration, I got it running in about an hour. Here are the pitfalls I encountered and how I fixed them.
+After some research, I chose **Teleport** as the bastion host and **Tailscale** to bridge the internal network tunnel. With AI's help for documentation and configuration, I got it running in about an hour. Here are the pitfalls I encountered and how I fixed them.
 
 ---
 

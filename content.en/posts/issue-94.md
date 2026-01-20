@@ -6,7 +6,7 @@ tags: ['Idea']
 description: "A comprehensive guide to Vibe Coding engineering. Learn how to transition from 'AI writing code' to 'engineering AI to write the correct code' through rigorous validation, context management, and automated guardrails."
 ---
 
-> I am not a native English speaker; this article was translated by Gemini.
+> I am not a native English speaker; this article was translated by AI.
 
 > Based on the Vibe Coding Skeleton engineering practice.
 > **Note**: For specific implementation details, refer to `CLAUDE.md`, `.pre-commit-config.yaml`, `ast-grep/`, `sgconfig.yml`, and `justfile` in this repository.

@@ -6,7 +6,7 @@ tags: ['Linux']
 description: "A deep dive into MTU black hole troubleshooting for multi-layer tunnels (WireGuard + IPsec) in ICMP-disabled environments. Learn how to identify and fix path MTU issues using TCP MSS clamping."
 ---
 
-> I am not a native English speaker; this article was translated by Gemini.
+> I am not a native English speaker; this article was translated by AI.
 
 ### The Problem
 

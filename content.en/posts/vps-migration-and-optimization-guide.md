@@ -5,7 +5,7 @@ date: "2026-01-20T10:00:00+08:00"
 tags: ["VPS", "Debian", "Nginx", "Linux", "Optimization"]
 ---
 
-> I am not a native English speaker; this article was translated by Gemini.
+> I am not a native English speaker; this article was translated by AI.
 
 This document records the migration process and optimization details from an old DigitalOcean host (Ubuntu 20.04) to a new host (Debian 13 + XanMod).
 
