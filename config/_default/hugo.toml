@@ -36,6 +36,10 @@ copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0
 [outputs]
     home = ["HTML", "RSS", "JSON"]
 
+[services]
+  [services.rss]
+    limit = 30
+
 [markup]
     [markup.goldmark]
         [markup.goldmark.renderer]
