@@ -3,7 +3,7 @@ title: "Vibe Coding 实战：当代码不再需要手写"
 slug: "vibe-coding-engineering-practice"
 date: "2025-12-31T21:46:31+08:00"
 tags: ['Idea']
-comments: true
+description: "AI 生成代码可控性差、验收成本高，通过工程化上下文与验证体系，让 AI 输出可用代码并稳定交付。"
 ---
 
 > 基于 Vibe Coding Skeleton 的工程实践

@@ -3,7 +3,7 @@ title: "Vibe Coding in Practice: When Code No Longer Needs to be Written by Hand
 slug: "vibe-coding-engineering-practice"
 date: "2025-12-31T21:46:31+08:00"
 tags: ['Idea']
-description: "A comprehensive guide to Vibe Coding engineering. Learn how to transition from 'AI writing code' to 'engineering AI to write the correct code' through rigorous validation, context management, and automated guardrails."
+description: "AI-generated code is hard to control and expensive to verify; use engineered context and validation to make AI output usable code and ship reliably."
 ---
 
 > I am not a native English speaker; this article was translated by AI.
