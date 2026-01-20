@@ -13,3 +13,10 @@
   pre = "github"
   url = "https://github.com/ferstar"
   weight = 30
+
+[[main]]
+  identifier = "rss"
+  name = "RSS"
+  pre = "rss"
+  url = "/en/index.xml"
+  weight = 40
