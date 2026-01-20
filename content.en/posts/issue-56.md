@@ -3,9 +3,12 @@ title: "Cloudflare Tunnel + Brook: A High-Value Acceleration Solution for Slow V
 slug: "cloudflare-argo-tunnel-brook-setup"
 date: "2022-03-16T23:10:03+08:00"
 tags: ['Idea', 'Networking']
+comments: true
 series: ["Network & Security"]
 description: "Is your VPS line quality poor? Learn how to use Cloudflare Tunnel (formerly Argo Tunnel) and Brook to leverage Cloudflare's edge network for acceleration and hidden IP protection."
 ---
+
+> I am not a native English speaker; this article was translated by AI.
 
 > **Note:** Technical audit performed in 2026. While protocols evolve, the underlying logic of Cloudflare's edge acceleration remains robust.
 

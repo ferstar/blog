@@ -5,6 +5,7 @@ date: "2025-12-18T06:30:04+08:00"
 tags: ['Linux']
 comments: true
 series: ["Network & Security"]
+description: "窄带宽大下载时延迟暴涨；用 Linux 6.17 的 DualPI2 + BBR 调优；让 SSH 与交互流量在满载下依然顺滑。"
 ---
 ## 背景
 

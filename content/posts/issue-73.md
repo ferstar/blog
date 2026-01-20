@@ -2,7 +2,7 @@
 title: "Linux触控板手势增强之「三指拖拽」"
 slug: "linux-touchpad-gestures-drag"
 date: "2023-01-29T02:08:34+08:00"
-tags: ['Linux']
+tags: ['Linux', 'Rust']
 comments: true
 showTableOfContents: true
 description: "在 Linux 上找回 macOS 丝滑的“三指拖拽”体验！基于 Rust 实现的高性能 libinput 手势增强方案，支持 X11 与 Wayland，CPU 占用不到 1% 且配置灵活。"

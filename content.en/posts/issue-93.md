@@ -3,7 +3,8 @@ title: "Troubleshooting MTU Black Holes in Multi-Layer Tunnels: The Mystery of 3
 slug: "mtu-black-hole-scp-optimization"
 date: "2025-12-31T12:09:54+08:00"
 tags: ['Linux']
-description: "A deep dive into MTU black hole troubleshooting for multi-layer tunnels (WireGuard + IPsec) in ICMP-disabled environments. Learn how to identify and fix path MTU issues using TCP MSS clamping."
+comments: true
+description: "ICMP-disabled tunnels can throttle scp to 30KB/s; use MTU probing and TCP MSS clamping; restore normal throughput across multi-layer tunnels."
 ---
 
 > I am not a native English speaker; this article was translated by AI.

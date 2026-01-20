@@ -4,6 +4,7 @@ slug: "update-insydeh2o-bios-linux"
 date: "2025-01-12T16:58:10+08:00"
 tags: ['Linux', 'Idea']
 comments: true
+description: "Vendor BIOS updates require Windows and a large partition; use a pure-Linux extraction and flashing workflow; update BIOS reliably without keeping Windows."
 ---
 
 > I am not a native English speaker; this article was translated by AI.

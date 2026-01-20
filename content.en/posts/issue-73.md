@@ -4,9 +4,12 @@ slug: "linux-touchpad-gestures-drag"
 date: "2023-01-29T02:08:34+08:00"
 tags: ['Linux', 'Rust']
 series: ["Linux Experience"]
+comments: true
 showTableOfContents: true
 description: "Miss the smooth macOS three-finger drag on Linux? This high-performance Rust-based solution for libinput gestures supports both X11 and Wayland with minimal CPU overhead."
 ---
+
+> I am not a native English speaker; this article was translated by AI.
 
 After switching to Linux, I've been missing the smooth **three-finger drag** experience from macOS. Given that recent Windows laptops have significantly improved touchpad size and responsiveness, I decided it was time to tackle **touchpad gestures** on Linux.
 

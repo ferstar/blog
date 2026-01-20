@@ -3,7 +3,8 @@ title: "Practical Guide: GPU Cluster Access Control and Auditing with Teleport +
 slug: "teleport-tailscale-gpu-access"
 date: "2026-01-03T03:58:20+08:00"
 tags: ['Linux', 'Idea']
-description: "How to manage secure remote access for GPU clusters (DGX H800) in isolated environments using Teleport as a bastion and Tailscale for tunneling, featuring silent session recording and audit bypass."
+comments: true
+description: "Vendors need access while audits must stay silent; use Teleport + Tailscale with multiplexing and bypass channels; achieve secure, low-friction GPU cluster access."
 ---
 
 > I am not a native English speaker; this article was translated by AI.

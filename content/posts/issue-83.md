@@ -4,6 +4,7 @@ slug: "update-insydeh2o-bios-linux"
 date: "2025-01-12T16:58:10+08:00"
 tags: ['Linux', 'Idea']
 comments: true
+description: "BIOS 更新离不开 Windows、还得留大分区；用纯 Linux 解包与刷写流程替代 Windows 工具；无需保留 Windows 也能稳定升级。"
 ---
 
 作为一个骨灰级 Linux 发烧友，我的电脑到手基本都是第一时间换装 Linux 发行版。这样设备厂商出厂自带的 Windows 系统几乎毫无作用，但我又不能把它干掉——我还得靠它来更新厂商发布的 BIOS。为了偶尔更 BIOS 的需求而不得不保留这近 100GB 磁盘占用的 Windows 着实有些蛋疼，当然我知道可以用类似 WIN2GO 的玩意来更 BIOS，但这又有什么区别呢，还是离不开 Windows。

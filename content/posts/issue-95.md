@@ -4,6 +4,7 @@ slug: "teleport-tailscale-gpu-access"
 date: "2026-01-03T03:58:20+08:00"
 tags: ['Linux', 'Idea']
 comments: true
+description: "供应商需远程接入但审计必须静默；用 Teleport + Tailscale 的复用与绕过通道方案；实现安全且低摩擦的 GPU 集群访问。"
 ---
 
 有几台 DGX H800，内网环境，但偶尔要让供应商远程上来调试。需求很简单：

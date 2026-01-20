@@ -4,6 +4,7 @@ slug: "why-rooting-still-matters-in-2025"
 date: "2025-10-04T14:42:47+08:00"
 tags: ['Android']
 comments: true
+description: "厂商限制与系统臃肿让性能与隐私难控；通过 root、内核与系统级调优解决；获得更快、更干净、更可控的使用体验。"
 ---
 
 先列个单子，慢填（排名不分先后）

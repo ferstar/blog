@@ -2,7 +2,7 @@
 title: "AX3600 终极改造：ShellClash 替换 Clash-Meta 核心，完美支持 Hysteria 2"
 slug: "ax3600-clash-meta-upgrade"
 date: "2023-01-24T01:17:09+08:00"
-tags: ['Linux']
+tags: ['Linux', 'Networking']
 comments: true
 description: "针对小米 AX3600 存储不足难题，详解利用 UPX 压缩技术替换 Clash-Meta 核心，实现对 Hysteria 2、TUIC 等新协议的完美支持，让老路由重焕青春。"
 series: ["Network & Security"]

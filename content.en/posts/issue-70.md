@@ -3,9 +3,12 @@ title: "AX3600: Upgrading ShellClash to Clash-Meta Core for Hysteria 2 Support"
 slug: "ax3600-clash-meta-upgrade"
 date: "2023-01-24T01:17:09+08:00"
 tags: ['Linux', 'Networking']
+comments: true
 series: ["Network & Security"]
 description: "Solve the storage limitation on Xiaomi AX3600 routers. Learn how to use UPX compression to replace the Clash-Meta core, enabling support for Hysteria 2 and TUIC protocols."
 ---
+
+> I am not a native English speaker; this article was translated by AI.
 
 The root process and ShellClash installation for this router are well-documented here: https://qust.me/post/ax3600_shellclash/
 

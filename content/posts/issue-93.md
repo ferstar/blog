@@ -4,6 +4,7 @@ slug: "mtu-black-hole-scp-optimization"
 date: "2025-12-31T12:09:54+08:00"
 tags: ['Linux']
 comments: true
+description: "禁 ICMP 的隧道环境下 scp 速度掉到 30KB/s；用 MTU 探测与 TCP MSS Clamping 处理；恢复多层隧道的正常吞吐。"
 ---
 
 > AI 协助编写
