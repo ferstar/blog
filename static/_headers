@@ -2,6 +2,10 @@
 /*
   Cache-Control: public, max-age=3600, s-maxage=3600, must-revalidate
 
+# Old URLs: keep them out of indexes while still serving content
+/post/*
+  X-Robots-Tag: noindex
+
 # Immutable assets: cache for 1 year
 /js/*
   Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
