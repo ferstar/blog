@@ -11,8 +11,7 @@
 
 ## 2) SEO 与重定向（不得回退）
 - **重定向**：`static/_redirects` 只允许显式规则，禁止 `/post/*` 这类模糊通配。
-- **历史链接**：保留多破折号 slug（如 `google-search-tips--tricks`）以兼容历史流量。
-- **描述规范**：高流量文章 description 使用 `[痛点] + [方案] + [结果]`。
+- **描述规范**：所有文章都必须写 description，尽量 SEO 友好；description 使用 `[痛点] + [方案] + [结果]`。
 - **系列聚合**：相关内容用 Hugo `series` 做内链。
 
 ## 3) 多语言站点设置（保持）
