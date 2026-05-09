@@ -13,3 +13,9 @@
     color: rgb(23 23 23) !important;
   }
 </style>
+
+{{ $fingerprintAlgorithm := .Params.fingerprintAlgorithm | default "sha512" }}
+{{ with resources.Get "js/visual-zoom.js" }}
+  {{ $visualZoom := . | resources.Minify | resources.Fingerprint $fingerprintAlgorithm }}
+  <script defer src="{{ $visualZoom.RelPermalink }}" integrity="{{ $visualZoom.Data.Integrity }}"></script>
+{{ end }}
