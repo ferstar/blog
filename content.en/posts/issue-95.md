@@ -21,7 +21,7 @@ Final setup: **Teleport** for the bastion and auditing, **Tailscale** for intern
 
 ### Architecture at a Glance
 
-```mermaid
+{{< mermaid >}}
 flowchart LR
   subgraph External[Public Users]
     Vendor[Vendor<br/>Web/SSH]
@@ -47,7 +47,7 @@ flowchart LR
   Admin -- SSH 22 --> TSUser[Internal Tailscale Node]
   TSUser -- Tailscale Tunnel --> ExitNode --> GPU
   Teleport --> Logs
-```
+{{< /mermaid >}}
 
 ---
 

@@ -68,7 +68,7 @@ description: "AI-generated code is hard to control and expensive to verify; use 
 
 **The New Workflow**:
 
-```mermaid
+{{< mermaid >}}
 flowchart TB
     subgraph Human's Work
         A[Decomposition] --> B[Business Analysis]
@@ -89,7 +89,7 @@ flowchart TB
 
     D --> F & G & H & I & J & K & L
     F & G & H & I & J & K & L --> E
-```
+{{< /mermaid >}}
 
 **Role Definitions**:
 
@@ -122,7 +122,7 @@ Without verification, output is just a draft. Without task alignment, verificati
 
 **The Three-Layer Context Model**:
 
-```mermaid
+{{< mermaid >}}
 graph TB
     subgraph Context Pyramid
         P["Project Context<br/>Tech Stack / Directory Structure / Naming Specs / Prohibitions<br/>CLAUDE.md"]
@@ -135,7 +135,7 @@ graph TB
     style P fill:#4ecdc4,stroke:#333,stroke-width:2px
     style T fill:#f38181
     style S fill:#fce38a
-```
+{{< /mermaid >}}
 
 **Investment Return**:
 
@@ -153,14 +153,14 @@ Session: 0 → Current conversation only
 
 **My Time Allocation**:
 
-```mermaid
+{{< mermaid >}}
 pie title Time Allocation (Empirical)
     "Requirement/Arch Design" : 20
     "Preparing Context" : 15
     "Waiting for AI" : 5
     "Verification + Fixes" : 40
     "Paying Technical Debt" : 20
-```
+{{< /mermaid >}}
 
 **Key Insight**: 40% of time is spent "verifying," not "writing." The bottleneck has shifted from generation to validation.
 
@@ -249,7 +249,7 @@ AI-generated code must pass through a quality pipeline. If the gate fails, the c
 
 **The Pipeline**:
 
-```mermaid
+{{< mermaid >}}
 flowchart LR
     A[Code Change] --> B[pre-commit: ruff format]
     B --> C[pre-commit: ruff check]
@@ -261,7 +261,7 @@ flowchart LR
 
     style D fill:#ff6b6b,stroke:#333,stroke-width:2px
     style H fill:#4ecdc4,stroke:#333,stroke-width:2px
-```
+{{< /mermaid >}}
 
 **ast-grep Rules (Selected)**:
 
@@ -280,7 +280,7 @@ flowchart LR
 
 It's not about whether AI *can* write it—AI can write anything. It's about whether the **verification cost** is acceptable.
 
-```mermaid
+{{< mermaid >}}
 flowchart TB
     subgraph High Verification Cost
         subgraph Q1["❌ Quagmire"]
@@ -300,7 +300,7 @@ flowchart TB
 
     style Q3 fill:#4ecdc4,stroke:#333
     style Q1 fill:#ff6b6b,stroke:#333
-```
+{{< /mermaid >}}
 
 ##### Case Study: The Correct Way to Optimize Performance
 

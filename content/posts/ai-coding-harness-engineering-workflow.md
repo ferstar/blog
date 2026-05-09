@@ -35,7 +35,7 @@ series: ['AI Coding']
 
 所以我现在更愿意把这套方法叫做 **Harness Engineering**。重点是给 AI 外面套一层工程轨道，让任务可执行、结果可验证、失败可恢复。
 
-```mermaid
+{{< mermaid >}}
 flowchart LR
   A[Task scope] --> B[Context route]
   B --> C[Agent loop]
@@ -43,7 +43,7 @@ flowchart LR
   D --> E[Recovery / memory]
   D -->|failed| F[Patch harness]
   F --> C
-```
+{{< /mermaid >}}
 
 ### 我现在会先管四件事
 

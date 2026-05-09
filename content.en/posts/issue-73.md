@@ -30,7 +30,7 @@ I chose to fork and merge two Rust projects to create a unified solution. One pr
 
 ### Architecture
 
-```mermaid
+{{< mermaid >}}
 graph TD
     A[Touchpad Event] --> B{libinput}
     B --> C[ferstar/gestures <br/>Rust Engine]
@@ -42,7 +42,7 @@ graph TD
     
     style C fill:#f96,stroke:#333,stroke-width:2px
     style G fill:#4ecdc4,stroke:#333,stroke-width:2px
-```
+{{< /mermaid >}}
 
 The project is now at **v0.8.1**, with major improvements including:
 

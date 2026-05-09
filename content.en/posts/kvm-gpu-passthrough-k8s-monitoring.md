@@ -15,7 +15,7 @@ This is a practical record of the troubleshooting path, with key fixes, config s
 - Goal: 8x H800 + 4x NVSwitch passthrough, single-node K8s + GPU Operator + Prometheus, DCGM metrics available
 
 ## Symptoms and fix path
-```mermaid
+{{< mermaid >}}
 flowchart TD
   A[VM boot + GPU passthrough] --> B[Black screen / some GPUs fail to init]
   B --> C[Switch to non-Secure Boot OVMF]
@@ -24,7 +24,7 @@ flowchart TD
   E --> F[8 GPUs + NVSwitch OK]
   F --> G[K8s + GPU Operator + Prometheus]
   G --> H[DCGM metrics verified]
-```
+{{< /mermaid >}}
 
 ### 1) Black screen and PCI resource shortage
 - Symptom: no VNC output after passthrough, driver logs show `PCI I/O region invalid`

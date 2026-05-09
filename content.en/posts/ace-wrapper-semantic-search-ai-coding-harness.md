@@ -33,20 +33,20 @@ The target is concrete: make the search action part of the harness.
 
 I used to see this path often:
 
-```mermaid
+{{< mermaid >}}
 flowchart LR
   A[User describes behavior] --> B[Agent guesses keywords]
   B --> C[Reads nearby files]
   C --> D[Edits plausible code]
   D --> E[Verification fails]
   E --> B
-```
+{{< /mermaid >}}
 
 The problem with this loop is that, after failure, the agent often keeps circling around the same wrong files. It can edit code; it needs a better entry point into candidate files.
 
 `ace-wrapper` is meant to patch this part:
 
-```mermaid
+{{< mermaid >}}
 flowchart LR
   A[User describes behavior] --> B[ace semantic retrieval]
   B --> C[Candidate files]
@@ -54,7 +54,7 @@ flowchart LR
   D --> E[rg / tests confirm evidence]
   E --> F[Small patch]
   F --> G[Verify]
-```
+{{< /mermaid >}}
 
 The important part is the order: `ace` only finds candidate files. Conclusions still require reading files, exact search, and tests.
 

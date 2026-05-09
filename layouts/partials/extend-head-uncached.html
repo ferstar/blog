@@ -1,0 +1,32 @@
+{{ if .Page.HasShortcode "mermaid" }}
+  <script data-cfasync="false">
+    window.addEventListener("load", function () {
+      var attempts = 0;
+      var timer = window.setInterval(function () {
+        if (typeof mermaid === "undefined") {
+          if (++attempts > 150) window.clearInterval(timer);
+          return;
+        }
+
+        var pending = document.querySelector("pre.mermaid:not([data-processed])");
+        if (!pending) {
+          window.clearInterval(timer);
+          return;
+        }
+
+        if (typeof updateMermaidTheme === "function") {
+          updateMermaidTheme();
+        } else if (document.documentElement.classList.contains("dark") && typeof initMermaidDark === "function") {
+          initMermaidDark();
+          mermaid.run();
+        } else if (typeof initMermaidLight === "function") {
+          initMermaidLight();
+          mermaid.run();
+        } else {
+          mermaid.run();
+        }
+        window.clearInterval(timer);
+      }, 100);
+    });
+  </script>
+{{ end }}

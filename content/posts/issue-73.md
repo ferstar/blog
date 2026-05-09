@@ -29,7 +29,7 @@ After switching to Linux, I've been missing the smooth **three-finger drag** exp
 
 ### 架构逻辑 / Architectural Logic
 
-```mermaid
+{{< mermaid >}}
 graph TD
     A[Touchpad Event] --> B{libinput}
     B --> C[ferstar/gestures <br/>Rust Engine]
@@ -41,7 +41,7 @@ graph TD
     
     style C fill:#f96,stroke:#333,stroke-width:2px
     style G fill:#4ecdc4,stroke:#333,stroke-width:2px
-```
+{{< /mermaid >}}
 
 目前项目已发展到 **v0.8.1** 版本，主要改进包括：
 

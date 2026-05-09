@@ -13,7 +13,7 @@ description: "GPU 直通后黑屏且部分卡不可用 + 调整 OVMF/PCI hole64/
 - 目标：8 卡 H800 + 4 NVSwitch 直通，单节点 K8s + GPU Operator + Prometheus，可采集 DCGM 指标
 
 ## 故障现象与修复路径
-```mermaid
+{{< mermaid >}}
 flowchart TD
   A[VM 启动 + GPU 直通] --> B[黑屏 / 部分 GPU 无法初始化]
   B --> C[切换 OVMF 非 Secure Boot]
@@ -22,7 +22,7 @@ flowchart TD
   E --> F[8 GPU + NVSwitch 正常]
   F --> G[K8s + GPU Operator + Prometheus]
   G --> H[DCGM 指标验证通过]
-```
+{{< /mermaid >}}
 
 ### 1) 黑屏与 PCI 资源不足
 - 现象：GPU 直通后 VNC 无画面，驱动报 `PCI I/O region invalid`

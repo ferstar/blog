@@ -19,7 +19,7 @@ description: "供应商需远程接入但审计必须静默；用 Teleport + Tai
 
 ### 架构速览
 
-```mermaid
+{{< mermaid >}}
 flowchart LR
   subgraph External[公网用户]
     Vendor[供应商<br/>Web/SSH]
@@ -45,7 +45,7 @@ flowchart LR
   Admin -- SSH 22 --> TSUser[内部 Tailscale 节点]
   TSUser -- Tailscale 隧道 --> ExitNode --> GPU
   Teleport --> Logs
-```
+{{< /mermaid >}}
 
 ---
 

@@ -70,22 +70,6 @@
         {{ partial "related.html" . }}
       </div>
 
-      {{ $translations := .AllTranslations }}
-      {{ with .File }}
-        {{ $path := .Path }}
-        {{ range $translations }}
-          {{ $lang := print "."  .Lang  ".md" }}
-          {{ $path = replace $path $lang ".md" }}
-        {{ end }}
-        {{ $jsPage := resources.Get "js/page.js" }}
-        {{ $jsPage = $jsPage | resources.Minify | resources.Fingerprint (site.Params.fingerprintAlgorithm | default "sha512") }}
-        <script
-          type="text/javascript"
-          src="{{ $jsPage.RelPermalink }}"
-          integrity="{{ $jsPage.Data.Integrity }}"
-          data-oid="views_{{ $path }}"
-          data-oid-likes="likes_{{ $path }}"></script>
-      {{ end }}
     </section>
 
     {{/* Footer */}}
@@ -106,7 +90,7 @@
 {{ end }}
 
 {{ define "SingleAuthor" }}
-  {{ $authorsData := site.Data.authors }}
+  {{ $authorsData := hugo.Data.authors }}
   {{ $taxonomies := site.Taxonomies.authors }}
   {{ $baseURL := site.BaseURL }}
   {{ $taxonomyLink := 0 }}

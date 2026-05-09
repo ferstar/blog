@@ -31,20 +31,20 @@ series: ['AI Coding']
 
 以前我经常看到这种路径：
 
-```mermaid
+{{< mermaid >}}
 flowchart LR
   A[User describes behavior] --> B[Agent guesses keywords]
   B --> C[Reads nearby files]
   C --> D[Edits plausible code]
   D --> E[Verification fails]
   E --> B
-```
+{{< /mermaid >}}
 
 这个循环的问题是，失败后 agent 往往会继续围着同一批错误文件打转。它有修改能力，缺的是更好的候选文件入口。
 
 `ace-wrapper` 想补的是这里：
 
-```mermaid
+{{< mermaid >}}
 flowchart LR
   A[User describes behavior] --> B[ace semantic retrieval]
   B --> C[Candidate files]
@@ -52,7 +52,7 @@ flowchart LR
   D --> E[rg / tests confirm evidence]
   E --> F[Small patch]
   F --> G[Verify]
-```
+{{< /mermaid >}}
 
 这里的关键是顺序：`ace` 只负责找候选文件。真正的证据仍然来自读文件、精确搜索和测试。
 

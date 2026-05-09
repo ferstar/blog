@@ -25,7 +25,7 @@ Windows 资源保护找到了损坏文件但无法修复
 ### 修复逻辑
 为了快速解决问题，建议按照以下优先级进行：
 
-```mermaid
+{{< mermaid >}}
 flowchart TD
     A[SFC 提示无法修复] --> B["运行 DISM /ScanHealth (检查)"]
     B --> C["运行 DISM /RestoreHealth (在线修复)"]
@@ -37,7 +37,7 @@ flowchart TD
     
     style C fill:#f96,stroke:#333
     style G fill:#ff6b6b,stroke:#333
-```
+{{< /mermaid >}}
 
 ---
 

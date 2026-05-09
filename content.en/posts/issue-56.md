@@ -15,7 +15,7 @@ description: "Is your VPS line quality poor? Learn how to use Cloudflare Tunnel 
 ### The Principle
 Use `Cloudflare Tunnel` to map local services to Cloudflare's edge network. VPS with poor connectivity (like Oracle Free Tier) can gain a significant speed boost through CDN edge acceleration.
 
-```mermaid
+{{< mermaid >}}
 graph LR
     User((Client)) -- "WSS Request" --> CF[Cloudflare Edge]
     subgraph "Your Home/VPS"
@@ -25,7 +25,7 @@ graph LR
     style User fill:#f9f,stroke:#333,stroke-width:2px
     style CF fill:#f96,stroke:#333,stroke-width:2px
     style Brook fill:#4ecdc4,stroke:#333,stroke-width:2px
-```
+{{< /mermaid >}}
 
 ### Setup Guide
 

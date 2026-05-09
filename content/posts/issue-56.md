@@ -12,7 +12,7 @@ series: ["Network & Security"]
 #### 原理
 利用 `Cloudflare Tunnel` (原 Argo Tunnels) 将本地服务映射到 Cloudflare 的边缘网络。线路质量欠佳的 VPS（如 Oracle Free Tier 等）能通过 CDN 实现起死回生的加速。
 
-```mermaid
+{{< mermaid >}}
 graph LR
     User((Client)) -- "WSS Request" --> CF[Cloudflare Edge]
     subgraph "Your Home/VPS"
@@ -22,7 +22,7 @@ graph LR
     style User fill:#f9f,stroke:#333,stroke-width:2px
     style CF fill:#f96,stroke:#333,stroke-width:2px
     style Brook fill:#4ecdc4,stroke:#333,stroke-width:2px
-```
+{{< /mermaid >}}
 
 #### 食用方法
 

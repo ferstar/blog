@@ -11,7 +11,7 @@ comments: true
 ### procd 守护逻辑
 OpenWrt 的 `procd` 系统通过以下逻辑管理服务生命周期，重点在于 `respawn` 机制：
 
-```mermaid
+{{< mermaid >}}
 stateDiagram-v2
     [*] --> Start
     Start --> Instance_Init: procd_open_instance
@@ -21,7 +21,7 @@ stateDiagram-v2
     Respawn --> Running: Restart Process
     Running --> Stop: /etc/init.d/tuic stop
     Stop --> [*]
-```
+{{< /mermaid >}}
 
 ### 脚本示例
 将以下内容保存为 `/etc/init.d/tuic`：

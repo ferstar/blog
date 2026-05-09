@@ -16,7 +16,7 @@ description: "Python 内存泄露排查利器！详解 Memray 使用技巧，快
 ### 调优思路
 借助 `memray` 可以清晰直观地展现出项目所有调用的内存使用情况，我们可以按照以下流程进行精准打击：
 
-```mermaid
+{{< mermaid >}}
 graph TD
     A[Cold Start Lag] --> B[Run Memray Tracking]
     B --> C[Generate Flamegraph]
@@ -29,7 +29,7 @@ graph TD
     
     style A fill:#ff6b6b,stroke:#333
     style H fill:#4ecdc4,stroke:#333
-```
+{{< /mermaid >}}
 
 ### 实战操作
 这次使用的是：[memray](https://github.com/bloomberg/memray)，官网介绍很全面了，工具使用起来也是非常简单，我就用了两句：

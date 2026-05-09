@@ -37,7 +37,7 @@ That still works, but it is closer to single-task engineering. Once a task runs 
 
 So I now prefer calling this layer **Harness Engineering**. The focus is to put an engineering track around AI so that tasks are executable, results are verifiable, and failures are recoverable.
 
-```mermaid
+{{< mermaid >}}
 flowchart LR
   A[Task scope] --> B[Context route]
   B --> C[Agent loop]
@@ -45,7 +45,7 @@ flowchart LR
   D --> E[Recovery / memory]
   D -->|failed| F[Patch harness]
   F --> C
-```
+{{< /mermaid >}}
 
 ### The Four Things I Manage First
 
