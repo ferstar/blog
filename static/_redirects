@@ -8,7 +8,7 @@
 /post/build-abyss-on-rocks-cluster6/                                  /posts/build-abyss-on-rocks-cluster6/                                 301
 /post/build-htop-from-source/                                         /posts/build-htop-from-source/                                        301
 /post/build-openwrt-for-hg255d-note/                                  /posts/build-openwrt-for-hg255d-note/                                 301
-/post/build-rtl8192-usb-wireless-drivers-for-nvidia-jetson-tk1-lt4-21-1-and-permanently-disable-the-power-management//posts/build-rtl8192-usb-wireless-drivers-for-nvidia-jetson-tk1-lt4-21-1-and-permanently-disable-the-power-management/301
+/post/build-rtl8192-usb-wireless-drivers-for-nvidia-jetson-tk1-lt4-21-1-and-permanently-disable-the-power-management/ /posts/build-rtl8192-usb-wireless-drivers-for-nvidia-jetson-tk1-lt4-21-1-and-permanently-disable-the-power-management/ 301
 /post/build-snap-aligner-from-source/                                 /posts/build-snap-aligner-from-source/                                301
 /post/bumblebee-installation/                                         /posts/bumblebee-installation/                                        301
 /post/centos-6/                                                       /posts/centos-6/                                                      301
@@ -34,17 +34,17 @@
 /post/django-development-with-docker-compose-and-machine/             /posts/django-development-with-docker-compose-and-machine/            301
 /post/django-logs/                                                    /posts/django-2-logging-pitfalls/                                     301
 /post/download-progressbar/                                           /posts/python-cli-download-progress-bar/                              301
-/post/downloading-data-on-demand-by-using-sra-tool-from-ncbi-database//posts/downloading-data-on-demand-by-using-sra-tool-from-ncbi-database/301
+/post/downloading-data-on-demand-by-using-sra-tool-from-ncbi-database/ /posts/downloading-data-on-demand-by-using-sra-tool-from-ncbi-database/ 301
 /post/e-package-ros-indigo-gazebo-ros-has-no-installation-candidate/  /posts/e-package-ros-indigo-gazebo-ros-has-no-installation-candidate/ 301
 /post/ea6500-v1-flash-dd-wrt/                                         /posts/linksys-ea6500-v1-dd-wrt-flashing-guide/                       301
 /post/elf-cpp685-error-close-has-not-been-declared/                   /posts/elf-cpp685-error-close-has-not-been-declared/                  301
 /post/enabling-public-web-access-to-your-frontend/                    /posts/enabling-public-web-access-to-your-frontend/                   301
 /post/epson-lq-630-communicate-error/                                 /posts/fix-epson-lq-630-communication-error/                          301
 /post/farbox搬家记/                                                      /posts/farbox-migration-experience/                                   301
-/post/fix-an-anki-plugin-bugs-which-was-called-syntax-highlighting-for-code//posts/fix-an-anki-plugin-bugs-which-was-called-syntax-highlighting-for-code/301
+/post/fix-an-anki-plugin-bugs-which-was-called-syntax-highlighting-for-code/ /posts/fix-an-anki-plugin-bugs-which-was-called-syntax-highlighting-for-code/ 301
 /post/fix-surpi-on-biolinux8/                                         /posts/fix-surpi-on-biolinux8/                                        301
 /post/flash-hg25d-steps/                                              /posts/huawei-hg255d-openwrt-flashing-steps/                          301
-/post/fsck-error-on-boot-dev-sda6-unexpected-inconsistency-run-fsck-manually//posts/fsck-error-on-boot-dev-sda6-unexpected-inconsistency-run-fsck-manually/301
+/post/fsck-error-on-boot-dev-sda6-unexpected-inconsistency-run-fsck-manually/ /posts/fsck-error-on-boot-dev-sda6-unexpected-inconsistency-run-fsck-manually/ 301
 /post/generate-all-src-content-into-md/                               /posts/generate-all-src-content-into-md/                              301
 /post/google-search-tips---tricks/                                    /posts/google-search-tips-tricks/                                     301
 /post/google-search-tips--tricks/                                     /posts/google-search-tips-tricks/                                     301
@@ -55,10 +55,10 @@
 /post/hacking-kankun-smart-wifi-plug/                                 /posts/hacking-kankun-smart-wifi-plug/                                301
 /post/hexo2bitcron/                                                   /posts/migrate-hexo-posts-to-bitcron/                                 301
 /post/hg255d-corn-tasks/                                              /posts/setup-cron-tasks-on-hg255d-openwrt/                            301
-/post/how-to-delete-all-old-messages-from-iphone-and-save-storage-space//posts/how-to-delete-all-old-messages-from-iphone-and-save-storage-space/301
+/post/how-to-delete-all-old-messages-from-iphone-and-save-storage-space/ /posts/how-to-delete-all-old-messages-from-iphone-and-save-storage-space/ 301
 /post/how-to-get-the-process-id-to-kill-a-nohup-process/              /posts/how-to-get-the-process-id-to-kill-a-nohup-process/             301
-/post/how-to-install-node-js-8-lts-on-centos-7--debian-8--and-ubuntu-16//posts/how-to-install-node-js-8-lts-on-centos-7-debian-8-and-ubuntu-16/301
-/post/how-to-install-node-js-8-lts-on-centos-7-debian-8-and-ubuntu-16//posts/how-to-install-node-js-8-lts-on-centos-7-debian-8-and-ubuntu-16/301
+/post/how-to-install-node-js-8-lts-on-centos-7--debian-8--and-ubuntu-16/ /posts/how-to-install-node-js-8-lts-on-centos-7-debian-8-and-ubuntu-16/ 301
+/post/how-to-install-node-js-8-lts-on-centos-7-debian-8-and-ubuntu-16/ /posts/how-to-install-node-js-8-lts-on-centos-7-debian-8-and-ubuntu-16/ 301
 /post/how-to-remove-snapd-from-ubuntu-16/                             /posts/how-to-remove-snapd-from-ubuntu-16/                            301
 /post/how-to-upgrade-coreutils-to-latest-version--from-source/        /posts/how-to-upgrade-coreutils-to-latest-version-from-source/        301
 /post/how-to-upgrade-coreutils-to-latest-version-from-source/         /posts/how-to-upgrade-coreutils-to-latest-version-from-source/        301
@@ -221,9 +221,9 @@
 /post/shell正则表达式/                                                     /posts/shell-regex/                                                   301
 /post/simple-setting-tutorial/                                        /posts/tp-link-router-basic-setup-tutorial/                           301
 /post/simplehttpserverwithupload/                                     /posts/simplehttpserverwithupload/                                    301
-/post/solved-cmake-error-your-cxx-compiler--cmake-cxx-compiler-notfound--was-not-found-please-set-cmake-cxx-compiler-to-a-valid-compiler-path-or-name-solved-cmake-error-your-cxx-compiler--cmake-cxx//posts/solved-cmake-error-your-cxx-compiler-cmake-cxx-compiler-notfound-was-not-found-please-set-cmake-cxx-compiler-to-a-valid-compiler-path-or-name-solved-cmake-error-your-cxx-compiler-cmake-cxx/301
-/post/solved-cmake-error-your-cxx-compiler-cmake-cxx-compiler-notfound-was-not-found-please-set-cmake-cxx-compiler-to-a-valid-compiler-path-or-name-solved-cmake-error-your-cxx-compiler-cmake-cxx//posts/solved-cmake-error-your-cxx-compiler-cmake-cxx-compiler-notfound-was-not-found-please-set-cmake-cxx-compiler-to-a-valid-compiler-path-or-name-solved-cmake-error-your-cxx-compiler-cmake-cxx/301
-/post/solved-could-not-find-a-package-configuration-file-provided-by-quot-quot-with-any-of-the-following-names//posts/solved-could-not-find-a-package-configuration-file-provided-by-quot-quot-with-any-of-the-following-names/301
+/post/solved-cmake-error-your-cxx-compiler--cmake-cxx-compiler-notfound--was-not-found-please-set-cmake-cxx-compiler-to-a-valid-compiler-path-or-name-solved-cmake-error-your-cxx-compiler--cmake-cxx/ /posts/solved-cmake-error-your-cxx-compiler-cmake-cxx-compiler-notfound-was-not-found-please-set-cmake-cxx-compiler-to-a-valid-compiler-path-or-name-solved-cmake-error-your-cxx-compiler-cmake-cxx/ 301
+/post/solved-cmake-error-your-cxx-compiler-cmake-cxx-compiler-notfound-was-not-found-please-set-cmake-cxx-compiler-to-a-valid-compiler-path-or-name-solved-cmake-error-your-cxx-compiler-cmake-cxx/ /posts/solved-cmake-error-your-cxx-compiler-cmake-cxx-compiler-notfound-was-not-found-please-set-cmake-cxx-compiler-to-a-valid-compiler-path-or-name-solved-cmake-error-your-cxx-compiler-cmake-cxx/ 301
+/post/solved-could-not-find-a-package-configuration-file-provided-by-quot-quot-with-any-of-the-following-names/ /posts/solved-could-not-find-a-package-configuration-file-provided-by-quot-quot-with-any-of-the-following-names/ 301
 /post/solved-g-internal-compiler-error-killed-program-cc1plus/        /posts/solved-g-internal-compiler-error-killed-program-cc1plus/       301
 /post/some-questions-about-the-router/                                /posts/huawei-hg255d-router-common-issues-fix/                        301
 /post/speed-up-snap-with-proxy/                                       /posts/speed-up-snap-with-proxy/                                      301
@@ -231,9 +231,9 @@
 /post/start-virtualbox-vm-in-headless-mode/                           /posts/start-virtualbox-vm-in-headless-mode/                          301
 /post/static-ip-setup-on-arch-linux-arm/                              /posts/static-ip-setup-on-arch-linux-arm/                             301
 /post/swapfaq/                                                        /posts/swapfaq/                                                       301
-/post/the-grub-efi-amd64-signed-package-failed-to-install-into-target//posts/fix-uefi-biolinux-grub-install-error/                          301
+/post/the-grub-efi-amd64-signed-package-failed-to-install-into-target/ /posts/fix-uefi-biolinux-grub-install-error/ 301
 /post/toolsm4compile-error-2-solved/                                  /posts/toolsm4compile-error-2-solved/                                 301
-/post/troubleshooting-issues-with-surpi-pipeline-for-pathogen-identification-from-complex-metagenomic-ngs-data//posts/troubleshooting-issues-with-surpi-pipeline-for-pathogen-identification-from-complex-metagenomic-ngs-data/301
+/post/troubleshooting-issues-with-surpi-pipeline-for-pathogen-identification-from-complex-metagenomic-ngs-data/ /posts/troubleshooting-issues-with-surpi-pipeline-for-pathogen-identification-from-complex-metagenomic-ngs-data/ 301
 /post/ubuntu-16-04-change-timezone-setting/                           /posts/ubuntu-16-04-change-timezone-setting/                          301
 /post/ubuntu-18-04-set-up-shadowsocks-server-with-fail2ban/           /posts/ubuntu-shadowsocks-fail2ban-setup/                             301
 /post/ubuntu-backupyoursystemtar/                                     /posts/ubuntu-backupyoursystemtar/                                    301
