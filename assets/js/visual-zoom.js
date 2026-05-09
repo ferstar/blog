@@ -5,6 +5,7 @@
   var MERMAID_SELECTOR = ".article-content pre.mermaid svg";
   var MAX_SCALE = 8;
   var MIN_SCALE = 0.35;
+  var DEFAULT_SCALE = 2;
   var ZOOM_STEP = 1.22;
   var observerTimer = 0;
 
@@ -191,7 +192,7 @@
   }
 
   function resetView() {
-    state.scale = 1;
+    state.scale = DEFAULT_SCALE;
     state.x = 0;
     state.y = 0;
     applyTransform();
