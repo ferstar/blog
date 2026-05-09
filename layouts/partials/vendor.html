@@ -13,6 +13,7 @@
   {{ $mermaidJS := slice $mermaidLib $mermaidConfig | resources.Concat "js/mermaid.bundle.js" | resources.Fingerprint (.Site.Params.fingerprintAlgorithm | default "sha512") }}
   <script
     defer
+    data-cfasync="false"
     type="text/javascript"
     src="{{ $mermaidJS.RelPermalink }}"
     integrity="{{ $mermaidJS.Data.Integrity }}"></script>
