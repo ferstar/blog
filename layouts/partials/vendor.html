@@ -2,8 +2,11 @@
 {{ $jqueryLib := resources.Get "lib/jquery/jquery.slim.min.js" | resources.Fingerprint (.Site.Params.fingerprintAlgorithm | default "sha512") }}
 <script src="{{ $jqueryLib.RelPermalink }}" integrity="{{ $jqueryLib.Data.Integrity }}"></script>
 
-{{/* Mermaid - support both shortcode and code block */}}
-{{ if or (.Page.HasShortcode "mermaid") (.Page.Store.Get "hasMermaid") }}
+{{/* Mermaid - support shortcode and fenced code blocks. This partial runs in
+     <head>, before render-codeblock-mermaid.html can set Page.Store. */}}
+{{ $rawContent := .Page.RawContent | default "" }}
+{{ $hasMermaidFence := gt (len (findRE "(?mi)^(?:```|~~~)mermaid(?:[[:space:]]|$)" $rawContent)) 0 }}
+{{ if or (.Page.HasShortcode "mermaid") (.Page.Store.Get "hasMermaid") $hasMermaidFence }}
   {{ $mermaidLib := resources.Get "lib/mermaid/mermaid.min.js" }}
   {{ $mermaidConfig := resources.Get "js/mermaid.js" }}
   {{ $mermaidConfig := $mermaidConfig | resources.Minify }}
