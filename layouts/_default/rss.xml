@@ -31,7 +31,7 @@
       {{- end -}}
     </description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>{{ site.LanguageCode }}</language>{{ with .Site.Params.Author.email }}
+    <language>{{ site.Language.Locale | default site.Language.Lang }}</language>{{ with .Site.Params.Author.email }}
     <managingEditor>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</managingEditor>{{end}}{{ with .Site.Params.Author.email }}
     <webMaster>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</webMaster>{{end}}
     {{ if .Site.Params.footer.showCopyright | default true -}}

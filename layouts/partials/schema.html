@@ -5,7 +5,7 @@
     "@id" (site.Home.Permalink | safeURL)
     "name" (.Site.Title | emojify)
     "url" (site.Home.Permalink | safeURL)
-    "inLanguage" (.Site.LanguageCode | default "zh-cn")
+    "inLanguage" (.Site.Language.Locale | default .Site.Language.Lang | default "zh-cn")
     "publisher" (dict "@type" "Person" "name" .Site.Params.Author.name)
   -}}
   {{- with .Site.Params.description -}}
@@ -22,7 +22,7 @@
     "articleSection" ((site.GetPage .Section).Title | default "Posts")
     "name" .Title
     "headline" .Title
-    "inLanguage" (.Site.LanguageCode | default "zh-cn")
+    "inLanguage" (.Site.Language.Locale | default .Site.Language.Lang | default "zh-cn")
     "url" .Permalink
     "author" (dict "@type" "Person" "name" .Site.Params.Author.name)
     "mainEntityOfPage" "true"

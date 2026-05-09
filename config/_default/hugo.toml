@@ -1,7 +1,7 @@
 baseURL = "https://blog.ferstar.org/"
 title = "Code is cheap, let's talk"
 theme = "blowfish"
-languageCode = "zh-CN"
+locale = "zh-CN"
 defaultContentLanguage = "zh-cn"
 hasCJKLanguage = true
 defaultContentLanguageInSubdir = false
