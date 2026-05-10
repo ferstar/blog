@@ -5,29 +5,32 @@ date: "2023-01-29T02:08:34+08:00"
 tags: ['Linux', 'Rust']
 comments: true
 showTableOfContents: true
-description: "在 Linux 上找回 macOS 丝滑的“三指拖拽”体验！基于 Rust 实现的高性能 libinput 手势增强方案，支持 X11 与 Wayland，CPU 占用不到 1% 且配置灵活。"
+description: "Linux 触控板缺少 macOS 那种顺手的三指拖拽；用 Rust + libinput 直接处理手势，并分别适配 X11/Wayland；最终做到低延迟、低占用、可配置。"
 series: ["Linux Experience"]
 ---
-转用 Linux 后一直都比较怀念 macOS 上丝滑的**三指拖拽**效果，鉴于近几年出的 Windows 本子触控板面积以及跟手性肉眼可见的改善了很多，我觉得是时候在 Linux 上折腾下**触控板手势**了。
 
-After switching to Linux, I've been missing the smooth **three-finger drag** experience from macOS. Given that recent Windows laptops have significantly improved touchpad size and responsiveness, I decided it was time to tackle **touchpad gestures** on Linux.
+转用 Linux 之后，我一直惦记 macOS 上那个很顺手的三指拖拽。以前很多 Linux 本子的触控板实在一言难尽，折腾手势多少有点自找罪受。这几年 Windows 本子的触控板终于像个正经外设了，面积、跟手性都上来了，于是又动了这个念头。
 
----
+目标很简单：在 Linux 上做一个能长期挂着用的三指拖拽。不要卡，不要疯狂 fork，不要一拖窗口 CPU 就起飞。
 
-## 调研与选型 / Research and Selection
+## 先看实现路线
 
-基本上就是两种实现思路：
+这类工具大概有两条路：
 
-1. 解析 `libinput debug-events` 输出，判断手势进而借用类似 `xdotool` 之类的工具发送具体的键盘组合或者鼠标点击或位移指令。
-2. 直接调用 `libinput` API，明显此方法性能最优。
+1. 解析 `libinput debug-events` 输出，识别手势后再调用 `xdotool` 之类的工具去发键盘、鼠标事件。
+2. 直接调用 `libinput` API，在事件层处理手势。
 
----
+第一种写起来快，脚本味也重。问题是拖拽这种动作会持续产生位移事件，如果每一小段都靠 shell 命令或者外部进程去转发，体验很难好。第二种麻烦一点，但性能和延迟都更像正路。
 
-## 实现方案 / Implementation Approach
+所以最后我选了 Rust。
 
-我选择了一个 Rust [实现](https://github.com/riley-martin/gestures)开抄，负责实现 API 级别的触控手势识别，然后缝合了另一个 Rust [实现](https://github.com/marsqing/libinput-three-finger-drag)，负责实现 API 级别的**拖拽**效果。
+## 缝了两个 Rust 实现
 
-### 架构逻辑 / Architectural Logic
+一开始没打算从零写。先拿 [riley-martin/gestures](https://github.com/riley-martin/gestures) 做手势识别基础，再参考 [marsqing/libinput-three-finger-drag](https://github.com/marsqing/libinput-three-finger-drag) 处理三指拖拽。最后缝成了这个 fork：
+
+[ferstar/gestures](https://github.com/ferstar/gestures)
+
+大体链路是这样：
 
 {{< mermaid >}}
 graph TD
@@ -43,70 +46,65 @@ graph TD
     style G fill:#4ecdc4,stroke:#333,stroke-width:2px
 {{< /mermaid >}}
 
-目前项目已发展到 **v0.8.1** 版本，主要改进包括：
+现在项目已经到 **v0.8.1**，主要补了这些东西：
 
-- **双平台支持**：同时支持 X11 和 Wayland（自动检测）
-- **性能优化**：
-  - X11 直接使用 libxdo API，延迟最小
-  - Wayland 优化 ydotool 集成，60 FPS 节流
-  - 4 线程池防止 PID 耗尽
-  - 正则缓存（once_cell::Lazy）
-  - 事件缓存（1秒）减少配置查找
+- X11 / Wayland 自动检测
+- X11 下直接走 libxdo API，少一层外部命令
+- Wayland 下接 ydotool，并做了 60 FPS 节流
+- 线程池限制并发，避免极端情况下 PID 被打爆
+- 正则缓存和事件缓存，减少重复配置查找
 
----
+## 实际表现
 
-## 性能表现 / Performance Metrics
+我最关心的还是拖拽手感和资源占用。
 
-1. **CPU 占用极低**
-   - 极限情况：疯狂三指拖拽某窗口，本 fork 实现 CPU 占用不到 1%
-   - 原实现 5~10%
-   - Python、Ruby 等实现 20%+
+极端一点测试，疯狂三指拖拽窗口，本实现 CPU 基本压在 1% 以内。原始实现大概 5%~10%，一些 Python/Ruby 方案能到 20%+。这类常驻小工具，平时存在感越低越好，最好像没运行一样。
 
-2. **资源占用**
-   - 内存占用不到 5MB
-   - 程序体积不到 2MB
-   - 无多余依赖
+资源也比较克制：
 
----
+- 内存占用不到 5MB
+- 二进制不到 2MB
+- 没有一串额外 runtime 依赖
 
-## 安装使用 / Installation & Usage
+拖拽速度可以通过 `acceleration` 调，抬手后继续保持 mouse down 的时间可以通过 `mouse_up_delay` 调。这个延迟很关键，不然手指稍微离开一下，窗口就掉了，体验会很割裂。
 
-### 依赖安装 / Install Dependencies
+## 安装依赖
 
-**Ubuntu/Debian:**
+Ubuntu / Debian：
+
 ```bash
 sudo apt install libudev-dev libinput-dev libxdo-dev xdotool
 # Wayland 需要额外安装
 sudo apt install ydotool
 ```
 
-**Arch Linux:**
+Arch Linux：
+
 ```bash
 sudo pacman -S libinput xdotool
 # Wayland
 yay -S ydotool
 ```
 
-### 安装程序 / Install Binary
+## 安装 gestures
 
-**方法 1：直接下载预编译二进制**
+直接下载预编译二进制：
+
 ```bash
-# 从 Releases 下载最新版本
 wget https://github.com/ferstar/gestures/releases/latest/download/gestures
 chmod +x gestures
 sudo mv gestures /usr/local/bin/
 ```
 
-**方法 2：Cargo 安装**
+或者从源码装：
+
 ```bash
 cargo install --git https://github.com/ferstar/gestures.git
 ```
 
----
+## 配置
 
-## 配置说明 / Configuration
-
-配置文件使用 KDL 格式，示例：
+配置文件用 KDL。比如三指拖拽加一个四指切换工作区：
 
 ```kdl
 // 三指拖拽（X11 & Wayland 通用）
@@ -123,11 +121,9 @@ gesture "switch-workspace-up" swipe up {
 }
 ```
 
----
+## 运行
 
-## 运行程序 / Running the Program
-
-### Systemd 服务（推荐）/ Systemd Service (Recommended)
+推荐装成 user systemd service：
 
 ```bash
 # 安装服务文件
@@ -137,27 +133,21 @@ gestures install-service
 systemctl --user enable --now gestures
 ```
 
----
+如果启动时报权限问题，通常是当前用户没有读取输入设备的权限，加入 `input` 组：
 
-## 常见问题 / Common Issues
-
-### 权限问题 / Permission Issues
-需要将用户加入 `input` 组：
 ```bash
 sudo usermod -aG input $USER
 ```
 
----
+重新登录后再试。
 
-## 项目链接 / Project Links
+## 链接
 
-- **GitHub**: https://github.com/ferstar/gestures
-- **最新发布**: https://github.com/ferstar/gestures/releases
-- **问题反馈**: https://github.com/ferstar/gestures/issues
+- GitHub: https://github.com/ferstar/gestures
+- Releases: https://github.com/ferstar/gestures/releases
+- Issues: https://github.com/ferstar/gestures/issues
 
----
-
-**Enjoy!**
+这玩意儿属于典型的“用上之后就不想再回去”的小工具。Linux 桌面体验很多时候差的就是这些细碎地方，单独看都不大，天天用就很烦。能补一个算一个吧。
 
 ```js
 NOTE: I am not responsible for any expired content.
