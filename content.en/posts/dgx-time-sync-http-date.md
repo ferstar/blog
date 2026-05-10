@@ -1,40 +1,36 @@
 ---
-title: "Who Would've Thought: Still Using Crontab + HTTP Header for Time Sync in 6202"
+title: "Who would have thought: still using crontab + HTTP Header for time sync in 6202"
 slug: "crontab-http-header-time-sync"
 date: "2026-01-22T14:30:00+08:00"
 tags: ["time-sync","teleport","prometheus","ops","troubleshooting"]
-description: "Isolated environment blocked UDP, NTP failed, Prometheus reported 38-second time drift, Teleport handshake failed. Ended up manually syncing clocks via HTTP Date Header + Crontab."
+description: "An isolated network blocked UDP, NTP/chrony could not sync time, Prometheus reported a 38-second drift, and Teleport handshakes failed; HTTP Date Header plus crontab pulled the nodes back into a usable range."
 ---
 
 > I am not a native English speaker; this article was translated by AI.
 
-## Here's What Happened
+## What happened
 
-January 21, 2026. target cluster triggered alerts.
+On January 21, 2026, the target cluster started alerting.
 
-Prometheus error: `Warning: Error fetching server time: Detected 38.116000175476074 seconds time difference between your browser and the server.` 38 seconds—not huge, not tiny—but enough to break Teleport's security handshake.
+Prometheus first showed a clock drift warning: `Warning: Error fetching server time: Detected 38.116000175476074 seconds time difference between your browser and the server.`
 
-Worse, target02 went completely dark—Teleport handshake failed, SSH unreachable.
+38 seconds does not sound like much. For Prometheus queries, it is enough to break charts. For something like Teleport, with security checks in the handshake path, it is even worse. target02 was already unreachable at that point: Teleport handshake failed, and SSH was gone with it.
 
-## Troubleshooting Journey
+## Checking the network first
 
-### Step 1: Suspected Network Issues
-
-Probed jump host connectivity from target01:
+The first suspect was still the network. I tested reachability from target01 to the jump host:
 
 ```bash
-# TCP scan (OK)
+# TCP scan, OK
 for port in 22 80 8888; do nc -zv -w 2 100.64.0.5 $port; done
 
-# UDP scan (something's off)
-nc -uvz -w 2 100.64.0.5 8888  # shows success, but no return packets
+# UDP scan, looks OK at first glance, but no packets come back
+nc -uvz -w 2 100.64.0.5 8888
 ```
 
-TCP works. UDP looks like it works but packets vanish. Anyone who's dealt with isolated environments knows what that means.
+TCP was fine. UDP looked suspicious. `nc -u` can easily make this look "connected" when nothing useful actually reached the other side, so I had to capture packets.
 
-### Step 2: Packet Capture Confirmed
-
-Started packet capture on jump host (jump-host) while sending UDP from target01:
+I started tcpdump on the jump host and sent one UDP packet from target01:
 
 ```bash
 # jump-host
@@ -44,65 +40,64 @@ sudo tcpdump -i any udp port 8888 -n
 nc -u 100.64.0.5 8888 <<< "test"
 ```
 
-Result: Jump host captured zero UDP packets. UDP blocked at network layer.
+The jump host saw nothing. That was enough to confirm UDP was blocked somewhere in the isolated network.
 
-### Step 3: Checked Proxy Configuration
+I also checked port 8888 while I was there:
 
 ```bash
 curl -v http://100.64.0.5:8888
-# Response: < Proxy-Agent: gost/2.12.0
+# < Proxy-Agent: gost/2.12.0
 ```
 
-Port 8888 runs gost proxy, but it's TCP-only. UDP? Not welcome here.
+That port was a gost proxy, mostly for TCP tunnels. UDP was not wired through it, so it was not going to keep NTP alive.
 
-## The Real Culprit: Clock Drift
+## It came down to clock drift
 
-After circling back, the root cause surfaced—target node clocks were way off:
+After all that, the actual issue was still clock drift:
 
-- **target01**: ~38 seconds behind, Prometheus charts had gaps and query offsets
-- **target02**: Worse drift, Teleport security check failed immediately
+- target01 was about 38 seconds behind, enough to make Prometheus queries and charts go weird.
+- target02 had drifted further, and Teleport rejected the handshake outright.
 
-No NTP available (isolated environment, UDP port 114 won't pass). chrony was spinning wheels doing nothing.
+NTP could not get out of the isolated environment. chrony was running, but only in the sense that it was repeatedly failing. The normal path was dead, so I needed something reachable inside the environment that could still act as a time reference.
 
-## Solution: HTTP Date Header Manual Sync
+The jump host's port 80 was reachable, and HTTP responses have a `Date` header.
 
-### Step 1: Disable Broken chrony
+## Using HTTP Date to recover first
+
+I stopped chrony first so it would not keep fighting the manual correction:
 
 ```bash
 systemctl stop chronyd
 systemctl disable chronyd
 ```
 
-### Step 2: Manually Align Clock
-
-The jump host's port 80 HTTP response has a `Date` field in the header. Precision is only to the second, but better than nothing:
+Then I pulled `Date` from the jump host's HTTP header and fed it straight into `date -s`:
 
 ```bash
-# Extract Date from HTTP header and set system time
 HTTP_DATE=$(curl -sI http://100.64.0.5 | grep -i "^Date:" | cut -d" " -f2-)
 [ -n "$HTTP_DATE" ] && date -s "$HTTP_DATE"
 ```
 
-You read that right. In 2026, I'm syncing clocks with `curl` + `date -s`. Last time I did this was on OpenWrt, over a decade ago.
+It is crude. Precision is only seconds. But the goal at that moment was not elegance; it was getting Teleport back within handshake tolerance. After running it, the Prometheus clock drift warning cleared, and target02 became reachable again.
 
-### Step 3: Persist with Crontab
+Yes, it is 2026 and I am still syncing clocks with `curl` + `date -s`. The last time I remember doing this was probably on OpenWrt.
 
-Configure hourly sync on target01 and target02:
+## Making it stick with crontab
+
+After the quick recovery, I still needed to stop the nodes from drifting again. I put the same sync into crontab and ran it hourly:
 
 ```bash
 (crontab -l 2>/dev/null; echo '0 * * * * HTTP_DATE=$(curl -sI http://100.64.0.5 | grep -i "^Date:" | cut -d" " -f2-) && [ -n "$HTTP_DATE" ] && date -s "$HTTP_DATE"') | crontab -
 ```
 
-## Takeaways
+It is not pretty, but it works well enough in this environment. It only needs HTTP. As long as the jump host is reachable, the nodes stay within an acceptable time window.
 
-1. **No NTP in isolated environments is common**. When UDP is blocked, HTTP is the fallback channel.
+## Notes for next time
 
-2. **Non-standard ports are traps**. Port 8888 is configured in gost, but target clients don't have the tunnel config, so direct UDP access is doomed.
+A few things worth writing down:
 
-3. **Prometheus is extremely sensitive to time drift**. Time sync robustness matters more than you'd think in large clusters.
+1. Do not assume NTP works in isolated networks. Once UDP 123 is blocked, chrony can look alive while syncing nothing.
+2. Do not trust `nc -u` too much. UDP has no handshake, so a success message does not mean the remote side received anything.
+3. Prometheus and Teleport are both sensitive to clock drift. A few dozen seconds can easily create symptoms that look like network failures.
 
----
-
-Looking back at this whole flow: disable chrony → curl HTTP header → date set → crontab schedule. The whole chain reeks of "make it work" pragmatism.
-
-Next isolated environment deployment, maybe I should wrap HTTP Date sync into a systemd timer? Sounds like a plan.
+If I deploy into a similar environment again, I will probably turn this HTTP Date sync into a small systemd timer. crontab is fine for firefighting; long term, it deserves something slightly less feral.
