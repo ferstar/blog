@@ -8,33 +8,39 @@ description: "A low-memory VPS struggles after migration; use XanMod, kernel/mem
 
 > I am not a native English speaker; this article was translated by AI.
 
-This guide records the migration process and optimization details from an old DigitalOcean host (Ubuntu 20.04) to a new host (Debian 13 + XanMod).
+This is a plain migration note: moving from an old DigitalOcean host (Ubuntu 20.04) to a new one (Debian 13 + XanMod).
 
-It all started when I realized my $6/mo instance (1GB RAM / 20GB DISK / 1TB BW) was idle most of the time. To follow the belt-tightening trend, I moved to the $4/mo plan (512MB RAM / 10GB DISK / 500GB BW), cutting the cost by a solid third.
+The reason was also plain. My old $6/mo instance (1GB RAM / 20GB DISK / 1TB BW) was idle most of the time, and the blog had already moved to Cloudflare Pages, the reliable “cyber bodhisattva” in the corner. So I downgraded the Droplet to the $4/mo plan (512MB RAM / 10GB DISK / 500GB BW). Saving two dollars a month is not life-changing, but for this kind of tinkering, saving anything still feels like a win.
 
-Now that my blog is hosted on "Cyber Bodhisattva" (Cloudflare Pages), this 512MB droplet has been relieved of its heavy lifting. It now serves as a backup proxy and a dormant WeChat public account backend. Even though the RAM is cut in half, after some serious performance squeezing, the little machine still runs rock-solid.
+After the downgrade, this little VPS mainly runs a backup proxy and a half-asleep WeChat public account backend. 512MB RAM is not generous, so I also cleaned up the kernel, memory settings, Nginx port multiplexing, and certificate renewal while migrating.
 
-## 1. Basic Environment
+## 1. Basic environment
+
 - **Source Host**: DigitalOcean Ubuntu 20.04 (IP hidden)
 - **Target Host**: DigitalOcean Debian 13 Trixie (IP hidden)
 - **Reserved IP**: Attached to the new host for DNS resolution.
 - **Hostname / PTR**: `ferstar.org` (automatically triggered by renaming the DigitalOcean Droplet).
 
-## 2. Kernel and Memory Optimization (Kernel 6.18+)
+## 2. Kernel and memory tuning (Kernel 6.18+)
 
 ### 2.1 Upgrade to XanMod Edge
-Install a kernel with BBRv3 and the latest scheduling features:
+
+For BBRv3 and newer scheduler features, I went straight to XanMod Edge:
+
 ```bash
 wget -qO - https://dl.xanmod.org/archive.key | gpg --dearmor | tee /usr/share/keyrings/xanmod-archive-keyring.gpg > /dev/null
 echo 'deb [signed-by=/usr/share/keyrings/xanmod-archive-keyring.gpg] http://deb.xanmod.org releases main' | tee /etc/apt/sources.list.d/xanmod-kernel.list
 apt update && apt install linux-xanmod-edge-x64v3 -y
 ```
-Note: `linux-xanmod-edge-x64v3` requires a CPU that supports the x86-64-v3 instruction set. If not supported, use `linux-xanmod-edge-x64v2` or `linux-xanmod-edge-x64`.
 
-### 2.2 Memory Squeezing and Persistence (zswap + MGLRU + KSM)
-An extreme tuning set for 512MB RAM. Since some kernel parameters do not support direct persistence via `sysctl`, they are forced at boot via `crontab`'s `@reboot`:
+`linux-xanmod-edge-x64v3` requires x86-64-v3 CPU support. If the VPS does not support it, use `linux-xanmod-edge-x64v2` or `linux-xanmod-edge-x64` instead. No need to be heroic here.
 
-**Persistence Commands (`crontab -e`):**
+### 2.2 The small-memory set: zswap + MGLRU + KSM
+
+With only 512MB RAM, there is not much headroom, so the kernel needs a little help. I enabled MGLRU, KSM, and the zswap shrinker. Some of these parameters are awkward to persist through `sysctl`, so I put them in `crontab` with `@reboot`. Crude, but easy to inspect later.
+
+**Persistence commands (`crontab -e`):**
+
 ```bash
 # Enable all MGLRU optimization tiers to significantly reduce OOM risk under low memory
 @reboot echo 7 > /sys/kernel/mm/lru_gen/enabled
@@ -46,15 +52,17 @@ An extreme tuning set for 512MB RAM. Since some kernel parameters do not support
 @reboot echo Y > /sys/module/zswap/parameters/shrinker_enabled
 ```
 
-**Other Parameters:**
+Other settings:
+
 - **zswap**: Enabled memory compression cache, currently using the **lzo** algorithm.
 - **Swap**: 1GB physical file as a fallback.
 
-## 3. Network Architecture: All-in-One Port 443 Multiplexing (SNI Proxy)
+## 3. Port 443 multiplexing (SNI proxy)
 
-Using the `stream` module of Nginx 1.29.4 (Mainline) to implement domain-based traffic steering:
+Fewer exposed ports usually means less daily noise. Here I use the `stream` module from Nginx 1.29.4 (Mainline) to route traffic by SNI. Unknown traffic falls back to SSH.
 
-### 3.1 Nginx Global Configuration (`/etc/nginx/nginx.conf`)
+### 3.1 Nginx global config (`/etc/nginx/nginx.conf`)
+
 ```nginx
 stream {
     map $ssl_preread_server_name $stream_map {
@@ -74,20 +82,24 @@ stream {
 }
 ```
 
-### 3.2 Architectural Advantages
-- **Minimal Firewall**: Only one port 443 needs to be exposed to the outside to carry multiple protocols (HTTP/SSH/Proxy).
-- **Security**: Hides sensitive ports like SSH (22), effectively countering brute-force scanning.
-- **Protocol Coexistence**: True protocol steering without affecting standard HTTPS access, bypassing strict network environments.
+The benefits are straightforward:
 
-### 3.3 Async IO Optimization
-Enable thread-pool async IO in the `http` block to prevent large file read/write from blocking the main process:
+- the firewall only needs 80/443 exposed, so the rules stay clean
+- SSH is not directly exposed on port 22, which cuts down scan noise
+- HTTPS, SSH, and proxy services can share one entry point, which is handy on awkward networks
+
+### 3.2 Async IO tuning
+
+File serving still runs on this box, so I enabled thread-pool async IO in the `http` block to keep large file reads and writes from blocking workers:
+
 - `aio threads;`
 - `thread_pool default threads=32 max_queue=65536;`
 - `directio 4m;`
 
-## 4. Firewall Configuration (UFW)
+## 4. Firewall config (UFW)
 
-Use a minimal port-opening strategy, closing inbound port 22 (replaced by 443 forwarding):
+Inbound 22 is closed and handled through the 443 stream fallback. The rules are intentionally boring:
+
 ```bash
 ufw reset
 ufw default deny incoming
@@ -99,23 +111,31 @@ ufw allow 18443:18445/udp  # For proxy services
 ufw enable
 ```
 
-## 5. Let's Encrypt Wildcard Certificate Management
+## 5. Let's Encrypt wildcard certificate
 
-### 5.1 DNS Verification Configuration (Cloudflare)
-The wildcard certificate (`*.ferstar.org`) uses the `dns-cloudflare` plugin for automatic renewal.
+### 5.1 DNS validation (Cloudflare)
+
+The wildcard certificate (`*.ferstar.org`) is renewed through the `dns-cloudflare` plugin.
+
 - **Credential File**: `/root/certbot-creds.ini` (contains CF API Token).
 - **Plugin Installation**: `apt install python3-certbot-dns-cloudflare -y`.
 
-### 5.2 Auto-renewal
-Renewal configuration is located at `/etc/letsencrypt/renewal/ferstar.org.conf`:
+### 5.2 Post-renewal hook
+
+The renewal config lives at `/etc/letsencrypt/renewal/ferstar.org.conf`. After a certificate update, reload Nginx and restart the containers that use the certificate:
+
 ```bash
 post_hook = systemctl reload nginx && docker restart hysteria hysteria2 tuic-server
 ```
 
-## 6. Application Configuration Templates
+## 6. Application config templates
+
+These templates are not trying to be a clever abstraction. They are here so the next migration has something concrete to compare against.
 
 ### 6.1 Hysteria v1
+
 **`docker-compose.yml`**
+
 ```yaml
 services:
   hysteria:
@@ -132,7 +152,9 @@ services:
     ports: ["18443:443/udp"]
     sysctls: {net.ipv4.tcp_congestion_control: bbr}
 ```
+
 **`config.json`**
+
 ```json
 {
   "listen": ":443",
@@ -145,7 +167,9 @@ services:
 ```
 
 ### 6.2 Hysteria v2
+
 **`docker-compose.yml`**
+
 ```yaml
 services:
   hysteria2:
@@ -162,7 +186,9 @@ services:
     ports: ["18445:443/udp"]
     sysctls: {net.ipv4.tcp_congestion_control: bbr}
 ```
+
 **`config.yaml`**
+
 ```yaml
 listen: :443
 tls:
@@ -177,7 +203,9 @@ bandwidth:
 ```
 
 ### 6.3 TUIC v5
+
 **`docker-compose.yml`**
+
 ```yaml
 services:
   tuic:
@@ -192,7 +220,9 @@ services:
       - ./config.json:/etc/tuic/config.json:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
 ```
+
 **`config.json`**
+
 ```json
 {
     "server": "[::]:443",
@@ -208,7 +238,9 @@ services:
 ```
 
 ### 6.4 Filebrowser
+
 **`docker-compose.yml`**
+
 ```yaml
 services:
   filebrowser:
@@ -225,3 +257,7 @@ services:
     command: ["--address", "0.0.0.0", "--port", "80", "--database", "/database.db", "--root", "/srv"]
     restart: unless-stopped
 ```
+
+## Closing notes
+
+There is nothing deep about this migration. The main idea was to rethink what the old VPS still needed to do: let Cloudflare Pages handle the blog, keep only the small services on the VPS, expose fewer ports, and squeeze memory where it is safe to do so. 512MB is still tight, but for these lightweight jobs it is enough.

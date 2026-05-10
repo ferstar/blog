@@ -9,17 +9,17 @@ description: "Vendors need access while audits must stay silent; use Teleport + 
 
 > I am not a native English speaker; this article was translated by AI.
 
-Several DGX H800 nodes sit in a private network, and vendors occasionally need remote debugging access. The goals are clear:
+There are several DGX H800 nodes in a private network. They are not public-facing, but vendors occasionally need remote access for troubleshooting. The requirements sound simple, until network paths and auditing get involved:
 
-1. Vendors must be able to connect and work.
-2. Full session recording/auditing is required, but it should be "silent" (vendors shouldn't know they are being recorded).
-3. Our internal team needs a privileged channel to bypass the bastion host and connect directly.
+1. Vendors need to connect and do their work.
+2. Sessions must be fully recorded, but the audit entry points should not be exposed to them.
+3. Our own team still needs a direct path, without going through the bastion every single time.
 
-Final setup: **Teleport** for the bastion and auditing, **Tailscale** for internal connectivity and the ops bypass path. Below are the pitfalls and key configs.
+The final setup is Teleport for bastion access and auditing, plus Tailscale for internal connectivity and an ops bypass path. These are the bits that tripped me up, recorded here so I do not step on the same rake again.
 
 ---
 
-### Architecture at a Glance
+### The rough shape
 
 {{< mermaid >}}
 flowchart LR
@@ -51,9 +51,11 @@ flowchart LR
 
 ---
 
-### Pitfall 1: Too Many Ports
+### First, collapse the ports
 
-Teleport defaults to opening several ports (3022-3080), which makes firewall rules painful. **Multiplexing** collapses it to a single port:
+Teleport uses a range of ports by default, roughly 3022-3080. That is fine in a small test, but once Nginx, Docker, and cloud firewall rules join the party, it becomes annoying fast.
+
+Multiplexing lets HTTPS, SSH, and tunnel traffic share port 3080:
 
 ```yaml
 # teleport.yaml
@@ -61,13 +63,13 @@ auth_service:
   proxy_listener_mode: multiplex
 ```
 
-This uses ALPN to identify traffic types (HTTPS/SSH/Tunnel), all flowing through port 3080. One port is enough.
+It uses ALPN to distinguish traffic types. The practical win is boring but useful: only one public-facing port to reason about.
 
 ---
 
-### Pitfall 2: Agent Installation Failures in Isolated Nodes
+### Installing the Agent in an isolated network: put the proxy in the repo file
 
-Installing the Teleport Agent on isolated GPU nodes requires a proxy. `yum`/`dnf` failed with certificate errors. The fix was to explicitly configure the proxy in the repo file:
+The GPU nodes cannot reach the internet directly, so installing the Teleport Agent needs a proxy. I first configured the system proxy and still got certificate errors from `yum`/`dnf`. The missing piece was setting the proxy explicitly in the repo file:
 
 ```ini
 # /etc/yum.repos.d/teleport.repo
@@ -75,11 +77,13 @@ Installing the Teleport Agent on isolated GPU nodes requires a proxy. `yum`/`dnf
 proxy=http://[Bastion_VIP]:8888
 ```
 
+This is not a glamorous problem, but it eats time. The error looks like TLS trouble, while the real issue is that the package manager is not using the proxy path you think it is using.
+
 ---
 
-### Pitfall 3: WebSocket Disconnections
+### Web Terminal disconnects immediately? Check Nginx WebSocket handling
 
-When using Nginx to reverse proxy the Teleport Web Terminal, the page loads but the terminal disconnects immediately. Three Nginx settings are mandatory:
+When Nginx reverse-proxied the Teleport Web Terminal, the page loaded but the terminal disconnected as soon as it opened. These settings ended up being the minimum stable set:
 
 ```nginx
 proxy_pass https://127.0.0.1:3080;  # MUST use https
@@ -89,15 +93,17 @@ proxy_set_header Upgrade $http_upgrade;
 proxy_set_header Connection "upgrade";
 ```
 
+The `https` in `proxy_pass` is easy to overlook. The UI loading successfully does not mean the terminal channel is healthy.
+
 ---
 
-### Pitfall 4: Docker Ports Bypassing iptables
+### Docker mapped ports may skip the INPUT chain you trusted
 
-This is the most dangerous one. Ports mapped by Docker bypass the `INPUT` chain and go straight through `DOCKER-USER`. My previous rules were useless, leaving 3080 wide open to the public internet.
+This was the scary one. I had written restrictions in the `INPUT` chain and assumed 3080 was internal-only. Docker-published ports enter through `DOCKER-USER`, so those old rules were mostly useless. Port 3080 was still exposed to the public internet.
 
-Note: `-F` flushes the `DOCKER-USER` chain. In production, back it up first or use `-I` to insert.
+Note: `-F` below flushes the `DOCKER-USER` chain. Do not blindly paste this into production. Back it up first, or use `-I` to insert rules in the right place.
 
-The fix:
+My fixed version looked like this:
 
 ```bash
 iptables -F DOCKER-USER
@@ -109,27 +115,29 @@ iptables -A DOCKER-USER -p tcp --dport 3080 -j DROP
 
 ---
 
-### Pitfall 5: Nginx Pointing to VPN IP Caused Circular Dependency
+### Do not point Nginx at the VPN IP unless you enjoy circular failures
 
-Earlier, I configured Nginx to use the Tailscale VPN IP. If the VPN blipped, the management page went down.
+At first I set the Nginx upstream to the Tailscale VPN IP. It looked tidy, but it created a circular dependency: if the VPN blipped, the management page went down too.
 
-Switching to `127.0.0.1` (localhost) ensures that if the VPN goes down, the management console is still accessible from the public network.
+Changing it to `127.0.0.1` fixed that. Even if Tailscale is down, the public management entry still works, which is exactly what you want when you need to repair Tailscale.
 
 ---
 
-### Permissions Design
+### Permission split
 
 | Role | Access Method | Auditing |
 |:---|:---|:---|
 | Admin | SSH Port 22 + Ed25519 Key | None |
-| Vendor | Web Terminal | Full recording (hidden from vendor) |
+| Vendor | Web Terminal | Full recording, recordings hidden from vendor |
 
-RBAC Tip: Strip the `audit` permission from the vendor's `restricted-dev` role to achieve "silent auditing."
-Note: Removing `audit` only affects visibility of recordings/logs. It does not necessarily hide recording banners; this depends on your Teleport version and settings.
+The RBAC trick is to remove `audit` from the vendor's `restricted-dev` role, so they cannot see recordings or log pages.
 
-Two practical constraints:
-1. Vendors access only via Teleport Web/SSH and do not need Tailscale.
-2. Vendor roles constrain login users and visible nodes (label-based isolation).
+One caveat: removing `audit` only changes visibility of recordings/logs. It does not guarantee that every recording banner disappears. Teleport behavior depends on version and configuration, so test this yourself before relying on the word "silent".
+
+Two extra constraints are worth adding:
+
+1. Vendors access only through Teleport Web/SSH; they do not get Tailscale.
+2. Vendor roles restrict login users and visible nodes, with labels for isolation.
 
 ```yaml
 # Example: node labels (vendor name redacted)
@@ -152,7 +160,7 @@ spec:
 
 ---
 
-### Core Configuration
+### Core config snippets
 
 **docker-compose.yml**
 
@@ -173,7 +181,7 @@ proxy_service:
 
 ---
 
-### App Access (Addendum)
+### App Access came later
 
 **Expose apps (example)**
 
@@ -186,9 +194,9 @@ app_service:
     public_addr: app-ui.example.com
 ```
 
-**Proxy env conflict (503)**
+**Proxy environment causing 503**
 
-If the node has `HTTP_PROXY`, Teleport may route to the proxy for internal services and return 503. Add `NO_PROXY` in systemd:
+If the node has `HTTP_PROXY`, Teleport may try to reach internal apps through that proxy and return 503. Adding `NO_PROXY` in systemd is safer:
 
 ```ini
 # /etc/systemd/system/teleport.service
@@ -197,7 +205,7 @@ Environment="NO_PROXY=localhost,127.0.0.1,10.0.0.0/8,100.64.0.0/10"
 
 **Nginx Host passthrough header**
 
-For multi-subdomain access, pass Host:
+For multi-subdomain access, do not forget the Host header:
 
 ```nginx
 proxy_set_header Host $host;
@@ -205,9 +213,9 @@ proxy_set_header Host $host;
 
 ---
 
-With this setup, vendors work in the Web UI, and internal ops use Tailscale for direct access. Session recordings are available at any time, while the cluster stays off the public internet.
+With this setup, vendors work through the Web UI, internal ops connect directly over Tailscale, session recordings are kept, and the GPU cluster does not need to sit on the public internet.
 
-Works for me.
+Not elegant, but steady enough. For this kind of temporary-but-sensitive remote support, steady matters more than pretty.
 
 ---
 

@@ -15,9 +15,9 @@ series: ['AI Coding']
 4. Verify
 5. Record
 
-这几步里，最容易被低估的是 `Search`。
+这里面最容易被低估的是 `Search`。
 
-很多 agent 会失败，常见原因是第一步读错了地方。用户说的是一个行为、一个 bug、一个跨层流程，代码里却可能没有同名函数。直接 `rg login`、`rg upload`、`rg session` 很快，但它只适合已知关键词。关键词不知道时，快只会更快地跑偏。
+很多 agent 失败，第一步就错了：读错地方。用户说的是一个行为、一个 bug、一个跨层流程，代码里却不一定有同名函数。直接 `rg login`、`rg upload`、`rg session` 很快，但它只适合已知关键词。关键词都不知道时，快只会更快地跑偏。
 
 所以我把最近常用的一小层工具开源了：
 
@@ -40,7 +40,7 @@ flowchart LR
   E --> B
 {{< /mermaid >}}
 
-这个循环的问题是，失败后 agent 往往会继续围着同一批错误文件打转。它有修改能力，缺的是更好的候选文件入口。
+这个循环的问题是，失败后 agent 往往会继续围着同一批错误文件打转。它有修改能力，缺的是更好的候选文件入口。说白了，一开始摸错门，后面再努力也容易越走越偏。
 
 `ace-wrapper` 想补的是这里：
 
@@ -54,7 +54,7 @@ flowchart LR
   F --> G[Verify]
 {{< /mermaid >}}
 
-这里的关键是顺序：`ace` 只负责找候选文件。真正的证据仍然来自读文件、精确搜索和测试。
+这里的关键是顺序：`ace` 只负责找候选文件。真正的证据仍然来自读文件、精确搜索和测试。它的定位很小，就是帮 agent 少走一点冤枉路。
 
 ### 用法很短
 
@@ -87,7 +87,7 @@ Treat `ace` results as candidate files.
 After it returns results, read the relevant files and use exact search before using them as evidence.
 ```
 
-这几行比“多读上下文”更有效，因为它给了 agent 一个具体动作，也给了停止误判的边界。
+这几行比“多读上下文”更有用，因为它给了 agent 一个具体动作，也给了防止误判的边界。
 
 ### 它和 rg 怎么配合
 
@@ -100,7 +100,7 @@ After it returns results, read the relevant files and use exact search before us
 | 要做结构性重构 | `ast-grep` | 需要 AST 级别匹配，不能靠文本近似 |
 | 要确认一个功能是否存在 | `ace` + 读文件 + `rg` | 语义命中不能证明功能存在 |
 
-我特别在 README 里写了边界：ACE 只生成候选文件，证据还要从代码和测试里确认。这个边界很重要。
+我特意在 README 里写了边界：ACE 只生成候选文件，证据还要从代码和测试里确认。这个边界很重要。
 
 语义检索会返回“相近”的东西。你问一个不存在的功能，它也可能找出看起来相关的文件。如果 agent 把“有结果”理解成“功能存在”，后面就会开始编故事。只有读到实现、测试、路由、配置或调用点，结论才算站得住。
 
@@ -122,7 +122,7 @@ Read -> Search -> Change -> Verify
 - 外部策略和行业做法：用 web research
 - 旧决策、历史踩坑：用 memory
 
-这套分工能减少 agent 的随机性。它先用语义检索缩小读文件范围，再用确定性工具确认事实，最后才动代码。
+这套分工能减少 agent 的随机性。它先用语义检索缩小读文件范围，再用确定性工具确认事实，最后才动代码。顺序看起来啰嗦一点，但比一上来改错文件省事太多。
 
 ### 对 agent 来说，最重要的是提示方式
 
@@ -141,7 +141,7 @@ timeout 60s ace "how provider config is persisted and restored after app restart
 - 预期效果：persist config、abort loop、show skipped-file feedback
 - 已知字段：`sessionId`、`requestId`、`files`、`workspace`
 
-这比只搜 `upload` 或 `provider` 稳得多。它让检索系统按行为和数据流找入口，也提醒 agent：这一步还只是语义检索。
+这比只搜 `upload` 或 `provider` 稳得多。它让检索系统按行为和数据流找入口，也提醒 agent：这一步还只是语义检索，不能直接当证据。
 
 ### 开源它的原因
 
@@ -153,6 +153,6 @@ timeout 60s ace "how provider config is persisted and restored after app restart
 4. 读文件后再用 `rg` 确认精确证据
 5. 没证据就不要下结论
 
-这些规则放进工具 README、skill 和 agent prompt 后，才会稳定生效。否则每个会话都会重新靠人提醒一遍。
+这些规则放进工具 README、skill 和 agent prompt 后，才会稳定生效。否则每个会话都会重新靠人提醒一遍，提醒多了人也烦。
 
 上一篇说 Harness Engineering 是给 AI 外面套工程轨道。`ace-wrapper` 就是其中一小段轨道：它不让 agent 更会写代码，只是让它更容易先读对地方。

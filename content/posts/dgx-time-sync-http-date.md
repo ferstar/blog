@@ -76,7 +76,7 @@ HTTP_DATE=$(curl -sI http://100.64.0.5 | grep -i "^Date:" | cut -d" " -f2-)
 [ -n "$HTTP_DATE" ] && date -s "$HTTP_DATE"
 ```
 
-这招很土，精度也就秒级，但当时要的不是漂亮，是先把 Teleport 拉回能握手的范围。实际执行完以后，Prometheus 的时间差告警消失，target02 也能重新连上。
+这招很土，精度也就秒级，但当时先顾不上漂亮，目标是把 Teleport 拉回能握手的范围。实际执行完以后，Prometheus 的时间差告警消失，target02 也能重新连上。
 
 没错，2026 年了，我还在用 `curl` + `date -s` 同步时钟。上次这么干大概还是折腾 OpenWrt 的时候。
 

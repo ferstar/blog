@@ -9,62 +9,67 @@ description: "A cleanup log: fixing 300+ legacy redirects, tweaking titles/descr
 
 > I am not a native English speaker; this article was translated by AI.
 
-This post is basically my cleanup log. A few hours ago this blog was still Chinese-only: a messy `static/_redirects` from multiple migrations, and missing meta descriptions on some high-traffic posts.
+This post is basically a renovation note for the blog. A few hours earlier, the site was still Chinese-only: `static/_redirects` had a pile of old rules from several migrations, and many posts with decent traffic still had no description.
 
-I used Google Search Console (GSC) to locate the pain first, then fixed redirects, and finally made the bilingual structure and writing rules explicit. In this round, AI mainly did the repetitive work and cross-checking; the decisions were still mine.
+I first used Google Search Console (GSC) to find where the pain was, then cleaned up redirects, and finally added the bilingual structure and writing rules. In this round, AI mostly handled repetitive work and cross-checking. The calls on what to keep and what to delete were still mine. Fair enough, since the model is not going to take the blame if I break the site.
 
 ---
 
-### 1. What GSC told me: lots of US impressions, very few clicks
+### GSC poured some cold water on me first
+
+The data was simple, but not pleasant:
 
 - **US market**: 13,000+ impressions, only **1.46%** CTR
 - **Chinese market**: CTR stayed above 6%
 
-I used to assume "hardcore content spreads by itself", but the reality is simpler: a Chinese-only page is a wall for many overseas readers. Going bilingual isn't about looking international — it's about making the content readable once people find it.
+I used to think technical posts would find readers as long as the content was solid. In reality, when a fully Chinese page shows up in search results, many overseas readers will just skip it. Going bilingual is not about looking international; it is about letting people who already found the post actually read it.
 
 ---
 
-### 2. Redirects: boring, but one mistake can kill your indexed URLs
+### Redirects look small, but they can quietly kill indexed URLs
 
-After a few migrations (Farbox -> Bitcron -> Hugo), `static/_redirects` turned into a long, messy list. My first instinct was the lazy one: replace spaces with `-`, then collapse repeated dashes.
+After moving the blog from Farbox to Bitcron and then to Hugo, `static/_redirects` was not pretty. My first lazy idea was to replace spaces with `-`, collapse repeated dashes, and call it done.
 
-That broke immediately because of a Hugo quirk: when filenames contain `&`, Hugo can generate slugs like `google-search-tips--tricks` with `--`. If you collapse `--` into `-`, old Google results become 404s.
+Hugo corrected me pretty quickly. Filenames with `&` can generate slugs like `google-search-tips--tricks`, with two dashes in the middle. If a script helpfully collapses `--` into `-`, already-indexed Google URLs go straight to 404.
 
-What I ended up doing:
+I ended up using a dumber but safer approach:
 
-- Keep both the "single-dash normalized" path and the "original multi-dash" variants (`--`, `---`, etc.), all pointing to the new slug
-- Replace fuzzy wildcards (like `/post/*`) with explicit mappings, so the file is maintainable
+- Keep both the single-dash normalized path and the original multi-dash variants (`--`, `---`, etc.), all pointing exactly to the new slug
+- Replace fuzzy wildcards (like `/post/*`) with explicit mappings, so debugging later does not become guesswork
 
-This pass cleaned up 300+ rules into something I'm comfortable keeping long-term.
-
----
-
-### 3. Bilingual: I didn't want the "English summary only" version
-
-I set three non-negotiables:
-
-1. **Code parity**: shell commands, Java hooks, kernel configs must match character-for-character
-2. **Visual parity**: Mermaid diagrams must render on the English pages
-3. **Nuance retention**: keep the traps, trade-offs, and perf data — don't translate them into bland prose
-
-Workflow-wise, AI drafted and cross-checked, and I edited paragraph by paragraph until it read naturally. The first batch covered 10+ high-traffic posts.
+This pass cleaned up 300+ legacy redirects into something I am comfortable keeping long-term. The file is still not short, but at least every rule has a reason to exist.
 
 ---
 
-### 4. Write the rules down: AGENTS.md
+### Bilingual does not mean appending a short English summary
 
-My biggest worry after cleanup is "I'll forget what I changed in a few months". So I added `AGENTS.md` to the repo and wrote down the rules:
+I did not want a half-finished setup with the Chinese post plus a tiny English abstract, so I set a few rules for translations:
 
-- **Bilingual symmetry**: Chinese updates must be followed by high-fidelity English updates
-- **SEO formula**: meta descriptions follow `[Pain Point] + [Solution] + [Result]`
-- **Directory conventions**: how we keep `content.en/` structured and linked
+1. **Code parity**: shell commands, Java hooks, and kernel configs must match character-for-character
+2. **Diagram parity**: Mermaid diagrams must render on the English pages too
+3. **Do not sand off the details**: traps, trade-offs, and performance numbers should stay, not turn into lukewarm prose
 
-Next time — whether it's me or an agent — we can follow the same playbook.
+The workflow was: AI drafted, then AI cross-checked the Chinese and English versions; I edited paragraph by paragraph and cut or rewrote anything that sounded too templated. The first batch covered 10+ high-traffic posts. The older debt can be paid down slowly.
 
 ---
 
-### Conclusion
+### Put the rules in AGENTS.md, because memory is unreliable
 
-I write to preserve how I solved problems; SEO and i18n just make those solutions easier to find and easier to read. For me, AI is an accelerator: it speeds up the grunt work, but the final calls (and responsibility) are still mine.
+After the cleanup, my biggest worry was not that the code would break. It was that I would forget why I made these choices a few months later. So I added `AGENTS.md` to the repo and wrote down the ground rules:
+
+- **Bilingual alignment**: after a Chinese update, the English version must be updated with high fidelity
+- **SEO description**: descriptions follow `[Pain Point] + [Solution] + [Result]`
+- **Directory convention**: keep `content/` and `content.en/` separate, and handle links as a multilingual site
+- **No redirect rollback**: `static/_redirects` should use explicit rules only, no lazy `/post/*`
+
+It is not complicated, but it helps. Next time, whether I come back myself or ask an agent to continue, there is a runnable set of rules instead of "probably close enough".
+
+---
+
+### Closing
+
+I write blog posts to preserve how problems were solved. SEO and bilingual pages just smooth the path to the door, making those notes easier to find and easier to finish reading.
+
+For me, AI is more like a power tool: checklists, bulk edits, cross-checks — it is fast at those. But the final trade-offs, tone, and responsibility are still mine. That is probably for the best. If something breaks later, I know exactly who to blame.
 
 ---

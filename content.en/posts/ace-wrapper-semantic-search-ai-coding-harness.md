@@ -17,17 +17,17 @@ In the [previous post](/en/posts/ai-coding-harness-engineering-workflow/) about 
 4. Verify
 5. Record
 
-Among these steps, `Search` is the easiest one to underestimate.
+The easiest one to underestimate is `Search`.
 
-Many agents fail because they read the wrong place first. The user describes a behavior, a bug, or a cross-layer workflow, while the code may not contain a function with the same name. Running `rg login`, `rg upload`, or `rg session` is fast, but it only works when the keyword is already known. If the keyword is unknown, speed just helps the agent drift faster.
+Many agents fail not because they cannot edit code, but because they read the wrong place first. The user describes a behavior, a bug, or a cross-layer workflow, while the code may not contain a function with the same name. Running `rg login`, `rg upload`, or `rg session` is fast, but it only works when the keyword is already known. If the keyword is unknown, speed just helps the agent drift faster.
 
 So I open-sourced a small layer I have been using recently:
 
 [ferstar/ace-wrapper](https://github.com/ferstar/ace-wrapper)
 
-It does one narrow thing: wrap Augment Context Engine's filesystem context search as an `ace` command, so coding agents can do semantic retrieval from the shell before editing.
+It does one narrow thing: wrap Augment Context Engine's filesystem context search as an `ace` command, so coding agents can run semantic retrieval from the shell before editing.
 
-### Why This Layer Exists
+### Why this layer exists
 
 The target is concrete: make the search action part of the harness.
 
@@ -42,7 +42,7 @@ flowchart LR
   E --> B
 {{< /mermaid >}}
 
-The problem with this loop is that, after failure, the agent often keeps circling around the same wrong files. It can edit code; it needs a better entry point into candidate files.
+The problem with this loop is that, after failure, the agent often keeps circling around the same wrong files. It can edit code; what it needs is a better entry point into candidate files. Put less politely, it is working hard after entering the wrong door.
 
 `ace-wrapper` is meant to patch this part:
 
@@ -56,9 +56,9 @@ flowchart LR
   F --> G[Verify]
 {{< /mermaid >}}
 
-The important part is the order: `ace` only finds candidate files. Conclusions still require reading files, exact search, and tests.
+The important part is the order: `ace` only finds candidate files. Conclusions still require reading files, exact search, and tests. It is not an answer generator; it just helps the agent waste fewer steps.
 
-### Usage Is Short
+### Usage is short
 
 Install it:
 
@@ -91,11 +91,11 @@ After it returns results, read the relevant files and use exact search before us
 
 These lines work better than “read more context,” because they give the agent a concrete action and a boundary against false conclusions.
 
-### How It Works with rg
+### How it works with rg
 
 `ace` and `rg` work better as consecutive steps.
 
-| Scenario | Use First | Why |
+| Scenario | Use first | Why |
 |:---|:---|:---|
 | You know the behavior but not the implementation location | `ace` | Behavior descriptions can find candidate entry points across files and naming styles |
 | You know the function name, event name, or error text | `rg` | It is exact, complete, and enumerable |
@@ -106,7 +106,7 @@ I intentionally wrote this boundary into the README: ACE returns candidate files
 
 Semantic retrieval returns “nearby” things. If you ask about a feature that does not exist, it may still find files that look related. If an agent treats “there are results” as “the feature exists,” it starts inventing a story. A conclusion is only defensible after reading an implementation, test, route, config, or call site.
 
-### Where It Fits in Harness Engineering
+### Where it fits in Harness Engineering
 
 `ace-wrapper` is small, and I want it to stay that way. It is closer to a small gear in the harness: it turns open-ended code discovery into a repeatable, constrained command.
 
@@ -124,9 +124,9 @@ Here, `Search` means choosing the tool by problem type:
 - External strategy and industry practice: use web research
 - Old decisions and repeated lessons: use memory
 
-The useful part of this split is reduced agent randomness. The agent first uses semantic retrieval to narrow the reading surface, then uses deterministic tools to confirm facts, and only then changes code.
+The useful part of this split is reduced agent randomness. The agent first uses semantic retrieval to narrow the reading surface, then uses deterministic tools to confirm facts, and only then changes code. The order is a little more verbose, but it is much cheaper than confidently editing the wrong file.
 
-### The Prompt Matters Most
+### The prompt matters most
 
 A good `ace` query describes behavior and avoids keyword piles:
 
@@ -143,18 +143,18 @@ I try to include four kinds of information:
 - Expected effect: persist config, abort loop, show skipped-file feedback
 - Known fields: `sessionId`, `requestId`, `files`, `workspace`
 
-This is much more stable than only searching `upload` or `provider`. It lets the retrieval system look for behavior and data flow, and it reminds the agent that this step is still semantic retrieval.
+This is much more stable than only searching `upload` or `provider`. It lets the retrieval system look for behavior and data flow, and it reminds the agent that this step is still semantic retrieval, not evidence by itself.
 
-### Why I Open-Sourced It
+### Why I open-sourced it
 
 `ace-wrapper` has very little code. The core is just `FileSystemContext.create(str(workspace))` plus `context.search(args.query)`. I wanted to preserve the workflow constraints around those few lines:
 
-1. If the keyword is unknown, start with semantic retrieval.
-2. Ask one workflow per query.
-3. Treat results as candidate files.
-4. Read the files, then use `rg` to confirm exact evidence.
-5. Do not conclude without evidence.
+1. If the keyword is unknown, start with semantic retrieval
+2. Ask one workflow per query
+3. Treat results as candidate files
+4. Read the files, then use `rg` to confirm exact evidence
+5. Do not conclude without evidence
 
-Once these rules live in the tool README, skill, and agent prompt, they become much more likely to stick. Otherwise every session depends on a human reminding the agent again.
+Once these rules live in the tool README, skill, and agent prompt, they become much more likely to stick. Otherwise every session depends on a human reminding the agent again, which gets old fast.
 
-The previous post said Harness Engineering means putting an engineering track around AI. `ace-wrapper` is one small piece of that track: its job is modest, helping the agent read the right place first.
+The previous post said Harness Engineering means putting an engineering track around AI. `ace-wrapper` is one small piece of that track: it does not make the agent better at writing code; it just helps the agent read the right place first.
