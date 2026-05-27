@@ -44,7 +44,7 @@ display current-configuration grep telecomadmin
 
 拿到加密串后，用 **华为配置加解密工具**（网上随便搜就有）的"密文解密"功能，把 `$2;...$` 整段粘进去，点解密，明文密码就出来了。
 
-或者也可以用这个在线工具：[https://www.crsay.com/tools/hw.html](https://www.crsay.com/tools/hw.html)
+或者搜一下"华为配置加解密工具"，找个本地版的也行。
 
 ### 然后用 telecomadmin 登录
 
