@@ -29,7 +29,7 @@ ace-wrapper was pure remote: local only sent parameters, everything depended on 
 
 fast-context is local and remote working together.
 
-```mermaid
+{{< mermaid >}}
 flowchart TB
   subgraph Input
     Q[User query]
@@ -58,7 +58,7 @@ flowchart TB
   WS -- success --> O
   WS -- auth / rate-limit / timeout --> O
   S -- fallback path --> O
-```
+{{< /mermaid >}}
 
 The flow:
 

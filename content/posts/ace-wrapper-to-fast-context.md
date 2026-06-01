@@ -27,7 +27,7 @@ ace-wrapper 是纯远程调用：本地只传参数，一切靠 ACE 服务。
 
 fast-context 则是本地和远端一起上。
 
-```mermaid
+{{< mermaid >}}
 flowchart TB
   subgraph Input
     Q[User query]
@@ -56,7 +56,7 @@ flowchart TB
   WS -- success --> O
   WS -- auth / rate-limit / timeout --> O
   S -- fallback path --> O
-```
+{{< /mermaid >}}
 
 流程变成：
 
