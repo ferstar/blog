@@ -27,7 +27,7 @@ ace-wrapper 是纯远程调用：本地只传参数，一切靠 ACE 服务。
 
 fast-context 则是本地和远端一起上。
 
-{{< mermaid >}}
+```mermaid
 flowchart TB
   subgraph Input
     Q[User query]
@@ -36,7 +36,7 @@ flowchart TB
   subgraph Local
     S[Semble local prefetch<br/>cached index + chunk search]
     A[Lexical anchors<br/>filename / path / literal hits]
-    R[Repo map<br/>(auto-shrink when too large)]
+    R["Repo map<br/>(auto-shrink when too large)"]
   end
 
   subgraph Remote
@@ -44,7 +44,7 @@ flowchart TB
   end
 
   subgraph Output
-    O[Candidate files<br/>line ranges<br/>follow-up terms<br/>(or local chunks when remote fails)]
+    O["Candidate files<br/>line ranges<br/>follow-up terms<br/>(or local chunks when remote fails)"]
   end
 
   Q --> S
@@ -56,7 +56,7 @@ flowchart TB
   WS -- success --> O
   WS -- auth / rate-limit / timeout --> O
   S -- fallback path --> O
-{{< /mermaid >}}
+```
 
 流程变成：
 
