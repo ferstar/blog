@@ -35,13 +35,13 @@ flowchart TB
     Q[User query]
   end
 
-  subgraph Local Phase
+  subgraph Local
     S[Semble local prefetch<br/>cached index + chunk search]
     A[Lexical anchors<br/>filename / path / literal hits]
     R["Repo map<br/>(auto-shrink when too large)"]
   end
 
-  subgraph Remote Phase
+  subgraph Remote
     WS[Windsurf SWE-grep<br/>agentic verify + expand]
   end
 
@@ -165,7 +165,7 @@ On the remote side, there is a model fallback chain too:
 2. On `resource_exhausted` or rate-limit: auto-degrade to `MODEL_SWE_1_5`
 3. Custom fallback order via `WS_FALLBACK_MODELS`
 
-### By the numbers
+### Benchmark results
 
 With the fair runner (completion-based cooldown, 40 queries):
 

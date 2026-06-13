@@ -167,7 +167,7 @@ scriber_pg CPU：            0.00%
 postgres|11
 ```
 
-### 结尾
+### 小结
 
 这次迁移最大的教训不是 Apple Container 怎么用，而是：别相信 compose 文件表面上的 volume，先看运行中容器的真实 `PGDATA` 和 mount。
 

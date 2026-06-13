@@ -354,7 +354,7 @@ journalctl -k --since "2026-06-13 06:28:32 UTC" --no-pager | \
 
 No new OOM or page allocation failures showed up.
 
-## Note to self
+## Summary
 
 The main lesson: a 512MB VPS can run services, but it cannot be left on defaults.
 

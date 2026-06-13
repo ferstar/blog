@@ -169,7 +169,7 @@ The databases are still there:
 postgres|11
 ```
 
-### Closing
+### Summary
 
 The biggest lesson here was not how to use Apple Container. It was: do not trust the volume path in a compose file at face value. Check the running container's real `PGDATA` and mounts first.
 

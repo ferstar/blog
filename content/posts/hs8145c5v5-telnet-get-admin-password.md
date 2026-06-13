@@ -48,5 +48,5 @@ display current-configuration grep telecomadmin
 
 ### 然后用 telecomadmin 登录
 
-浏览器访问 `192.168.1.1`，用户名填 `telecomadmin`，密码填解密出来的明文，你就有了光猫的全部管理权限——改桥接、开 DMZ、删 TR069，想干什么干什么。
+浏览器访问 `192.168.1.1`，用户名填 `telecomadmin`，密码填解密出来的明文，你就有了光猫的全部管理权限——改桥接、开 DMZ、删 TR069，所有操作都不再受限。
 

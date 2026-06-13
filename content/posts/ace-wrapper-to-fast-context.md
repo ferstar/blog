@@ -163,7 +163,7 @@ ace-wrapper 阶段，我的 AGENTS.md 长这样：
 2. 遇到 `resource_exhausted` 或限流，自动降级到 `MODEL_SWE_1_5`
 3. 还能通过 `WS_FALLBACK_MODELS` 自定义 fallback 顺序
 
-### 一些数字
+### Benchmark 数据
 
 用 fair runner（completion-based cooldown, 40 queries）重新跑 benchmark 后，几个指标更能说明问题：
 
@@ -182,7 +182,7 @@ ace-wrapper 阶段，我的 AGENTS.md 长这样：
 3. **Benchmark 要跟代码一起放**。[benchmarks/](https://github.com/ferstar/fast-context/tree/main/benchmarks/) 里的 40 条标注查询和 runner，跑一次就能看到各个 backend 的真实差异。没有数据支撑的优化决策，基本靠猜。
 4. **凭据提取要自动适配**。`devin-session-token` 这种变化是预料之外的，但代码结构上留了扩展点——查不到 key 就换个 pattern 再查一次，不用改主流程。
 
-### 最后
+### 收尾
 
 ace-wrapper 到现在我还在用——ACE 偶尔又能通了。但我已经不想把工作流绑死在它上面。
 

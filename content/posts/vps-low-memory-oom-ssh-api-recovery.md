@@ -352,7 +352,7 @@ journalctl -k --since "2026-06-13 06:28:32 UTC" --no-pager | \
 
 没有新的 OOM 或 page allocation failure。
 
-## 记一笔
+## 小结
 
 这次最大的教训是：512MB VPS 可以跑，但不能靠默认配置硬扛。
 
