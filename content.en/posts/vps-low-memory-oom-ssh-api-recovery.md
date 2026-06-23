@@ -354,6 +354,38 @@ journalctl -k --since "2026-06-13 06:28:32 UTC" --no-pager | \
 
 No new OOM or page allocation failures showed up.
 
+## Nine days later
+
+I checked again on June 22, 2026. The result was better than expected.
+
+```text
+uptime: 9 days, 6:59
+load average: 0.16, 0.14, 0.16
+Mem: 454Mi total, 227Mi available
+Swap: 2.0Gi total, 346Mi used
+rootfs: 56% used
+```
+
+The important services were still alive:
+
+```bash
+systemctl is-active earlyoom ssh nginx supervisor docker containerd
+# active active active active active active
+```
+
+Containers were fine too:
+
+```text
+tuic-server  Up 7 days
+hysteria2    Up 7 days
+hysteria     Up 7 days
+filebrowser  Up 9 days (healthy)
+```
+
+The important part: no new `OOM` or `page allocation failure` in the last seven days, and earlyoom did not actually have to kill anything. SSH, the API, and the file-service entrypoint were all reachable. The API still returned an application-level 404, not Cloudflare 521.
+
+So the boring combination worked: swap plus zswap for fallback, OOMScoreAdjust for entrypoint protection, container limits to draw the boundary, and earlyoom as the last guardrail. 512MB is still 512MB, but at least it is no longer running on luck.
+
 ## Summary
 
 The main lesson: a 512MB VPS can run services, but it cannot be left on defaults.

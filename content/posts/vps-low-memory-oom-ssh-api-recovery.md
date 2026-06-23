@@ -352,6 +352,38 @@ journalctl -k --since "2026-06-13 06:28:32 UTC" --no-pager | \
 
 没有新的 OOM 或 page allocation failure。
 
+## 9 天后回看
+
+2026 年 6 月 22 日又看了一眼，优化效果比预期好。
+
+```text
+uptime: 9 days, 6:59
+load average: 0.16, 0.14, 0.16
+Mem: 454Mi total, 227Mi available
+Swap: 2.0Gi total, 346Mi used
+rootfs: 56% used
+```
+
+关键服务都还在：
+
+```bash
+systemctl is-active earlyoom ssh nginx supervisor docker containerd
+# active active active active active active
+```
+
+容器也没掉：
+
+```text
+tuic-server  Up 7 days
+hysteria2    Up 7 days
+hysteria     Up 7 days
+filebrowser  Up 9 days (healthy)
+```
+
+最关键的是，近 7 天没有新的 `OOM` / `page allocation failure`，earlyoom 也没有真正动刀。SSH、API、文件服务入口都正常，API 仍然是应用层 404，不是 Cloudflare 521。
+
+这说明前面那套组合拳确实有用：swap + zswap 兜底，OOMScoreAdjust 保入口，容器资源限制负责把边界画清楚，earlyoom 放在最后兜底。512MB 还是 512MB，但至少现在不是靠运气跑。
+
 ## 小结
 
 这次最大的教训是：512MB VPS 可以跑，但不能靠默认配置硬扛。
