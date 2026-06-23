@@ -24,6 +24,20 @@ No surprise. The expensive part was rarely one hard code change. It was the smal
 
 These things are too small. Small enough that you never bother to fix them. But because they are small, they keep getting ignored. In the end, you spend your day swimming in manual glue.
 
+The original prompt was short:
+
+```text
+Based on my recent Codex projects and threads, suggest ways to simplify project workflows and improve efficiency. Use subagents to analyze in parallel.
+```
+
+The first result was still too biased toward a few recent projects, so I added one more instruction:
+
+```text
+Not just these projects. Scan all possible sessions under ~/.codex, dispatch multiple subagents to analyze them separately, then summarize.
+```
+
+The point was not “ask the model for optimization ideas.” It was changing the source of truth from my memory of recent work to the repeated actions inside real session logs.
+
 ### Do not write tools too early
 
 I used to do this too — see repetition, reach for a script. Later I realized that is often too early.
