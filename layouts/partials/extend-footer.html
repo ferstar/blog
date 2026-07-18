@@ -1,0 +1,5 @@
+{{ with .Site.Params.aiDisclosure }}
+  <p class="mt-4 text-center text-xs leading-relaxed text-neutral-500 dark:text-neutral-400">
+    {{ . | markdownify }}
+  </p>
+{{ end }}

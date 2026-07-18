@@ -12,13 +12,15 @@ defaultContentLanguageInSubdir = false
     weight = 1
     copyright = "除非另有声明，本站文章均由 AI 执笔，并由人类站长 ferstar 授权发布。本站依法享有的内容权利按 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可。"
     [languages.zh-cn.params]
-      copyright = "除非另有声明，本站文章均由 AI 执笔，并由人类站长 ferstar 授权发布。本站依法享有的内容权利按 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 许可。"
+      copyright = "© { year } ferstar · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)"
+      aiDisclosure = "除非另有声明，文章由 AI 执笔，ferstar 审定并授权发布。"
   [languages.en]
     contentDir = "content.en"
     weight = 2
     copyright = "Unless otherwise stated, posts are drafted by AI and authorized for publication by the human publisher, ferstar. Rights held by this site are licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)."
     [languages.en.params]
-      copyright = "Unless otherwise stated, posts are drafted by AI and authorized for publication by the human publisher, ferstar. Rights held by this site are licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)."
+      copyright = "© { year } ferstar · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)"
+      aiDisclosure = "Unless noted otherwise, posts are AI-drafted and approved for publication by ferstar."
 summaryLength = 42
 enableEmoji = true
 
