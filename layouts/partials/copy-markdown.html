@@ -1,0 +1,20 @@
+{{ with .OutputFormats.Get "MARKDOWN" }}
+  <button
+    type="button"
+    class="copy-markdown-button"
+    data-copy-markdown-url="{{ .RelPermalink }}"
+    data-copy-label="{{ site.Params.copyMarkdownLabel }}"
+    data-copied-label="{{ site.Params.copyMarkdownDone }}"
+    data-error-label="{{ site.Params.copyMarkdownError }}"
+    aria-label="{{ site.Params.copyMarkdownLabel }}">
+    <svg aria-hidden="true" viewBox="0 0 24 24">
+      <path d="M8 7V5a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2Zm2 0h3a2 2 0 0 1 2 2v5h2V5h-7v2Zm3 2H6v9h7V9Z" />
+    </svg>
+    <span data-copy-markdown-label>{{ site.Params.copyMarkdownLabel }}</span>
+  </button>
+
+  {{ with resources.Get "js/copy-markdown.js" }}
+    {{ $script := . | resources.Minify | resources.Fingerprint (site.Params.fingerprintAlgorithm | default "sha512") }}
+    <script defer src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+  {{ end }}
+{{ end }}

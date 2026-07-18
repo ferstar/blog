@@ -26,8 +26,13 @@
       <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
         {{ .Title | emojify }}
       </h1>
-      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
-        {{ partial "article-meta/basic.html" (dict "context" . "scope" "single") }}
+      <div class="mt-1 mb-6 flex flex-wrap items-center justify-between gap-3 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        <div>
+          {{ partial "article-meta/basic.html" (dict "context" . "scope" "single") }}
+        </div>
+        {{ if eq .Section "posts" }}
+          {{ partial "copy-markdown.html" . }}
+        {{ end }}
       </div>
       {{ if not (.Params.showAuthorBottom | default (site.Params.article.showAuthorBottom | default false)) }}
         {{ template "SingleAuthor" . }}
