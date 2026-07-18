@@ -27,7 +27,7 @@ That detail mattered. The connection had reached the remote side, but SSH never 
 
 The entrypoint design on this host is slightly indirect:
 
-```mermaid
+{{< mermaid >}}
 flowchart LR
     Client["client"]
     Nginx["nginx stream :443"]
@@ -42,7 +42,7 @@ flowchart LR
     Nginx -->|default stream| SSH
     Nginx -->|SNI api| API
     Nginx -->|SNI fm| FM
-```
+{{< /mermaid >}}
 
 SSH, the API, and the file service all pass through Nginx stream. If Nginx, the kernel network stack, or local memory pressure goes sideways, the outside world sees it as "SSH is down" and "the API is down" at the same time.
 

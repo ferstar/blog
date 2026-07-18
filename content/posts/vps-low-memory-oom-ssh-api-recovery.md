@@ -25,7 +25,7 @@ kex_exchange_identification: Connection closed by remote host
 
 架构上，这台机器的入口有点绕：
 
-```mermaid
+{{< mermaid >}}
 flowchart LR
     Client["client"]
     Nginx["nginx stream :443"]
@@ -40,7 +40,7 @@ flowchart LR
     Nginx -->|default stream| SSH
     Nginx -->|SNI api| API
     Nginx -->|SNI fm| FM
-```
+{{< /mermaid >}}
 
 所以 SSH、API、文件服务都会经过 Nginx stream。只要 Nginx、内核网络栈或者本机内存状态出问题，外面看到的就会很像“SSH 挂了”和“API 挂了”同时发生。
 
