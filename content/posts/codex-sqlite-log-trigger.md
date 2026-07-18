@@ -13,6 +13,12 @@ Codex 最近把本地日志写进 `~/.codex/logs_2.sqlite`，我的库已经涨�
 
 所以先用 SQLite 自己的机制止血。
 
+### 2026-07 更新：上游仍未彻底修复
+
+Codex `0.142.0` 合入了几次针对高频日志来源的降噪改动，包括过滤部分 `target=log`、WebSocket 和 OpenTelemetry 镜像事件。但这些改动只是减少特定来源，并没有让 SQLite 日志库遵守 `RUST_LOG`，也没有提供可用的日志级别、采样或 retention 配置。
+
+截至 `0.144.5`，上游仍有新的复现：有用户的日志库一周增长约 529MB，也有数据库达到 2.795GB、10 秒内继续写入 151 条日志的案例。相关问题 [#31142](https://github.com/openai/codex/issues/31142) 仍处于 open 状态。因此下面的 trigger 依然是有效的临时止血方案，而不是已经可以撤掉的历史 workaround。
+
 ### 一条 trigger 拦住新增日志
 
 ```bash

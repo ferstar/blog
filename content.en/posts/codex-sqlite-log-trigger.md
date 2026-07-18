@@ -15,6 +15,12 @@ The public configuration surface is limited here. `RUST_LOG` can reduce verbosit
 
 So I used SQLite itself as the stopgap.
 
+### July 2026 update: the upstream issue is not fully fixed
+
+Codex `0.142.0` shipped several changes that reduced a few high-volume log sources, including some `target=log`, WebSocket, and OpenTelemetry mirror events. Those changes only removed specific sources. They did not make the SQLite log sink honor `RUST_LOG`, and they did not add a usable log-level, sampling, or retention setting.
+
+Fresh reproductions still exist on `0.144.5`: one log database grew by about 529MB in a week, while another reached 2.795GB and continued writing 151 rows in 10 seconds. The upstream issue [#31142](https://github.com/openai/codex/issues/31142) remains open. The trigger below is therefore still a useful temporary stopgap, not an obsolete workaround that is safe to remove.
+
 ### Block new log rows with one trigger
 
 ```bash
