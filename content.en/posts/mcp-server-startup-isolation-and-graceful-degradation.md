@@ -9,37 +9,37 @@ series: ['AI Coding']
 
 > I am not a native English speaker; this article was translated by AI.
 
-With the rapid expansion of the Model Context Protocol (MCP) ecosystem, developers and enterprises increasingly package disparate services—database inspectors, browser automations, internal documentation search engines—as MCP servers to attach to their agent runtimes.
+With the Model Context Protocol (MCP) becoming widely adopted, attaching multiple local or remote MCP servers to an agent runtime is standard practice.
 
-However, running multiple heterogeneous MCP servers in production introduces a dangerous **single point of fragility**:
+In real workloads, however, running multiple MCP servers quickly exposes a fragility issue:
 
-> **A user configures five MCP servers in their agent setup. Four local core tools are completely healthy, but a single optional third-party translation server hangs or crashes due to remote network latency or a local Python version mismatch.**
+> **You have five MCP servers in your configuration. Four core local tools for filesystem and terminal work are healthy, but an optional third-party translation or web search server times out or fails due to a local dependency mismatch.**
 >
-> **The entire agent runtime panics and aborts during initialization. The user cannot even ask basic coding questions or edit local files.**
+> **The entire agent runtime panics during initialization. You cannot even ask basic questions or edit local files.**
 
-A failure in a non-essential, auxiliary plugin takes down the entire core session. In production-grade software, this failure mode is unacceptable.
+A non-essential auxiliary plugin crash shouldn't take down the entire core session.
 
-To guarantee high availability, we introduced **MCP Startup Isolation and Graceful Degradation (Fail-Open Resilience)** into our runtime.
+To resolve this, we introduced concurrent startup isolation and graceful degradation for MCP services.
 
 {{< mermaid >}}
 flowchart TD
-  subgraph Config[MCP Configuration Criticality]
-    C1[Critical Service: Local Filesystem & Terminal]
-    C2[Optional Service: Remote Knowledge & Web Search]
+  subgraph Config[MCP Service Criticality]
+    C1[Critical: Local Filesystem & Terminal]
+    C2[Optional: Remote Knowledge & Search]
   end
 
   subgraph Startup[Concurrent Isolation Sandbox]
-    C1 --> T1[Tokio Task 1: Strict Validation & Fast Abort]
+    C1 --> T1[Tokio Task 1: Critical Service, Strict Validation]
     C2 --> T2[Tokio Task 2: Isolated 3s Timeout]
     C2 --> T3[Tokio Task 3: Isolated 3s Timeout]
   end
 
-  subgraph Outcome[Dynamic Tool Registry & Degradation]
+  subgraph Outcome[Aggregation & Dynamic Degradation]
     T1 -->|Success| R[Dynamic Tool Registry]
-    T2 -->|Timeout or Error| D[Log Isolated Diagnostic Warning]
+    T2 -->|Timeout / Error| D[Log Diagnostic Warning, Don't Block]
     T3 -->|Success| R
     D -.->|Filter Unavailable Tools| R
-    R --> S[Session Launches Cleanly in Degraded Mode]
+    R --> S[Session Launches Cleanly / UI Notice: Degraded Mode]
   end
 
   Config --> Startup
@@ -47,34 +47,33 @@ flowchart TD
 
 ---
 
-## 1. Root Cause: Sequential Dependencies and the "Weakest Link"
+## 1. What Was Wrong With the Legacy Flow?
 
-In naive MCP client implementations, server discovery is typically structured as a synchronous loop:
+Many MCP clients initialize servers via a simple sequential loop:
 
 ```rust
-// Naive, fragile serial initialization
+// Fragile serial loop
 for server_config in mcp_servers {
-    // If any server's connect / initialize hangs or errors, return Err immediately
+    // If any connect or list_tools call fails, the entire setup returns Err
     let client = McpClient::connect(&server_config).await?;
     let tools = client.list_tools().await?;
     registered_tools.extend(tools);
 }
 ```
 
-This pattern has three severe flaws:
-1. **Weakest-Link Latency**: Total startup time is the linear sum of every server's handshake. A single slow server stalling for 10 seconds delays the entire session by 10 seconds.
-2. **Missing Failure Boundaries**: All MCP servers share a single fate, ignoring the distinction between essential infrastructure and optional enhancements.
-3. **Unbounded Error Propagation**: A non-critical external failure escalates into a fatal runtime crash.
+The flaws are obvious:
+1. **Cumulative startup latency**: Total startup time is the sum of every server's handshake. A single slow server stalling for 5 seconds delays the whole agent by 5 seconds.
+2. **Missing fault isolation**: Core filesystem tools and auxiliary search tools share the same lifecycle. An external timeout escalates into a fatal crash.
 
 ---
 
-## 2. The Solution: Criticality Contracts and Sandboxed Probing
+## 2. The Solution
 
-To build genuine resilience, we restructured the MCP lifecycle across three dimensions:
+The revised flow focuses on three changes:
 
-### Dimension 1: Service Criticality Contracts (Critical vs. Optional)
+### 1. Explicitly Distinguish Critical from Optional Services
 
-We introduced explicit criticality annotations into the configuration schema:
+We added a criticality flag to the configuration schema:
 
 ```json
 {
@@ -92,32 +91,26 @@ We introduced explicit criticality annotations into the configuration schema:
   }
 }
 ```
-- **`required: true` (Critical)**: Essential tools without which the agent cannot function. Handshake failures will abort the turn with explicit error messaging.
-- **`required: false` (Optional, Default)**: Non-essential enhancements. Failures trigger immediate circuit breaking and silent degradation without interrupting core capabilities.
+- `required: true` (Critical): Tools the agent cannot function without. Failures will cleanly abort with a clear error.
+- `required: false` (Optional, Default): Auxiliary enhancements. Failures trigger circuit-breaking without affecting the main session.
 
-### Dimension 2: Concurrent Startup Sandboxes with Isolated Timeouts
+### 2. Concurrent Probing with Isolated Timeouts
 
-The runtime dispatches each MCP server probe into an isolated Tokio task (`tokio::spawn`), bounded by an independent timeout window (`tokio::time::timeout`):
-- All servers handshake concurrently. Global startup latency is bounded by the slowest individual server rather than their cumulative sum.
-- If an optional server times out (e.g., after 3 seconds) or exits unexpectedly, the error is caught and recorded as `Degraded` rather than crashing the process.
+Using Tokio, each MCP server is probed in a dedicated asynchronous task (`tokio::spawn`) wrapped in a `tokio::time::timeout`:
+- All servers handshake concurrently. Cold startup latency is bounded by the slowest individual server rather than their cumulative sum.
+- If an optional server fails to connect within 3 seconds or crashes, the error is caught and marked as `Degraded` rather than bubbling up.
 
-### Dimension 3: Dynamic Tool Registry
+### 3. Dynamic Tool Filtering and UI Awareness
 
 Once all probing tasks settle:
-1. Successfully initialized tools are registered into the agent's context;
-2. Tools from degraded servers are filtered out automatically, preventing the model from hallucinating calls to non-functional tools;
-3. The runtime emits an informational `mcp_degraded` event to the frontend, notifying the user which optional tool failed while keeping the primary chat fully operational.
+1. Successfully initialized tools are registered into the session context.
+2. Tools from degraded servers are filtered out, preventing the model from hallucinating broken calls.
+3. A lightweight notification informs the frontend which optional plugin failed, while keeping the main chat fully operational.
 
 ---
 
-## 3. Engineering Impact
+## 3. Takeaway
 
-Deploying startup isolation yielded clear improvements:
+With startup isolation in place, even if network access is spotty or an MCP plugin config is broken, the agent's core capabilities launch in sub-seconds.
 
-1. **Sub-Second Session Starts**: Concurrent probing reduced multi-MCP startup latency by over **60%**;
-2. **Zero Non-Core Fatalities**: Crashes caused by external network flakiness or broken python virtual environments are completely contained within the sandbox;
-3. **Transparent Observability**: Detailed diagnostics are retained for developer inspection while end-users enjoy uninterrupted service.
-
-In distributed systems and plugin architectures, software must follow the principle of **"Design for Failure"** by default.
-
-Never let a malfunctioning parking sensor prevent the car's engine from starting. Isolating non-essential peripherals from core control systems is the foundational bedrock of dependable, enterprise-grade AI agents.
+Plugin systems that depend on external environments must design for failure. An issue in an optional feature should never break core tool availability.

@@ -9,34 +9,34 @@ series: ['AI Coding']
 
 > I am not a native English speaker; this article was translated by AI.
 
-When autonomous agents undertake long-running, multi-step tasks (such as large-scale code refactoring, troubleshooting obscure bugs, or parsing build logs), one of the most frustrating failure modes is **repetitive tool looping**.
+When running complex tasks, one of the worst states an agent can enter is a repetitive execution loop.
 
-The canonical scenario is familiar: a model repeatedly dispatches the exact same `grep_search` regex three or four times because no matches were found, or continuously calls `view_file` on the same missing path. Each execution returns an identical empty result or error, yet the model remains stuck in the exact same reasoning rut.
+For example, if a regex finds nothing, the model might dispatch the exact same `grep_search` three or four times in a row. Or if a file does not exist, it repeatedly calls `view_file` on the same path. Each call returns an identical empty result or error, yet the model stubbornly keeps trying.
 
-Traditional agent runtimes handle looping with blunt instruments:
-1. **Unbounded execution until Max Turns**: Wasting dozens of API roundtrips and massive token budgets before dying ungracefully with a generic "maximum turns reached" error.
-2. **Immediate, brute-force exception aborts**: Halting the entire process at the first sign of a duplicate call. This instantly scraps all established context, discovered facts, and intermediate progress, forcing the user to start completely from scratch.
+Legacy approaches to handling loops are usually blunt:
+1. **Let it run until max_turns exhausts**: Wasting dozens of API calls and crashing with a generic "maximum turns exceeded" error.
+2. **Throw an exception immediately upon repetition**: Aborting the task right away. But all the accumulated investigation context and progress vanish with it.
 
-To strike the right balance between **task completion rate** and **budget safety**, we introduced a **Graded Loop Guard** into our agent runtime, establishing a three-tier escalation ladder from gentle steering to synthetic interception and deterministic halt.
+Neither approach works well. We added a Graded Loop Guard to our runtime using a three-tier escalation ladder.
 
 {{< mermaid >}}
 flowchart TD
   subgraph Ingestion[Tool Call Ingestion]
     A[Receive Model Tool Call] --> B[Compute Canonical Args Hash]
-    B --> C[Classify Tool Side-Effects: Read-Only vs Mutating]
+    B --> C[Classify Side-Effects: Read-Only vs Mutating]
   end
 
   subgraph Ladder[Graded Escalation Ladder]
     C --> D{Sequential Duplicate Count}
     D -->|1st Duplicate Count=2| E[Warn: Execute Tool & Append Steering Guidance]
-    D -->|2nd Duplicate Count=3| F[Block: Short-Circuit Execution & Return Synthetic Error]
-    D -->|3rd Duplicate Count=4| G[Halt: Terminate Turn & Expose repeated_tool_calls]
+    D -->|2nd Duplicate Count=3| F[Block: Intercept Execution & Return Synthetic Error]
+    D -->|3rd Duplicate Count=4| G[Halt: Abort Turn & Expose repeated_tool_calls]
   end
 
   subgraph Outcome[Outcome & Recovery]
-    E --> H[Model Receives Guidance / Self-Corrects]
-    F --> I[Prevent Wasted IO / Force Strategy Change]
-    G --> J[Preserve Context / Expose Root Cause]
+    E --> H[Model Reads Hint & Self-Corrects]
+    F --> I[Prevent Wasted IO & Force Strategy Shift]
+    G --> J[Preserve Context & Provide Clear Diagnostics]
   end
 
   Ingestion --> Ladder
@@ -44,77 +44,69 @@ flowchart TD
 
 ---
 
-## 1. Why One-Size-Fits-All Aborts Fail
+## 1. Why Brute-Force Aborts Fail
 
-In production engineering, identifying whether an agent is truly "stuck in a loop" is more nuanced than simple string matching:
+Determining whether a model is genuinely looping requires a few distinctions:
 
-- **Read-Only Inspection vs. State Mutations**: For idempotent operations (like `grep` or `view_file`), querying a configuration file at different stages of a task is not necessarily harmful. Conversely, repeating mutating commands (such as `write_to_file` or `run_command`) with identical inputs is almost always dangerous.
-- **Identical Parameters in Evolving Contexts**: Calling `git status` after executing a build script uses the exact same arguments, yet the external system state has meaningfully shifted.
-- **Large Models Have Self-Correction Capabilities**: Often, models do not lack the capability to solve the task; they simply hit a temporary cognitive blind spot. Injecting a concise steering prompt (*"You have executed this exact search twice with zero results; try adjusting your query pattern or exploring another directory"*) frequently enables the model to pivot successfully on the next turn.
+- **Read-Only vs. Mutating Tools**: Repeatedly inspecting the same file with read-only tools (`grep`, `view_file`) is often benign, so tolerance can be higher. But repeating mutating actions (`write_to_file` or running write commands) with identical arguments is dangerous.
+- **Models Can Self-Correct**: Often, the model is simply stuck in a temporary rut. If you explicitly remind it in the tool result (*"You have run this exact query twice with zero results; please adjust your approach"*), modern reasoning models usually pivot autonomously in the next turn.
 
-Therefore, our core governance philosophy is: **guide first, block physically second, halt deterministically last.**
+The guardrail's design logic is straightforward: **guide first, block physically second, halt last.**
 
 ---
 
-## 2. State Machine and the Graded Escalation Ladder
+## 2. The Three-Tier Escalation Ladder
 
-We integrated a pure-logic, zero-side-effect guardrail state machine into the `before_tool_call` phase of the main agent loop:
+The guard checks invocations in the `before_tool_call` phase of the main loop:
 
 ```rust
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum LoopGuardAction {
     /// Allow: Initial or normal execution
     Allow,
-    /// Warn: Append steering guidance to tool result, execute normally
+    /// Warn: Inject guidance into tool result, execute normally
     Warn,
-    /// Block: Prevent physical execution, synthesize error result
+    /// Block: Prevent physical execution, return synthetic error
     Block,
-    /// Halt: Terminate the active turn
+    /// Halt: Abort active turn
     Halt,
 }
 ```
 
 ### Tier 1: Warn (Steering Guidance Injection)
 
-When the exact same tool with identical normalized arguments (`canonical_args_hash`) is detected for the second time:
-- The runtime permits physical execution of the underlying tool.
-- When the tool finishes, the runtime appends an automated guidance notice to the end of the `ToolResult`:
-  > `[System Notice] You have executed this tool repeatedly with the exact same arguments without progress. Do not repeat identical calls. Adjust your search pattern, change the target path, or switch tools.`
-- Most advanced reasoning models immediately change tactics in the subsequent turn (e.g., switching from `grep` to `find_by_name` or rewriting their regex).
+When the same tool with identical normalized arguments appears for the second time in a task:
+- The tool executes normally.
+- When the tool finishes, the runtime appends an automated notice to the end of the `ToolResult`:
+  > `[System Notice] You have executed this tool repeatedly with identical arguments without progress. Do not repeat identical calls. Adjust your search pattern, change the target path, or switch tools.`
+- Most models immediately adjust their strategy on the next turn.
 
 ### Tier 2: Block (Synthetic Interception)
 
-If the model disregards the warning and initiates a third identical call:
-- The guard **short-circuits** the invocation, preventing any physical file I/O or subprocess launch.
-- A structured error (`ToolResultContent::Error`) is synthesized at the protocol layer, informing the model that repeated execution was rejected by the runtime.
-- **Preserving Protocol Parity**: Large language model tool-calling protocols strictly mandate that every `tool_use` must have an accompanying `tool_result`. Synthetic errors satisfy this contract perfectly without executing wasted compute.
+If the model ignores the warning and calls the exact same tool a third time:
+- The guard short-circuits the call, skipping physical file I/O or command execution entirely.
+- A structured error (`ToolResultContent::Error`) is synthesized at the protocol layer, informing the model that repeated execution was blocked.
+- LLM protocols mandate that every `tool_use` must have an accompanying `tool_result`. Returning a synthetic error preserves protocol parity while preventing wasted computation.
 
-### Tier 3: Halt (Deterministic Turn Abort)
+### Tier 3: Halt (Safe Turn Abort)
 
-If the duplicate count reaches four (`HALT_AFTER = 4`), the model is deemed incapable of autonomous recovery:
-- The runtime cleanly halts the current turn and emits a `RepeatedToolCalls` terminal event.
-- The UI and telemetry logs receive explicit diagnostics identifying the exact tool name and parameter payload that caused the loop, replacing vague "maximum turns reached" notifications.
-- The entire conversation history, including all prior successful turns and gathered facts, remains fully preserved on disk. The user can easily guide the agent with a follow-up prompt without re-running the workflow from scratch.
-
----
-
-## 3. Precision via Canonical Argument Hashing
-
-To avoid false positives across JSON formatting discrepancies, the guard enforces strict normalization:
-
-1. **Canonical JSON Argument Hashing**:
-   JSON keys can be serialized in arbitrary order (e.g., `{"a": 1, "b": 2}` vs. `{"b": 2, "a": 1}`). The guard recursively sorts object keys before computing the hash, ensuring identical arguments always yield identical hashes regardless of whitespace or key ordering.
-2. **Side-Effect Aware Tolerances**:
-   Read-only tools (`ReadOnly`) and mutating tools (`Mutating`) are governed with different thresholds, granting read tools greater latitude for exploration while strictly gating state-mutating actions.
+If duplicate calls reach four (`HALT_AFTER = 4`), the model is stuck:
+- The runtime ends the current turn and triggers `RepeatedToolCalls`.
+- The UI and logs explicitly identify the offending tool name and arguments.
+- Prior session history remains intact on disk, allowing the user to guide the agent with a follow-up prompt without re-running from scratch.
 
 ---
 
-## 4. Engineering Impact
+## 3. Canonical Argument Matching
 
-Deploying this graded loop guard across real-world workflows produced clear gains:
+To prevent false negatives from varying JSON key order, the guard sorts JSON object keys recursively before computing `canonical_args_hash`. This ensures `{"a": 1, "b": 2}` and `{"b": 2, "a": 1}` yield identical fingerprints.
 
-- **Significantly Higher Autonomous Recovery**: Across edge-case loop scenarios, over **70%** of loops were broken autonomously during the `Warn` tier, converting potential aborted turns into successful completions.
-- **Zero Wasted Context Overhead**: Intercepting runaway loops at the `Block` and `Halt` tiers prevents massive, duplicate tool responses from polluting the context window.
-- **Transparent Root-Cause Attribution**: When a task cannot proceed, users receive exact visibility into which tool call looped and why.
+Tools are also categorized as `ReadOnly` or `Mutating`, applying tighter thresholds to state-modifying actions.
 
-Effective agent governance is not about abruptly cutting the power when anomalies arise; like a well-designed traffic control system, it guides execution back onto the rails through progressive, clear signals.
+---
+
+## 4. Takeaway
+
+In real workloads, most edge-case loops resolve autonomously during the `Warn` tier.
+
+Replacing abrupt aborts with a progressive ladder of warnings, synthetic blocks, and clean halts preserves token budgets while meaningfully boosting task completion rates.

@@ -7,11 +7,11 @@ description: "部分大模型在流式输出时会将工具调用作为全角 DS
 series: ['AI Coding']
 ---
 
-在接入多种异构大模型（尤其是各类开源或具备特定训练背景的推理模型）构建 Agent 时，底层协议适配往往充满意想不到的“深水坑”。
+接不同模型跑 Agent 时，最怕遇到底层协议的不讲道理。
 
-最经典且棘手的一个问题就是：**模型偶尔不走标准 API 的结构化工具调用（Function / Tool Calls）字段，而是把整套工具调用指令直接作为正文文本流式吐了出来。**
+最常见的一个坑是：模型明明应该走标准的 `tool_calls` 结构体字段返回工具调用，结果偶发把一整段全角 XML 标记当成普通文本，直接塞进 `content` 或 `output_text.delta` 里流式吐了出来。
 
-在某些特定模型（例如 DeepSeek 系模型或经过反代转换的推理网关）中，工具调用常被包裹在一种基于 XML 的全角标记语言（DSML，DeepSeek Markup Language）中：
+典型格式长这样（DeepSeek 系或部分转换网关常见）：
 
 ```text
 ＜ＤＳＭＬ＜tool_calls＞
@@ -21,34 +21,34 @@ series: ['AI Coding']
 ＜／ＤＳＭＬ＜／tool_calls＞
 ```
 
-当传输层（如 OpenAI Chat Completions 或 Responses API）直接按普通文本（`content` / `output_text.delta`）把这些 token 推给前端时，会引发两重灾难：
-1. **工具调用彻底丢失**：Agent 的主事件循环没有收到任何 `tool_call` 事件，任务停滞；
-2. **严重的用户体验灾难**：几百行晦涩难懂的全角 XML 标签像打字机一样直接糊在用户的聊天界面上。
+如果传输层老老实实当普通文本发给前端，后果很直接：
+1. Agent 主循环没收到任何 `tool_call` 事件，任务卡死在原地；
+2. 用户屏幕上开始一行行打印这些晦涩的全角 XML 代码。
 
-为了彻底抹平异构模型的输出不确定性，我们在 Agent 运行时中设计了一套**跨 Chunk 流式 DSML 恢复状态机**。
+为了在底层抹平这种输出异常，我们在运行时里加了一套跨 Chunk 的流式 DSML 恢复状态机。
 
 {{< mermaid >}}
 flowchart TD
-  subgraph Ingestion[流式输入 Token Chunks]
+  subgraph Ingestion[流式分片输入]
     A[分片 1: 协议前缀片段] --> B[分片 2: invoke name=read_file]
     B --> C[分片 3: parameter name=path]
     C --> D[分片 4: 协议闭标签]
   end
 
   subgraph StateMachine[DSML 流式状态机]
-    S1[探测协议标记] --> S2{是否为 Prompt 示例?}
+    S1[探测前缀: ＜ＤＳＭＬ＜] --> S2{是否为用户 Prompt 示例?}
     S2 -->|是| S3[禁用恢复 / 原样透传文本]
-    S2 -->|否| S4[捕获模式 / 阻断文本泄漏]
-    S4 --> S5[跨分片缓冲与标签聚合]
-    S5 --> S6{协议是否合法闭合?}
-    S6 -->|否或超限| S7[Fail-Closed / 安全报错]
-    S6 -->|是| S8[提取工具名称与参数键值对]
+    S2 -->|否| S4[进入捕获模式 / 暂扣文本]
+    S4 --> S5[跨分片缓冲与标签拼接]
+    S5 --> S6{协议是否闭合?}
+    S6 -->|否或超限| S7[Fail-Closed 报错退出]
+    S6 -->|是| S8[提取工具名称与参数]
   end
 
-  subgraph Dispatch[协议转换与分发]
-    S8 --> E1[按 Tool Schema 校验并反序列化]
-    E1 --> E2[合成底层 ToolCall 与 ToolUse 事件]
-    E2 --> E3[Agent Loop 执行实体工具]
+  subgraph Dispatch[事件转换与分发]
+    S8 --> E1[按 Tool Schema 校验并解析 JSON]
+    E1 --> E2[合成 ToolCallStart / ToolUse 事件]
+    E2 --> E3[Agent 主循环正常执行工具]
   end
 
   Ingestion --> StateMachine
@@ -56,26 +56,26 @@ flowchart TD
 
 ---
 
-## 1. 为什么流式恢复比想象中复杂？
+## 1. 难点在哪？
 
-如果是一次性拿到了完整的 HTTP 响应文本，用正则表达式或 XML 解析器提取内容并不难。但 Agent 必须保持极致的**低延迟流式打字体验**，在流式场景下做抢救面临几个苛刻挑战：
+如果是一次性拿到的完整 HTTP Response，写两行正则或用 XML 解析器把内容捞出来并不难。但 Agent 要保持实时的流式打字输出，问题就变复杂了：
 
-1. **Token 碎片化（Chunk Fragmentation）**：大模型的输出是逐 token 吐出的，`＜ＤＳＭＬ＜invoke` 这样的标签可能被随意切碎成 `["＜", "ＤＳ", "ＭＬ＜in", "voke"]` 分散在连续 4 个网络 chunk 中。任何基于单 chunk 的正则匹配都会失效。
-2. **前缀暂扣与延迟决策（Hold Buffer）**：当收到半个疑似标签时（例如仅仅一个全角 `＜`），系统不能立即将其发给前端（否则一旦后续确认是 DSML 协议，用户界面已经泄漏了字符）；但又不能无限制缓冲，必须在确定是普通文本时立即把暂扣的内容释放出来。
-3. **用户 Prompt 示例防混淆（User Example Protection）**：如果用户是在向 Agent 请教“*请解释什么是 DSML，比如 ＜ＤＳＭＬ＜...*”，状态机必须精准识别并**禁用恢复**，防止把用户的讨论误当成真实的系统工具调用执行。
-4. **原生与 DSML 冲突检测（Native vs DSML Conflict）**：若模型在同一轮次中同时返回了原生结构化工具调用和正文 DSML 文本，系统必须采取防御性的 Fail-Closed 策略，严禁产生重复或混乱的调用执行。
+1. **分片切割（Chunk Fragmentation）**：大模型的输出是一小截一小截来的。`＜ＤＳＭＬ＜invoke` 可能会被切碎成 `["＜", "ＤＳ", "ＭＬ＜in", "voke"]` 分在好几个网络包里。单包做正则匹配根本靠不住。
+2. **文本暂扣（Hold Buffer）**：收到半个前缀（比如只有一个全角 `＜`）时，不能急着推给前端，否则一旦后面跟的是 DSML 标签，屏幕上就已经印出脏字符了；但也不能无限期憋着，确认是普通文本后必须马上补发。
+3. **用户 Prompt 包含示例时防误判**：如果用户正好在问“*请解释什么是 DSML，比如 ＜ＤＳＭＬ＜...*”，状态机必须认出来并关掉恢复逻辑，不能把用户举的例子当成真工具去调。
+4. **原生与 DSML 冲突**：如果模型在同一轮里既给了原生 `tool_calls` 又在正文里吐 DSML，必须走 Fail-Closed 判定，不能重复执行。
 
 ---
 
-## 2. 状态机核心架构：Provider 无关的中间表示
+## 2. 状态机设计与中间表示
 
-为了让同一套抢救逻辑能够无缝复用到各种不同的传输协议（OpenAI 兼容接口、Responses API、Anthropic 协议等），我们将状态机抽象为独立的公共模块，产出结构化的中间表示（Intermediate Representation）：
+为了在不同协议（OpenAI 格式、Responses API 等）间复用，状态机被抽成了独立模块，只产出中间表示：
 
 ```rust
 pub enum DsmlOutcome {
-    /// 确认是普通文本，放行给前端渲染
+    /// 确认是正常文本，放行给前端渲染
     Text(String),
-    /// 成功从文本流中捕获并闭合出完整的工具调用
+    /// 从流式文本里完整捞出了工具调用
     ToolCalls(Vec<DsmlToolCall>),
 }
 
@@ -86,46 +86,25 @@ pub struct DsmlToolCall {
 }
 ```
 
-各 Provider 传输层（如 `responses.rs`）接收到上游模型的 `output_text.delta` 文本流时，统一喂给 `DsmlStreamParser` 状态机。
+底层 Provider 收到文本增量后喂给状态机：
+- 状态机内部维护一段 `capture_buffer`，平时处于透明直通状态。
+- 一旦碰到 `＜ＤＳＭＬ＜`，立刻切到暂扣模式，暂停向下游派发 `TextDelta`。
+- 加了 `DSML_CAPTURE_LIMIT`（256KB）上限，防止异常输出无限吃内存。
 
 ---
 
-## 3. 关键边缘场景的处理策略
+## 3. 参数校验与事件合成
 
-### 跨 Chunk 的流式标签聚合与截断保护
+状态机捕获到完整的闭合标签后，逐个提取 `<invoke>` 和 `<parameter>`：
+1. 查当前的 Tool Registry，确认工具名存在；
+2. 把非字符串参数转成合法的 JSON 结构；
+3. 对照工具注册的 JSON Schema 做校验；
+4. 校验通过后，在 Transport 层就地合成原生的 `ToolCallStart`、`ToolInputDelta` 和 `ToolUse` 事件。
 
-状态机内部维护了一个滑动捕获缓冲区（`capture_buffer`）。
-- 状态机时刻监听全角前缀 `＜ＤＳＭＬ＜`。
-- 一旦探测到潜在协议头，状态机立即进入 `Buffering` 状态，阻断下游的 `TextDelta` 发送。
-- 为防止恶意或失控模型输出超大非法文本撑爆内存，设置了严格的硬上限（如 `DSML_CAPTURE_LIMIT = 256KB`）。一旦超限未闭合，立即判定为 `BufferLimit` 错误并阻断。
-
-### 参数解析与 Schema 强校验
-
-全角 DSML 的内部结构由 `<invoke name="...">` 与 `<parameter name="...">` 标签组成。参数内容可能是简单标量，也可能是复杂的 JSON 数组或对象。
-
-状态机在提取出各个 `<parameter>` 后：
-1. 校验工具名称是否属于当前运行时已注册的工具集；
-2. 对非纯字符串参数尝试 JSON 反序列化解析；
-3. 按照注册工具的 JSON Schema 进行校验，确保参数类型与必填项完全合法；
-4. 将其序列化为干净、标准的 JSON 字符串 `{"path": "src/main.rs"}`。
-
-### 优雅合成原生事件流
-
-当状态机解析出合法的 `DsmlOutcome::ToolCalls` 时，传输层将即时把这些结构体转化为 Agent 运行时底层的标准事件：
-- 发送 `ToolCallStart`（携带唯一生成的递增 Tool ID）；
-- 发送 `ToolInputDelta`；
-- 发送 `ToolUseStart` / `ToolUse`。
-
-在 Agent Loop 看来，这与模型原生返回的 Function Call 没有任何区别，驱动主流程无缝进入工具执行阶段。
+对上层的 Agent 主循环来说，完全不知道底层发生过文本抢救，直接按标准事件流程去调度工具执行。
 
 ---
 
-## 4. 收益与工程启示
+## 4. 总结
 
-引入 DSML 流式恢复机制后，我们彻底解决了偶发性协议泄漏问题：
-
-1. **协议零泄漏**：全角 XML 协议标记被 100% 拦截在底层传输层，前端用户界面干净清爽；
-2. **任务零失败**：原本会因为格式错乱导致中断的 Agent 任务，全部被无缝救回并正确执行；
-3. **架构内聚**：将异构模型协议抹平在最底层的 Transport 转换层，上层业务状态机与 Tool 调度逻辑无需感知任何模型厂商的特化怪癖。
-
-构建坚固的 Agent 运行时，往往不在于接入了多少新能力，而在于底层是否有足够多的**防御性管道（Defensive Pipelines）**，去兜住模型输出一切不可控的边缘情况。
+做 Agent 接入异构模型，不能假设模型的格式永远 100% 规整。把这种边缘怪癖收拢在底层的 Transport 转换层，上层的任务状态机和工具逻辑才能保持干净。

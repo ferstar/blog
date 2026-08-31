@@ -9,11 +9,11 @@ series: ['AI Coding']
 
 > I am not a native English speaker; this article was translated by AI.
 
-When developing Electron or web-based desktop agent clients, developers frequently encounter an infuriating user-experience bug:
+When building desktop or web-based agent clients, there is a recurring, annoying UX friction:
 
-> **The model has finished streaming its final sentence, yet the client's input box remains greyed out and locked with a "Task in progress..." placeholder. The cursor cannot focus, forcing the user to wait several seconds or tens of seconds before sending another message. If the window loses focus mid-stream, the input box can even get stuck in loading indefinitely.**
+> **The model has finished streaming its last token on screen, but the input box stays disabled with a "Task in progress..." placeholder. You cannot focus the cursor. It takes several seconds to unlock, and switching away from the window mid-stream can sometimes freeze it in a loading state permanently.**
 
-This "input freeze" looks like a trivial frontend state-binding bug on the surface. But when digging into the backend IPC and process architecture, it reveals itself as a classic **distributed event ordering and asynchronous I/O blocking issue**.
+This looks like a simple frontend state bug, but tracing through the stack reveals an issue of asynchronous disk persistence blocking the event dispatch pipeline.
 
 {{< mermaid >}}
 flowchart TD
@@ -37,81 +37,78 @@ flowchart TD
 
 ---
 
-## 1. Root-Cause Analysis: Why Does the Input Lock Up?
+## 1. Why Does the Input Lock Up?
 
-In modern desktop agent architectures, an AI response travels across three decoupled boundaries before settling to disk:
-1. **Sampling Runtime**: Consumes the provider's SSE stream and yields deltas and `MessageComplete` events;
-2. **Host Process (Node.js / Electron IPC Layer)**: Manages cross-process messaging, SQLite database persistence, image asset materialization, and audit logging;
-3. **Renderer Process (UI Layer)**: Maintains reactive state (`isStreaming`, `streamingSessions`) and toggles input enablement in frameworks like React or Vue.
+From model output to disk storage, messages pass through three layers:
+1. **Sampling Runtime**: Consumes the SSE stream, producing text deltas and `MessageComplete`.
+2. **Host Process (Node.js / IPC Layer)**: Manages cross-process communication, SQLite writes, image materialization, and JSONL archiving.
+3. **Renderer Process (Frontend UI)**: Manages reactive states like `isStreaming` and input enablement in React/Vue.
 
-Inspecting runtime traces uncovered three distinct culprits behind frozen inputs:
+Tracing the logs revealed three main bottlenecks:
 
-### Culprit 1: Terminal Events Queued Behind Heavy I/O
+### Culprit 1: Terminal Events Blocked Behind Heavy I/O
 
-In legacy implementations, the host process waited for all disk persistence operations in the turn to finish before emitting the terminal `agent_end` event:
+The legacy implementation waited for all disk writes in the turn to finish before sending `agent_end` to the UI:
 ```typescript
-// Legacy pseudocode: Severe I/O blocking serialization
-await persistTurnToSqlite(turnData);      // 50~200ms latency
-await materializeImagesToDisk(images);    // 500ms~2000ms latency
-await appendSessionJsonl(largePayload);   // 100~500ms latency
+// Legacy flow: Heavy I/O blocks terminal notifications
+await persistTurnToSqlite(turnData);      // 50~200ms
+await materializeImagesToDisk(images);    // 500ms~2s
+await appendSessionJsonl(largePayload);   // 100~500ms
 
-// Only now is the renderer notified to unlock the input
+// Only now is the UI notified
 emitToRenderer('agent_end', session);
 ```
-While the user is reading the completed response on screen, the host process is grinding through heavy disk writes. On lower-end machines or inside large sessions, this delay easily stretches to several seconds, keeping the input locked long after the model went quiet.
+While the user is already reading the final response, the host process is still grinding through disk writes. In large sessions, this easily introduces noticeable delays.
 
-### Culprit 2: Head-of-Line Blocking in IPC Event Chains
+### Culprit 2: Head-of-Line Blocking in IPC Queues
 
-To ensure sequential delivery, desktop clients often route outgoing events through a single serial IPC queue (Emit Chain). When an agent emits verbose non-critical telemetry during turn finalization, the critical `agent_end` event gets stuck behind bulky payloads.
+To preserve message ordering, events pass through an ordered queue (Emit Chain). If the model emits diagnostic logs during finalization, `agent_end` gets queued behind them.
 
-### Culprit 3: Orphaned States from Window Blur and Packet Drops
+### Culprit 3: Window Defocus Drops
 
-When a user switches away from the desktop window mid-stream, Chromium throttles background timers. If an IPC message fails to dispatch cleanly during window transitions, the renderer permanently misses `agent_end`, leaving the session in an unrecoverable "Streaming" state.
+When a user switches windows mid-stream, Chromium throttles background timers. If a cross-process packet drops during that transition, the UI permanently misses `agent_end`, leaving the input locked.
 
 ---
 
-## 2. The Solution: Three-Pronged Decoupling & Reconciliation
+## 2. The Solution
 
-To address this comprehensively, we engineered a coordinated three-layer solution across the host IPC and UI state layers:
+We updated the IPC and frontend state management across three areas:
 
-### Layer 1: Optimistic Input Unlocking
+### 1. Optimistic Unlocking
 
-UI responsiveness must not be tethered to disk persistence. The frontend now **optimistically unlocks the input box the exact instant `MessageComplete` is received**, provided three conditions hold:
-1. The incoming message is a genuine terminal reply (`StopReason::EndTurn`);
-2. No asynchronous background tools remain unfinalized (`finalizeRunningTools` is empty);
-3. No user cancellation is pending (`stopRequested` is false).
+Input availability should not wait on disk writes. Once the frontend receives `MessageComplete` and verifies:
+- The reply is a genuine terminal turn (`EndTurn`);
+- No background tools are currently executing;
+- The user has not requested a stop.
 
-This compresses user-perceived input recovery latency from several seconds down to **0 milliseconds**.
+It **unlocks the input box immediately**, dropping perceived recovery latency to zero.
 
-### Layer 2: Bypass Channel for Lifecycle Terminals
+### 2. Bypass Channel for Terminal Events
 
-Lifecycle events (`agent_end`, `error`, `cancelled`) carry strictly higher priority than content stream deltas. We created a **Bypass Fast Channel** within the IPC bridge:
-- Terminal lifecycle events skip the standard sequential queue (Emit Chain) and dispatch directly to the renderer at maximum priority.
-- Even if local SQLite or file archiving queues are backed up, the UI lifecycle state machine updates instantaneously.
+Lifecycle events (`agent_end`, `error`, `cancelled`) have higher priority than regular stream deltas. We introduced a fast-track bypass in the IPC bridge:
+- Terminal events skip the standard ordered queue and dispatch directly to the renderer.
+- Even if SQLite writes or archiving queues are backed up, the UI lifecycle updates without delay.
 
-### Layer 3: Periodic Stale Reconciliation Heartbeat
+### 3. 10-Second Low-Overhead Reconciliation Loop
 
-To eliminate orphaned states caused by window defocus or cross-process interruptions, the frontend maintains a **low-overhead stale reconciliation loop** running every 10 seconds:
+To handle orphaned states from window blur or dropped packets, the frontend runs a 10-second reconciliation check:
 
 ```typescript
 useEffect(() => {
   const timer = setInterval(() => {
-    // Audit active streaming sessions with no incoming packets for >10s
+    // Check for sessions with no activity for >10s still marked as streaming
     reconcileStaleStreamingSessions();
   }, 10_000);
   return () => clearInterval(timer);
 }, []);
 ```
 
-The reconciliation loop checks the elapsed time since the last received chunk against host process state. If an orphaned session is detected, it idempotently cleans up streaming markers and restores normal UI controls.
+Any stuck sessions are idempotently cleaned up and synchronized.
 
 ---
 
-## 3. Engineering Impact
+## 3. Takeaway
 
-Deploying this decoupled architecture yielded substantial improvements:
-1. **Zero Input Latency**: Input focus transitions smoothly without annoying post-generation freezes;
-2. **Deterministic Self-Healing**: Even when users switch windows or sleep their laptops mid-turn, sessions recover cleanly upon wake;
-3. **Clean Architectural Boundaries**: High-throughput disk I/O and low-latency UI interactivity are cleanly separated.
+With these changes in place, the input box is ready the moment generation finishes, and focus freezes from window switching are gone.
 
-When building desktop AI applications, never allow low-level **storage contracts** to hold high-level **interaction contracts** hostage. Make interactions optimistic and agile, keep persistence asynchronous, and guarantee consistency with deterministic reconciliation loops.
+In rich-client apps, keep user interactions optimistic and fast, run heavy persistence asynchronously in the background, and use periodic reconciliation to ensure eventual consistency.

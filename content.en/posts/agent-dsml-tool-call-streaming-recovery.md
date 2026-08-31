@@ -9,11 +9,11 @@ series: ['AI Coding']
 
 > I am not a native English speaker; this article was translated by AI.
 
-When integrating heterogeneous large language models into agent runtimes—especially open-source or custom fine-tuned reasoning models—the underlying transport protocol is often fraught with unexpected edge cases.
+When integrating diverse models for coding agents, transport quirks are bound to happen.
 
-One of the most persistent and frustrating issues is when **a model bypasses standard structured function/tool call payloads and instead streams raw tool call protocols directly into the conversational text body.**
+One recurring issue is when a model, instead of returning structured function calls via the standard `tool_calls` payload, dumps raw XML markup directly into the text stream (`content` or `output_text.delta`).
 
-In certain model families (such as DeepSeek derivatives or proxied inference gateways), tool invocations are sometimes formatted using XML-style full-width markup known as DSML (DeepSeek Markup Language):
+In certain reasoning models (such as DeepSeek derivatives or proxied gateways), it often looks like this:
 
 ```text
 ＜ＤＳＭＬ＜tool_calls＞
@@ -23,11 +23,11 @@ In certain model families (such as DeepSeek derivatives or proxied inference gat
 ＜／ＤＳＭＬ＜／tool_calls＞
 ```
 
-When the transport layer (such as OpenAI Chat Completions or Responses API) blindly relays these tokens as standard text deltas (`content` or `output_text.delta`), it triggers a double failure:
-1. **Broken Tool Execution**: The agent's event loop receives zero structured `tool_call` events, stalling the ongoing task.
-2. **Degraded User Experience**: Hundreds of lines of unparsed, full-width XML markup stream directly onto the user's chat screen like a runaway typewriter.
+If the transport layer simply passes these tokens through to the UI as plain text:
+1. The agent loop receives zero `tool_call` events, stalling the task.
+2. The user's screen gets littered with unparsed full-width XML tags.
 
-To insulate our agent runtime from these format anomalies, we designed a **cross-chunk streaming DSML recovery state machine**.
+To handle this cleanly in our runtime, we built a cross-chunk streaming DSML recovery state machine.
 
 {{< mermaid >}}
 flowchart TD
@@ -38,10 +38,10 @@ flowchart TD
   end
 
   subgraph StateMachine[DSML Streaming State Machine]
-    S1[Detect Protocol Marker] --> S2{Is Prompt Example?}
-    S2 -->|Yes| S3[Disable Recovery / Pass as Text]
+    S1[Detect Prefix: ＜ＤＳＭＬ＜] --> S2{Is Prompt Example?}
+    S2 -->|Yes| S3[Disable Recovery / Stream as Text]
     S2 -->|No| S4[Capture Mode / Hold Text Output]
-    S4 --> S5[Cross-Chunk Buffering & Tag Assembly]
+    S4 --> S5[Buffer Chunks & Assemble Tags]
     S5 --> S6{Is Markup Valid & Closed?}
     S6 -->|No or Over Limit| S7[Fail-Closed / Emit Safe Error]
     S6 -->|Yes| S8[Extract Tool Name & Parameter Pairs]
@@ -58,26 +58,26 @@ flowchart TD
 
 ---
 
-## 1. Why Streaming Recovery Is Harder Than It Looks
+## 1. Where the Complexity Lies
 
-If you receive the complete HTTP response body all at once, extracting content with regular expressions or XML parsers is trivial. However, modern agent systems demand an **instantaneous, low-latency streaming experience**. Performing in-flight protocol recovery introduces stringent constraints:
+If you receive a single, complete HTTP response body, extracting the tags via regex or an XML parser is straightforward. But agents require low-latency streaming text, which introduces several constraints:
 
-1. **Token Fragmentation Across Chunks**: LLM output arrives token-by-token. A tag like `＜ＤＳＭＬ＜invoke` might arrive fragmented as `["＜", "ＤＳ", "ＭＬ＜in", "voke"]` across four distinct network packets. Single-chunk pattern matching completely breaks.
-2. **Hold Buffers and Deferred Emission**: When receiving the beginning of a potential protocol marker (e.g., a single full-width `＜`), the transport layer cannot immediately emit it to the client (otherwise, if it proves to be protocol markup, the screen has already been polluted). Conversely, it cannot buffer indefinitely; it must flush immediately once confirmed to be regular text.
-3. **User Prompt Example Protection**: If a user explicitly asks the agent, *"Can you explain what DSML is, such as ＜ＤＳＭＬ＜..."*, the state machine must recognize this and **disable recovery**, avoiding accidental execution of user-quoted text as real system commands.
-4. **Native vs. DSML Conflict Resolution**: If a model emits both native structured tool calls and in-stream DSML markup in the same turn, the runtime must adopt a defensive fail-closed posture to prevent duplicate or conflicting invocations.
+1. **Chunk Fragmentation**: Output arrives token-by-token. A tag like `＜ＤＳＭＬ＜invoke` might arrive fragmented as `["＜", "ＤＳ", "ＭＬ＜in", "voke"]` across four separate network packets. Single-chunk regex matching is ineffective.
+2. **Hold Buffers**: When receiving a partial prefix (like a standalone `＜`), we cannot stream it immediately to the client (in case it turns out to be markup). But we also cannot hold it indefinitely; normal text must flush immediately once verified.
+3. **User Prompt Examples**: If a user is explicitly discussing DSML syntax (e.g., *"What does ＜ＤＳＭＬ＜ mean?"*), the state machine must recognize this and disable recovery, rather than attempting to execute quoted examples as real system commands.
+4. **Native vs. DSML Conflicts**: If a model returns both native structured tool calls and raw DSML text in the same turn, we fail closed to prevent duplicate executions.
 
 ---
 
-## 2. State Machine Architecture: Provider-Agnostic IR
+## 2. State Machine Design & Intermediate Representation
 
-To enable seamless reuse across disparate transports (OpenAI-compatible endpoints, Responses APIs, and Anthropic protocols), we decoupled the parser into a standalone module producing a structured Intermediate Representation (IR):
+To support multiple providers (OpenAI-compatible endpoints, Responses APIs), the state machine operates on a decoupled Intermediate Representation:
 
 ```rust
 pub enum DsmlOutcome {
     /// Confirmed user-visible text, released for frontend streaming
     Text(String),
-    /// Successfully parsed and validated complete tool invocations
+    /// Successfully captured and parsed complete tool invocations
     ToolCalls(Vec<DsmlToolCall>),
 }
 
@@ -88,46 +88,25 @@ pub struct DsmlToolCall {
 }
 ```
 
-Transport adapters feed incoming `output_text.delta` streams into the `DsmlStreamParser` state machine, decoupling higher-level agent logic from protocol rescue mechanics.
+The provider passes incoming text chunks into the state machine:
+- It maintains an internal `capture_buffer`.
+- Once `＜ＤＳＭＬ＜` is detected, it switches to capture mode, pausing downstream `TextDelta` emissions.
+- A `DSML_CAPTURE_LIMIT` (256KB) guards against memory exhaustion from malformed output.
 
 ---
 
-## 3. Handling Critical Edge Cases
+## 3. Schema Validation & Event Synthesis
 
-### Cross-Chunk Tag Aggregation and Buffer Bounds
+When closed tags are parsed, `<invoke>` and `<parameter>` nodes are extracted:
+1. Verify the tool name exists in the current registry.
+2. Parse non-string parameters into valid JSON values.
+3. Validate against the tool's registered JSON Schema.
+4. Synthesize native `ToolCallStart`, `ToolInputDelta`, and `ToolUse` events.
 
-The state machine maintains an internal sliding buffer (`capture_buffer`).
-- It continuously scans for the full-width marker prefix `＜ＤＳＭＬ＜`.
-- Once detected, it transitions to `Buffering` state, holding back downstream `TextDelta` emissions.
-- To prevent unbounded memory consumption from malformed model output, a hard capture limit is enforced (`DSML_CAPTURE_LIMIT = 256KB`). Exceeding this boundary triggers a safe `BufferLimit` error.
-
-### Parameter Extraction and Schema Validation
-
-Inside DSML blocks, invocations are defined by `<invoke name="...">` and nested `<parameter name="...">` elements. Parameters can be simple primitives or complex nested JSON objects.
-
-Upon capturing closed parameter tags:
-1. The tool name is verified against currently registered runtime tools;
-2. Non-string parameters undergo strict JSON deserialization;
-3. Arguments are validated against the tool's JSON Schema for type safety and required fields;
-4. The arguments are normalized into a standard JSON string: `{"path": "src/main.rs"}`.
-
-### Seamless Native Event Synthesis
-
-When the state machine yields a valid `DsmlOutcome::ToolCalls`, the transport adapter immediately translates it into the runtime's native event stream:
-- Emits `ToolCallStart` (with a sequentially generated unique tool ID);
-- Emits `ToolInputDelta`;
-- Emits `ToolUseStart` / `ToolUse`.
-
-To the main Agent Loop, this synthetic event stream is indistinguishable from a native provider function call, cleanly routing the turn into tool execution.
+From the agent loop's perspective, this is indistinguishable from standard provider tool calls, routing directly into normal tool execution.
 
 ---
 
-## 4. Engineering Takeaways
+## 4. Takeaway
 
-Integrating in-flight DSML recovery yielded immediate reliability benefits:
-
-1. **Zero Protocol Leakage**: Full-width XML markers are intercepted entirely at the transport boundary, preserving clean UI rendering.
-2. **Zero Dropped Invocations**: Tasks that previously stalled due to syntax quirks are recovered seamlessly and executed without user intervention.
-3. **Architectural Isolation**: Vendor-specific output quirks are normalized at the lowest transport adapter layer, keeping higher-level agent state machines clean and unpolluted.
-
-Building resilient agent systems is rarely about adding superficial capabilities; it is about establishing robust **defensive pipelines** that absorb the inherent messiness and non-determinism of model outputs.
+When building agent runtimes against varied model endpoints, output formatting anomalies are inevitable. Absorbing these quirks in the transport adapter layer keeps higher-level agent state machines clean and dependable.
