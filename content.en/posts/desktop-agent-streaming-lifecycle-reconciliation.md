@@ -17,21 +17,21 @@ This "input freeze" looks like a trivial frontend state-binding bug on the surfa
 
 {{< mermaid >}}
 flowchart TD
-  subgraph Backend["Agent Host Process / Runtime"]
-    M[Receive final TextDelta] --> MC[Emit MessageComplete]
-    MC --> P["Heavy Asynchronous Persistence<br/>(SQLite writes / Image materialization / JSONL flush)"]
-    P --> AE[Emit AgentEnd terminal event]
+  subgraph Backend[Agent Host Process / Runtime]
+    M[Receive Final Text Chunk] --> MC[Emit MessageComplete]
+    MC --> P[Heavy Async Persistence: SQLite & Archiving]
+    P --> AE[Emit AgentEnd Terminal Event]
   end
 
-  subgraph Legacy["Legacy Serial Flow (Blocks UI)"]
-    MC -.-> |await blocks several seconds| AE
-    AE -->|Long queued IPC chain| UI1["Renderer clears isStreaming state<br/>(Severe user-perceived lag)"]
+  subgraph Legacy[Legacy Serial Pattern]
+    L1[Wait for Persistence to Finish] --> L2[Notify Frontend via Long IPC Queue]
+    L2 --> L3[Clear isStreaming / Noticeable UI Freeze]
   end
 
-  subgraph Optimized["Decoupled & Reconciled Architecture"]
-    MC -->|Optimistic check: No running tools| UI2["Unlock input box immediately (Sub-millisecond)"]
-    AE -->|Bypass fast channel| UI2
-    T["10s periodic stale reconciliation timer"] -.->|Handles dropouts/blur edge cases| UI2
+  subgraph Optimized[Decoupled & Reconciled Pattern]
+    MC -->|Optimistic: No Pending Tools| UI1[Unlock Input Box Instantly]
+    AE -->|Bypass Fast Channel| UI1
+    T[10s Periodic Stale Reconciliation] -.->|Handles Dropouts & Blur Edge Cases| UI1
   end
 {{< /mermaid >}}
 

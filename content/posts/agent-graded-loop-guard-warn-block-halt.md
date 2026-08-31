@@ -19,22 +19,22 @@ series: ['AI Coding']
 
 {{< mermaid >}}
 flowchart TD
-  subgraph Ingestion["工具调用入参 (Tool Call)"]
-    A[收到模型工具调用] --> B["提取规范化参数哈希<br/>canonical_args_hash"]
-    B --> C["区分工具类型<br/>(只读幂等 vs 状态变更)"]
+  subgraph Ingestion[工具调用入参分析]
+    A[收到模型工具调用] --> B[提取规范化参数哈希 canonical_args_hash]
+    B --> C[区分工具类型: 只读幂等 vs 状态变更]
   end
 
-  subgraph Ladder["三级处置阶梯 (Graded Ladder)"]
+  subgraph Ladder[三级处置阶梯]
     C --> D{连续相同调用次数}
-    D -- "第 1 次重复 (Count=2)" --> E["Warn (警告注入)<br/>执行工具并在结果追加纠偏引导"]
-    D -- "第 2 次重复 (Count=3)" --> F["Block (合成拦截)<br/>短路物理执行, 返回合成错误, 维持协议配对"]
-    D -- "第 3 次重复 (Count=4)" --> G["Halt (安全熔断)<br/>终止 Turn, 向前端透传 repeated_tool_calls 原因"]
+    D -->|第 1 次重复 Count=2| E[Warn 警告注入: 执行工具并在结果追加纠偏引导]
+    D -->|第 2 次重复 Count=3| F[Block 合成拦截: 短路物理执行并返回合成错误]
+    D -->|第 3 次重复 Count=4| G[Halt 安全熔断: 终止 Turn 并透传 repeated_tool_calls]
   end
 
-  subgraph Outcome["执行与反馈"]
+  subgraph Outcome[执行与反馈]
     E --> H[模型获得纠偏提示 / 自我修正思路]
-    F --> I[阻止无效系统开销 / 强制模型更换策略]
-    G --> J[保全已有上下文 / 明确告知用户打转原因]
+    F --> I[阻止无效系统开销 / 强制更换策略]
+    G --> J[保全已有上下文 / 明确告知打转原因]
   end
 
   Ingestion --> Ladder

@@ -23,23 +23,23 @@ To guarantee high availability, we introduced **MCP Startup Isolation and Gracef
 
 {{< mermaid >}}
 flowchart TD
-  subgraph Config["MCP Configuration Criticality"]
-    C1["Critical Core Service<br/>e.g., Local filesystem / Terminal execution"]
-    C2["Optional Service<br/>e.g., Remote knowledge / Web search / Browser"]
+  subgraph Config[MCP Configuration Criticality]
+    C1[Critical Service: Local Filesystem & Terminal]
+    C2[Optional Service: Remote Knowledge & Web Search]
   end
 
-  subgraph Startup["Concurrent Isolation Sandbox"]
-    C1 --> T1["Tokio Task 1<br/>(Strict validation / Abort on failure)"]
-    C2 --> T2["Tokio Task 2<br/>(Isolated 3s timeout)"]
-    C2 --> T3["Tokio Task 3<br/>(Isolated 3s timeout)"]
+  subgraph Startup[Concurrent Isolation Sandbox]
+    C1 --> T1[Tokio Task 1: Strict Validation & Fast Abort]
+    C2 --> T2[Tokio Task 2: Isolated 3s Timeout]
+    C2 --> T3[Tokio Task 3: Isolated 3s Timeout]
   end
 
-  subgraph Outcome["Dynamic Tool Registry & Degradation"]
-    T1 -- Success --> R[Dynamic Tool Registry]
-    T2 -- Timeout / Error --> D["Log isolated diagnostic warning<br/>(Do not block session)"]
-    T3 -- Success --> R
-    D -. Filter unavailable tools .-> R
-    R --> S["Session launches cleanly<br/>(UI Notice: Running in degraded mode)"]
+  subgraph Outcome[Dynamic Tool Registry & Degradation]
+    T1 -->|Success| R[Dynamic Tool Registry]
+    T2 -->|Timeout or Error| D[Log Isolated Diagnostic Warning]
+    T3 -->|Success| R
+    D -.->|Filter Unavailable Tools| R
+    R --> S[Session Launches Cleanly in Degraded Mode]
   end
 
   Config --> Startup

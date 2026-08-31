@@ -15,21 +15,21 @@ series: ['AI Coding']
 
 {{< mermaid >}}
 flowchart TD
-  subgraph Backend["Agent 主进程 / 运行时"]
-    M[收到最后一包 TextDelta] --> MC[发送 MessageComplete]
-    MC --> P["重型异步持久化<br/>(SQLite 落盘 / 图片物化 / 大型 JSONL 归档)"]
+  subgraph Backend[Agent 主进程 / 运行时]
+    M[收到最后文本片段] --> MC[发送 MessageComplete]
+    MC --> P[重型异步持久化: SQLite 落盘与文件归档]
     P --> AE[发送 AgentEnd 终态事件]
   end
 
-  subgraph Legacy["传统串行机制 (阻塞 UI)"]
-    MC -.-> |await 阻塞几秒| AE
-    AE -->|经过长队列 IPC| UI1["前端清空 isStreaming 状态<br/>(用户感知严重滞后卡顿)"]
+  subgraph Legacy[传统串行模式]
+    L1[等待持久化完成] --> L2[通过长队列 IPC 通知前端]
+    L2 --> L3[清空 isStreaming / 用户感知严重卡顿]
   end
 
-  subgraph Optimized["解耦与对账优化"]
-    MC -->|乐观判定: 无后续工具| UI2["立即解禁前端输入框 (毫秒级响应)"]
-    AE -->|Bypass 快速通道| UI2
-    T["10s 周期性 Stale 对账心跳"] -.->|极端丢包/失焦兜底| UI2
+  subgraph Optimized[解耦与对账优化]
+    MC -->|乐观判定: 无后续工具| UI1[立即解禁前端输入框]
+    AE -->|Bypass 终态快轨| UI1
+    T[10s 周期性 Stale 对账心跳] -.->|极端丢包或失焦兜底| UI1
   end
 {{< /mermaid >}}
 

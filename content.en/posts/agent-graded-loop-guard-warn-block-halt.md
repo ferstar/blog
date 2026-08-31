@@ -21,22 +21,22 @@ To strike the right balance between **task completion rate** and **budget safety
 
 {{< mermaid >}}
 flowchart TD
-  subgraph Ingestion["Tool Call Ingestion"]
-    A[Receive model tool call] --> B["Compute canonical args hash<br/>canonical_args_hash"]
-    B --> C["Classify tool side-effects<br/>(Idempotent Read-Only vs. Mutating)"]
+  subgraph Ingestion[Tool Call Ingestion]
+    A[Receive Model Tool Call] --> B[Compute Canonical Args Hash]
+    B --> C[Classify Tool Side-Effects: Read-Only vs Mutating]
   end
 
-  subgraph Ladder["Graded Escalation Ladder"]
-    C --> D{Sequential duplicate count}
-    D -- "1st Duplicate (Count=2)" --> E["Warn (Guidance Injection)<br/>Execute tool and append steering hint to result"]
-    D -- "2nd Duplicate (Count=3)" --> F["Block (Synthetic Interception)<br/>Short-circuit execution, return synthetic error, preserve protocol pair"]
-    D -- "3rd Duplicate (Count=4)" --> G["Halt (Safe Abort)<br/>Terminate turn, expose repeated_tool_calls state"]
+  subgraph Ladder[Graded Escalation Ladder]
+    C --> D{Sequential Duplicate Count}
+    D -->|1st Duplicate Count=2| E[Warn: Execute Tool & Append Steering Guidance]
+    D -->|2nd Duplicate Count=3| F[Block: Short-Circuit Execution & Return Synthetic Error]
+    D -->|3rd Duplicate Count=4| G[Halt: Terminate Turn & Expose repeated_tool_calls]
   end
 
-  subgraph Outcome["Outcome & Recovery"]
-    E --> H[Model receives guidance / Self-corrects approach]
-    F --> I[Prevent wasted IO / Force strategy change]
-    G --> J[Preserve all context / Give user transparent root cause]
+  subgraph Outcome[Outcome & Recovery]
+    E --> H[Model Receives Guidance / Self-Corrects]
+    F --> I[Prevent Wasted IO / Force Strategy Change]
+    G --> J[Preserve Context / Expose Root Cause]
   end
 
   Ingestion --> Ladder

@@ -31,26 +31,26 @@ To insulate our agent runtime from these format anomalies, we designed a **cross
 
 {{< mermaid >}}
 flowchart TD
-  subgraph Ingestion["Streaming Input (Token Chunks)"]
-    A["chunk: '＜'"] --> B["chunk: 'ＤＳＭＬ＜invoke name=\"read_file\"＞'"]
-    B --> C["chunk: '＜parameter name=\"path\"＞src/main.rs＜／parameter＞'"]
-    C --> D["chunk: '＜／ＤＳＭＬ＜／invoke＞'"]
+  subgraph Ingestion[Streaming Input Token Chunks]
+    A[Chunk 1: Protocol Prefix] --> B[Chunk 2: invoke name=read_file]
+    B --> C[Chunk 3: parameter name=path]
+    C --> D[Chunk 4: Protocol Closing Tag]
   end
 
-  subgraph StateMachine["DSML State Machine (Provider Agnostic)"]
-    S1[Detect prefix '＜ＤＳＭＬ＜'] --> S2{Is this a user prompt example?}
-    S2 -- Yes --> S3[Disable recovery / Stream through as raw text]
-    S2 -- No --> S4[Enter protocol capture mode / Hold text delta]
-    S4 --> S5[Buffer cross-chunk fragments & assemble tags]
-    S5 --> S6{Is markup valid and closed?}
-    S6 -- No / Limit Exceeded --> S7[Fail-Closed / Raise safe diagnostic error]
-    S6 -- Yes --> S8[Extract invoke name & parameter pairs]
+  subgraph StateMachine[DSML Streaming State Machine]
+    S1[Detect Protocol Marker] --> S2{Is Prompt Example?}
+    S2 -->|Yes| S3[Disable Recovery / Pass as Text]
+    S2 -->|No| S4[Capture Mode / Hold Text Output]
+    S4 --> S5[Cross-Chunk Buffering & Tag Assembly]
+    S5 --> S6{Is Markup Valid & Closed?}
+    S6 -->|No or Over Limit| S7[Fail-Closed / Emit Safe Error]
+    S6 -->|Yes| S8[Extract Tool Name & Parameter Pairs]
   end
 
-  subgraph Dispatch["Protocol Synthesis & Event Dispatch"]
-    S8 --> E1[Validate against Tool Schema & deserialize parameters]
-    E1 --> E2["Synthesize native runtime events:<br/>ToolCallStart + ToolInputDelta + ToolUse"]
-    E2 --> E3[Agent Loop executes concrete tool]
+  subgraph Dispatch[Protocol Conversion & Dispatch]
+    S8 --> E1[Validate against Tool Schema & Deserialize]
+    E1 --> E2[Synthesize ToolCall & ToolUse Events]
+    E2 --> E3[Agent Loop Executes Real Tool]
   end
 
   Ingestion --> StateMachine

@@ -29,26 +29,26 @@ series: ['AI Coding']
 
 {{< mermaid >}}
 flowchart TD
-  subgraph Ingestion["流式输入 (Token Chunks)"]
-    A["chunk: '＜'"] --> B["chunk: 'ＤＳＭＬ＜invoke name=\"read_file\"＞'"]
-    B --> C["chunk: '＜parameter name=\"path\"＞src/main.rs＜／parameter＞'"]
-    C --> D["chunk: '＜／ＤＳＭＬ＜／invoke＞'"]
+  subgraph Ingestion[流式输入 Token Chunks]
+    A[分片 1: 协议前缀片段] --> B[分片 2: invoke name=read_file]
+    B --> C[分片 3: parameter name=path]
+    C --> D[分片 4: 协议闭标签]
   end
 
-  subgraph StateMachine["DSML 状态机 (Provider 无关)"]
-    S1[检测前缀 '＜ＤＳＭＬ＜'] --> S2{是否为用户 Prompt 示例?}
-    S2 -- 是 --> S3[禁用恢复 / 原样作为文本流输出]
-    S2 -- 否 --> S4[进入协议捕获模式 / 阻断文本透传]
-    S4 --> S5[跨 Chunk 缓冲与标签聚合]
+  subgraph StateMachine[DSML 流式状态机]
+    S1[探测协议标记] --> S2{是否为 Prompt 示例?}
+    S2 -->|是| S3[禁用恢复 / 原样透传文本]
+    S2 -->|否| S4[捕获模式 / 阻断文本泄漏]
+    S4 --> S5[跨分片缓冲与标签聚合]
     S5 --> S6{协议是否合法闭合?}
-    S6 -- 否 / 超限 --> S7[Fail-Closed / 抛出安全异常]
-    S6 -- 是 --> S8[解析 Invoke 名称与参数键值对]
+    S6 -->|否或超限| S7[Fail-Closed / 安全报错]
+    S6 -->|是| S8[提取工具名称与参数键值对]
   end
 
-  subgraph Dispatch["协议层事件合成与分发"]
-    S8 --> E1[按 Tool Schema 校验并反序列化参数]
-    E1 --> E2["合成原生事件:<br/>ToolCallStart + ToolInputDelta + ToolUse"]
-    E2 --> E3[Agent Loop 执行真实工具]
+  subgraph Dispatch[协议转换与分发]
+    S8 --> E1[按 Tool Schema 校验并反序列化]
+    E1 --> E2[合成底层 ToolCall 与 ToolUse 事件]
+    E2 --> E3[Agent Loop 执行实体工具]
   end
 
   Ingestion --> StateMachine

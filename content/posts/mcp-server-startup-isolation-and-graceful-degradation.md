@@ -21,23 +21,23 @@ series: ['AI Coding']
 
 {{< mermaid >}}
 flowchart TD
-  subgraph Config["MCP 服务配置分级"]
-    C1["核心服务 (Critical)<br/>如: 本地文件读写 / 终端执行"]
-    C2["可选服务 (Optional)<br/>如: 远端知识库 / 外部翻译 / 浏览器工具"]
+  subgraph Config[MCP 服务配置分级]
+    C1[核心服务: 本地文件读写与终端执行]
+    C2[可选服务: 远端知识库与搜索插件]
   end
 
-  subgraph Startup["并发隔离启动沙箱"]
-    C1 --> T1["Tokio 隔离任务 1<br/>(严格校验 / 启动失败则终止)"]
-    C2 --> T2["Tokio 隔离任务 2<br/>(独立超时限制: 3s)"]
-    C2 --> T3["Tokio 隔离任务 3<br/>(独立超时限制: 3s)"]
+  subgraph Startup[并发隔离启动沙箱]
+    C1 --> T1[Tokio 隔离任务 1: 严格校验并阻断崩溃]
+    C2 --> T2[Tokio 隔离任务 2: 独立 3s 超时限制]
+    C2 --> T3[Tokio 隔离任务 3: 独立 3s 超时限制]
   end
 
-  subgraph Outcome["聚合与动态降级"]
-    T1 -- 成功 --> R[动态工具注册表]
-    T2 -- 超时/异常 --> D["记录隔离诊断告警<br/>(不阻断主流程)"]
-    T3 -- 成功 --> R
-    D -. 过滤不可用工具 .-> R
-    R --> S["会话正常启动<br/>(前台提示: 已在降级模式下运行)"]
+  subgraph Outcome[聚合与动态降级]
+    T1 -->|启动成功| R[动态工具注册表]
+    T2 -->|超时或异常| D[记录隔离诊断告警]
+    T3 -->|启动成功| R
+    D -.->|过滤不可用工具| R
+    R --> S[会话正常启动: 提示已在降级模式运行]
   end
 
   Config --> Startup
