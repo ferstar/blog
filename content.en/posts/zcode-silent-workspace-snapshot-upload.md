@@ -2,8 +2,9 @@
 title: "Inside ZCode: Silently Uploading Your Entire Git History to the Cloud"
 slug: "zcode-silent-workspace-snapshot-upload"
 date: "2026-09-18T02:00:00+08:00"
+lastmod: "2026-09-19T12:00:00+08:00"
 tags: ["Security", "Privacy", "AI Coding", "Reverse Engineering"]
-description: "ZCode silently packages your entire workspace along with full Git history and uploads it to cloud object storage with server-exclusive decryption keys; this post reconstructs the complete upload pipeline and encryption scheme via local forensics and reverse engineering, and provides a filesystem immutability lock to terminate the behavior permanently."
+description: "ZCode silently packages entire workspaces and full Git history to the cloud with a server-only key; this post reconstructs the upload pipeline, gives a filesystem lock, and checks Z.ai's Repo Wiki response — the credential API now 404s, but destruction and the scope of the fix remain unverifiable from outside."
 ---
 
 > I am not a native English speaker; this article was translated by AI.
@@ -15,6 +16,58 @@ It started with a routine check while freeing up disk space: `~/.zcode` was taki
 Even more ironic: **the RSA public key used for encryption is delivered on the fly by the server, while the private key lives exclusively in the cloud.** You cannot decrypt that multi-hundred-megabyte ciphertext sitting right on your own disk, and neither can the ZCode client itself.
 
 Here is the complete record of the investigation, the evidence chain, and a one-liner defense that permanently shuts it down.
+
+## Update, 2026-09-19
+
+Following widespread community attention after this post, Z.ai released an official statement in their user community on Sep 18 at 17:44 (with tech media like IT Home picking up the story later that evening). This section provides an objective cross-check. The original investigation below remains unchanged.
+
+### What the company said
+
+Z.ai posted their statement on Sep 18 at 17:44; public coverage can be found on [IT Home](https://www.ithome.com/1/004/310.htm). Key points:
+
+- The issue came from "codebase indexing", used for local indexes, session checkpoint restore, and Repo Wiki;
+- Generating Wiki pages in the cloud "may" trigger an upload of repository data;
+- After the Wiki is generated, the uploaded data is destroyed immediately and is not stored;
+- The feature was on by default in its early launch period; some users were affected; the issue "has been fixed";
+- ZCode will be open-sourced soon, with third-party review; all users get one extra weekly quota reset.
+
+The fact that uploads occurred is no longer contested by Zhipu. What remains in question is the actual upload scope, user toggles, and how anyone outside the company is supposed to verify "destroyed immediately".
+
+### Reverse Engineering & Local Evidence vs. Official Claims (Old Version 3.12.3 vs. 3.14.0 vs. Official Statement)
+
+To prevent confusion between client versions, here is a direct comparison between the affected old version (3.12.3) when caught, the reverse-engineered 3.14.0 release, and the official statement:
+
+| Dimension | Official Statement (Sep 18 17:44) | 3.12.3 Client Audit (Affected Version) | 3.14.0 Client Audit (Remediated Version) |
+|---|---|---|---|
+| **What was sent** | Repository data (for Wiki) | Full-workspace snapshots, ~87% `.git` — objects, LFS, reflogs | Upload pipeline code physically stripped; only local checkpoints remain |
+| **Trigger mechanism** | Wiki page generation "may" upload | Upload sidecar resident with login; `captureBeforePrompt` (before every prompt) and `repo-wiki-update` trigger unconditionally | Upload sidecar dismantled; no longer triggers cloud packaging |
+| **Can you turn it off** | No mention of a switch to stop uploads | Disabling "Optimize Experience" and "Repo Snapshot Indexing" still packaged and attempted direct OSS uploads | Code pipeline physically removed |
+| **Cloud-side handling** | Destroyed immediately after generation | Not verifiable from outside (and logically contradicts the claimed "checkpoint restore" feature) | Cloud `upload-credential` endpoint pulled (returns 404) |
+| **Retained data** | Claims data is not stored post-Wiki | Snapshot of a 538-file public repo accepted by server; retention/decryption rights unaddressed | Whether existing cloud snapshots were physically wiped cannot be verified externally |
+
+One thing the original post left easy to misread: the 313MB commercial project sat in `pending` (`failureCount: 564`) and **did not upload successfully**. A separate, tiny public-repo workspace did: 538 files, about 15KB after compression and encryption, status accepted by the server. So "did anything actually leave the machine" — yes, at least that one.
+
+Someone else reproduced the same directory layout and state files on Windows, including multiple small workspaces with no failure record that look accepted: [NodeSeek](https://www.nodeseek.com/post-935260-1). Another local cross-check: [silencestar](https://blog.silencestar.com/posts/zcode-repo-snapshot/).
+
+I archived the [privacy policy](https://zcode.z.ai/cn/privacy) on Sep 18. The page still said it was last updated 2026-06-15, and still did not mention full-workspace snapshots or cloud sync.
+
+### A Few Personal Clarifications
+
+1. **Did the 313MB commercial project actually get uploaded?**: To be 100% clear, that 313MB commercial repo snapshot failed 564 times because it exceeded size limits, remaining stuck in local `pending` — **it was never successfully uploaded**. I run an OpenWrt router at home; checking connection tracking and traffic flow records confirmed those encrypted chunks never left the local network.
+2. **Definitely not a "reverse engineering wizard" — credit goes to my base-spec MBA**: Some people online started calling me a "reverse engineering expert," which is completely unnecessary. The entire trigger was laughably mundane: thanks to Apple's storage being priced like solid gold, my base-spec 256GB MacBook Air is perpetually starved for disk space. I was freeing up space when I noticed `~/.zcode` mysteriously devouring over 700MB. My engineering spider-sense tingled, so I unpacked `app.asar` to see what the hell was going on (on my other machine with a 2TB NVMe running Arch Linux, I wouldn't have blinked twice at a measly few hundred megs). Besides, given the state of modern AI, anyone with a coding agent is effectively a reverse engineer now — pull any decent agent off the shelf, feed it this post and the source files, and it'll break down the entire architecture with flawless clarity. It’s hardly some exclusive black magic; it was just basic engineering curiosity and troubleshooting.
+3. **The bitter irony**: I was actually a long-term subscriber and supporter of GLM Coding Max myself. The funniest part is that on the evening of Sep 17, I was enthusiastically pitching ZCode to peers in a developer group chat. Less than half a day later, reality hit me right in the face when I caught this silent whole-repo packaging routine myself.
+
+### Does the mitigation still matter
+
+Yes. Even though 3.14.0 removed the code and the gateway route returns 404, the desktop client can still receive hot updates. The filesystem lock below remains active as a tripwire. The NodeSeek post has the Windows ACL equivalent.
+
+### Still unanswered
+
+1. How do you prove "destroyed immediately" from the outside? Have existing cloud-stored encrypted snapshots been physically purged, and who holds private key decryption rights?
+2. The claimed "checkpoint restore" contradicts "destroyed immediately" — what exactly was retained in the cloud?
+3. Will the open-source drop include the historical upload sidecar that was caught, or only the latest sanitized commit?
+
+If the repo actually ships, I will write a follow-up against the source.
 
 ## The Starting Point: A 313MB Archive Stuck in Pending
 
