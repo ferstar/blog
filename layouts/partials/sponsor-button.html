@@ -17,7 +17,7 @@
     <div class="sponsor-header-qr-grid">
       <!-- WeChat QR -->
       <div class="sponsor-qr-item" onclick="openSponsorModal('{{ "images/sponsor-wechat.webp" | relURL }}')">
-        <img src="{{ "images/sponsor-wechat.webp" | relURL }}" alt="WeChat Pay" class="sponsor-qr-img nozoom" width="128" height="128" />
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="{{ "images/sponsor-wechat.webp" | relURL }}" alt="WeChat Pay" class="sponsor-qr-img nozoom" width="128" height="128" decoding="async" />
         <span class="sponsor-qr-label">
           <span class="sponsor-dot bg-wechat"></span>{{ if eq .Site.Language.Lang "en" }}WeChat (Click to zoom){{ else }}微信 (点击放大){{ end }}
         </span>
@@ -25,7 +25,7 @@
       
       <!-- Alipay QR -->
       <div class="sponsor-qr-item" onclick="openSponsorModal('{{ "images/sponsor-alipay.webp" | relURL }}')">
-        <img src="{{ "images/sponsor-alipay.webp" | relURL }}" alt="Alipay" class="sponsor-qr-img nozoom" width="128" height="128" />
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E" data-src="{{ "images/sponsor-alipay.webp" | relURL }}" alt="Alipay" class="sponsor-qr-img nozoom" width="128" height="128" decoding="async" />
         <span class="sponsor-qr-label">
           <span class="sponsor-dot bg-alipay"></span>{{ if eq .Site.Language.Lang "en" }}Alipay (Click to zoom){{ else }}支付宝 (点击放大){{ end }}
         </span>
@@ -60,6 +60,25 @@
 </div>
 
 <script>
+(function() {
+  function loadSponsorImages() {
+    const wrapper = document.querySelector('.sponsor-button-wrapper');
+    if (!wrapper) return;
+    const lazyImgs = wrapper.querySelectorAll('.sponsor-qr-img[data-src]');
+    lazyImgs.forEach(function(img) {
+      img.src = img.getAttribute('data-src');
+      img.removeAttribute('data-src');
+    });
+  }
+
+  const wrapper = document.querySelector('.sponsor-button-wrapper');
+  if (wrapper) {
+    wrapper.addEventListener('pointerenter', loadSponsorImages, { once: true });
+    wrapper.addEventListener('touchstart', loadSponsorImages, { once: true, passive: true });
+    wrapper.addEventListener('focusin', loadSponsorImages, { once: true });
+  }
+})();
+
 function openSponsorModal(src, customCaption) {
   const modal = document.getElementById('sponsor-lightbox-modal');
   const img = document.getElementById('sponsor-lightbox-img');
