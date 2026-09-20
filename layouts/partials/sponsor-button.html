@@ -1,0 +1,88 @@
+<div class="sponsor-button-wrapper">
+  <button type="button" class="sponsor-header-button" aria-label="{{ if eq .Site.Language.Lang "en" }}Buy me a coffee{{ else }}请我喝咖啡{{ end }}">
+    <span class="sponsor-btn-icon">☕</span>
+    <span>{{ if eq .Site.Language.Lang "en" }}Buy me a coffee{{ else }}请我喝咖啡{{ end }}</span>
+  </button>
+  
+  <!-- Popover Card (向下展开，避免被 header 遮挡) -->
+  <div class="sponsor-header-popover">
+    <div class="sponsor-header-popover-title">
+      {{ if eq .Site.Language.Lang "en" }}
+        Scan to support via WeChat / Alipay
+      {{ else }}
+        微信 / 支付宝 赞赏支持
+      {{ end }}
+    </div>
+    
+    <div class="sponsor-header-qr-grid">
+      <!-- WeChat QR -->
+      <div class="sponsor-qr-item" onclick="openSponsorModal('{{ "images/sponsor-wechat.webp" | relURL }}')">
+        <img src="{{ "images/sponsor-wechat.webp" | relURL }}" alt="WeChat Pay" class="sponsor-qr-img nozoom" width="128" height="128" />
+        <span class="sponsor-qr-label">
+          <span class="sponsor-dot bg-wechat"></span>{{ if eq .Site.Language.Lang "en" }}WeChat (Click to zoom){{ else }}微信 (点击放大){{ end }}
+        </span>
+      </div>
+      
+      <!-- Alipay QR -->
+      <div class="sponsor-qr-item" onclick="openSponsorModal('{{ "images/sponsor-alipay.webp" | relURL }}')">
+        <img src="{{ "images/sponsor-alipay.webp" | relURL }}" alt="Alipay" class="sponsor-qr-img nozoom" width="128" height="128" />
+        <span class="sponsor-qr-label">
+          <span class="sponsor-dot bg-alipay"></span>{{ if eq .Site.Language.Lang "en" }}Alipay (Click to zoom){{ else }}支付宝 (点击放大){{ end }}
+        </span>
+      </div>
+    </div>
+
+    <div class="sponsor-header-afdian">
+      <a href="https://afdian.com/a/ferstar" target="_blank" rel="noopener noreferrer" class="sponsor-afdian-link">
+        <span>⚡</span>
+        <span>{{ if eq .Site.Language.Lang "en" }}Or support via Afdian →{{ else }}也可以在爱发电支持 →{{ end }}</span>
+      </a>
+    </div>
+
+    <!-- Arrow -->
+    <div class="sponsor-header-arrow"></div>
+  </div>
+</div>
+
+<!-- 全屏无损放大 Lightbox (原生实现，原框绝不变白) -->
+<div id="sponsor-lightbox-modal" class="sponsor-lightbox" onclick="closeSponsorModal()" style="display: none;">
+  <div class="sponsor-lightbox-content" onclick="event.stopPropagation()">
+    <img id="sponsor-lightbox-img" src="" alt="Sponsor QR" />
+    <div id="sponsor-lightbox-caption" class="sponsor-lightbox-caption">
+      {{ if eq .Site.Language.Lang "en" }}
+        Thanks for supporting independent writing & sharing! ☕
+      {{ else }}
+        感谢认可与支持，每一份鼓励都是持续创作的动力 ☕
+      {{ end }}
+    </div>
+    <button type="button" class="sponsor-lightbox-close" onclick="closeSponsorModal()" aria-label="Close">&times;</button>
+  </div>
+</div>
+
+<script>
+function openSponsorModal(src, customCaption) {
+  const modal = document.getElementById('sponsor-lightbox-modal');
+  const img = document.getElementById('sponsor-lightbox-img');
+  const caption = document.getElementById('sponsor-lightbox-caption');
+  if (modal && img) {
+    img.src = src;
+    if (customCaption && caption) {
+      caption.textContent = customCaption;
+    }
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeSponsorModal() {
+  const modal = document.getElementById('sponsor-lightbox-modal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeSponsorModal();
+});
+</script>

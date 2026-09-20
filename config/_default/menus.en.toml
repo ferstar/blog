@@ -15,6 +15,12 @@
   weight = 30
 
 [[main]]
+  identifier = "afdian"
+  pre = "heart"
+  url = "https://afdian.com/a/ferstar"
+  weight = 35
+
+[[main]]
   identifier = "rss"
   pre = "rss"
   url = "/en/index.xml"

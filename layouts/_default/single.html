@@ -31,7 +31,10 @@
           {{ partial "article-meta/basic.html" (dict "context" . "scope" "single") }}
         </div>
         {{ if eq .Section "posts" }}
-          {{ partial "copy-markdown.html" . }}
+          <div class="article-header-actions">
+            {{ partial "copy-markdown.html" . }}
+            {{ partial "sponsor-button.html" . }}
+          </div>
         {{ end }}
       </div>
       {{ if not (.Params.showAuthorBottom | default (site.Params.article.showAuthorBottom | default false)) }}
