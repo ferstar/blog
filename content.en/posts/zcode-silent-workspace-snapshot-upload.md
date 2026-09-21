@@ -21,7 +21,7 @@ Here is the complete record of the investigation, the evidence chain, and a one-
 
 ## Update, 2026-09-21
 
-This morning (Sep 21) at 09:23, ZCode officially posted a [statement on X](https://x.com/zcode_ai/status/2101844704933621971) and dropped their supposed open-source core repository ([GitHub: zai-org/ZCode](https://github.com/zai-org/ZCode)). With the source code now public alongside third-party audit reports, official explanations can finally be cross-referenced line by line against the actual codebase.
+This morning (Sep 21) at 09:23, ZCode officially posted a [statement on X](https://x.com/zcode_ai/status/2101844704933621971) and dropped their supposed open-source core repository ([GitHub: zai-org/ZCode](https://github.com/zai-org/ZCode)). With the source code now public alongside the officially cited third-party evaluation findings, official explanations can finally be cross-referenced line by line against the actual codebase.
 
 ### 1. Code Review: A Stripped-Down Two-Commit Drop (PRs Locked, Issues Disabled)
 
@@ -41,9 +41,9 @@ The official statement originally claimed that uploading repository snapshots wa
 
 ### 3. Third-Party Audits and "Bucket Deletion"
 
-The official statement cited assessment conclusions from the China Academy of Information and Communications Technology (CAICT) and NSFOCUS:
-- **Findings**: Both confirmed that the `zcode-prod` Alibaba Cloud OSS bucket is empty and the bucket itself has been deleted; they also confirmed that client v3.14.0 removed the local snapshot upload workflow.
-- **Objective takeaway**: Deleting the bucket is a necessary containment move. But in technical terms, **deleting a temporary transit bucket only proves the bucket is gone now — it cannot prove whether data previously dumped into it was decrypted, cloned, or used to fine-tune models during its active lifecycle**. An audit agency checking an empty bucket on Sep 20 cannot retroactively reconstruct what took place before Sep 18.
+The official statement summarized findings from the China Academy of Information and Communications Technology (CAICT) and NSFOCUS (stating that full reports will be published soon):
+- **Summarized findings**: CAICT confirmed that the `zcode-prod` OSS bucket contains zero data and client v3.14.0 removed snapshot generation and upload workflows; NSFOCUS confirmed that the bucket and all internal objects have been deleted, with no outbound transmission paths detected.
+- **Objective takeaway**: Completely purging and deleting the bucket is a necessary containment move. However, from a technical and timeline standpoint, **even when the full static verification reports are published, proving that a bucket was emptied or deleted after Sep 20 cannot retroactively reconstruct what happened to data uploaded prior to Sep 18**. The lifecycle of historical data cannot be proven in reverse through a single post-incident audit.
 
 ### 4. Community Clarifications and a Bit of Real-World Irony
 
