@@ -2,9 +2,9 @@
 title: "Inside ZCode: Silently Uploading Your Entire Git History to the Cloud"
 slug: "zcode-silent-workspace-snapshot-upload"
 date: "2026-09-18T02:00:00+08:00"
-lastmod: "2026-09-19T12:00:00+08:00"
+lastmod: "2026-09-21T14:45:00+08:00"
 tags: ["Security", "Privacy", "AI Coding", "Reverse Engineering"]
-description: "ZCode silently packages entire workspaces and full Git history to the cloud with a server-only key; this post reconstructs the upload pipeline, gives a filesystem lock, and checks Z.ai's Repo Wiki response — the credential API now 404s, but destruction and the scope of the fix remain unverifiable from outside."
+description: "ZCode silently uploads full Git history to the cloud; this post provides a block rule and source review — checkpoint claims fall apart against the code."
 ---
 
 > I am not a native English speaker; this article was translated by AI.
@@ -16,6 +16,40 @@ It started with a routine check while freeing up disk space: `~/.zcode` was taki
 Even more ironic: **the RSA public key used for encryption is delivered on the fly by the server, while the private key lives exclusively in the cloud.** You cannot decrypt that multi-hundred-megabyte ciphertext sitting right on your own disk, and neither can the ZCode client itself.
 
 Here is the complete record of the investigation, the evidence chain, and a one-liner defense that permanently shuts it down.
+
+*(Note: Following official responses and open-source updates, see the Sep 21 section below for code verification and clarifications; first-time readers can jump straight to the technical breakdown below.)*
+
+## Update, 2026-09-21
+
+This morning (Sep 21) at 09:23, ZCode officially posted a [statement on X](https://x.com/zcode_ai/status/2101844704933621971) and dropped their supposed open-source core repository ([GitHub: zai-org/ZCode](https://github.com/zai-org/ZCode)). With the source code now public alongside third-party audit reports, official explanations can finally be cross-referenced line by line against the actual codebase.
+
+### 1. Code Review: A Stripped-Down Two-Commit Drop (PRs Locked, Issues Disabled)
+
+Digging into the newly published Git repository, the picture matches expectations of standard corporate defense:
+- **Historical Git commits completely wiped**: The repository contains only two commits — an empty initial commit, followed by a massive `feat: open source` commit dumping 6,973 files and 1.03 million lines of code at once. The internal development commit history of the open-source repo itself was entirely flattened; there is no way to trace the evolution of the old upload sidecar, nor any commit diff showing how the `repoSnapshot` pipeline was excised. Moreover, the repo locked PRs and closed Issues, making it strictly a one-way code dump.
+- **License**: Apache-2.0.
+- **Upload pipeline fully purged**: Searching the codebase for the previously captured `/api/v1/snapshot/upload-credential`, direct `PostObject` OSS uploads, AES-256-CTR encryption, and public key delivery returned zero matches. The pipeline has been stripped clean with not a single line remaining.
+- **Repo Wiki thoroughly scrubbed**: Except for an external Wikipedia reference, all mentions of Repo Wiki have been removed. Code indexing and symbol search have reverted entirely to local processes utilizing bundled `ripgrep 14.1.1` and `bfs 4.1.1` — proving that local codebase retrieval never needed full-repo uploads in the first place.
+- **An ultra-defensive NOTICE.md**: Even more revealing is the 27KB `NOTICE.md` in the root directory. Legal counsel armored every outbound network request and added disclaimers to even the hollowed-out Computer Use placeholders, while conspicuously leaving out any mention of whole-repo uploads.
+
+### 2. The Checkpoint Mechanism Exposed: Code Confirms Purely Local Git
+
+The official statement originally claimed that uploading repository snapshots was necessary for "session checkpoint rollback." Looking at the source, I located the actual implementation of checkpoints (`packages/services/src/git/gitCheckpointService.ts` and `gitCheckpointRepo.ts`):
+- **How it works**: It runs purely on the local system's Git CLI, executing `git diff --name-status` and `git diff --numstat` based on commit OIDs scoped strictly to the current workspace.
+- **Storage**: Metadata is persisted locally as JSON files under `~/.zcode/checkpoints/`.
+- **The verdict**: The open-source code confirms that checkpoints are strictly local Git diff utilities with zero cloud dependencies, having nothing to do with whole-repo packaging. The official claim that "checkpoint rollback necessitated full-repo uploads" completely falls apart against the code.
+
+### 3. Third-Party Audits and "Bucket Deletion"
+
+The official statement cited assessment conclusions from the China Academy of Information and Communications Technology (CAICT) and NSFOCUS:
+- **Findings**: Both confirmed that the `zcode-prod` Alibaba Cloud OSS bucket is empty and the bucket itself has been deleted; they also confirmed that client v3.14.0 removed the local snapshot upload workflow.
+- **Objective takeaway**: Deleting the bucket is a necessary containment move. But in technical terms, **deleting a temporary transit bucket only proves the bucket is gone now — it cannot prove whether data previously dumped into it was decrypted, cloned, or used to fine-tune models during its active lifecycle**. An audit agency checking an empty bucket on Sep 20 cannot retroactively reconstruct what took place before Sep 18.
+
+### 4. Community Clarifications and a Bit of Real-World Irony
+
+With the [original post](https://x.com/ferstar_org/status/2100805861002355154) crossing 1.6 million impressions and traffic normalizing, a few ongoing community narratives deserve clarification:
+1. **Neither a "Community Developer" nor an "Overseas Hacker"**: The official statement vaguely thanked "community developers who identified issues" (without ever @-tagging or even obliquely naming me) — classic PR minimization. I was never a contributor or community developer of ZCode; I was simply a paying Coding Plan subscriber who uncovered unannounced exfiltration of private code and published the packet capture evidence. Similarly, rumors labeling me a "mysterious foreign hacker" or "reverse engineering master" are pure nonsense; the investigation relied on basic local networking tools and unpacking. As for the absurd accusation of "handing knives to foreign adversaries to smear domestic AI" — when a paying engineer discovers commercial code being silently exfiltrated behind their back, publishing packet captures is basic self-preservation. If pointing at the elephant in the room is "handing knives", is staying silent while code is quietly siphoned supposed to be "support"? Real engineering safety is never achieved by sweeping leaks under the rug.
+2. **The Truth Behind the "2:00 AM Midnight Post" Myth**: Many cited the post header timestamp, assuming I stayed up until 2:00 AM to publish the write-up. In reality, this serves as a textbook real-world irony that **trusting AI blindly is worse than having no AI at all**: my actual Git commit timestamp was `Fri Sep 18 10:35:05 2026 +0800` — broad daylight on Friday morning. The `02:00:00` in the front matter occurred simply because I got lazy and used an AI helper to generate Hugo metadata after drafting the technical notes. The AI hallucinated that timestamp, and in my rush to verify the network blocking, I didn't double-check it. While writing a post cautioning developers against blindly trusting AI tools behind their backs, I got burned by an unchecked AI-generated timestamp, inadvertently spawning an internet myth about a "midnight raid." Laugh it off, but take it as the most grounded reminder: the moment you get lazy and trust an AI blindly, it will find a way to bite you in the rear.
 
 ## Update, 2026-09-19
 
@@ -65,9 +99,9 @@ Yes. Even though 3.14.0 removed the code and the gateway route returns 404, the 
 
 1. How do you prove "destroyed immediately" from the outside? Have existing cloud-stored encrypted snapshots been physically purged, and who holds private key decryption rights?
 2. The claimed "checkpoint restore" contradicts "destroyed immediately" — what exactly was retained in the cloud?
-3. Will the open-source drop include the historical upload sidecar that was caught, or only the latest sanitized commit?
+3. Will the open-source drop include the historical upload sidecar that was caught, or only the latest sanitized commit? *(Sep 21 source code confirms: commit history was completely flattened into 2 commits, see Sep 21 update above)*
 
-If the repo actually ships, I will write a follow-up against the source.
+*(Note: Open-source code verification has been added to the Sep 21 section above)*
 
 ## The Starting Point: A 313MB Archive Stuck in Pending
 
