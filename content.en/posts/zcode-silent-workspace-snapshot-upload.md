@@ -2,7 +2,7 @@
 title: "Inside ZCode: Silently Uploading Your Entire Git History to the Cloud"
 slug: "zcode-silent-workspace-snapshot-upload"
 date: "2026-09-18T02:00:00+08:00"
-lastmod: "2026-09-21T14:45:00+08:00"
+lastmod: "2026-09-23T22:15:00+08:00"
 tags: ["Security", "Privacy", "AI Coding", "Reverse Engineering"]
 description: "ZCode silently uploads full Git history to the cloud; this post provides a block rule and source review — checkpoint claims fall apart against the code."
 ---
@@ -17,7 +17,23 @@ Even more ironic: **the RSA public key used for encryption is delivered on the f
 
 Here is the complete record of the investigation, the evidence chain, and a one-liner defense that permanently shuts it down.
 
-*(Note: Following official responses and open-source updates, see the Sep 21 section below for code verification and clarifications; first-time readers can jump straight to the technical breakdown below.)*
+*(Note: Following official responses and open-source updates, see the Sep 21 and Sep 23 sections below for code verification and real-world testing; first-time readers can jump straight to the technical breakdown below.)*
+
+## Update, 2026-09-23
+
+Earlier this evening (Sep 23), ZCode pushed client **v3.14.3**, and the public repository shortly followed with a matching commit (`328c1a0 feat: update v3.14.3`), keeping public repository tags aligned with the released client version.
+
+That said, an important engineering caveat: **matching version tags does not guarantee a 1:1 identical match between proprietary compiled binaries and public source code, and one cannot make absolute assumptions without byte-by-byte reproducible builds**. Below are the objective verification findings from both the public repository diff and local client runtime:
+
+1. **Open-Source Repository Diff Review**:
+   - Audited the commit across 282 changed files; the previously captured `/api/v1/snapshot/upload-credential` and AES-256-CTR packaging pipelines remain completely absent;
+   - The checkpoint mechanism (`gitCheckpointService.ts`) continues to rely strictly on local Git CLI diffing with zero cloud dependencies;
+   - New code primarily introduces multi-channel IM bots (remote control via WeCom, Feishu, DingTalk, Telegram) and workflow execution optimizations.
+2. **Local Client Runtime Verification**:
+   - The local desktop application updated to 3.14.3; unpacking the packaged assets (`app.asar`) shows zero occurrences of `repoSnapshot` logic;
+   - Real-time process logs and the `~/.zcode/v2/checkpoints/` directory confirm no whole-workspace scanning, packaging, or new `.enc` archive generation.
+
+Having public diffs to cross-check with each release is certainly more reassuring than black-box updates. But for any proprietary desktop app, what the code says is one thing, and how the binary behaves locally is another — keeping the read-only directory lock outlined below remains the most dependable baseline defense.
 
 ## Update, 2026-09-21
 
