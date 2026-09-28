@@ -20,6 +20,17 @@ rsync moves files, but it cannot carry three things that matter on btrfs:
 
 And since snapshots are copy-on-write, taking a read-only snapshot is near-instant while the system keeps running — that is what makes this an online migration.
 
+## Step 0: clean the junk before snapshotting
+
+The snapshot ships the whole subvolume — garbage carried over is still garbage, only slower to send and more crowded on the target. Before snapshotting, it is worth walking through:
+
+- Package caches: `pacman -Sc`, plus the AUR helper's build cache (e.g. `~/.cache/yay` — usually the biggest offender)
+- Orphaned packages: `pacman -Rns $(pacman -Qtdq)`
+- System journals: `journalctl --vacuum-size=100M`
+- User caches (browser caches under `~/.cache` and the like) and the trash
+
+Clean first, then snapshot — the transferred volume drops noticeably. The gig-plus of AUR build cache I cleaned out last time would otherwise have been shipped along for free.
+
 ## The complete sequence
 
 {{< mermaid >}}
