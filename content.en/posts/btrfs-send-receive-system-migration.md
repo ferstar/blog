@@ -126,7 +126,3 @@ Two improvements I plan to make next time:
 2. **`btrfs send --proto 2 --compressed-data`** (needs btrfs-progs 6.0+ and kernel 6.0+; any current Arch qualifies). It transfers zstd-compressed blocks directly without a decompress-recompress round trip, which saves real time on cross-machine transfers.
 
 One more trap worth writing down: btrfs snapshots are **not recursive**. A nested subvolume appears as an empty directory inside a snapshot. My five subvolumes are all siblings at the top level so this never bites me, but if I ever nest a subvolume inside `@home`, it needs separate handling before send.
-
-## A different kind of backup
-
-After working through this flow I realized it does more than migrate machines: the same snapshot can be sent to an external drive for a full-system backup. That is why tools like [btrbk](https://github.com/digint/btrbk) felt immediately familiar — they automate exactly the "snapshot → send → keep parent for incremental" loop. For a one-off migration, doing it by hand is fine; for recurring backups, use the tool.
