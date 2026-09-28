@@ -118,7 +118,7 @@ Both migrations above were disk swaps on the same machine, which skips the harde
 
 - **CPU vendor change** (Intel↔AMD): swap the microcode package (`intel-ucode`/`amd-ucode`)
 - **GPU vendor change**: swap the graphics driver
-- **Old board MBR → new board UEFI**: a new ESP partition is needed, and the boot setup gets redone
+- **Boot mode differences**: the target machine's UEFI setup may differ (CSM off, Secure Boot state); create a new ESP if needed and re-register the boot entry
 
 Two improvements I plan to make next time:
 

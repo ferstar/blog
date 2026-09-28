@@ -116,7 +116,7 @@ sudo efibootmgr -v   # 重启后确认引导项
 
 - **CPU 换厂商**(Intel↔AMD):microcode 包要换(`intel-ucode`/`amd-ucode`)
 - **GPU 换厂商**:显卡驱动要换
-- **老主板 MBR → 新主板 UEFI**:要新建 ESP 分区,引导方式整体重来
+- **引导方式差异**:目标机 UEFI 设置不同(如关闭 CSM、Secure Boot 状态),必要时新建 ESP 分区,引导项重新注册
 
 另外两处我打算在下次迁移时改进:
 
