@@ -5,6 +5,14 @@
   {{ $enableToc = .Params.showTableOfContents | default $enableToc }}
   {{ $showToc := and $enableToc (in .TableOfContents "<ul") }}
 
+  {{ $showReadingProgress := site.Params.article.showReadingProgress | default false }}
+  {{ if isset .Params "showreadingprogress" }}
+    {{ $showReadingProgress = .Params.showReadingProgress }}
+  {{ end }}
+  {{ if $showReadingProgress }}
+    {{ partial "reading-progress.html" . }}
+  {{ end }}
+
   <article>
     {{/* Hero */}}
     {{ if .Params.showHero | default (site.Params.article.showHero | default false) }}
@@ -45,28 +53,36 @@
     {{/* Body */}}
     <section class="mt-0 prose dark:prose-invert {{ if $showToc }}flex flex-col lg:flex-row max-w-full{{ else }}max-w-prose mx-auto{{ end }}">
       {{ if $showToc }}
-        {{ $topClass := cond (hasPrefix site.Params.header.layout "fixed") "lg:top-[140px]" "lg:top-10" }}
-        <div class="order-first lg:ml-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs">
+        {{ $topClass := cond (or (hasPrefix site.Params.header.layout "fixed") (eq site.Params.header.layout "floating")) "lg:top-[140px]" "lg:top-10" }}
+        <div class="order-first lg:ms-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs">
           <div class="toc ps-5 print:hidden lg:sticky {{ $topClass }}">
             {{ partial "toc.html" . }}
           </div>
         </div>
       {{ end }}
 
-      <div class="min-w-0 min-h-0">
+      <div class="min-w-0 min-h-0 max-w-fit">
         {{ partial "series/series.html" . }}
-        <div class="article-content mb-20">
+        <div class="article-content max-w-prose mb-20">
           {{ .Content }}
           {{ $defaultReplyByEmail := site.Params.replyByEmail }}
           {{ $replyByEmail := default $defaultReplyByEmail .Params.replyByEmail }}
           {{ if $replyByEmail }}
+            {{ $replySubject := i18n "article.reply_to" (dict "Title" .Title) | default (printf "Reply to %s" .Title) }}
             <strong class="block mt-8">
               <a
-                target="_blank"
-                class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-                href="mailto:{{ site.Params.Author.email }}?subject={{ replace (printf "Reply to %s" .Title) "'" "'" }}">
+                class="email-link m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+                href="#"
+                data-email="{{ site.Params.Author.email | base64Encode }}"
+                data-subject="{{ replace $replySubject "\"" "'" }}">
                 {{ i18n "article.reply_by_email" | default "Reply by Email" }}
               </a>
+              <noscript>
+                <span
+                  class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 dark:bg-neutral-700 dark:text-neutral-300">
+                  {{ i18n "article.reply_by_email" | default "Reply by Email" }} (require JavaScript)
+                </span>
+              </noscript>
             </strong>
           {{ end }}
         </div>
@@ -77,22 +93,12 @@
         {{ partial "sharing-links.html" . }}
         {{ partial "related.html" . }}
       </div>
-
     </section>
 
     {{/* Footer */}}
     <footer class="pt-8 max-w-prose {{ if not $showToc }}mx-auto{{ end }} print:hidden">
       {{ partial "article-pagination.html" . }}
-      {{ if .Params.showComments | default (site.Params.article.showComments | default false) }}
-        {{ if templates.Exists "partials/comments.html" }}
-          <div class="pt-3">
-            <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
-            <div class="pt-3">
-              {{ partial "comments.html" . }}
-            </div>
-          </div>
-        {{ end }}
-      {{ end }}
+      {{ partial "article-comments.html" . }}
     </footer>
   </article>
 {{ end }}
@@ -109,29 +115,31 @@
     {{ $baseURL = delimit (slice $baseURL "/") "" }}
   {{ end }}
 
-  {{ if .Params.showAuthor | default (site.Params.article.showAuthor | default true) }}
-    {{ $showAuthor = 1 }}
-    {{ partial "author.html" . }}
-  {{ end }}
-
-  {{ range $author := .Page.Params.authors }}
-    {{ $authorData := index $authorsData $author }}
-    {{- if $authorData -}}
-      {{ range $taxonomyname, $taxonomy := $taxonomies }}
-        {{ if (eq $taxonomyname $author) }}
-          {{ $taxonomyLink = delimit (slice $baseURL "authors/" $author "/") "" }}
+  {{ if .Page.Params.authors }}
+    {{ range $author := .Page.Params.authors }}
+      {{ $authorData := index $authorsData $author }}
+      {{- if $authorData -}}
+        {{ range $taxonomyname, $taxonomy := $taxonomies }}
+          {{ if (eq $taxonomyname $author) }}
+            {{ $taxonomyLink = delimit (slice $baseURL "authors/" $author "/") "" }}
+          {{ end }}
         {{ end }}
-      {{ end }}
 
-      {{ $finalLink := $taxonomyLink }}
-      {{ $currentLang := site.Language.Lang }}
-      {{ if eq site.LanguagePrefix "" }}
-        {{ $finalLink = printf "%sauthors/%s/" $baseURL $author }}
-      {{ else }}
-        {{ $finalLink = printf "%s%s/authors/%s/" $baseURL $currentLang $author }}
-      {{ end }}
-      {{ partial "author-extra.html" (dict "context" . "data" $authorData "link" $finalLink) }}
-    {{- end -}}
+        {{ $finalLink := $taxonomyLink }}
+        {{ $currentLang := site.Language.Name }}
+        {{ if eq site.LanguagePrefix "" }}
+          {{ $finalLink = printf "%sauthors/%s/" $baseURL $author }}
+        {{ else }}
+          {{ $finalLink = printf "%s%s/authors/%s/" $baseURL $currentLang $author }}
+        {{ end }}
+        {{ partial "author-extra.html" (dict "context" . "data" $authorData "link" $finalLink) }}
+      {{- end -}}
+    {{ end }}
+  {{ else }}
+    {{ if .Params.showAuthor | default (site.Params.article.showAuthor | default true) }}
+      {{ $showAuthor = 1 }}
+      {{ partial "author.html" . }}
+    {{ end }}
   {{ end }}
 
   {{ if or $taxonomyLink $showAuthor }}
