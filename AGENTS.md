@@ -1,5 +1,5 @@
 ## 1) 内容（强制）
-- **双语对齐**：`content/` 的新文章必须在 `content.en/` 提供高保真翻译。
+- **双语对齐**：`content/` 的新文章必须在 `content.en/` 提供高保真翻译；仅面向国内日常、与英语读者无关的主题可不译（如 `homework-print-prep`）。
 - **内容一致**：代码块、命令行、Mermaid 图、表格两端保持一致。
 - **图示优先**：能用 Mermaid 的示意图优先用 Mermaid，避免字符画。
 - **Front Matter 必填**：新文章必须包含 `title`、`slug`、`date`、`tags`、`description`；
