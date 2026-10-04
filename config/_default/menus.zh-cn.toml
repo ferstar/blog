@@ -15,6 +15,12 @@
   weight = 30
 
 [[main]]
+  identifier = "x-twitter"
+  pre = "x-twitter"
+  url = "https://x.com/ferstar_org"
+  weight = 32
+
+[[main]]
   identifier = "afdian"
   pre = "heart"
   url = "https://afdian.com/a/ferstar"

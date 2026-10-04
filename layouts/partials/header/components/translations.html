@@ -1,0 +1,19 @@
+{{ if .IsTranslated }}
+  {{ $targetLang := "EN" }}
+  {{ if eq .Site.Language.Lang "en" }}
+    {{ $targetLang = "ZH" }}
+  {{ end }}
+  {{/* Since it's a bilingual site, .Translations contains the counter-part language page */}}
+  {{ range first 1 .Translations }}
+    <a
+      href="{{ .RelPermalink }}"
+      aria-label="{{ if eq $targetLang "EN" }}Switch to English{{ else }}切换到中文{{ end }}"
+      title="{{ if eq $targetLang "EN" }}Switch to English{{ else }}切换到中文{{ end }}"
+      class="translation-toggle flex items-center bf-icon-color-hover text-sm font-medium">
+      <span class="me-1 flex items-center">
+        {{ partial "icon.html" "language" }}
+      </span>
+      <span>{{ $targetLang }}</span>
+    </a>
+  {{ end }}
+{{ end }}

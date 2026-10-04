@@ -20,4 +20,5 @@ title = "Code is cheap, let's talk"
   headline = "Code is cheap, let's talk"
   links = [
     { github = "https://github.com/ferstar" },
+    { x-twitter = "https://x.com/ferstar_org" },
   ]
