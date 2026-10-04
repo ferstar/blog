@@ -1,5 +1,5 @@
 ---
-title: "Why I Built RunSeal: Stop Letting Local Coding Agents Run Naked"
+title: "Why I Built RunSeal: Setting an Execution Boundary for Local Coding Agents"
 slug: "local-first-agent-execution-boundary-runseal"
 date: "2026-09-26T19:00:00+08:00"
 tags: ["Security", "AI Coding", "Architecture", "Sandbox", "Open Source"]
@@ -9,36 +9,36 @@ description: "Coding agents have long compromised between running naked on host 
 
 > I am not a native English speaker; this article was translated by AI.
 
-Truth be told, [RunSeal](https://github.com/runseal-labs) took shape quite a long time ago.
+[RunSeal](https://github.com/runseal-labs) took shape quite a long time ago.
 
-The core execution logic and test suites had been working for a while, and I originally intended to write a quick blog post to document the design rationale. But real-world engineering work piled up, I got caught up running daily agent loops, and open-source preparations kept getting pushed to the back burner. Now that recent privacy leaks and boundary breaches have everyone talking about agent security again, it seems like the right time to lay out the full story: the background, the trade-offs we wrestled with, and how RunSeal actually works under the hood.
-
----
-
-## Are We Really Comfortable Hitting Enter Every Day?
-
-Coding agents have quietly become daily drivers for many of us. From early pioneers like Aider, Open Interpreter, and AutoGPT, to modern setups like Cursor, Claude Code, Devin, and Codex, we have all grown comfortable delegating terminal execution to AI: write code, run tests, execute scripts, install dependencies. It saves time and mental energy.
-
-But once you spend an afternoon inspecting raw low-level execution logs, it is hard not to feel uneasy:
-
-1. **It is literally just an unprivileged child process on your machine.** Whatever your terminal user can do, the agent can do. Reading and writing files in the current repository is expected. But if it casually reads `~/.ssh/id_rsa`, inspects `~/.aws/credentials`, or traverses directories to peek at neighboring proprietary codebases, the operating system will not raise a single eyebrow.
-2. **That `[Y/n]` confirmation prompt is pure security theater.** Ask an agent to troubleshoot a complex bug, and a single turn can trigger dozens of shell commands. No human has the cognitive bandwidth to audit lines of shell code every five seconds. Within three iterations, interactive prompts inevitably degrade into rapid, mindless keystrokes of Enter ("approval fatigue"). When an injection attack strikes, you will be the one who approved it, and you will be the one holding the bag.
-3. **Existing containment options are excruciatingly painful to use.**
-   - Put it in Docker? Anyone who has tried bind-mounting local code on macOS knows how awful it feels: cross-VM filesystem I/O crawls like a snail, and `npm install` takes forever. Your carefully configured local Python virtual environments, compiler caches, and host utilities are locked outside. Worse, to let the agent fetch packages and docs, you must open outbound network access. An adversarial prompt injection can still exfiltrate credentials over the public Internet.
-   - Rely on regex-based command blocklists? Blocking `rm -rf /` or `cat ~/.ssh` looks reassuring on slides, but anyone familiar with the terminal knows that simple `$IFS` tricks, string concatenation, Base64 decoding, or three lines of Python easily slip right past static regex matching.
-   - Grab ad-hoc open-source scripts? Most are quick demos wrapping Linux `landlock` or `bwrap`. But many of us write code on macOS, and lots of enterprise teams run Windows. On non-Linux platforms, these tools simply throw up their hands and run unconfined. Furthermore, their network policies are strictly binary: either sever the connection completely (breaking dependency downloads) or leave it wide open (rendering the sandbox pointless).
-
-We have been stuck in an awkward dilemma: **either run completely unconfined for agility, or endure a miserable developer experience for safety.**
+The core execution logic and test suites had been working for a while, and I originally intended to write a quick note on it. But daily engineering work kept piling up, and open-source preparations stayed on the back burner. Now that boundary escapes and privacy risks have brought agent security back into focus, it is a good time to walk through the background, design trade-offs, and technical implementation.
 
 ---
 
-## RunSeal's Scope: Keep It Lean and Tackle the Hard Problems
+## The Trust Deficit in Local Command Execution
 
-When I started writing RunSeal, I deliberately drew a strict line in `AGENTS.md`, which essentially boils down to:
+Coding agents have become daily drivers for many developers. From early tools like Aider and Open Interpreter to systems like Cursor, Claude Code, Devin, and Codex, running commands via AI has become routine: editing code, running test suites, executing build scripts, and installing dependencies.
 
-> RunSeal is an OS-native, policy-governed local command execution environment—not an AI governance platform, not an enterprise-wide approval workflow, not a policy dashboard, and not a general automation framework.
+Looking at raw execution logs, however, several concerns become apparent:
 
-I had no desire to build complex approval dashboards or SaaS control planes. The goal was singular: **lock the agent's reach strictly to the current workspace at the OS kernel level, without booting a VM and without sacrificing local execution speed.**
+1. **The agent runs as a standard child process on your machine.** Whatever permissions your terminal holds, the agent inherits. Reading and writing within the project is expected; reading `~/.ssh/id_rsa`, scanning `~/.aws/credentials`, or inspecting neighboring codebases happens with zero kernel-level intervention.
+2. **Interactive `[Y/n]` confirmations degrade quickly.** Complex debugging sessions often trigger dozens of commands per turn. Sustaining close review of every command every few seconds is unrealistic. After a few iterations, confirmation prompts turn into routine keystrokes of Enter.
+3. **Existing containment options introduce significant friction.**
+   - Docker containers: On macOS, bind mounts across VM boundaries introduce high I/O latency, making operations like `npm install` sluggish. Local virtual environments, compiler caches, and host utilities cannot be reused directly. Granting outbound network access to fetch packages means exfiltration paths remain open under adversarial prompt injection.
+   - Regex command filters: Pattern-matching against strings like `rm -rf /` or `cat ~/.ssh` is fragile against simple string manipulation, Base64 decoding, or small wrapper scripts.
+   - Minimal scripts: Many implementations focus solely on Linux primitives like `bwrap` or `landlock`, offering no equivalent on macOS or Windows. Network controls are often all-or-nothing: either disconnected entirely or left completely unrestricted.
+
+Development often ends up caught between running unconfined for agility or accepting significant friction for security.
+
+---
+
+## RunSeal's Design Scope
+
+When starting RunSeal, the operational boundary in `AGENTS.md` was explicitly defined:
+
+> RunSeal is an OS-native, policy-governed local command execution environment—focused strictly on local command containment, without enterprise approval dashboards or general automation frameworks.
+
+The objective is specific: confine command execution to the designated workspace at the OS kernel layer, without virtual machines or sacrificing local execution performance.
 
 {{< mermaid >}}
 flowchart TD
@@ -57,43 +57,41 @@ flowchart TD
     I --> J[Return Results to Agent]
 {{< /mermaid >}}
 
-The architecture centers on four practical pillars:
+The implementation focuses on four main areas:
 
 ### 1. Millisecond Native Launch Without Virtualization
 
-RunSeal boots no virtual machines and runs no persistent background daemon. It invokes operating system primitives directly:
-* **Windows Treated as a First-Class Citizen (Reference Backend)**: Most open-source security scripts avoid Windows entirely. RunSeal made Windows its reference implementation from day one, implemented via Restricted Tokens, Job Objects, and custom ACLs, mapping policies to execution plans through the unified `PlatformSandboxPlan` contract;
-* **macOS / Linux Feature Alignment**: macOS leverages Seatbelt (`sandbox-exec`), while Linux combines Bubblewrap and Landlock. All three sandbox levels and three network modes execute natively, with managed proxy boundaries landed on both platforms (RFC-0019 / RFC-0020).
+RunSeal starts no virtual machines and runs no background daemon, calling OS isolation primitives directly:
+* **Windows Reference Implementation**: Implemented via Restricted Tokens, Job Objects, and specific ACLs, with policies mapped to execution plans through the `PlatformSandboxPlan` contract;
+* **macOS and Linux Alignment**: macOS utilizes Seatbelt (`sandbox-exec`), while Linux combines Bubblewrap and Landlock. All three sandbox levels and network modes run natively, with managed proxy boundaries implemented across both platforms (RFC-0019 / RFC-0020).
 
-Because execution happens natively at the OS layer without virtualization overhead, launch latencies are sub-millisecond. Compiler caches, virtual environments, and local toolchains work seamlessly.
+Because execution is native, launch latencies remain sub-millisecond, preserving compiler caches and local toolchains.
 
 ### 2. Workspace Containment
 
-At the filesystem layer, RunSeal normalizes access into four sandbox levels: `read-only`, `workspace-write`, `workspace-contained`, plus an explicit opt-out via `danger-full-access`.
+Filesystem access is classified into four sandbox tiers: `read-only`, `workspace-write`, `workspace-contained`, and an explicit `danger-full-access` opt-out.
 
-The core level is `workspace-contained`:
-* The process can **only see the current workspace directory, a private ephemeral runtime root, explicitly declared read-only paths, and minimal system baseline utilities**;
-* Everywhere else on the host (especially `~/.ssh`, `~/.aws`, `~/.config`, or neighboring repositories on disk) is either invisible or denied access;
-* Even if an agent is tricked by a malicious injection into running `cat ~/.ssh/id_rsa` or attempting `cd ../../`, the operating system kernel immediately denies access (returning `Operation not permitted` in actual practice), cutting off reconnaissance at the kernel level.
+At `workspace-contained`:
+* The process can only access the current workspace directory, an ephemeral runtime root, explicitly declared read-only paths, and minimal OS runtime baselines;
+* Remaining filesystem locations (such as `~/.ssh`, `~/.aws`, `~/.config`, or neighboring directories) are either invisible or denied access;
+* If prompt injection triggers access to `cat ~/.ssh/id_rsa` or path traversal, the kernel returns `Operation not permitted`.
 
-### 3. `network.proxy`: Controlled Outbound Access
+### 3. Controlled Outbound Access (`network.proxy`)
 
-In everyday software engineering, completely severing an agent's network connection is impractical. Agents need to download packages, query documentation, and call APIs. But opening unrestricted outbound traffic defeats containment.
+Completely disabling network access prevents downloading packages or fetching documentation. Unrestricted outbound access, however, leaves egress unmonitored.
 
-RunSeal introduces a dedicated `network.proxy` mode:
-* Direct connections to external public IPs and domains are forbidden;
-* Unauthorized local loopback and host IPC are blocked;
-* **All outbound traffic is forcibly routed through a designated Managed Proxy endpoint**.
+RunSeal's `network.proxy` mode:
+* Restricts direct connections to external IP addresses or domains;
+* Blocks unauthorized local loopback and host IPC;
+* Directs outbound traffic through a designated Managed Proxy endpoint.
 
-This architecture allows the proxy to enforce domain allowlists, redact leaked API credentials, and produce structured audit records. An agent cannot silently dial out to an external C2 server.
+This allows the proxy layer to handle domain allowlists, credential redaction, and structured auditing.
 
-### 4. Fail-Closed Over Silent Degradation
+### 4. Fail-Closed over Silent Degradation
 
-In security engineering, the worst failure mode is pretending to be secure to keep a job running.
+If execution requests `workspace-contained` and `network.proxy`, but the host lacks sufficient permissions or kernel support, **RunSeal exits immediately with a Fail-Closed error rather than silently degrading to an unconfined state**.
 
-If a caller requests `workspace-contained` and `network.proxy`, but the host environment lacks the privileges or kernel support to guarantee that boundary, **RunSeal fails closed immediately, exiting with an explicit error rather than silently falling back to unconfined execution**.
-
-We backed this with an adversarial black-box test harness (RFC-0016), evaluating symlink traversals, parent path escapes, environment pollution, and orphan process cleanup, verifying that every capability marked as `supported` is mechanically proven.
+Black-box test suites (RFC-0016) evaluate symlink traversal, directory escape, environment pollution, and process cleanup to ensure declared capabilities match actual system guarantees.
 
 ---
 
