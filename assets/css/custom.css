@@ -149,7 +149,7 @@ header.items-center {
 .sponsor-header-popover {
   position: absolute;
   top: calc(100% + 8px);
-  right: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -313,7 +313,7 @@ header.items-center {
 .sponsor-header-arrow {
   position: absolute;
   bottom: 100%;
-  right: 1.25rem;
+  left: 1.5rem;
   width: 0;
   height: 0;
   border-left: 6px solid transparent;
@@ -324,6 +324,188 @@ header.items-center {
 .dark .sponsor-header-arrow {
   border-bottom-color: rgba(23, 23, 23, 0.98);
 }
+
+/* --- AI Study Button & Popover --- */
+.ai-study-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ai-study-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid rgb(var(--color-neutral-300));
+  border-radius: 0.5rem;
+  background: transparent;
+  color: rgb(var(--color-neutral-600));
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  cursor: pointer;
+  transition: border-color 150ms ease, color 150ms ease, background 150ms ease;
+}
+
+.ai-study-button:hover,
+.ai-study-button:focus-visible {
+  border-color: rgb(var(--color-primary-400));
+  color: rgb(var(--color-primary-600));
+  outline: none;
+}
+
+.dark .ai-study-button {
+  border-color: rgb(var(--color-neutral-600));
+  color: rgb(var(--color-neutral-300));
+}
+
+.dark .ai-study-button:hover,
+.dark .ai-study-button:focus-visible {
+  border-color: rgb(var(--color-primary-400));
+  color: rgb(var(--color-primary-400));
+}
+
+.ai-study-icon svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  fill: currentColor;
+}
+
+.ai-study-arrow {
+  font-size: 0.65rem;
+  opacity: 0.7;
+}
+
+.ai-study-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+  border-radius: 0.875rem;
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  width: 16rem;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out 0.25s, visibility 0.2s ease-in-out 0.25s;
+}
+
+.ai-study-popover::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+
+.dark .ai-study-popover {
+  background-color: rgba(23, 23, 23, 0.98);
+  border-color: rgba(64, 64, 64, 0.9);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+}
+
+.ai-study-wrapper:hover .ai-study-popover,
+.ai-study-wrapper:focus-within .ai-study-popover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.ai-study-popover-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgb(var(--color-neutral-400));
+  margin-bottom: 0.5rem;
+  padding: 0 0.25rem;
+}
+
+.dark .ai-study-popover-title {
+  color: rgb(var(--color-neutral-500));
+}
+
+.ai-study-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.ai-study-item {
+  display: flex;
+  flex-direction: column;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 120ms ease;
+  width: 100%;
+}
+
+.ai-study-copy-btn.copy-markdown-button-success .ai-study-item-name {
+  color: rgb(34 197 94) !important;
+}
+
+.ai-study-copy-btn.copy-markdown-button-error .ai-study-item-name {
+  color: rgb(239 68 68) !important;
+}
+
+.ai-study-item:hover {
+  background: rgba(var(--color-primary-500), 0.08);
+}
+
+.dark .ai-study-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ai-study-item-name {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: rgb(var(--color-neutral-800));
+}
+
+.dark .ai-study-item-name {
+  color: rgb(var(--color-neutral-100));
+}
+
+.ai-study-item-desc {
+  font-size: 0.7rem;
+  color: rgb(var(--color-neutral-500));
+  margin-top: 0.1rem;
+}
+
+.dark .ai-study-item-desc {
+  color: rgb(var(--color-neutral-400));
+}
+
+.ai-study-popover-arrow {
+  position: absolute;
+  bottom: 100%;
+  left: 1.5rem;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid rgba(255, 255, 255, 0.98);
+}
+
+.dark .ai-study-popover-arrow {
+  border-bottom-color: rgba(23, 23, 23, 0.98);
+}
+
 
 /* --- Sponsor Lightbox Modal (原图绝不变白) --- */
 .sponsor-lightbox {

@@ -1,0 +1,58 @@
+{{ with .OutputFormats.Get "MARKDOWN" }}
+  {{ $mdUrl := .Permalink }}
+  {{ $isEn := eq $.Site.Language.Lang "en" }}
+  {{ $title := $.Title }}
+  
+  {{/* Prompts formatted for external AI */}}
+  {{ $promptZh := printf "请阅读这篇文章并作为专家协助我深入研读与答疑：%s (%s)。请先为我总结文章的 3 个核心技术要点，然后等待我的提问。" $title $mdUrl }}
+  {{ $promptEn := printf "Please review this article and assist me with in-depth study and Q&A: %s (%s). Start by summarizing its 3 key technical takeaways, then await my questions." $title $mdUrl }}
+  
+  {{ $prompt := cond $isEn $promptEn $promptZh }}
+  {{ $promptEncoded := urlquery $prompt }}
+  
+  {{/* URLs */}}
+  {{ $chatgptUrl := printf "https://chatgpt.com/?q=%s" $promptEncoded }}
+  {{ $claudeUrl := printf "https://claude.ai/new?q=%s" $promptEncoded }}
+
+  <div class="ai-study-wrapper">
+    <button type="button" class="ai-study-button" aria-label="{{ if $isEn }}Study with AI{{ else }}AI 研读{{ end }}">
+      <span class="ai-study-icon">
+        {{ partial "icon.html" "wand-magic-sparkles" }}
+      </span>
+      <span>{{ if $isEn }}Ask AI{{ else }}AI 研读{{ end }}</span>
+      <span class="ai-study-arrow">▾</span>
+    </button>
+
+    <div class="ai-study-popover">
+      <div class="ai-study-popover-title">
+        {{ if $isEn }}Study & Export{{ else }}AI 研读与导出{{ end }}
+      </div>
+      <div class="ai-study-links">
+        <a href="{{ $chatgptUrl }}" target="_blank" rel="noopener noreferrer" class="ai-study-item">
+          <span class="ai-study-item-name">ChatGPT</span>
+          <span class="ai-study-item-desc">{{ if $isEn }}Prompt with Markdown URL{{ else }}带文章链接研读与追问{{ end }}</span>
+        </a>
+        <a href="{{ $claudeUrl }}" target="_blank" rel="noopener noreferrer" class="ai-study-item">
+          <span class="ai-study-item-name">Claude</span>
+          <span class="ai-study-item-desc">{{ if $isEn }}Analyze in Claude context{{ else }}长上下文代码与架构分析{{ end }}</span>
+        </a>
+        <button
+          type="button"
+          class="ai-study-item ai-study-copy-btn"
+          data-copy-markdown-url="{{ .RelPermalink }}"
+          data-copy-label="{{ if $isEn }}Copy Markdown{{ else }}复制 Markdown 全文{{ end }}"
+          data-copied-label="{{ if $isEn }}Copied!{{ else }}已复制到剪贴板！{{ end }}"
+          data-error-label="{{ if $isEn }}Copy Failed{{ else }}复制失败{{ end }}">
+          <span class="ai-study-item-name" data-copy-markdown-label>{{ if $isEn }}Copy Markdown{{ else }}复制 Markdown 全文{{ end }}</span>
+          <span class="ai-study-item-desc">{{ if $isEn }}For Obsidian, Logseq & Local Agents{{ else }}用于本地笔记或离线 Agent{{ end }}</span>
+        </button>
+      </div>
+      <div class="ai-study-popover-arrow"></div>
+    </div>
+  </div>
+
+  {{ with resources.Get "js/copy-markdown.js" }}
+    {{ $script := . | resources.Minify | resources.Fingerprint (site.Params.fingerprintAlgorithm | default "sha512") }}
+    <script defer src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+  {{ end }}
+{{ end }}
