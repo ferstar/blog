@@ -27,7 +27,7 @@ logo = "site-logo.png"
 
 defaultBackgroundImage = ""
 defaultFeaturedImage = ""
-defaultSocialImage = ""
+defaultSocialImage = "default-social-card.png"
 hotlinkFeatureImage = false
 # imagePosition = "50% 50%"
 
