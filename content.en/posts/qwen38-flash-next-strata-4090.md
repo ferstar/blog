@@ -45,9 +45,9 @@ I tried Unsloth `UD-IQ3_XXS` first. ModelScope has it, about 76 GB. Later I swit
 
 ## Problems during setup
 
-### Linux build, now at 0.1.38
+### Linux build, through 0.1.38
 
-Strata 0.1.35 and 0.1.36 GitHub Releases only ship Windows builds. 0.1.38 still ships only the Windows NVIDIA zip and the Windows HIP zip. There is no `strata-linux-x64.zip`, so the engine has to be compiled locally. This machine is running a locally built 0.1.38. The toolchain was CUDA 12.0 and g++ 13.3, arch `sm_89`. The binary is `engine/strata`.
+Strata 0.1.35 and 0.1.36 GitHub Releases only ship Windows builds. 0.1.38 still ships only the Windows NVIDIA zip and the Windows HIP zip. There is no `strata-linux-x64.zip`, so the engine has to be compiled locally. The 0.1.38 build on this machine used CUDA 12.0 and g++ 13.3, arch `sm_89`. The binary is `engine/strata`.
 
 systemd runs the service. It listens on `0.0.0.0:8080`, and `/v1/*` needs an API key. The APIs are OpenAI Chat Completions and Anthropic Messages. There is no legacy `/v1/completions` and no embeddings. Requests are FIFO, one at a time.
 
@@ -79,7 +79,7 @@ I turned it on anyway. On IQ3, prefill did not get clearly faster and decode did
 
 ## Measurements
 
-The numbers below come from the code-analysis load taken while the engine was still 0.1.36, with fused prefill already on. The service was later moved to 0.1.38 without changing `strata-iq3_s.json`, and this machine was not measured again. The 0.1.38 release notes put the IQ3_S speed A/B against 0.1.37 at +0.2% and +0.1%, with the same answers as the previous version.
+The numbers below come from the code-analysis load taken while the engine was still 0.1.36, with fused prefill already on. The move to 0.1.38 left `strata-iq3_s.json` unchanged and was not measured again. The same task was run once more on 0.1.39; that round is in the next section. The 0.1.38 release notes put the IQ3_S speed A/B against 0.1.37 at +0.2% and +0.1%, with the same answers as the previous version.
 
 Two numbers in the log are easy to mix up. `prompt 25141 tokens = 0 reused + 25141 read` is the prefix cache: `reused` is the prefix that already has KV, and a higher share means a shorter prefill. `drafts accepted 919 of 1329` is MTP speculative decoding: the draft head guesses, the main model checks, and a higher accept rate means faster decode. Code and lists often land around 80–90%. Ordinary prose is about half.
 
@@ -99,11 +99,39 @@ Both quants used the same settings: 256K context, int8 KV, resident 32768, `--sp
 | max context | 93057 | 56199 |
 | VRAM | ~23976 MiB | ~23950–23978 MiB |
 
+<!-- ai-lint: ok 2900 official 3090 range endpoint, same digits as the later 0.1.39 prefill p50, not a second reading of that cell -->
 Prefill is about the same on both. In the UD run, one 89517-token prompt missed the cache entirely: prefill took 29.9 seconds, 2998 tok/s. That lines up with the official 3090 figure, about 2200–2900 tok/s for a 30k cold prefill.
 
 Official IQ3_S is ahead across the board. Decode is higher at both p50 and p90, and the whole exploration dropped from about 12 minutes to 8. The official 5070 12GB table has IQ3_S slower than IQ3_XXS (53 vs 62 tok/s).
 
 While it is working, GPU utilization is 98–100%, power 270–300 W, with a peak of 346 W. VRAM sits against the 24 GB limit. In a stretch of continuous use, the GPU is busy about two thirds of the time.
+
+## Retest after moving to 0.1.39
+
+On October 5 the engine moved from 0.1.38 to 0.1.39, tag v0.1.39, commit 6f32ec0. GitHub still has no `strata-linux-x64.zip`. The Windows assets are CUDA 13, an experimental CUDA 12 build, and HIP. The checkout is detached, so `git pull --ff-only` inside `update.sh` fails. I stopped the service, ran `git fetch --tags`, then `git checkout --detach v0.1.39`, then `./setup.sh --update`, and compiled locally for sm_89. Nothing in `strata-iq3_s.json` changed. Parallel slots stayed off, and so did vision. This release also stops after 256 copies of the same token, can reload the last context when the engine actually restarts, and adds the Responses API for Codex. This run was a speed check, and it did not hit those.
+
+The 0.1.39 decode speedup runs only when every expert of a layer is in VRAM. This 4090 cannot hold that. Startup still puts 46.84 GiB of expert weights in an arena in RAM, and the hot cache is the same as 0.1.38: 8563 slots, 16.24 GiB. This run hit 90.7%, and about 4.2% of the lookups were read by the GPU from RAM over PCIe. The prompt chunk stayed at 8192. The log mentions a 512-slot ring, and the chunk for this task did not change. After load, 253 MiB of VRAM was free.
+
+The prompt was the same line: open 5 subagents and look at this project, and the project was the same one. The stopwatch is the whole task. Prefill plus decode in the log is about a second off that clock. Both stretches end at the `prompt 276` line that generated 96 tokens, and the table is those two stretches. A continuation of about 60k tokens right after the upgrade is not included.
+
+The IQ3_S column above, 58 requests and about 8 minutes, is an earlier aggregate. This stopwatch is a different stretch. The first request of this round still had 16384 tokens of KV from the previous chat, so prefill recomputed 9246. Decode throughput is generated tokens divided by decode time. The 20k–40k prefill median is 16 requests on each side.
+
+| | v0.1.36 | v0.1.39 |
+|---|---:|---:|
+| stopwatch | 9 min 27 s | 8 min 56 s |
+| requests | 47 | 44 |
+| prefill total | 330.0 s | 317.0 s |
+| decode total | 237.9 s | 220.1 s |
+| generated tokens | 26821 | 23338 |
+| read tokens | 855873 | 873406 |
+| decode p50 | 115.1 tok/s | 106.9 tok/s |
+| decode p90 | 133.7 tok/s | 125.8 tok/s |
+| decode throughput | 112.7 tok/s | 106.0 tok/s |
+| prefill p50 (miss, ≥2k) | 2594 tok/s | 2761 tok/s |
+| prefill p50 (miss, 20k–40k) | 2795 tok/s | 2900 tok/s |
+| draft accept | 72.5% | 71.9% |
+
+The stopwatch was 31 seconds shorter. Long prefills were a bit faster, and read tokens went up a little. Decode p50, p90, and throughput are all lower. The total came down mostly because this round wrote fewer tokens. Draft accept is about the same. On this card, for this kind of code scan, 0.1.39 barely moves the speed.
 
 ## How many people
 

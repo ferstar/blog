@@ -45,7 +45,7 @@ Strata 的 `./setup.sh --yes` 只按内存选档，60 GB 以上默认装 GSQ-RCO
 
 ### Linux 自己编译到 0.1.38
 
-Strata 0.1.35 和 0.1.36 的 GitHub Release 里都只有 Windows 包，0.1.38 也还是只有 Windows NVIDIA 和 Windows HIP 两个包，没有 `strata-linux-x64.zip`，只能自己编译。这台机器现在跑的引擎是本地编的 0.1.38，环境是 CUDA 12.0、g++ 13.3，arch 指定 `sm_89`，二进制在 `engine/strata`。
+Strata 0.1.35 和 0.1.36 的 GitHub Release 里都只有 Windows 包，0.1.38 也还是只有 Windows NVIDIA 和 Windows HIP 两个包，没有 `strata-linux-x64.zip`，只能自己编译。编到 0.1.38 时用的是 CUDA 12.0、g++ 13.3，arch 指定 `sm_89`，二进制在 `engine/strata`。
 
 服务交给 systemd 管，监听 `0.0.0.0:8080`，`/v1/*` 需要 API key。接口支持 OpenAI Chat Completions 和 Anthropic Messages，没有旧的 `/v1/completions`，也没有 embeddings。请求按 FIFO 排队，同一时间只处理一条。
 
@@ -77,7 +77,7 @@ Strata 0.1.35 和 0.1.36 的 GitHub Release 里都只有 Windows 包，0.1.38 �
 
 ## 实测数据
 
-下面的数字是引擎还在 0.1.36、fused prefill 已经打开时打的负载。后来升到 0.1.38，`strata-iq3_s.json` 里的参数没改，这台机器上没有重测。官方 release 里 IQ3_S 相对 0.1.37 的速度 A/B 是 +0.2% 和 +0.1%，回答和上一版一致。
+下面的数字是引擎还在 0.1.36、fused prefill 已经打开时打的负载。升到 0.1.38 时 `strata-iq3_s.json` 没改，也没有重测。0.1.39 用同一个任务又跑了一轮，记在后面一节。官方 release 里 IQ3_S 相对 0.1.37 的速度 A/B 是 +0.2% 和 +0.1%，回答和上一版一致。
 
 先说下日志里两个容易混在一起的数。`prompt 25141 tokens = 0 reused + 25141 read` 说的是 prefix cache：reused 是前缀里已经有现成 KV 的部分，越高 prefill 越快。`drafts accepted 919 of 1329` 是 MTP speculative decoding 的命中情况：draft 头先猜，主模型再校验，命中率越高 decode 越快。代码和列表一般能到 80%～90%，普通文字大概只有一半。
 
@@ -97,11 +97,39 @@ Strata 0.1.35 和 0.1.36 的 GitHub Release 里都只有 Windows 包，0.1.38 �
 | 最大 context | 93057 | 56199 |
 | 显存 | 约 23976 MiB | 约 23950～23978 MiB |
 
+<!-- ai-lint: ok 2900 官方 3090 区间的上沿，和后面 0.1.39 这轮的 prefill p50 数字相同，不是把表再念一遍 -->
 prefill 两边基本一样。UD 那一轮里有一次 89517 token 完全没命中缓存，prefill 用了 29.9 秒，折合 2998 tok/s，跟官方给的 3090 上 3 万 token 冷 prefill 约 2200～2900 tok/s 能对上。
 
 换成官方 IQ3_S 之后是全面领先。decode 的 p50、p90 都更高，整次探索从大约 12 分钟收到 8 分钟。官方 5070 12GB 的表里 IQ3_S 比 IQ3_XXS 慢（53 vs 62 tok/s）。
 
 跑起来的时候 GPU 利用率在 98%～100%，功耗 270～300 W，最高见过 346 W，显存基本贴着 24 GB。连续用的时候，大约三分之二的时间 GPU 都在算。
+
+## 升到 0.1.39 之后重测
+
+10 月 5 日从 0.1.38 升到 0.1.39，tag v0.1.39，commit 6f32ec0。GitHub 上还是没有 `strata-linux-x64.zip`，Windows 包是 CUDA 13、实验性的 CUDA 12，还有 HIP。仓库停在 detached HEAD，`update.sh` 里的 `git pull --ff-only` 过不去，我就停掉服务，`git fetch --tags` 之后 `git checkout --detach v0.1.39`，再跑 `./setup.sh --update`，本机按 sm_89 编。`strata-iq3_s.json` 一个参数没动。parallel 和 vision 都没开。这版还会在同一个 token 连出 256 个时停下，引擎重启能把上次的 context 加载回来，另外加了 Codex 用的 Responses API。这次测的是速度，没走到这些。
+
+0.1.39 的 decode 加速，要一整层 expert 都在显存里才走得了。这台 4090 装不下。启动日志里 expert 权重 46.84 GiB，放在内存的 arena 里，显存热缓存还是 8563 个槽、16.24 GiB，跟 0.1.38 一样。这轮命中 90.7%，大约 4.2% 由 GPU 经 PCIe 从内存读。prompt chunk 还是 8192。日志里写了 512-slot ring，这条任务的切块没变。加载完显存只剩 253 MiB。
+
+测的还是同一句，开 5 个 subagent 看看本项目，项目也是同一个。秒表记的是整段任务。日志里把 prefill 和 decode 加起来，和秒表差大约 1 秒，两段都收到 `prompt 276`、生成 96 token 那一条，表里就是这两段。升级刚做完还有一轮大约 6 万 token 的续聊，没算进来。
+
+前面 IQ3_S 那列的 58 条请求、大约 8 分钟，是更早的汇总。这次对过秒表的是另一段。这轮第一条还留着上一次对话的 16384 token KV，prefill 只重算了 9246。decode 吞吐按生成 token 除以 decode 时间算。20k～40k 的 prefill 两边都是 16 条。
+
+| | v0.1.36 | v0.1.39 |
+|---|---:|---:|
+| 秒表 | 9 分 27 秒 | 8 分 56 秒 |
+| 请求 | 47 | 44 |
+| prefill 合计 | 330.0 s | 317.0 s |
+| decode 合计 | 237.9 s | 220.1 s |
+| 生成 token | 26821 | 23338 |
+| read token | 855873 | 873406 |
+| decode p50 | 115.1 tok/s | 106.9 tok/s |
+| decode p90 | 133.7 tok/s | 125.8 tok/s |
+| decode 吞吐 | 112.7 tok/s | 106.0 tok/s |
+| prefill p50（未命中 ≥2k） | 2594 tok/s | 2761 tok/s |
+| prefill p50（未命中 20k～40k） | 2795 tok/s | 2900 tok/s |
+| draft 命中率 | 72.5% | 71.9% |
+
+秒表少了 31 秒。长 prefill 稍快一点，read token 还略多。decode 的 p50、p90 和吞吐都低了。总时间短下来，主要是这轮少写了一些 token。draft 差不多。对这张卡、这种扫代码的用法，0.1.39 在速度上基本没动。
 
 ## 能给几个人用
 
