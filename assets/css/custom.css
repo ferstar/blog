@@ -164,8 +164,8 @@ header.items-center {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  /* 鼠标滑走时保留 0.35s 缓冲防误触淡出 */
-  transition: opacity 0.25s ease-in-out 0.35s, visibility 0.25s ease-in-out 0.35s, transform 0.25s ease-in-out 0.35s;
+  /* 鼠标自然滑走时保留 0.25s 缓冲防误触，移入时 0s 立即响应 */
+  transition: opacity 0.2s ease-in-out 0.25s, visibility 0.2s ease-in-out 0.25s;
 }
 
 /* 按钮与弹层之间的无形热区桥梁，防止鼠标跨过缝隙时断触发 */
@@ -195,8 +195,16 @@ header.items-center {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  /* 鼠标移入时瞬间出现，零延迟 */
-  transition-delay: 0s;
+  transition: none !important; /* 移入时立即弹出，零动画、零延迟 */
+}
+
+/* 当鼠标滑入对方按钮时，当前弹窗立刻强行关闭，毫无延迟 */
+.article-header-actions:has(.ai-study-wrapper:hover) .sponsor-header-popover,
+.article-header-actions:has(.sponsor-button-wrapper:hover) .ai-study-popover {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: none !important;
 }
 
 .sponsor-header-popover-title {
@@ -395,6 +403,7 @@ header.items-center {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  /* 鼠标自然滑走时保留 0.25s 缓冲防误触，移入时 0s 立即响应 */
   transition: opacity 0.2s ease-in-out 0.25s, visibility 0.2s ease-in-out 0.25s;
 }
 
@@ -418,7 +427,7 @@ header.items-center {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transition-delay: 0s;
+  transition: none !important; /* 移入时立即弹出，零动画、零延迟 */
 }
 
 .ai-study-popover-title {
