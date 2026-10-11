@@ -94,6 +94,8 @@ HMA 3.8.3 targets libxposed API 101 and requires the framework to allow loading 
 
 Looking back, I should have searched for existing solutions first. But without digging out the six checks, I wouldn't have known the trigger was a package-name query, let alone that one HMA template would fix it.
 
+The [wps-root-toast repository](https://github.com/ferstar/wps-root-toast) is now archived. Its README includes the tested HMA configuration, and the source and released APK remain available for reference.
+
 The module isn't entirely wasted. If you only want this warning gone without changing package visibility, it still works on its own, and the diagnostic build was made from its code.
 
 Decompiling and hooking were only done on the WPS on my own phone. The module only hides the toast and doesn't change detection results, and the repository contains no WPS code. The release notes only list the tested combination: Android 16 + WPS 26.9.1 + LSPosed 2.2.1.
