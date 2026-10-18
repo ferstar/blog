@@ -66,14 +66,16 @@ Upstream RustDesk couples its networking tightly to `rendezvous_mediator`: befor
 
 Controllers routinely hop between Wi-Fi and cellular, and on a switch the path update can't keep up, so the session tends to drop. Android also denies netlink to app UIDs, so the Go-side netmon cannot enumerate network interfaces on its own and depends on the app layer to feed them in. In `libs/tailcat-ffi/android_interfaces.go`, we added `TcSetAndroidInterfaces`: the Kotlin layer reads interface names and addresses via `java.net.NetworkInterface`, and every connectivity change pushes them as JSON over JNI, registering them with netmon—so a mobile session doesn't reconnect on every hop.
 
-## What's Been Tested
-
-The initial release has exercised these paths: Android (arm64) controlling Linux and Linux controlling Linux, stable on and off the LAN, with low resource usage; on the same LAN it also interoperates with upstream RustDesk in both directions.
-
 ## Platforms and Limits
 
-Platform support is still Alpha: Linux has been tested as both host and controller, and Android is controller-only for now; Windows and macOS inherit the upstream code, and packaging and driver details aren't finished.
+CI and packaging across platforms are now in place. Multi-platform binaries are attached to the release page: Windows (`.exe` / `.msi`), macOS (`.dmg`), Linux (`.deb` / `.rpm` / `.AppImage`), and Android (`.apk`). Desktop-to-desktop connections work in both directions; Android currently acts primarily as a controller, and there is no iOS build.
 
-Interop with upstream RustDesk uses its original direct protocol; that path is unencrypted, and SealDesk warns you before you connect.
+Because the macOS build is not notarized with an Apple Developer certificate, Gatekeeper may block the first launch. You can strip the quarantine attribute in your terminal:
 
-SealDesk lives under [runseal-labs](https://github.com/runseal-labs) (the "Seal" in the name is that sealed isolation between the two ends). The repository is at [github.com/runseal-labs/sealdesk](https://github.com/runseal-labs/sealdesk)—if you're tired of babysitting `hbbs` and `hbbr`, give it a spin; issues and PRs are welcome.
+```bash
+xattr -cr /Applications/SealDesk.app
+```
+
+Interoperating with upstream RustDesk uses its legacy direct-connection protocol (raw TCP 21118 stream without tailcat's WireGuard tunnel), so that path is unencrypted, and SealDesk pops a warning before connecting.
+
+SealDesk lives under [runseal-labs](https://github.com/runseal-labs) (the "Seal" in the name is that sealed isolation between the two ends). The repository is at [github.com/runseal-labs/sealdesk](https://github.com/runseal-labs/sealdesk), and installers are available under [Releases](https://github.com/runseal-labs/sealdesk/releases). If you're tired of babysitting `hbbs` and `hbbr`, give it a spin; issues and PRs are welcome.

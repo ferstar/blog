@@ -64,14 +64,16 @@ Android 上多绕了一步：Go 1.27.1 的 `-buildmode=c-archive` 在 android/ar
 
 控制端经常在 Wi-Fi 和蜂窝网络之间切换，一换网，路径更新跟不上，会话就容易断。Android 又不给应用 UID 用 netlink，Go 侧的 netmon 自己列不出网络接口，只能靠上层把接口列表喂过来。我们在 `libs/tailcat-ffi/android_interfaces.go` 里加了 `TcSetAndroidInterfaces`：Kotlin 层用 `java.net.NetworkInterface` 读出接口的名字和地址，Connectivity 一变化就通过 JNI 把 JSON 推给它，注册进 netmon，免得移动端远控走两步就重连。
 
-## 测过的组合
-
-首发版本的这几条链路都测过：Android（arm64）控 Linux、Linux 控 Linux，局域网内外都稳，资源占用也低；同一个局域网里，还能和原版 RustDesk 双向互控。
-
 ## 平台和限制
 
-平台支持还在 Alpha：Linux 当被控端和控制端都测过，Android 目前只能当控制端；Windows 和 macOS 继承的是上游代码，打包和驱动细节还没收口。
+各平台的 CI 和打包已经修好，Windows、macOS、Linux 和 Android 的跨平台安装包都放到了 Release 里（`.exe` / `.msi`、`.dmg`、`.deb` / `.rpm` / `.AppImage`、`.apk`）。桌面端双向互控均已测通，Android 目前主要作为控制端使用，暂时没有 iOS 构建。
 
-和原版 RustDesk 互控走的是它原来的直连协议，这一段不加密，连接前 SealDesk 会提示一下。
+macOS 版本没有买开发者证书做公证，初次打开如果被 Gatekeeper 拦截，终端里执行一条命令清掉隔离属性即可：
 
-SealDesk 挂在 [runseal-labs](https://github.com/runseal-labs) 名下（Seal 取的是两端密封隔离的意思），仓库在 [github.com/runseal-labs/sealdesk](https://github.com/runseal-labs/sealdesk)，不想再伺候 `hbbs` / `hbbr` 的可以拉下来试试，Issue 和 PR 都欢迎。
+```bash
+xattr -cr /Applications/SealDesk.app
+```
+
+和原版 RustDesk 互控走的是它原来的直连协议（TCP 21118 裸流，没有 tailcat 的 WireGuard 隧道介入），这一段不加密，连接前 SealDesk 会弹窗提示。
+
+SealDesk 挂在 [runseal-labs](https://github.com/runseal-labs) 名下（Seal 取的是两端密封隔离的意思），仓库在 [github.com/runseal-labs/sealdesk](https://github.com/runseal-labs/sealdesk)，安装包见 [Releases](https://github.com/runseal-labs/sealdesk/releases)。不想再伺候 `hbbs` / `hbbr` 的可以拉下来试试，Issue 和 PR 都欢迎。
