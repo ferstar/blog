@@ -115,7 +115,7 @@ rates 变了，还得看真正执行的计算。解锁前后用同一份基准�
 
 ## 补丁、数据和恢复入口
 
-[4090 D 适配补丁](/downloads/rtx4090d-gpu-unlock/rtx4090d.patch)基于上面固定的社区提交，仍是本次本地实验修改。附上 [GEMM 基准源码](/downloads/rtx4090d-gpu-unlock/gemm_bench.cu)、[15 条推理记录 CSV](/downloads/rtx4090d-gpu-unlock/inference-runs.csv)和[完整数据包](/downloads/rtx4090d-gpu-unlock-data.tar.gz)；[数据说明](/downloads/rtx4090d-gpu-unlock/README.md)列出了计算日志、rates、启动日志节选、JSON 计时字段和文件哈希清单，可以重新汇总表中的结果。附件没有打包固件和模块二进制，固件来源及许可证仍按基础仓库处理。
+[4090 D 适配补丁](/downloads/rtx4090d-gpu-unlock/rtx4090d.patch)基于上面固定的社区提交，仍是本次本地实验修改。附上 [GEMM 基准源码](/downloads/rtx4090d-gpu-unlock/gemm_bench.cu)、[15 条推理记录 CSV](/downloads/rtx4090d-gpu-unlock/inference-runs.csv?v=f2a4f3653ed8)和[完整数据包](/downloads/rtx4090d-gpu-unlock-data.tar.gz)；[数据说明](/downloads/rtx4090d-gpu-unlock/README.md)列出了计算日志、rates、启动日志节选、JSON 计时字段和文件哈希清单，可以重新汇总表中的结果。附件没有打包固件和模块二进制，固件来源及许可证仍按基础仓库处理。
 
 实验结束时，机器运行在第二次选中的测试入口里，Strata 正常、模型已加载、rates 全速。`BootNext` 已经消耗，默认启动顺序没改，也没有设置默认开机解锁。
 
