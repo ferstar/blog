@@ -1,0 +1,27 @@
+test_ampere_source_cannot_be_renamed_into_ada (test_ada_assets.AdaAssetTests.test_ampere_source_cannot_be_renamed_into_ada) ... ok
+test_default_ampere_outputs_stay_pinned (test_ada_assets.AdaAssetTests.test_default_ampere_outputs_stay_pinned) ... ok
+test_real_ada_geometry_and_descriptor (test_ada_assets.AdaAssetTests.test_real_ada_geometry_and_descriptor) ... ok
+test_source_mutation_rejected_before_output (test_ada_assets.AdaAssetTests.test_source_mutation_rejected_before_output) ... ok
+test_unknown_profile_is_rejected (test_ada_assets.ProfileValidationTests.test_unknown_profile_is_rejected) ... ok
+test_code_range_preserves_addresses_and_excludes_dmem (test_debug_decoder.DebugDecoderTests.test_code_range_preserves_addresses_and_excludes_dmem) ... skipped 'optional offline decoder requires PyCryptodome'
+test_standard_aes_control (test_debug_decoder.DebugDecoderTests.test_standard_aes_control) ... skipped 'optional offline decoder requires PyCryptodome'
+test_wrong_key_never_reads_firmware_or_creates_outputs (test_debug_decoder.DebugDecoderTests.test_wrong_key_never_reads_firmware_or_creates_outputs) ... skipped 'optional offline decoder requires PyCryptodome'
+test_key_file_formats_and_rejection (test_debug_decoder.DebugKeyInputTests.test_key_file_formats_and_rejection) ... ok
+test_ad102_exact_payload_and_fill (test_firmware.FirmwareTests.test_ad102_exact_payload_and_fill) ... ok
+test_ad102_ordered_arguments_marker_and_cleanup (test_firmware.FirmwareTests.test_ad102_ordered_arguments_marker_and_cleanup) ... ok
+test_firmware_install_includes_both_payloads_and_licenses (test_firmware.FirmwareTests.test_firmware_install_includes_both_payloads_and_licenses) ... ok
+test_per_chip_dmem_offsets_and_ga102_compatibility (test_firmware.FirmwareTests.test_per_chip_dmem_offsets_and_ga102_compatibility) ... ok
+test_firmware_package_contains_pinned_ada_assets_and_payload (test_packaging.PackageTests.test_firmware_package_contains_pinned_ada_assets_and_payload) ... ok
+test_install_uses_standard_paths (test_packaging.PackageTests.test_install_uses_standard_paths) ... ok
+test_native_versions_match (test_packaging.PackageTests.test_native_versions_match) ... ok
+test_pkgbuild_pins_match_manifest (test_packaging.PackageTests.test_pkgbuild_pins_match_manifest) ... ok
+test_v67_payload_matches_pin (test_packaging.PackageTests.test_v67_payload_matches_pin) ... ok
+test_components (test_release.ComponentTests.test_components) ... ok
+test_failed_getter_does_not_report_zero_as_full_speed (test_sm_rates.SmRateProbeTests.test_failed_getter_does_not_report_zero_as_full_speed) ... ok
+test_only_alloc_and_the_one_public_getter_are_sent (test_sm_rates.SmRateProbeTests.test_only_alloc_and_the_one_public_getter_are_sent) ... ok
+test_wrong_identity_prevents_any_device_open (test_sm_rates.SmRateProbeTests.test_wrong_identity_prevents_any_device_open) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 4.496s
+
+OK (skipped=3)

@@ -1,0 +1,8 @@
+pci 0000:01:00.0: selector read: SS0=0x37403145 expected_unlock=0x88888888
+pci 0000:01:00.0: selector write: SS0=0x88888888
+pci 0000:01:00.0: selector result: SS0=0x88888888 expected=0x88888888 matched=1
+pci 0000:01:00.0: selector read: SS1=0x5 expected_unlock=0x8
+pci 0000:01:00.0: selector write: SS1=0x8
+pci 0000:01:00.0: selector result: SS1=0x8 expected=0x8 matched=1
+pci 0000:01:00.0: post-FLR SEC2 reset released, GSP halted, BME=0 pending=0 WPR2=1ffffe00:00000000 SS0=88888888 SS1=00000008
+pci 0000:01:00.0: gpu_unlock: unlocked

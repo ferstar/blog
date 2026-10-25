@@ -1,0 +1,165 @@
+diff --git a/kernel/gpu_unlock/arch_610.h b/kernel/gpu_unlock/arch_610.h
+index 55f28d5..8b1b818 100644
+--- a/kernel/gpu_unlock/arch_610.h
++++ b/kernel/gpu_unlock/arch_610.h
+@@ -10,4 +10,7 @@ enum gpu_unlock_booter_arch {
+ /* Exact experimental AD103 canary; other Ada PCI IDs are not admitted. */
+ #define GU_AD103_RTX_4070_TI_SUPER 0x2705u
+ 
++/* RTX 4090 D is an exact-card experiment using AD102 assets. */
++#define GU_AD102_RTX_4090_D 0x2685u
++
+ #endif
+diff --git a/kernel/gpu_unlock/main.c b/kernel/gpu_unlock/main.c
+index 919ad91..8d8ce77 100644
+--- a/kernel/gpu_unlock/main.c
++++ b/kernel/gpu_unlock/main.c
+@@ -16,6 +16,10 @@ static bool ad103_experimental;
+ module_param(ad103_experimental, bool, 0444);
+ MODULE_PARM_DESC(ad103_experimental, "permit only the exact 10de:2705 AD103 canary with a single explicit PCI address");
+ 
++static bool ad102d_experimental;
++module_param(ad102d_experimental, bool, 0444);
++MODULE_PARM_DESC(ad102d_experimental, "permit only the exact 10de:2685 RTX 4090 D with a single explicit PCI address");
++
+ /* RTX 4090 and supported desktop GA102/GA103/GA104/GA106 GPU functions.
+  * Professional parts already have full FP32-accumulate tensor issue rate.
+  */
+@@ -47,6 +51,8 @@ static bool supported(const struct pci_dev *pdev)
+ 
+ 	if (pdev->device == GU_AD103_RTX_4070_TI_SUPER)
+ 		return ad103_experimental;
++	if (pdev->device == GU_AD102_RTX_4090_D)
++		return ad102d_experimental;
+ 	for (i = 0; i < ARRAY_SIZE(supported_ids); i++)
+ 		if (pdev->device == supported_ids[i])
+ 			return true;
+@@ -126,6 +132,11 @@ static int __init gpu_unlock_init(void)
+ 	if (!all)
+ 		report_unmatched();
+ 	while ((pdev = next_supported(pdev))) {
++		if (pdev->device == GU_AD102_RTX_4090_D &&
++		    (all || strcasecmp(targets, pci_name(pdev)))) {
++			pci_err(pdev, "gpu_unlock: experimental RTX 4090 D requires a single exact PCI target\n");
++			continue;
++		}
+ 		if (pdev->device == GU_AD103_RTX_4070_TI_SUPER &&
+ 		    (all || strcasecmp(targets, pci_name(pdev)))) {
+ 			pci_err(pdev, "gpu_unlock: experimental AD103 requires a single exact PCI target\n");
+diff --git a/kernel/gpu_unlock/unlock_610.c b/kernel/gpu_unlock/unlock_610.c
+index 5c668c4..8f27f75 100644
+--- a/kernel/gpu_unlock/unlock_610.c
++++ b/kernel/gpu_unlock/unlock_610.c
+@@ -73,6 +73,7 @@ static const struct gpu_unlock_assets *unlock_assets(const struct pci_dev *pdev)
+ 	};
+ 
+ 	return (pdev->device == GU_AD102_RTX_4090 ||
++		pdev->device == GU_AD102_RTX_4090_D ||
+ 		pdev->device == GU_AD103_RTX_4070_TI_SUPER) ? &ad102 : &ga102;
+ }
+ 
+@@ -317,6 +318,7 @@ static bool is_ad102(const struct unlock_transaction_work *work)
+ 	/* AD103 uses the same pinned AD102-family Booter archive. Hardware
+ 	 * behavior on 0x2705 still requires an exact-card canary. */
+ 	return work->pdev->device == GU_AD102_RTX_4090 ||
++	       work->pdev->device == GU_AD102_RTX_4090_D ||
+ 	       work->pdev->device == GU_AD103_RTX_4070_TI_SUPER;
+ }
+ 
+diff --git a/tests/test_ad102_kernel.c b/tests/test_ad102_kernel.c
+index 8f011f9..2f37865 100644
+--- a/tests/test_ad102_kernel.c
++++ b/tests/test_ad102_kernel.c
+@@ -37,6 +37,11 @@ static void prepare_boot(struct unlock_transaction_work *w)
+ int main(int argc, char **argv)
+ {
+     struct unlock_transaction_work w;
++    ad102_setup(&w);
++    dev.device=0x2685;
++    assert(is_ad102(&w));
++    assert(unlock_assets(&dev)->arch==GU_BOOTER_AD10X);
++    assert(!strcmp(unlock_assets(&dev)->signature_section,".fwsignature_ad10x"));
+     /* Required permissions are exact; FBPA is observational. Missing/wrong
+      * markers, ignored stores, live SEC2 and inaccessible BAR views all stop
+      * before either selector. No failure grants DMA cleanup authority. */
+@@ -145,7 +150,9 @@ int main(int argc, char **argv)
+         }
+         /* Dispatch the same published AD102-family payload through the exact
+          * 0x2705 profile under mocked registers. This is not silicon proof. */
+-        ad102_setup(&w);dev.device=GU_AD103_RTX_4070_TI_SUPER;load_rom(argv[1]);
++        const unsigned short extra_ids[]={GU_AD103_RTX_4070_TI_SUPER,0x2685};
++        for(unsigned id=0;id<ARRAY_SIZE(extra_ids);id++) {
++        ad102_setup(&w);dev.device=extra_ids[id];load_rom(argv[1]);
+         regs[0x1183a4/4]=0x5ff4;regs[0x625f04/4]=1;regs[0x1fa7c8/4]=0x45cb8f;
+         regs[0x1fa82c/4]=0x100000;regs[0x1fa830/4]=0x5cf3ff0;
+         regs[(GU_FUSE_SEC2_UCODE1+2*4)/4]=1;
+@@ -156,7 +163,8 @@ int main(int argc, char **argv)
+         gpu_unlock_610_release_shared(&shared);
+         assert(!ret && fake.starts==1 && fake.gsp_starts==1 && fake.flrs==1);
+         assert(!fake.live && !fake.fw_live && dev.refs==1);
+-        puts("AD103 0x2705 profile dispatch under mocked registers PASS");
++        printf("Ada 0x%04x profile dispatch under mocked registers PASS\n",extra_ids[id]);
++        }
+     }
+     puts("AD102 marker, permission, HALT, readout, metadata and retention gates passed under mocked hardware");
+ }
+diff --git a/tests/test_main.c b/tests/test_main.c
+index 5e32438..39d7be5 100644
+--- a/tests/test_main.c
++++ b/tests/test_main.c
+@@ -202,6 +202,7 @@ static void reset(char *list)
+ 	device_count = 0;
+ 	targets = list;
+ 	ad103_experimental = false;
++	ad102d_experimental = false;
+ }
+ 
+ /* Runs init, then checks what holds for every case. */
+@@ -328,6 +329,35 @@ int main(void)
+ 	assert(fake.loads == 1 && fake.started == 1 && fake.unlocks[0]);
+ 	puts("ad103: gated exact-card dispatch PASS");
+ 
++	/* RTX 4090 D remains opt-in and requires one exact PCI target. */
++	reset("0000:01:00.0");
++	add("0000:01:00.0", 0x2685, false);
++	ad102d_experimental = false;
++	run();
++	assert(!fake.loads && !fake.started);
++	reset("all");
++	ad102d_experimental = true;
++	add("0000:01:00.0", 0x2685, false);
++	run();
++	assert(!fake.loads && !fake.started);
++	assert(logged("experimental RTX 4090 D requires a single exact PCI target"));
++	reset("0000:01:00.0,0000:02:00.0");
++	ad102d_experimental = true;
++	add("0000:01:00.0", 0x2685, false);
++	add("0000:02:00.0", RTX_3090, false);
++	fake.expected_concurrent = 1;
++	run();
++	assert(!fake.unlocks[0] && fake.unlocks[1]);
++	reset("0000:01:00.0");
++	ad102d_experimental = true;
++	add("0000:01:00.0", 0x2685, false);
++	add("0000:02:00.0", 0x2685, false);
++	fake.expected_concurrent = 1;
++	run();
++	assert(fake.loads == 1 && fake.started == 1 && fake.unlocks[0] && !fake.unlocks[1]);
++	ad102d_experimental = false;
++	puts("ad102d: gated exact-card dispatch PASS");
++
+ 	/* No opt-in on the command line: the module does nothing. */
+ 	for (int empty = 0; empty < 2; empty++) {
+ 		reset(empty ? "" : NULL);
+diff --git a/tests/test_unlock_adapter.c b/tests/test_unlock_adapter.c
+index 6898897..9ed3358 100644
+--- a/tests/test_unlock_adapter.c
++++ b/tests/test_unlock_adapter.c
+@@ -44,6 +44,7 @@ static u64 mask;
+ static struct pci_dev dev;
+ static bool fake_ada_id(void) {
+     return dev.device==GU_AD102_RTX_4090 ||
++           dev.device==GU_AD102_RTX_4090_D ||
+            dev.device==GU_AD103_RTX_4070_TI_SUPER;
+ }
+ static u8 fw_image[4097];

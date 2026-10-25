@@ -1,0 +1,88 @@
+{
+  "experiment_date": "2026-10-24",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 4090 D",
+    "pci_id": "10de:2685",
+    "pci_bdf": "0000:01:00.0",
+    "sms": 114,
+    "memory_mib": 24564,
+    "compute_capability": "8.9",
+    "power_limit_w": 425
+  },
+  "os": "Ubuntu 24.04.4 LTS",
+  "kernel": "6.17.0-1032-oem",
+  "driver": "595.58.03 open",
+  "secure_boot": false,
+  "unlock_firmware_assets": "610.43.03",
+  "unlock_base": {
+    "repo": "https://github.com/JustAResearcher/gpu-unlock-ada",
+    "commit": "491925c1079435e260137b9f3526066e764de830"
+  },
+  "unlock_opt_in": {
+    "ad102d_experimental": 1,
+    "targets": "0000:01:00.0"
+  },
+  "host_tests": {
+    "total": 22,
+    "passed": 19,
+    "skipped": 3,
+    "skip_reason": "optional offline decoder requires PyCryptodome"
+  },
+  "repeated_boots": {
+    "normal_reboots_into_trial": 2,
+    "power_cycle_tested": false,
+    "rollback_boot_tested": false,
+    "default_boot_order_modified": false
+  },
+  "gemm_method": {
+    "matrix_n": 8192,
+    "samples": 5,
+    "iterations_per_sample": 20,
+    "summary": "median",
+    "same_binary_before_after": true,
+    "same_power_limit_before_after": true
+  },
+  "mma_method": {
+    "measurements": 3,
+    "summary": "best throughput"
+  },
+  "inference": {
+    "strata_commit": "011c9e600a93bbc9fd451c563501b5831c32bbca",
+    "strata_version": "0.1.47",
+    "engine_sha256": "21cf3ae7ca940f6eb9a576389aee5264b1bf6e5907a11ab999561f3767147bcb",
+    "model": "qwen3.8-flash-next-iq3_s",
+    "quantization": "official GSQ-RCO IQ3_S",
+    "max_context": 262144,
+    "kv": "int8",
+    "kv_resident": 32768,
+    "expert_slots": 8548,
+    "expert_cache_mib": 16599,
+    "launch_spec": 4,
+    "spec_min_p": 0.5,
+    "draft_vocab": "cjk",
+    "STRATA_PF_FUSED": "1",
+    "reported_engine_spec": 6,
+    "reported_mtp_max": 4,
+    "reported_lookup": 3,
+    "temperature": 0,
+    "top_k": 1,
+    "top_p": 1,
+    "seed": 20261024,
+    "thinking": false,
+    "concurrency": 1,
+    "formal_requests": 15,
+    "warmup_requests_excluded": 1,
+    "kv_prefix_reuse": false,
+    "expert_cache_reset_between_requests": false,
+    "summary": "per-metric median, three requests per case"
+  },
+  "historical_comparison": {
+    "url": "https://blog.ferstar.org/posts/qwen38-flash-next-strata-4090/",
+    "version": "0.1.39",
+    "decode_median_tok_s": 106.9,
+    "cold_prefill_20k_40k_median_tok_s": 2900,
+    "decode_observed_difference_percent": 20.673526660430298,
+    "prefill_observed_difference_percent": 17.996551724137944,
+    "controlled_unlock_ab": false
+  }
+}
