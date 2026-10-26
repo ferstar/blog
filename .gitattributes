@@ -1,2 +1,3 @@
 # Preserve the exact evidence bytes referenced by SHA256SUMS.
 static/downloads/rtx4090d-gpu-unlock/** -text
+static/downloads/tensor-unlock-moe/** -text

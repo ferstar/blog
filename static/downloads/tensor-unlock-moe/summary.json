@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "recorded_date": "2026-10-26",
+  "timezone": "UTC+08:00",
+  "stock_snapshot_at": "2026-10-26T15:55:18.267048+08:00",
+  "total_rows": 121,
+  "batches": {
+    "unlocked": {
+      "requests": 82,
+      "finish": {
+        "stop": 82
+      },
+      "output_tokens": 60707,
+      "fresh_prompt_tokens": 248668,
+      "reused_prompt_tokens": 3908541,
+      "prompt_ms": 140032.3,
+      "decode_ms": 480509.4000000001,
+      "drafts_offered": 51531,
+      "drafts_accepted": 35067,
+      "decode_weighted": 126.33883957316962,
+      "decode_p50": 130.6,
+      "prefill_weighted": 1775.7902998094012,
+      "reuse_percent": 94.01839070395546,
+      "mtp_acceptance_percent": 68.05029981952612,
+      "input_at_least_65536": 20
+    },
+    "stock": {
+      "requests": 39,
+      "finish": {
+        "stop": 39
+      },
+      "output_tokens": 25163,
+      "fresh_prompt_tokens": 194353,
+      "reused_prompt_tokens": 939989,
+      "prompt_ms": 89541.49999999999,
+      "decode_ms": 178287.40000000002,
+      "drafts_offered": 22648,
+      "drafts_accepted": 16438,
+      "decode_weighted": 141.13728732372562,
+      "decode_p50": 142.2,
+      "prefill_weighted": 2170.535450042718,
+      "reuse_percent": 82.86645473763645,
+      "mtp_acceptance_percent": 72.58036029671494,
+      "input_at_least_65536": 1
+    }
+  },
+  "environment": {
+    "gpu": "RTX 4090 D 24 GB",
+    "power_limit_w": 425,
+    "kernel": "7.3.0-ros2go-btf",
+    "driver": "615.78.08 open",
+    "engine": "0.1.48",
+    "source_sha": "5c8dd322528cc84f68f461ad54a506b9da8fa8d4",
+    "engine_sha256": "65f186a4f1006e08de5f3fe268b5bcc9163f603c2cfecd1defdbdbfc0ca8c8e3",
+    "model": "qwen3.8-flash-next-iq3_s",
+    "context": 262144,
+    "kv": "int8",
+    "kv_resident": 32768,
+    "expert_slots": 7681,
+    "expert_cache_mib": 14916,
+    "vision": true,
+    "spec_argument": 4,
+    "spec_min_p": 0.5
+  },
+  "method": [
+    "CSV is a numeric-only subset of archived authenticated /metrics?requests=all snapshots.",
+    "Original request IDs were replaced with per-batch sequence numbers. Request bodies, model outputs, precise per-request timestamps, hardware IDs, machine paths and authentication are omitted.",
+    "All retained rows finished with stop; output_tokens equals engine_generated in every row. Per-row sums reconciled with archived server totals.",
+    "Weighted decode = successful output tokens / matching native decode seconds. Weighted prefill = prompt_read tokens / matching native prompt seconds.",
+    "Reported median uses the per-request decode_tok_s field, which the server rounds to one decimal.",
+    "Generated tokens include reasoning tokens when thinking is enabled. In-flight generation is excluded.",
+    "The unlocked window includes a recovery acceptance check. Both windows are observations, not a matched-input benchmark.",
+    "Input_at_least_65536 uses total prompt length, including prefix reuse; it is not fresh prompt length.",
+    "State getter fmla32/imla2/imla4 was 0/0/0 for unlocked, 1/1/1 for stock."
+  ],
+  "comparison": "Same engine and configuration; different tasks, context lengths, cache reuse and draft acceptance. No causal unlock speedup is calculated."
+}
